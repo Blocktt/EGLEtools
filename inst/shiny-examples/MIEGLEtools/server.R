@@ -126,7 +126,6 @@ shinyServer(function(input, output) {
       # calculate values and scores in two steps using BioMonTools
       # save each file separately
 
-
       #myIndex <- input$MMI
       thresh <- BioMonTools::metrics_scoring
       myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"MetricName.Other"])))

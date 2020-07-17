@@ -22,8 +22,35 @@ options(shiny.maxRequestSize = 25*1024^2)
 
 # define which metrics michigan wants to keep in indices
 
-myMetrics <- c("ni_total", "nt_EPT", "nt_Ephem", "pi_tv_intol", "pi_Ephem"
-               , "nt_ffg_scrap", "pi_habit_climb")
+MichMetrics <- c("pt_nonIns"
+                 , "nt_CruMol"
+                 ,"pi_ffg_pred"
+                 ,"pi_ffg_shred"
+                 ,"pi_habit_cling"
+                 ,"pi_CruMol"
+                 ,"nt_tv_toler"
+                 ,"pt_nonIns"
+                 ,"pi_habit_climb"
+                 ,"pi_EPT"
+                 ,"pi_tv_toler"
+                 ,"nt_EPT"
+                 ,"pi_Cru"
+                 ,"pt_tv_intol"
+                 ,"nt_nonIns"
+                 ,"pi_ffg_scrap"
+                 ,"pi_IsoSnlLch"
+                 ,"pi_nonIns"
+                 ,"pi_Pleco"
+                 ,"pt_tv_toler"
+                 ,"pi_ffg_col"
+                 ,"pi_habit_sprawl"
+                 ,"nt_Trich"
+                 ,"nt_habit_cling"
+                 ,"pi_tv_intol"
+                 ,"pi_ffg_cllct"
+                 ,"pi_hab_sprwl"
+                 ,"nt_tv_intol"
+)
 
 # Get Master Taxa Lists
 # url_mt_fish <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Fish.csv"
