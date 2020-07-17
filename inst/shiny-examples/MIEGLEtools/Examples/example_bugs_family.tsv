@@ -1,4 +1,4 @@
-"Index.Name"	"SITE"	"DATE"	"TAXON"	"N_TAXA"	"N_GRIDS"	"EXCLUDE"	"strata_r"	"Phylum"	"Class"	"Order"	"Family"	"Genus"	"Other_Taxa"	"Tribe"	"FFG"	"FAM_TV"	"Habit"	"FinalTolVal07"	"FinalTolVal08"
+"Index.Name"	"SITE"	"DATE"	"TAXAID"	"N_TAXA"	"N_GRIDS"	"EXCLUDE"	"strata_r"	"Phylum"	"Class"	"Order"	"Family"	"Genus"	"Other_Taxa"	"Tribe"	"FFG"	"FAM_TV"	"Habit"	"FinalTolVal07"	"FinalTolVal08"
 "MSW.1999.Bugs"	"TUIZ-537-R-1111"	"1788-04-28"	"Naididae"	2	NA	NA	"CP"	"Annelida"	"Oligochaeta"	"Haplotaxida"	"Naididae"	NA	NA	NA	NA	10	NA	NA	NA
 "MSW.1999.Bugs"	"TUIZ-537-R-1111"	"1788-04-28"	"Tubificidae"	18	NA	NA	"CP"	"Annelida"	"Oligochaeta"	"Tubificida"	"Tubificidae"	NA	NA	NA	NA	10	NA	NA	NA
 "MSW.1999.Bugs"	"TUIZ-537-R-1111"	"1788-04-28"	"Hyalellidae"	37	NA	NA	"CP"	"Arthropoda"	"Malacostraca"	"Amphipoda"	"Hyalellidae"	NA	NA	NA	NA	8	NA	NA	NA
