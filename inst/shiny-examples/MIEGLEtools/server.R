@@ -126,18 +126,10 @@ shinyServer(function(input, output) {
       # calculate values and scores in two steps using BioMonTools
       # save each file separately
 
-      #myIndex <- input$MMI
-      thresh <- BioMonTools::metrics_scoring
-      myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"MetricName.Other"])))
-      #
-     # myCommunity <- Community[match(myIndex, MMIs)]
-      myCol_Strata <- col_Strata[match(myIndex, MMIs)]
+      df_metval <- BioMonTools::metric.values(fun.DF = df_data,fun.Community = "bugs", fun.MetricNames = MichMetrics)
 
       # Log
       message(paste0("IBI = ", input$MMI))
-
-      df_metval <- BioMonTools::metric.values(df_data, myCol_Strata, myMetrics) # define variables
-
 
 
       #

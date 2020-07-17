@@ -6,3 +6,29 @@ debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\s
 debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#124: Sys.sleep(0.25)
 debugging in: Sys.sleep(0.25)
 debug: .Internal(Sys.sleep(time))
+[1] "C:\\Users\\Ben.Block\\OneDrive - Tetra Tech, Inc\\GitHub\\MIEGLEtools\\inst\\shiny-examples\\MIEGLEtools\\Examples\\example_bugs_family.tsv"
+[1] "C:\\Users\\Ben.Block\\OneDrive - Tetra Tech, Inc\\GitHub\\MIEGLEtools\\inst\\shiny-examples\\MIEGLEtools\\Examples\\example_bugs_family.tsv"
+character(0)
+Error: '\U' used without hex digits in character string starting ""C:\U"
+Error: '\U' used without hex digits in character string starting ""C:\U"
+Error: Problem with `filter()` input `..1`.
+x object 'TAXAID' not found
+i Input `..1` is `N_TAXA > 0 | TAXAID == "NONE"`.
+Run `rlang::last_error()` to see where the error occurred.
+Error: object 'df_metval' not found
+Error: Problem with `filter()` input `..1`.
+x object 'TAXAID' not found
+i Input `..1` is `N_TAXA > 0 | TAXAID == "NONE"`.
+Run `rlang::last_error()` to see where the error occurred.
+Error: object 'df_metval' not found
+Error: Problem with `filter()` input `..1`.
+x object 'TAXAID' not found
+i Input `..1` is `N_TAXA > 0 | TAXAID == "NONE"`.
+Run `rlang::last_error()` to see where the error occurred.
+Error: object 'df_metval' not found
+Error: Problem with `filter()` input `..1`.
+x object 'TAXAID' not found
+i Input `..1` is `N_TAXA > 0 | TAXAID == "NONE"`.
+Run `rlang::last_error()` to see where the error occurred.
+Error: object 'df_metval' not found
+[1] 6
