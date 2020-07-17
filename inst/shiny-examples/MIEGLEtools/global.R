@@ -2,7 +2,6 @@
 
 # Packages
 library(shiny)
-library(MIEGLEtools)
 library(BioMonTools)
 library(DT)
 library(ggplot2)
@@ -20,6 +19,11 @@ col_Strata <- c("STRATA_R")
 # By default, the file size limit is 5MB. It can be changed by
 # setting this option. Here we'll raise limit to 10MB.
 options(shiny.maxRequestSize = 25*1024^2)
+
+# define which metrics michigan wants to keep in indices
+
+myMetrics <- c("ni_total", "nt_EPT", "nt_Ephem", "pi_tv_intol", "pi_Ephem"
+               , "nt_ffg_scrap", "pi_habit_climb")
 
 # Get Master Taxa Lists
 # url_mt_fish <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Fish.csv"

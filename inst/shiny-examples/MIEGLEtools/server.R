@@ -9,7 +9,6 @@
 
 # Packages
 library(shiny)
-library(MIEGLEtools)
 library(BioMonTools)
 library(DT)
 library(ggplot2)
@@ -127,8 +126,9 @@ shinyServer(function(input, output) {
       # calculate values and scores in two steps using BioMonTools
       # save each file separately
 
+
       #myIndex <- input$MMI
-      thresh <- MBSStools::metrics_scoring
+      thresh <- BioMonTools::metrics_scoring
       myMetrics <- as.character(droplevels(unique(thresh[thresh[,"Index.Name"]==myIndex,"MetricName.Other"])))
       #
      # myCommunity <- Community[match(myIndex, MMIs)]
@@ -137,7 +137,7 @@ shinyServer(function(input, output) {
       # Log
       message(paste0("IBI = ", input$MMI))
 
-      df_metval <- BioMonTools::metric.values(df_data, myCol_Strata, myMetrics)
+      df_metval <- BioMonTools::metric.values(df_data, myCol_Strata, myMetrics) # define variables
 
 
 

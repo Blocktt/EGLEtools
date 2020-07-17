@@ -9,17 +9,16 @@
 
 # Packages
 library(shiny)
-library(MIEGLEtools)
 library(DT)
 library(ggplot2)
 #library(plotly)
 library(shinyjs) # used for togglestate of download button
 
 # Define UI for application that draws a histogram
-shinyUI(fluidPage(theme = shinytheme("cosmo"),
+shinyUI(fluidPage(
 
   # Application title
-  titlePanel("MIEGLEtools IBI Calculator v0.9000"),
+  titlePanel("MIEGLEtools IBI Calculator v0.1.0.900"),
 
   # SideBar
   sidebarLayout(

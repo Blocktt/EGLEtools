@@ -1,0 +1,8 @@
+Results Log from MBSStools Shiny App
+2020-07-17 12:35:25
+file = example_bugs_family.tsv
+Called from: eval(expr, p)
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#123: incProgress(1/n_inc, detail = "Calculate, Metrics")
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#124: Sys.sleep(0.25)
+debugging in: Sys.sleep(0.25)
+debug: .Internal(Sys.sleep(time))
