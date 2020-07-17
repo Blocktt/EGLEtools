@@ -50,7 +50,7 @@ MichMetrics <- c("pt_nonIns"
                  ,"pi_ffg_cllct"
                  ,"pi_hab_sprwl"
                  ,"nt_tv_intol"
-)# END MichMetrics
+)# END MichMetricss
 
 # Get Master Taxa Lists
 # url_mt_fish <- "https://github.com/leppott/MBSStools_SupportFiles/raw/master/Data/CHAR_Fish.csv"
