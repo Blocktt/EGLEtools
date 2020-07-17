@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594993681294.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1697741837",
+    "id" : "5FF72152",
+    "lastKnownWriteTime" : 1594986290,
+    "last_content_update" : 1594986290,
+    "path" : "C:/Users/Ben.Block/OneDrive - Tetra Tech, Inc/MIEGLEtools/inst/shiny-examples/MIEGLEtools/global.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

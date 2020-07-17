@@ -1,0 +1,111 @@
+Index.Name	Index.Region	MetricName	Direction	Thresh.Lo	Thresh.Hi	ScoreRegime	MetricName.Other
+MBSS.2005.Bugs	COASTAL	nt_total	Decrease	14	22	135	ntaxa
+MBSS.2005.Bugs	COASTAL	nt_EPT	Decrease	2	5	135	nept
+MBSS.2005.Bugs	COASTAL	nt_Ephem	Decrease	1	2	135	nephem
+MBSS.2005.Bugs	COASTAL	pi_tv_intolurb	Decrease	10	28	135	pintol_urb
+MBSS.2005.Bugs	COASTAL	pi_Ephem	Decrease	0.8	11	135	pephem
+MBSS.2005.Bugs	COASTAL	nt_ffg_scrap	Decrease	1	2	135	nscrape
+MBSS.2005.Bugs	COASTAL	pi_habit_clmbrs	Decrease	0.9	8	135	pclimb
+MBSS.2005.Bugs	EPIEDMONT	nt_total	Decrease	15	25	135	ntaxa
+MBSS.2005.Bugs	EPIEDMONT	nt_EPT	Decrease	5	11	135	nept
+MBSS.2005.Bugs	EPIEDMONT	nt_Ephem	Decrease	2	4	135	nephem
+MBSS.2005.Bugs	EPIEDMONT	pi_tv_intolurb	Decrease	12	51	135	pintol_urb
+MBSS.2005.Bugs	EPIEDMONT	pi_Chiro	Increase	24	63	135	pchiron
+MBSS.2005.Bugs	EPIEDMONT	pi_habit_clngrs	Decrease	31	74	135	pcling
+MBSS.2005.Bugs	HIGHLAND	nt_total	Decrease	15	24	135	ntaxa
+MBSS.2005.Bugs	HIGHLAND	nt_EPT	Decrease	8	14	135	nept
+MBSS.2005.Bugs	HIGHLAND	nt_Ephem	Decrease	3	5	135	nephem
+MBSS.2005.Bugs	HIGHLAND	pi_tv_intolurb	Decrease	38	80	135	pintol_urb
+MBSS.2005.Bugs	HIGHLAND	pi_Tanyt	Decrease	0.1	4	135	ptany
+MBSS.2005.Bugs	HIGHLAND	pi_ffg_scrap	Decrease	3	13	135	pscrape
+MBSS.2005.Bugs	HIGHLAND	pi_habit_swmmrs	Decrease	3	18	135	pswim
+MBSS.2005.Bugs	HIGHLAND	pi_Dipt	Increase	26	50	135	pdipt
+MBSS.2005.Fish	COASTAL	ni_m2	Decrease	0.45	0.72	135	ABUNSQM
+MBSS.2005.Fish	COASTAL	nt_benthic	Decrease	0.01	0.22	135	NUMBENTSP
+MBSS.2005.Fish	COASTAL	pi_tv_toler	Increase	68	97	135	PTOL
+MBSS.2005.Fish	COASTAL	pi_genomninvrt	Increase	92	99.9	135	PGEOMIV
+MBSS.2005.Fish	COASTAL	pi_rbs	Decrease	0.1	2	135	PROUND
+MBSS.2005.Fish	COASTAL	pi_dom01	Increase	40	69	135	PABDOM
+MBSS.2005.Fish	EPIEDMONT	ni_m2	Decrease	0.25	1.25	135	ABUNSQM
+MBSS.2005.Fish	EPIEDMONT	nt_benthic	Decrease	0.09	0.26	135	NUMBENTSP
+MBSS.2005.Fish	EPIEDMONT	pi_tv_toler	Increase	45	68	135	PTOL
+MBSS.2005.Fish	EPIEDMONT	pi_genomninvrt	Increase	80	99.9	135	PGEOMIV
+MBSS.2005.Fish	EPIEDMONT	x_biomass_m2	Decrease	4	8.6	135	BIOM_MSQ
+MBSS.2005.Fish	EPIEDMONT	pi_lithophil	Decrease	32	61	135	P_LITH
+MBSS.2005.Fish	HIGHLAND	ni_m2	Decrease	0.31	0.65	135	ABUNSQM
+MBSS.2005.Fish	HIGHLAND	nt_benthic	Decrease	0.11	0.25	135	NUMBENTSP
+MBSS.2005.Fish	HIGHLAND	pi_tv_toler	Increase	39	80	135	PTOL
+MBSS.2005.Fish	HIGHLAND	pi_genomninvrt	Increase	61	96	135	PGEOMIV
+MBSS.2005.Fish	HIGHLAND	pi_insectivore	Decrease	1	33	135	P_IS
+MBSS.2005.Fish	HIGHLAND	pi_dom01	Increase	38	89	135	PABDOM
+MBSS.2005.Fish	COLD	ni_m2	Increase	0.88	2.24	135	ABUNSQM
+MBSS.2005.Fish	COLD	pi_tv_toler	Increase	22	81	135	PTOL
+MBSS.2005.Fish	COLD	pi_brooktrout	Decrease	1E-16	14	135	PBROOK
+MBSS.2005.Fish	COLD	pi_sculpin	Decrease	1E-16	44	135	PSCULP
+MSW.1999.Bugs	CP	nt_total	Decrease	8	16	135	ntaxa
+MSW.1999.Bugs	CP	nt_EPT	Decrease	3	6	135	nept
+MSW.1999.Bugs	CP	nt_Ephem	Decrease	1	2	135	nephem
+MSW.1999.Bugs	CP	nt_Dipt	Decrease	2	3	135	ndipt
+MSW.1999.Bugs	CP	pi_Ephem	Decrease	2	11.4	135	pephem
+MSW.1999.Bugs	CP	nt_tv_intol	Decrease	2	5	135	nintol_FAM
+MSW.1999.Bugs	CP	x_Becks	Decrease	4	9	135	becks
+MSW.1999.Bugs	NCP	nt_total	Decrease	9	14	135	ntaxa
+MSW.1999.Bugs	NCP	nt_EPT	Decrease	4	10	135	nept
+MSW.1999.Bugs	NCP	nt_Ephem	Decrease	2	3	135	nephem
+MSW.1999.Bugs	NCP	nt_Dipt	Decrease	2	3	135	ndipt
+MSW.1999.Bugs	NCP	pi_Ephem	Decrease	5.7	20.3	135	pephem
+MSW.1999.Bugs	NCP	nt_tv_intol	Decrease	4	8	135	nintol_FAM
+MSW.1999.Bugs	NCP	x_Becks	Decrease	8	12.5	135	becks
+WSA.2006.Bugs	CPL	pi_nonInsect				100	pi_nonInsect
+WSA.2006.Bugs	CPL	x_Shan_e				100	x_Shan_e
+WSA.2006.Bugs	CPL	nt_ffg_shred				100	nt_ffg_shred
+WSA.2006.Bugs	CPL	pt_habit_clngr				100	pt_habit_clngr
+WSA.2006.Bugs	CPL	nt_EPT				100	nt_EPT
+WSA.2006.Bugs	CPL	pt_tv_toler				100	pt_tv_toler
+WSA.2006.Bugs	SAP	pt_Ephem				100	pt_Ephem
+WSA.2006.Bugs	SAP	x_Shan_e				100	x_Shan_e
+WSA.2006.Bugs	SAP	nt_ffg_scrap				100	nt_ffg_scrap
+WSA.2006.Bugs	SAP	pt_habit_brrwr				100	pt_habit_brrwr
+WSA.2006.Bugs	SAP	nt_EPT				100	nt_EPT
+WSA.2006.Bugs	SAP	pt_tv_toler				100	pt_tv_toler
+MIEGLE_2020	MidSizeDry	pt_nonIns	Increase	10.71	33.33	100	pt_nonIns
+MIEGLE_2020	MidSizeDry	nt_CruMol	Increase	1	8	100	nt_CruMol
+MIEGLE_2020	MidSizeDry	pi_ffg_pred	Decrease	3.21	25.72	100	pi_ffg_pred
+MIEGLE_2020	MidSizeDry	pi_ffg_shred	Increase	1.36	42.23	100	pi_ffg_shred
+MIEGLE_2020	MidSizeDry	pi_habit_cling	Decrease	18.39	79.57	100	pi_habit_cling
+MIEGLE_2020	MidSizeDry	pi_CruMol	Increase	0.57	51.48	100	pi_CruMol
+MIEGLE_2020	MidSizeDry	nt_tv_toler	Increase	0	5	100	nt_tv_toler
+MIEGLE_2020	Narrow	pt_nonIns	Increase	8.14	34.39	100	pt_nonIns
+MIEGLE_2020	Narrow	pi_ffg_shred	Increase	1.88	51.34	100	pi_ffg_shred
+MIEGLE_2020	Narrow	pi_habit_climb	Increase	0.38	18.45	100	pi_habit_climb
+MIEGLE_2020	Narrow	pi_EPT	Decrease	14.93	72.9	100	pi_EPT
+MIEGLE_2020	Narrow	pi_tv_toler	Increase	0	18.26	100	pi_tv_toler
+MIEGLE_2020	VeryNarrow	nt_EPT	Decrease	2.35	15	100	nt_EPT
+MIEGLE_2020	VeryNarrow	pt_nonIns	Increase	10.71	38.89	100	pt_nonIns
+MIEGLE_2020	VeryNarrow	pi_ffg_shred	Increase	1.33	71.15	100	pi_ffg_shred
+MIEGLE_2020	VeryNarrow	pi_habit_cling	Decrease	4.27	72.16	100	pi_habit_cling
+MIEGLE_2020	VeryNarrow	pi_Cru	Increase	0	63.71	100	pi_Cru
+MIEGLE_2020	VeryNarrow	pt_tv_intol	Decrease	7.51	45.24	100	pt_tv_intol
+MIEGLE_2020	WetWide	nt_nonIns	Increase	4	13	100	nt_nonIns
+MIEGLE_2020	WetWide	pi_ffg_scrap	Decrease	2.08	50.14	100	pi_ffg_scrap
+MIEGLE_2020	WetWide	pi_IsoSnlLch	Increase	0.39	38.46	100	pi_IsoSnlLch
+MIEGLE_2020	WetWide	pi_nonIns	Increase	3.29	67.29	100	pi_nonIns
+MIEGLE_2020	WetWide	pi_Pleco	Decrease	0	6.62	100	pi_Pleco
+MIEGLE_2020	WetWide	pt_tv_toler	Increase	0	17.39	100	pt_tv_toler
+MIEGLE_2020	WestFlat	pt_nonIns	Increase	18.18	43.51	100	pt_nonIns
+MIEGLE_2020	WestFlat	pi_ffg_col	Increase	9.67	72.31	100	pi_ffg_col
+MIEGLE_2020	WestFlat	pi_habit_sprawl	Increase	0.58	27.03	100	pi_habit_sprawl
+MIEGLE_2020	WestFlat	pi_EPT	Decrease	0.59	60.76	100	pi_EPT
+MIEGLE_2020	WestFlat	pt_tv_intol	Decrease	0	31.06	100	pt_tv_intol
+MIEGLE_2020	WestFlat	pt_tv_toler	Increase	4.33	30.04	100	pt_tv_toler
+MIEGLE_2020	East	nt_Trich	Decrease	0	7	100	nt_Trich
+MIEGLE_2020	East	pt_nonIns	Increase	20	50	100	pt_nonIns
+MIEGLE_2020	East	nt_habit_cling	Decrease	2	12.6	100	nt_habit_cling
+MIEGLE_2020	East	pi_IsoSnlLch	Increase	0.74	48.6	100	pi_IsoSnlLch
+MIEGLE_2020	East	pi_tv_intol	Decrease	0	42.08	100	pi_tv_intol
+MIEGLE_2020	East	pt_tv_toler	Increase	5.32	31.93	100	pt_tv_toler
+MIEGLE_2020	WestSteep	pt_nonIns	Decrease	1111	9999	100	pt_nonIns
+MIEGLE_2020	WestSteep	pi_ffg_cllct	Decrease	1111	9999	100	pi_ffg_cllct
+MIEGLE_2020	WestSteep	pi_hab_sprwl	Decrease	1111	9999	100	pi_hab_sprwl
+MIEGLE_2020	WestSteep	nt_tv_intol	Decrease	1111	9999	100	nt_tv_intol
+MIEGLE_2020	WestSteep	pt_tv_toler	Decrease	1111	9999	100	pt_tv_toler

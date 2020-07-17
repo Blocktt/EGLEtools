@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594993305332.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3422684383",
+    "id" : "7B24F082",
+    "lastKnownWriteTime" : 1594993665,
+    "last_content_update" : 1594993665807,
+    "path" : "C:/Users/Ben.Block/OneDrive - Tetra Tech, Inc/GitHub/MIEGLEtools/R/runShiny.R",
+    "project_path" : "R/runShiny.R",
+    "properties" : {
+        "cursorPosition" : "22,74",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
