@@ -165,26 +165,6 @@ shinyServer(function(input, output) {
                                              col_ni_total = "ni_total")
 
 
-
-
-
-df_metsc <- MBSStools::metric.scores(df_metval, myMetrics, "INDEX.NAME"
-                                           , myCol_Strata, thresh)
-
-
-
-
-
-
-      # Add Narrative
-      myBreaks <- c(1:5)
-      myLabels <- c("Very Poor", "Poor", "Fair", "Good")
-      df_metsc$IBI_Nar <- cut(df_metsc$IBI
-                              , breaks=myBreaks
-                              , labels=myLabels
-                              , include.lowest=TRUE
-                              , right=FALSE
-                              , ordered_result=TRUE)
       # Save
       # fn_metsc <- file.path(".", "Results", "results_metsc.tsv")
       # write.table(df_metsc, fn_metsc, row.names = FALSE, col.names = TRUE, sep="\t")
@@ -194,23 +174,23 @@ df_metsc <- MBSStools::metric.scores(df_metval, myMetrics, "INDEX.NAME"
 
 
       # Increment the progress bar, and update the detail text.
-      incProgress(1/n_inc, detail = "Create, Plot")
+      incProgress(1/n_inc, detail = "Ben's code is magical!")
       Sys.sleep(0.25)
 
       # Plot
-      p1 <- ggplot(df_metsc, aes(IBI), fill=myCol_Strata, shape=myCol_Strata) +
-                  geom_dotplot(aes_string(fill=myCol_Strata), method="histodot", binwidth = 1/5) +
+      #p1 <- ggplot(df_metsc, aes(IBI), fill=myCol_Strata, shape=myCol_Strata) +
+      #            geom_dotplot(aes_string(fill=myCol_Strata), method="histodot", binwidth = 1/5) +
                   #geom_dotplot(aes_string(fill=myCol_Strata)) +
-                  labs(x=myIndex) +
-                  geom_vline(xintercept = 3) +
-                  scale_x_continuous(limits = c(1, 5)) +
+       #           labs(x=myIndex) +
+       #          geom_vline(xintercept = 3) +
+       #           scale_x_continuous(limits = c(1, 5)) +
                   # scale_fill_discrete(name="STRATA"
                   #                     , breaks=c("COASTAL", "EPIEDMONT", "HIGHLAND")) +
-                  theme(axis.title.y=element_blank()
-                        , axis.ticks.y=element_blank()
-                        , axis.text.y=element_blank())
-      fn_p1 <- file.path(".", "Results", "results_plot_IBI.jpg")
-      ggplot2::ggsave(fn_p1, p1)
+        #          theme(axis.title.y=element_blank()
+         #               , axis.ticks.y=element_blank()
+          #              , axis.text.y=element_blank())
+      #fn_p1 <- file.path(".", "Results", "results_plot_IBI.jpg")
+      #ggplot2::ggsave(fn_p1, p1)
 
 
 
