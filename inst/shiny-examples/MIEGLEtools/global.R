@@ -5,6 +5,9 @@ library(shiny)
 library(BioMonTools)
 library(DT)
 library(ggplot2)
+library(readxl)
+library(reshape2)
+library(dplyr)
 # library(plotly)
 library(shinyjs) # used for download button enable
 
@@ -22,7 +25,30 @@ options(shiny.maxRequestSize = 25*1024^2)
 
 # define which metrics michigan wants to keep in indices
 
-MichMetrics <- c( NEED TO FIX
+MichMetrics <- c("nt_CruMol"
+                 ,"pi_ffg_pred"
+                 ,"pi_ffg_shred"
+                 ,"pi_habit_cling"
+                 ,"pi_CruMol"
+                 ,"nt_tv_toler"
+                 ,"pt_NonIns"
+                 ,"pi_habit_climb"
+                 ,"pi_EPT"
+                 ,"pi_tv_toler"
+                 ,"nt_EPT"
+                 ,"pi_Cru"
+                 ,"pt_tv_intol"
+                 ,"nt_NonIns"
+                 ,"pi_ffg_scrap"
+                 ,"pi_IsoSnlLch"
+                 ,"pi_NonIns"
+                 ,"pi_Pleco"
+                 ,"pt_tv_toler"
+                 ,"pi_ffg_col"
+                 ,"pi_habit_sprawl"
+                 ,"nt_Trich"
+                 ,"nt_habit_cling"
+                 ,"pi_tv_intol"
 )# END MichMetricss
 
 # Get Master Taxa Lists

@@ -12,6 +12,9 @@ library(shiny)
 library(BioMonTools)
 library(DT)
 library(ggplot2)
+library(dplyr)
+library(readxl)
+library(reshape2)
 # library(plotly)
 library(shinyjs)
 
@@ -150,8 +153,22 @@ shinyServer(function(input, output) {
 
       # Metric Scores
       #
+      # Thresholds
+      fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
+      df_thresh_metric <- read_excel(fn_thresh, sheet="metric.scoring")
+      df_thresh_index <- read_excel(fn_thresh, sheet="index.scoring")
+
+
+
+
       df_metsc <- MBSStools::metric.scores(df_metval, myMetrics, "INDEX.NAME"
                                            , myCol_Strata, thresh)
+
+
+
+
+
+
       # Add Narrative
       myBreaks <- c(1:5)
       myLabels <- c("Very Poor", "Poor", "Fair", "Good")
