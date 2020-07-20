@@ -131,6 +131,7 @@ shinyServer(function(input, output) {
 
       df_metval <- BioMonTools::metric.values(fun.DF = df_data,fun.Community = "bugs", fun.MetricNames = MichMetrics)
 
+
       # Log
       message(paste0("IBI = ", input$MMI))
 
