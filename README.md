@@ -32,12 +32,7 @@ In development.
 
 ## Usage
 
-By those using involved with bioassessment and bionmonitoring and the
-need for data manipulation.
-
-A common set of tools will standardize outputs across entities. No
-longer need to use the same database or spreadsheet. Only need to format
-data for use with these tools.
+A Shiny app purpose built for MI EGLE to run IBI metric scoring. 
 
 ## Documentation
 
