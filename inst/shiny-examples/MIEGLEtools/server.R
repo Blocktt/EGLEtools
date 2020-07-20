@@ -158,10 +158,17 @@ shinyServer(function(input, output) {
       df_thresh_metric <- read_excel(fn_thresh, sheet="metric.scoring")
       df_thresh_index <- read_excel(fn_thresh, sheet="index.scoring")
 
+      # run scoring code
+      df_metsc <- BioMonTools::metric.scores(DF_Metrics = df_metval, col_MetricNames = MichMetrics,
+                                             col_IndexName = "INDEX_NAME", col_IndexRegion = "INDEX_REGION",
+                                             DF_Thresh_Metric = df_thresh_metric, DF_Thresh_Index = df_thresh_index,
+                                             col_ni_total = "ni_total")
 
 
 
-      df_metsc <- MBSStools::metric.scores(df_metval, myMetrics, "INDEX.NAME"
+
+
+df_metsc <- MBSStools::metric.scores(df_metval, myMetrics, "INDEX.NAME"
                                            , myCol_Strata, thresh)
 
 
