@@ -1,10 +1,8 @@
 
 # README- MIEGLEtools
-A shiny app used to calculate IBI scores for given sites using benthic macroinvertebrate taxonomic information.
 ================
 
-Suite of functions and tools for bioassessment and
-biomonitoring.
+A shiny app used to calculate IBI scores for given sites using benthic macroinvertebrate taxonomic information.
 
 ## Badges
 
@@ -43,7 +41,7 @@ data for use with these tools.
 
 ## Documentation
 
-Vignette and install guide udpates are planned for the future.
+Vignette and install guide updates are planned for the future.
 
 ## Issues
 
