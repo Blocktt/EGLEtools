@@ -3,40 +3,30 @@
 A shiny app used to calculate IBI scores for given sites using benthic macroinvertebrate taxonomic information.
 ================
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-    #> Last Update: 2019-05-17 10:58:28
-
 Suite of functions and tools for bioassessment and
 biomonitoring.
 
 ## Badges
 
-[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/leppott/BioMonTools/graphs/commit-activity)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/Blocktt/MIEGLEtools/graphs/commit-activity)
 [![GitHub
-license](https://img.shields.io/github/license/leppott/BioMonTools.svg)](https://github.com/leppott/BioMonTools/blob/master/LICENSE)
-[![Travis-CI Build
-Status](https://travis-ci.org/leppott/BioMonTools.svg?branch=master)](https://travis-ci.org/leppott/BioMonTools)
+license](https://img.shields.io/github/license/Blocktt/MIEGLEtools)](https://github.com/Blocktt/MIEGLEtools/blob/master/LICENSE)
 [![GitHub
-issues](https://img.shields.io/github/issues/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/issues/)
-
-[![GitHub
-release](https://img.shields.io/github/release/leppott/BioMonTools.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
+issues](https://img.shields.io/github/issues-raw/Blocktt/MIEGLEtools)](https://github.com/Blocktt/MIEGLEtools/issues)
 [![Github all
-releases](https://img.shields.io/github/downloads/leppott/BioMonTools/total.svg)](https://GitHub.com/leppott/BioMonTools/releases/)
+releases](https://img.shields.io/github/downloads/Blocktt/MIEGLEtools/total)](https://github.com/Blocktt/MIEGLEtools/releases)
 
 ## Installation
 
 ``` r
 library(devtools)  #install if needed
 Sys.setenv("TAR" = "internal")  # needed for R v3.6.0
-install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+install_github("Blocktt/MIEGLEtools", force=TRUE, build_vignettes=TRUE)
 ```
 
 ## Purpose
 
-Functions to aid the data analysis of bioassessment and biomonitoring
-data.
+Functions to aid the Michigan EGLE in bioassessment and IBI scoring using their updated index. Program uses Erik Leppo's BioMonTools for calculations (https://github.com/leppott/BioMonTools). 
 
 ## Status
 
@@ -57,5 +47,5 @@ Vignette and install guide udpates are planned for the future.
 
 ## Issues
 
-<https://github.com/leppott/BioMonTools/issues>
+<https://github.com/Blocktt/MIEGLEtools/issues>
 
