@@ -47,9 +47,35 @@ shinyServer(function(input, output) {
 
     inFile <- input$fn_input
 
+    validate(
+      need(inFile != "", "Please select a data set") # used to inform the user that a data set is required
+    )
+
     if (is.null(inFile)){
       return(NULL)
     }##IF~is.null~END
+
+    # Read user imported file
+    df_input <- read.csv(inFile$datapath, header = input$header,
+                         sep = input$sep, quote = input$quote, stringsAsFactors = FALSE)
+
+    required_columns <- c("INDEX_NAME","SAMPLEID","INDEX_REGION","DATE","TAXAID"
+                          ,"N_TAXA","EXCLUDE","NONTARGET","Phylum","Class","Order"
+                          ,"Family","Genus","Other_Taxa","Tribe","FFG","FAM_TV","Habit"
+                          ,"FinalTolVal07","FinalTolVal08")
+
+    column_names <- colnames(df_input)
+
+    # QC Check for column names
+    col_req_match <- required_columns %in% column_names
+    col_missing <- required_columns[!col_req_match]
+
+    shiny::validate(
+      need(all(required_columns %in% column_names), paste0("Error\nChoose correct data separator; otherwise, you may have missing required columns\n",
+                                                           paste("Required columns missing from the data:\n")
+                                                           , paste("* ", col_missing, collapse = "\n")))
+    )
+
 
     #message(getwd())
 
