@@ -59,10 +59,26 @@ shinyServer(function(input, output) {
     df_input <- read.csv(inFile$datapath, header = input$header,
                          sep = input$sep, quote = input$quote, stringsAsFactors = FALSE)
 
-    required_columns <- c("INDEX_NAME","SAMPLEID","INDEX_REGION","DATE","TAXAID"
-                          ,"N_TAXA","EXCLUDE","NONTARGET","Phylum","Class","Order"
-                          ,"Family","Genus","Other_Taxa","Tribe","FFG","FAM_TV","Habit"
-                          ,"FinalTolVal07","FinalTolVal08")
+    required_columns <- c("INDEX_NAME"
+                          ,"SAMPLEID"
+                          ,"INDEX_REGION"
+                          ,"DATE"
+                          ,"TAXAID"
+                          ,"N_TAXA"
+                          ,"EXCLUDE"
+                          ,"NONTARGET"
+                          ,"Phylum"
+                          ,"Class"
+                          ,"Order"
+                          ,"Family"
+                          ,"Genus"
+                          ,"Other_Taxa"
+                          ,"Tribe"
+                          ,"FFG"
+                          ,"FAM_TV"
+                          ,"Habit"
+                          ,"FinalTolVal07"
+                          ,"FinalTolVal08")
 
     column_names <- colnames(df_input)
 
@@ -74,7 +90,7 @@ shinyServer(function(input, output) {
       need(all(required_columns %in% column_names), paste0("Error\nChoose correct data separator; otherwise, you may have missing required columns\n",
                                                            paste("Required columns missing from the data:\n")
                                                            , paste("* ", col_missing, collapse = "\n")))
-    )
+    )##END ~ validate() code
 
 
     #message(getwd())
