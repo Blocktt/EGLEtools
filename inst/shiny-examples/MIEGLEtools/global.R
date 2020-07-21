@@ -10,7 +10,7 @@ library(dplyr)
 # download BioMonTools from GitHub
 library(devtools)  #install if needed
 Sys.setenv("TAR" = "internal")  # needed for R v3.6.0
-install_github("leppott/BioMonTools", force=TRUE, build_vignettes=TRUE)
+install_github("Blocktt/BioMonTools", force=TRUE, build_vignettes=TRUE)
 library(BioMonTools)
 # library(plotly)
 library(shinyjs) # used for download button enable
