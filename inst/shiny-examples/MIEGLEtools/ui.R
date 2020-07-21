@@ -11,6 +11,7 @@
 library(shiny)
 library(DT)
 library(ggplot2)
+library(BioMonTools)
 #library(plotly)
 library(shinyjs) # used for togglestate of download button
 
