@@ -1,0 +1,30 @@
+Results Log from MBSStools Shiny App
+2020-07-21 11:46:30
+file = example_bugs_genus_BB_20200717.txt
+ 
+There are 13 missing fields in the data:
+SUBPHYLUM, SUBCLASS, INFRAORDER, SUBFAMILY, LIFE_CYCLE, TOLVAL, BCG_ATTR, THERMAL_INDICATOR, LONGLIVED, NOTEWORTHY, FFG2, TOLVAL2, HABITAT
+ 
+If you continue the metrics associated with these fields will be invalid.
+For example, if the HABIT field is missing all habit related metrics will not be correct.
+Do you wish to continue (YES or NO)?
+boo.Shiny == TRUE so prompt skipped and value set to '1'.
+Warning in metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep,  :
+  Metrics related to the following fields are invalid:
+   SUBPHYLUM
+   SUBCLASS
+   INFRAORDER
+   SUBFAMILY
+   LIFE_CYCLE
+   TOLVAL
+   BCG_ATTR
+   THERMAL_INDICATOR
+   LONGLIVED
+   NOTEWORTHY
+   FFG2
+   TOLVAL2
+   HABITAT
+IBI = MIEGLE_2020
+Warning in sink() : no sink to remove
+
+

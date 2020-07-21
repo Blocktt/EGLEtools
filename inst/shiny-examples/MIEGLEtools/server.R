@@ -140,10 +140,11 @@ shinyServer(function(input, output) {
       sink(file_sink, type = "output", append = TRUE)
       sink(file_sink, type = "message", append = TRUE)
       # Log
-      message("Results Log from MBSStools Shiny App")
+      message("Results Log from MIEGLEtools Shiny App")
       message(Sys.time())
       inFile <- input$fn_input
       message(paste0("file = ", inFile$name))
+      message("The following messages are from metric.values function in BioMonTools:")
 
 
       # Increment the progress bar, and update the detail text.
@@ -175,7 +176,7 @@ shinyServer(function(input, output) {
 
 
       # Log
-      message(paste0("IBI = ", input$MMI))
+      message(paste0("Chosen IBI from Shiny app = ", input$MMI))
 
 
       #

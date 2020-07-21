@@ -18,7 +18,7 @@ library(shinyjs) # used for togglestate of download button
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("MIEGLEtools IBI Calculator v0.1.0.904"),
+  titlePanel("MIEGLEtools IBI Calculator v0.1.1.910"),
 
   # SideBar
   sidebarLayout(
