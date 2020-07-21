@@ -28,3 +28,31 @@ IBI = MIEGLE_2020
 Warning in sink() : no sink to remove
 
 
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+also installing the dependency ‘packrat’
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/packrat_0.5.0.zip'
+Content type 'application/zip' length 456566 bytes (445 KB)
+downloaded 445 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/3.6/rsconnect_0.8.16.zip'
+Content type 'application/zip' length 648380 bytes (633 KB)
+downloaded 633 KB
+
+
+Attaching package: ‘rsconnect’
+
+The following object is masked from ‘package:shiny’:
+
+    serverInfo
+
+
+Listening on http://127.0.0.1:4981
+
+
