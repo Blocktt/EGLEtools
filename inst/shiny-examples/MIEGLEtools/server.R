@@ -102,10 +102,6 @@ shinyServer(function(input, output) {
     fn_results <- list.files(file.path(".", "Results"), full.names=TRUE)
     file.remove(fn_results)
 
-    # Read user imported file
-    df_input <- read.csv(inFile$datapath, header = input$header,
-             sep = input$sep, quote = input$quote, stringsAsFactors = FALSE)
-
     # Write to "Results" folder - Import as TSV
     fn_input <- file.path(".", "Results", "data_import.tsv")
     write.table(df_input, fn_input, row.names=FALSE, col.names=TRUE, sep="\t")
@@ -190,7 +186,7 @@ shinyServer(function(input, output) {
 
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Calculate, Scores")
-      Sys.sleep(0.25)
+      Sys.sleep(0.50)
 
       # Metric Scores
       #
@@ -216,7 +212,7 @@ shinyServer(function(input, output) {
 
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Ben's code is magical!")
-      Sys.sleep(0.25)
+      Sys.sleep(0.50)
 
       # Plot
       #p1 <- ggplot(df_metsc, aes(IBI), fill=myCol_Strata, shape=myCol_Strata) +
@@ -234,16 +230,15 @@ shinyServer(function(input, output) {
       #ggplot2::ggsave(fn_p1, p1)
 
 
-
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Create, Zip")
-      Sys.sleep(0.25)
+      Sys.sleep(0.50)
 
       # Create zip file
       fn_4zip <- list.files(path = file.path(".", "Results")
                             , pattern = "^results_"
                             , full.names = TRUE)
-      utils::zip(file.path(".", "Results", "results.zip"), fn_4zip)
+      zip(file.path(".", "Results", "results.zip"), fn_4zip)
 
       #zip::zipr(file.path(".", "Results", "results.zip"), fn_4zip) # used because regular utils::zip wasn't working
       # enable download button
