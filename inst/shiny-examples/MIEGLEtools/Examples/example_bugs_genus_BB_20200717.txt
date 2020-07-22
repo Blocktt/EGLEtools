@@ -1,4 +1,4 @@
-INDEX_NAME	SAMPLEID	INDEX_REGION	DATE	TAXAID	N_TAXA	EXCLUDE	NONTARGET	Phylum	Class	Order	Family	Genus	Other_Taxa	Tribe	FFG	FAM_TV	Habit	FinalTolVal07	FinalTolVal08
+INDEX_NAME	SAMPLEID	INDEX_REGION	DATE	TAXAID	N_TAXA	EXCLUDE	NONTARGET	Phylum	Class	Order	Family	Genus	Other_Taxa	Tribe	FFG	TolVal	Habit	FinalTolVal07	FinalTolVal08
 MIEGLE_2020	CHGX-432-S-1111	Narrow	1788-04-28	ENCHYTRAEIDAE	1	FALSE	FALSE	Annelida	Oligochaeta	Haplotaxida	Enchytraeidae				Collector	10	bu	9.1	9.1
 MIEGLE_2020	CHGX-432-S-1111	Narrow	1788-04-28	ISOTOMIDAE	1	FALSE	FALSE	Arthropoda	Insecta	Collembola	Isotomidae					NA		4.8	4.8
 MIEGLE_2020	CHGX-432-S-1111	Narrow	1788-04-28	BAETIS	13	FALSE	FALSE	Arthropoda	Insecta	Ephemeroptera	Baetidae	Baetis			Collector	5	"sw, cb, cn"	3.9	3.9

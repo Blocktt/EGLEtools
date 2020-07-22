@@ -73,14 +73,9 @@ shinyServer(function(input, output) {
                           ,"Class"
                           ,"Order"
                           ,"Family"
-                          ,"Genus"
-                          ,"Other_Taxa"
-                          ,"Tribe"
                           ,"FFG"
-                          ,"FAM_TV"
-                          ,"Habit"
-                          ,"FinalTolVal07"
-                          ,"FinalTolVal08")
+                          ,"TolVal"
+                          ,"Habit")
 
     column_names <- colnames(df_input)
 
