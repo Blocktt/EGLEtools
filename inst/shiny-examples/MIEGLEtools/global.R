@@ -7,9 +7,9 @@ library(ggplot2)
 library(readxl)
 library(reshape2)
 library(dplyr)
-library(zip)
+library(utils)
+#library(zip)
 # download BioMonTools from GitHub
-library(devtools)
 library(BioMonTools)
 # library(plotly)
 library(shinyjs) # used for download button enable

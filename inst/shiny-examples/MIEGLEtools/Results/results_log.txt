@@ -1,5 +1,5 @@
 Results Log from MIEGLEtools Shiny App
-2020-07-21 15:33:48
+2020-07-21 16:50:29
 file = example_bugs_genus_BB_20200717.csv
 The following messages are from metric.values function in BioMonTools:
  
@@ -26,13 +26,4 @@ Warning in metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
    TOLVAL2
    HABITAT
 Chosen IBI from Shiny app = MIEGLE_2020
-Called from: eval(expr, p)
-debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#251: zip::zipr(file.path(".", "Results", "results.zip"), fn_4zip)
-Warning: Error in zip_internal: zip error: `Cannot add file `results_log.txt` to archive `./Results/results.zip`` in file `zip.c:394`
-  77: zip_internal
-  76: zip::zipr
-  72: observeEventHandler [C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#132]
-   1: shiny::runApp
-
-
-
+Warning in sink() : no sink to remove

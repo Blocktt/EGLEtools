@@ -15,6 +15,8 @@ library(ggplot2)
 library(dplyr)
 library(readxl)
 library(reshape2)
+library(utils)
+#library(zip)
 # library(plotly)
 library(shinyjs)
 
@@ -246,9 +248,9 @@ shinyServer(function(input, output) {
       fn_4zip <- list.files(path = file.path(".", "Results")
                             , pattern = "^results_"
                             , full.names = TRUE)
-      #utils::zip(file.path(".", "Results", "results.zip"), fn_4zip)
+      utils::zip(file.path(".", "Results", "results.zip"), fn_4zip)
 
-      zip::zipr(file.path(".", "Results", "results.zip"), fn_4zip) # used because regular utils::zip wasn't working
+      #zip::zipr(file.path(".", "Results", "results.zip"), fn_4zip) # used because regular utils::zip wasn't working
       # enable download button
       shinyjs::enable("b_downloadData")
 
