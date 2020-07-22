@@ -1,5 +1,5 @@
 Results Log from MIEGLEtools Shiny App
-2020-07-22 10:04:45
+2020-07-22 14:28:45
 file = example_bugs_genus_BB_20200717.csv
 The following messages are from metric.values function in BioMonTools:
  
@@ -26,6 +26,22 @@ Warning in metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
    HABITAT
 Chosen IBI from Shiny app = MIEGLE_2020
 Called from: eval(expr, p)
-debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#245: shinyjs::enable("b_downloadData")
-debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#251: sink()
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#195: fn_thresh <- file.path(".", "Thresholds", "MetricScoring.xlsx")
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#196: df_thresh_metric <- read_excel(fn_thresh, sheet = "metric.scoring")
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#197: df_thresh_index <- read_excel(fn_thresh, sheet = "index.scoring")
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#200: df_metsc <- BioMonTools::metric.scores(DF_Metrics = df_metval, 
+    col_MetricNames = MichMetrics, col_IndexName = "INDEX_NAME", 
+    col_IndexRegion = "INDEX_REGION", DF_Thresh_Metric = df_thresh_metric, 
+    DF_Thresh_Index = df_thresh_index, col_ni_total = "ni_total")
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#209: fn_metsc <- file.path(".", "Results", "results_metsc.csv")
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#210: write.csv(df_metsc, fn_metsc, row.names = FALSE)
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#215: incProgress(1/n_inc, detail = "Ben's code is magical!")
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#216: Sys.sleep(0.5)
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#235: incProgress(1/n_inc, detail = "Create, Zip")
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#236: Sys.sleep(0.5)
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#239: fn_4zip <- list.files(path = file.path(".", "Results"), pattern = "^results_", 
+    full.names = TRUE)
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#242: zip(file.path(".", "Results", "results.zip"), fn_4zip)
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#246: shinyjs::enable("b_downloadData")
+debug at C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#252: sink()
 Warning in sink() : no sink to remove
