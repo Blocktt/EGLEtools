@@ -71,6 +71,7 @@ shinyServer(function(input, output) {
                           ,"NONTARGET"
                           ,"Phylum"
                           ,"Class"
+                          ,"Subclass"
                           ,"Order"
                           ,"Family"
                           ,"FFG"
