@@ -165,12 +165,16 @@ shinyServer(function(input, output) {
 
       # Increment the progress bar, and update the detail text.
       incProgress(1/n_inc, detail = "Calculate, Metrics")
-      Sys.sleep(0.25)
+      Sys.sleep(3)
 
       # calculate values and scores in two steps using BioMonTools
       # save each file separately
 
       df_metval <- BioMonTools::metric.values(fun.DF = df_data, fun.Community = "bugs", fun.MetricNames = MichMetrics, boo.Shiny = TRUE)
+
+      # Increment the progress bar, and update the detail text.
+      incProgress(1/n_inc, detail = "Metrics have been calculated!")
+      Sys.sleep(3)
 
       # Log
       message(paste0("Chosen IBI from Shiny app = ", input$MMI))
