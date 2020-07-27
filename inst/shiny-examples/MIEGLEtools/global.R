@@ -8,11 +8,11 @@ library(readxl)
 library(reshape2)
 library(dplyr)
 library(utils)
-#library(zip)
-# download BioMonTools from GitHub
 library(BioMonTools)
 # library(plotly)
 library(shinyjs) # used for download button enable
+
+
 
 # Drop-down boxes
 MMIs <- c("MIEGLE_2020")

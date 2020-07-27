@@ -9,16 +9,15 @@
 
 # Packages
 library(shiny)
-library(BioMonTools)
 library(DT)
 library(ggplot2)
-library(dplyr)
 library(readxl)
 library(reshape2)
+library(dplyr)
 library(utils)
-#library(zip)
+library(BioMonTools)
 # library(plotly)
-library(shinyjs)
+library(shinyjs) # used for download button enable
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {

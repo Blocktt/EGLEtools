@@ -11,10 +11,13 @@
 library(shiny)
 library(DT)
 library(ggplot2)
-library(BioMonTools)
+library(readxl)
+library(reshape2)
+library(dplyr)
 library(utils)
-#library(plotly)
-library(shinyjs) # used for togglestate of download button
+library(BioMonTools)
+# library(plotly)
+library(shinyjs) # used for download button enable
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
