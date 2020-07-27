@@ -125,7 +125,7 @@ shinyServer(function(input, output) {
      shiny::withProgress({
       #
       # Number of increments
-      n_inc <- 5
+      n_inc <- 6
 
       # sink output
       #fn_sink <- file.path(".", "Results", "results_log.txt")
@@ -154,6 +154,11 @@ shinyServer(function(input, output) {
       if (is.null(df_data)){
         return(NULL)
       }
+
+      # Increment the progress bar, and update the detail text.
+      incProgress(1/n_inc, detail = "Right before calc metrics")
+      Sys.sleep(0.75)
+
 
       #appUser <- Sys.getenv('USERNAME')
       # Not meaningful when run online via Shiny.io

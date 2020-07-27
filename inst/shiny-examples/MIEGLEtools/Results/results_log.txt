@@ -1,5 +1,5 @@
 Results Log from MIEGLEtools Shiny App
-2020-07-27 08:48:37
+2020-07-27 14:06:25
 file = example_bugs_genus_BB_20200717.txt
 The following messages are from metric.values function in BioMonTools:
  
@@ -25,5 +25,3 @@ Warning in metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
    HABITAT
 Chosen IBI from Shiny app = MIEGLE_2020
 Warning in sink() : no sink to remove
-
-
