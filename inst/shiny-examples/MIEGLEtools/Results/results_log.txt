@@ -25,3 +25,5 @@ Warning in metric.values.bugs(fun.DF, fun.MetricNames, boo.Adjust, fun.cols2keep
    HABITAT
 Chosen IBI from Shiny app = MIEGLE_2020
 Warning in sink() : no sink to remove
+
+
