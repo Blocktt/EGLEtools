@@ -23,7 +23,7 @@ library(shinyjs) # used for download button enable
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("MIEGLEtools IBI Calculator v0.1.1.910"),
+    titlePanel("MIEGLEtools IBI Calculator v0.1.1.928"),
 
     # SideBar
     sidebarLayout(
