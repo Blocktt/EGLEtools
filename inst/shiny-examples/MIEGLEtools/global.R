@@ -19,7 +19,6 @@ library(shinyjs) # used for download button enable
 #MMIs <- c("BIBI_MBSS", "BIBI_MSW", "FIBI")
 MMIs <- c("MIEGLE_2020")
 Community <- c("bugs")
-col_Strata <- c("STRATA_R")
 
 # File Size
 # By default, the file size limit is 5MB. It can be changed by
@@ -37,14 +36,14 @@ MichMetrics <- c("nt_CruMol"
                  ,"pt_NonIns"
                  ,"pi_habit_climb"
                  ,"pi_EPT"
-                 ,"pi_EPTNoBH"
+                 ,"pi_EPTNoBaeHydro"
                  ,"pi_tv_toler"
                  ,"nt_EPT"
                  ,"pi_Cru"
                  ,"pt_tv_intol"
                  ,"nt_NonIns"
                  ,"pi_ffg_scrap"
-                 ,"pi_IsoMolHir"
+                 ,"pi_IsopGastHiru"
                  ,"pi_NonIns"
                  ,"pi_Pleco"
                  ,"pt_tv_toler"
