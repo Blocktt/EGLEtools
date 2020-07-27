@@ -48,7 +48,7 @@ shinyServer(function(input, output) {
 
     inFile <- input$fn_input
 
-    validate(
+    shiny::validate(
       need(inFile != "", "Please select a data set") # used to inform the user that a data set is required
     )
 
@@ -170,8 +170,7 @@ shinyServer(function(input, output) {
       # calculate values and scores in two steps using BioMonTools
       # save each file separately
 
-      df_metval <- BioMonTools::metric.values(fun.DF = df_data,fun.Community = "bugs", fun.MetricNames = MichMetrics, boo.Shiny = TRUE)
-
+      df_metval <- BioMonTools::metric.values(fun.DF = df_data, fun.Community = "bugs", fun.MetricNames = MichMetrics, boo.Shiny = TRUE)
 
       # Log
       message(paste0("Chosen IBI from Shiny app = ", input$MMI))
@@ -198,8 +197,8 @@ shinyServer(function(input, output) {
       # Thresholds
       #fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
       fn_thresh <- file.path(".", "Thresholds", "MetricScoring.xlsx")
-      df_thresh_metric <- read_excel(fn_thresh, sheet="metric.scoring")
-      df_thresh_index <- read_excel(fn_thresh, sheet="index.scoring")
+      df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
+      df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
 
       # run scoring code
       df_metsc <- BioMonTools::metric.scores(DF_Metrics = df_metval, col_MetricNames = MichMetrics,
