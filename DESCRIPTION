@@ -21,8 +21,7 @@ Imports:
   dplyr,
   maps,
   tidyr,
-  shinyjs
-Suggests:
+  shinyjs,
   knitr,
   rmarkdown
 VignetteBuilder: knitr
