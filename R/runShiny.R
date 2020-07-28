@@ -6,7 +6,7 @@
 #' This function launches that app.
 #'
 #' The Shiny app is online at:
-#' https://leppott.shinyapps.io/MBSStools #change to updated shinyapps.io for Ben Block's MI project
+#' https://tetratech-wtr-wne.shinyapps.io/MIEGLEtools/
 #'
 #' @examples
 #' \dontrun{
