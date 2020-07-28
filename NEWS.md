@@ -3,7 +3,7 @@ NEWS-MIEGLEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-28 14:09:13
+    #> Last Update: 2020-07-28 14:22:55
 
 # MIEGLEtools v0.1.1.934 (2020-07-28)
 

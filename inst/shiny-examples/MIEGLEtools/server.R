@@ -129,7 +129,7 @@ shinyServer(function(input, output) {
         shiny::withProgress({
             #
             # Number of increments
-            n_inc <- 6
+            n_inc <- 7
 
             # sink output
             #fn_sink <- file.path(".", "Results", "results_log.txt")
