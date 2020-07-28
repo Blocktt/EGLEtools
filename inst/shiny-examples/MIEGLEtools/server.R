@@ -174,7 +174,8 @@ shinyServer(function(input, output) {
             # calculate values and scores in two steps using BioMonTools
             # save each file separately
 
-            df_metval <- BioMonTools::metric.values(fun.DF = df_data, fun.Community = "bugs", fun.MetricNames = MichMetrics, boo.Shiny = TRUE)
+            #df_metval <- BioMonTools::metric.values(fun.DF = df_data, fun.Community = "bugs", fun.MetricNames = MichMetrics, boo.Shiny = TRUE)
+            df_metval <- BioMonTools::metric.values(fun.DF = df_data, fun.Community = "bugs", boo.Shiny = TRUE)
 
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Metrics have been calculated!")
