@@ -8,7 +8,11 @@ library(readxl)
 library(reshape2)
 library(dplyr)
 library(utils)
-library(BioMonTools)
+require(BioMonTools)
+library(knitr)
+library(maps)
+library(rmarkdown)
+library(tidyr)
 # library(plotly)
 library(shinyjs) # used for download button enable
 

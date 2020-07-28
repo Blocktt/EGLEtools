@@ -1,5 +1,5 @@
 Results Log from MIEGLEtools Shiny App
-2020-07-27 15:19:34
+2020-07-27 16:25:54
 file = example_bugs_genus_BB_20200717.txt
 The following messages are from metric.values function in BioMonTools:
  
@@ -29,4 +29,3 @@ Warning in sink() : no sink to remove
 
 
 
-Error: object 'knitr' not found

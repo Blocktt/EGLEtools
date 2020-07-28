@@ -5,8 +5,9 @@ account: tetratech-wtr-wne
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 2617577
-bundleId: 3442572
+bundleId: 3442886
 url: https://tetratech-wtr-wne.shinyapps.io/MIEGLEtools/
-when: 1595878905.77242
+when: 1595883412.69228
 asMultiple: FALSE
 asStatic: FALSE
+ignoredFiles: Examples/example_bugs_family.tsv|Examples/example_bugs_genus.tsv|Examples/example_bugs_genus_BB_20200717.csv|Examples/example_bugs_genus_BB_20200717.txt|Examples/example_bugs_no_SAMPLEID.txt|Results/data_import.tsv|Results/example_bugs_genus_BB_20200717.txt|Results/results_log.txt|Results/results_metsc.csv|Results/results_metval.csv

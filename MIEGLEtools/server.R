@@ -15,7 +15,7 @@ library(readxl)
 library(reshape2)
 library(dplyr)
 library(utils)
-library(BioMonTools)
+require(BioMonTools)
 library(knitr)
 library(maps)
 library(rmarkdown)
@@ -163,9 +163,6 @@ shinyServer(function(input, output) {
             incProgress(1/n_inc, detail = "Right before calc metrics")
             Sys.sleep(0.75)
 
-
-            #appUser <- Sys.getenv('USERNAME')
-            # Not meaningful when run online via Shiny.io
 
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Calculate, Metrics")
