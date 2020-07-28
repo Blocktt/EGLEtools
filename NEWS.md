@@ -3,7 +3,18 @@ NEWS-MIEGLEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-28 09:34:42
+    #> Last Update: 2020-07-28 14:09:13
+
+# MIEGLEtools v0.1.1.934 (2020-07-28)
+
+  - Updated thresholds for metric scoring to be obtained from within the
+    `BioMonTools` package
+      - The `BioMonTools` package has a thresholds excel file within the
+        package that is referenced.
+      - This Excel file would need to be edited to changed metric
+        threshold values when scoring metrics.
+  - Version changed to previous naming convention v0.1.1.934 rather than
+    v0.1.0.9001.
 
 # MIEGLEtools v0.1.0.9001 (2020-07-28)
 

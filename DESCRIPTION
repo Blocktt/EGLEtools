@@ -1,7 +1,7 @@
 Package: MIEGLEtools
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0.9001
+Title: Used to calculate Michigan EGLE IBI Metrics and Scoring and produce output files 
+Version: 0.1.1.934
 Authors@R: c(
   person("Ben", "Block", email="Ben.Block@tetratech.com", role=c("cre", "aut")),
   person("Erik W.","Leppo", role="aut"))

@@ -204,9 +204,14 @@ shinyServer(function(input, output) {
             #
             # Thresholds
             #fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
-            fn_thresh <- file.path(".", "Thresholds", "MetricScoring.xlsx")
-            df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
-            df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
+            #fn_thresh <- file.path(".", "Thresholds", "MetricScoring.xlsx")
+            #df_thresh_metric <- readxl::read_excel(fn_thresh, sheet="metric.scoring")
+            #df_thresh_index <- readxl::read_excel(fn_thresh, sheet="index.scoring")
+
+            # Thresholds
+            fn_thresh <- file.path(system.file(package="BioMonTools"), "extdata", "MetricScoring.xlsx")
+            df_thresh_metric <- read_excel(fn_thresh, sheet="metric.scoring")
+            df_thresh_index <- read_excel(fn_thresh, sheet="index.scoring")
 
             # run scoring code
             df_metsc <- BioMonTools::metric.scores(DF_Metrics = df_metval, col_MetricNames = MichMetrics,

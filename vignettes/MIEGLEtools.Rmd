@@ -52,6 +52,7 @@ Several packages were used to build the functionality in `MIEGLEtools`:
 
 `BioMonTools` 
 `dplyr`
+`shiny`
 
 
 To install packages follow the example of the code below for installing `dplyr`.
