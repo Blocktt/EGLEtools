@@ -8,7 +8,7 @@ A shiny app used to calculate IBI scores for given sites using benthic macroinve
 
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/Blocktt/MIEGLEtools/graphs/commit-activity)
 [![GitHub
-license](https://img.shields.io/github/license/Blocktt/MIEGLEtools)](https://github.com/Blocktt/MIEGLEtools/blob/master/LICENSE)
+license](https://img.shields.io/github/license/Blocktt/MIEGLEtools)](https://github.com/Blocktt/MIEGLEtools/blob/master/LICENSE.md)
 [![GitHub
 issues](https://img.shields.io/github/issues-raw/Blocktt/MIEGLEtools)](https://github.com/Blocktt/MIEGLEtools/issues)
 [![Github all
