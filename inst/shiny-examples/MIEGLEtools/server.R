@@ -180,7 +180,7 @@ shinyServer(function(input, output) {
             #df_metval <- suppressWarnings(metric.values.MI(fun.DF = df_data, fun.Community = "bugs",
                                                            #fun.MetricNames = MichMetrics, boo.Shiny = TRUE))
 
-            df_metval <- suppressWarnings(MIEGLEtools::metric.values.MI(fun.DF = df_data, fun.Community = "bugs",
+            df_metval <- suppressWarnings(metric.values.MI(fun.DF = df_data, fun.Community = "bugs",
                                                            fun.MetricNames = MichMetrics, boo.Shiny = TRUE))
 
             # Increment the progress bar, and update the detail text.

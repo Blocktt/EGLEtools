@@ -1,17 +1,11 @@
 Results Log from MIEGLEtools Shiny App
-2020-07-30 12:44:21
-file = example_bugs_genus_BB_20200717.csv
+2020-07-30 13:27:32
+file = example_bugs_genus_BB_20200717.txt
 The following messages are from metric.values function in BioMonTools:
- 
-There are 11 missing fields in the data:
-SUBPHYLUM, INFRAORDER, SUBFAMILY, LIFE_CYCLE, BCG_ATTR, THERMAL_INDICATOR, LONGLIVED, NOTEWORTHY, FFG2, TOLVAL2, HABITAT
- 
-If you continue the metrics associated with these fields will be invalid.
-For example, if the HABIT field is missing all habit related metrics will not be correct.
-Do you wish to continue (YES or NO)?
-boo.Shiny == TRUE so prompt skipped and value set to '1'.
-Chosen IBI from Shiny app = MIEGLE_2020
-Warning in sink() : no sink to remove
-
-
-Error: object 'boo.Shiny' not found
+Warning: Error in [.data.frame: undefined columns selected
+  82: stop
+  81: [.data.frame
+  79: metric.values.bugs
+  78: MIEGLEtools::metric.values.MI
+  72: observeEventHandler [C:\Users\Ben.Block\OneDrive - Tetra Tech, Inc\GitHub\MIEGLEtools\inst\shiny-examples\MIEGLEtools/server.R#129]
+   1: runApp
