@@ -171,14 +171,29 @@ shinyServer(function(input, output) {
             incProgress(1/n_inc, detail = "Calculate, Metrics")
             Sys.sleep(1)
 
+            # prior to metric calculation, we need to add columns that aren't part of the dataset but need to be in the input dataframe
+            # otherwise, metric.values.MI () will produce an error when on shinyapps.io (dated 2020-07-30)
+
+            # convert Field Names to UPPER CASE
+            names(df_data) <- toupper(names(df_data))
+
+            # QC, Required Fields
+            col.req <- c("SAMPLEID", "TAXAID", "N_TAXA", "EXCLUDE", "INDEX_NAME"
+                         , "INDEX_REGION", "NONTARGET", "PHYLUM", "SUBPHYLUM", "CLASS", "SUBCLASS"
+                         , "INFRAORDER", "ORDER", "FAMILY", "SUBFAMILY", "TRIBE", "GENUS"
+                         , "FFG", "HABIT", "LIFE_CYCLE", "TOLVAL", "BCG_ATTR", "THERMAL_INDICATOR"
+                         , "LONGLIVED", "NOTEWORTHY", "FFG2", "TOLVAL2", "HABITAT")
+            col.req.missing <- col.req[!(col.req %in% toupper(names(df_data)))]
+
+            # Add missing fields
+            df_data[,col.req.missing] <- NA
+            warning(paste("Metrics related to the following fields are invalid:"
+                          , paste(paste0("   ", col.req.missing), collapse="\n"), sep="\n"))
+
             # calculate values and scores in two steps using BioMonTools
             # save each file separately
 
             #df_metval <- BioMonTools::metric.values(fun.DF = df_data, fun.Community = "bugs", fun.MetricNames = MichMetrics, boo.Shiny = TRUE)
-
-
-            #df_metval <- suppressWarnings(metric.values.MI(fun.DF = df_data, fun.Community = "bugs",
-                                                           #fun.MetricNames = MichMetrics, boo.Shiny = TRUE))
 
             df_metval <- suppressWarnings(metric.values.MI(fun.DF = df_data, fun.Community = "bugs",
                                                            fun.MetricNames = MichMetrics, boo.Shiny = TRUE))
