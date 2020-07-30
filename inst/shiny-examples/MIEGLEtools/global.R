@@ -27,6 +27,10 @@ Community <- c("bugs")
 # setting this option. Here we'll raise limit to 10MB.
 options(shiny.maxRequestSize = 25*1024^2)
 
+# source function from metric.values.MI.R
+source(file.path(".", "external", "metric.values.MI.R"))
+
+
 # define which metrics michigan wants to keep in indices
 
 MichMetrics <- c("nt_CruMol"

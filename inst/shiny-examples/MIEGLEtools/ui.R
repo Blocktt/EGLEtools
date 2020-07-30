@@ -27,7 +27,7 @@
 shinyUI(fluidPage(
 
     # Application title
-    titlePanel("MIEGLEtools IBI Calculator v0.1.1.934"),
+    titlePanel("MIEGLEtools IBI Calculator v0.1.1.939"),
 
     # SideBar
     sidebarLayout(

@@ -18,6 +18,13 @@ cat(paste0("Last Update: ",Sys.time()))
 ```
 
 
+MIEGLEtools v0.1.1.939 (2020-07-30)
+================
+* Took metric.values() function from `BioMonTools` and created a version that is saved within the Shiny app
+* Updated server.R to reflect new metric values function:
+df_metval <- suppressWarnings(metric.values.MI(fun.DF = df_data, fun.Community = "bugs", fun.MetricNames = MichMetrics, boo.Shiny = TRUE))
+
+
 MIEGLEtools v0.1.1.934 (2020-07-28)
 ================
 * Updated thresholds for metric scoring to be obtained from within the `BioMonTools` package
