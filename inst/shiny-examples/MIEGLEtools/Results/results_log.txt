@@ -1,6 +1,6 @@
 Results Log from MIEGLEtools Shiny App
-2020-07-30 09:44:31
-file = example_bugs_genus_BB_20200717.txt
+2020-07-30 12:44:21
+file = example_bugs_genus_BB_20200717.csv
 The following messages are from metric.values function in BioMonTools:
  
 There are 11 missing fields in the data:
@@ -10,56 +10,8 @@ If you continue the metrics associated with these fields will be invalid.
 For example, if the HABIT field is missing all habit related metrics will not be correct.
 Do you wish to continue (YES or NO)?
 boo.Shiny == TRUE so prompt skipped and value set to '1'.
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
-`summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
 Chosen IBI from Shiny app = MIEGLE_2020
 Warning in sink() : no sink to remove
 
 
-Error in readLines(con, warn = FALSE) : cannot open the connection
-In addition: Warning message:
-In readLines(con, warn = FALSE) :
-  cannot open file 'NEWS.rmd': No such file or directory
-Warning message:
-In file.remove("NEWS.html") :
-  cannot remove file 'NEWS.html', reason 'No such file or directory'
-Loading required package: usethis
-Updating MIEGLEtools documentation
-Loading MIEGLEtools
-Warning message:
-
--- [1mConflicts[22m ------------------------------------------ MIEGLEtools conflicts --
-[31mx[39m [32mmetric.values.algae()[39m masks [34mMIEGLEtools[39m::metric.values.algae()
-[31mx[39m [32mmetric.values.bugs()[39m  masks [34mMIEGLEtools[39m::metric.values.bugs()
-[31mx[39m [32mmetric.values.fish()[39m  masks [34mMIEGLEtools[39m::metric.values.fish()
-[31mx[39m [32mmetric.values.MI()[39m    masks [34mMIEGLEtools[39m::metric.values.MI()
-
-[90mDid you accidentally source a file rather than using `load_all()`?
-Run `rm(list = c("metric.values.algae", "metric.values.bugs", "metric.values.fish", "metric.values.MI"))` to remove the conflicts.[39m 
-WARNING: Rtools is required to build R packages, but is not currently installed.
-
-Please download and install Rtools 3.5 from https://cran.r-project.org/bin/windows/Rtools/.
-WARNING: Rtools is required to build R packages, but is not currently installed.
-
-Please download and install Rtools 3.5 from https://cran.r-project.org/bin/windows/Rtools/.
-
-Attaching package: ‘MIEGLEtools’
-
-The following objects are masked _by_ ‘.GlobalEnv’:
-
-    metric.values.algae, metric.values.bugs, metric.values.fish, metric.values.MI
-
-The following objects are masked from ‘package:BioMonTools’:
-
-    metric.values.algae, metric.values.bugs, metric.values.fish
-
+Error: object 'boo.Shiny' not found
