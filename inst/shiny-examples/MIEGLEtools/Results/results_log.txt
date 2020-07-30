@@ -1,5 +1,5 @@
 Results Log from MIEGLEtools Shiny App
-2020-07-30 08:35:12
+2020-07-30 09:44:31
 file = example_bugs_genus_BB_20200717.txt
 The following messages are from metric.values function in BioMonTools:
  
@@ -33,11 +33,33 @@ In readLines(con, warn = FALSE) :
 Warning message:
 In file.remove("NEWS.html") :
   cannot remove file 'NEWS.html', reason 'No such file or directory'
+Loading required package: usethis
 Updating MIEGLEtools documentation
 Loading MIEGLEtools
+Warning message:
+
+-- [1mConflicts[22m ------------------------------------------ MIEGLEtools conflicts --
+[31mx[39m [32mmetric.values.algae()[39m masks [34mMIEGLEtools[39m::metric.values.algae()
+[31mx[39m [32mmetric.values.bugs()[39m  masks [34mMIEGLEtools[39m::metric.values.bugs()
+[31mx[39m [32mmetric.values.fish()[39m  masks [34mMIEGLEtools[39m::metric.values.fish()
+[31mx[39m [32mmetric.values.MI()[39m    masks [34mMIEGLEtools[39m::metric.values.MI()
+
+[90mDid you accidentally source a file rather than using `load_all()`?
+Run `rm(list = c("metric.values.algae", "metric.values.bugs", "metric.values.fish", "metric.values.MI"))` to remove the conflicts.[39m 
 WARNING: Rtools is required to build R packages, but is not currently installed.
 
 Please download and install Rtools 3.5 from https://cran.r-project.org/bin/windows/Rtools/.
 WARNING: Rtools is required to build R packages, but is not currently installed.
 
 Please download and install Rtools 3.5 from https://cran.r-project.org/bin/windows/Rtools/.
+
+Attaching package: ‘MIEGLEtools’
+
+The following objects are masked _by_ ‘.GlobalEnv’:
+
+    metric.values.algae, metric.values.bugs, metric.values.fish, metric.values.MI
+
+The following objects are masked from ‘package:BioMonTools’:
+
+    metric.values.algae, metric.values.bugs, metric.values.fish
+
