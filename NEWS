@@ -3,7 +3,25 @@ NEWS-MIEGLEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-28 14:22:55
+    #> Last Update: 2020-07-30 14:33:16
+
+# MIEGLEtools v0.1.1.946 (2020-07-30)
+
+*Fixed Issues \#1 and \#2 (see GitHub repo). The Shiny app crashed
+because metric.values.MI.R required certain columns that were not in the
+input data set. To combat this, we included a section in server.R that
+tacks on any missing columns onto the input data set prior to metric
+calculation using metric.values(). *Next steps are product testing and
+accuracy testing.
+
+# MIEGLEtools v0.1.1.939 (2020-07-30)
+
+  - Took metric.values() function from `BioMonTools` and created a
+    version that is saved within the Shiny app
+  - Updated server.R to reflect new metric values function: df\_metval
+    \<- suppressWarnings(metric.values.MI(fun.DF = df\_data,
+    fun.Community = “bugs”, fun.MetricNames = MichMetrics, boo.Shiny =
+    TRUE))
 
 # MIEGLEtools v0.1.1.934 (2020-07-28)
 

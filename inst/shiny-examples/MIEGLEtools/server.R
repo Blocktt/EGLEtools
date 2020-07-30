@@ -129,7 +129,7 @@ shinyServer(function(input, output) {
         shiny::withProgress({
             #
             # Number of increments
-            n_inc <- 7
+            n_inc <- 6
 
             # sink output
             #fn_sink <- file.path(".", "Results", "results_log.txt")
@@ -141,7 +141,6 @@ shinyServer(function(input, output) {
             message(Sys.time())
             inFile <- input$fn_input
             message(paste0("file = ", inFile$name))
-            message("The following messages are from metric.values function in BioMonTools:")
 
 
             # Increment the progress bar, and update the detail text.
@@ -159,17 +158,12 @@ shinyServer(function(input, output) {
                 return(NULL)
             }
 
-            # Increment the progress bar, and update the detail text.
-            incProgress(1/n_inc, detail = "Right before calc metrics")
-            Sys.sleep(0.75)
-
-
             #appUser <- Sys.getenv('USERNAME')
             # Not meaningful when run online via Shiny.io
 
             # Increment the progress bar, and update the detail text.
-            incProgress(1/n_inc, detail = "Calculate, Metrics")
-            Sys.sleep(1)
+            incProgress(1/n_inc, detail = "Calculate, Metrics (takes ~ 15s)")
+            Sys.sleep(0.5)
 
             # prior to metric calculation, we need to add columns that aren't part of the dataset but need to be in the input dataframe
             # otherwise, metric.values.MI () will produce an error when on shinyapps.io (dated 2020-07-30)
@@ -252,7 +246,7 @@ shinyServer(function(input, output) {
 
             # Increment the progress bar, and update the detail text.
             incProgress(1/n_inc, detail = "Ben's code is magical!")
-            Sys.sleep(0.50)
+            Sys.sleep(0.75)
 
             # Plot
             #p1 <- ggplot(df_metsc, aes(IBI), fill=myCol_Strata, shape=myCol_Strata) +
