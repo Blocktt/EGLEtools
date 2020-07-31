@@ -158,6 +158,43 @@ shinyServer(function(input, output) {
                 return(NULL)
             }
 
+            # QC, FFG symbols
+            FFG_approved <- c("CG", "CF", "PR", "SC", "SH")
+            df_QC <- df_data
+            df_QC[df_QC==""] <- NA
+
+
+            N_FFG_wrong <- sum((na.omit(df_QC$FFG) %in% FFG_approved) == 0)
+            if(N_FFG_wrong>0){
+                message(paste0(N_FFG_wrong, "taxa have the incorrect FFG descriptor, please use the following:"))
+                message("Replace 'Collector' with 'CG'")
+                message("Replace 'Filterer' with 'CF'")
+                message("Replace 'Predator' with 'PR'")
+                message("Replace 'Scraper' with 'SC'")
+                message("Replace 'Shredder' with 'SH'")
+                message("Failure to change FFG to correct coding scheme will result in incorrect metric calculations")
+            }
+
+
+            # QC, N_TAXA = 0
+            N_Taxa_zeros <- sum(df_data$N_TAXA == 0, na.rm = TRUE)
+            if(N_Taxa_zeros>0){
+                message("Some taxa in your dataset have a count (N_TAXA) of zero. Values for TAXAID with N_TAXA = 0 will be removed before calculations.")
+            }
+
+            # QC, Exclude as TRUE/FALSE
+            Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm=TRUE)
+            if(Exclude.T==0){##IF.Exclude.T.START
+                message("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
+            }##IF.Exclude.T.END
+
+            # QC, NonTarget as TRUE/FALSE
+            NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm=TRUE)
+            if(NonTarget.F==0){##IF.Exclude.T.START
+                message("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
+            }##IF.Exclude.T.END
+
+
             #appUser <- Sys.getenv('USERNAME')
             # Not meaningful when run online via Shiny.io
 
