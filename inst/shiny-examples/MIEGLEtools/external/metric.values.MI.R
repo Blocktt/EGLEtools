@@ -485,7 +485,7 @@ metric.values.bugs <- function(myDF
   TolVal_Char_NA <- myDF[, "TOLVAL"]=="NA"
     myDF[TolVal_Char_NA, "TOLVAL"] <- NA
     myDF[, "TOLVAL"] <- as.numeric(myDF[, "TOLVAL"])
-  }##IF ~ TOLVAL ~ END
+  ##IF ~ TOLVAL ~ END
 
   # QC, TolVal2
   # need as numeric, if have "NA" as character it fails
