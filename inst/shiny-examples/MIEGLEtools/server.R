@@ -183,13 +183,13 @@ shinyServer(function(input, output) {
             }
 
             # QC, Exclude as TRUE/FALSE
-            Exclude.T <- sum(myDF$EXCLUDE==TRUE, na.rm=TRUE)
+            Exclude.T <- sum(df_data$EXCLUDE==TRUE, na.rm=TRUE)
             if(Exclude.T==0){##IF.Exclude.T.START
                 message("EXCLUDE column does not have any TRUE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
             }##IF.Exclude.T.END
 
             # QC, NonTarget as TRUE/FALSE
-            NonTarget.F <- sum(myDF$NONTARGET==FALSE, na.rm=TRUE)
+            NonTarget.F <- sum(df_data$NONTARGET==FALSE, na.rm=TRUE)
             if(NonTarget.F==0){##IF.Exclude.T.START
                 message("NONTARGET column does not have any FALSE values. \n  Valid values are TRUE or FALSE.  \n  Other values are not recognized.")
             }##IF.Exclude.T.END

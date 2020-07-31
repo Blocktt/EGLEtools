@@ -1,15 +1,26 @@
 Results Log from MIEGLEtools Shiny App
-2020-07-30 13:36:44
+2020-07-31 09:53:49
 file = example_bugs_genus_BB_20200717.txt
-The following messages are from metric.values function in BioMonTools:
- 
-There are 11 missing fields in the data:
-SUBPHYLUM, INFRAORDER, SUBFAMILY, LIFE_CYCLE, BCG_ATTR, THERMAL_INDICATOR, LONGLIVED, NOTEWORTHY, FFG2, TOLVAL2, HABITAT
- 
-If you continue the metrics associated with these fields will be invalid.
-For example, if the HABIT field is missing all habit related metrics will not be correct.
-Do you wish to continue (YES or NO)?
-boo.Shiny == TRUE so prompt skipped and value set to '1'.
+4935taxa have the incorrect FFG descriptor, please use the following:
+Replace 'Collector' with 'CG'
+Replace 'Filterer' with 'CF'
+Replace 'Predator' with 'PR'
+Replace 'Scraper' with 'SC'
+Replace 'Shredder' with 'SH'
+Failure to change FFG to correct coding scheme will result in incorrect metric calculations
+Warning in eval(expr, env) :
+  Metrics related to the following fields are invalid:
+   SUBPHYLUM
+   INFRAORDER
+   SUBFAMILY
+   LIFE_CYCLE
+   BCG_ATTR
+   THERMAL_INDICATOR
+   LONGLIVED
+   NOTEWORTHY
+   FFG2
+   TOLVAL2
+   HABITAT
 `summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
 `summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
 `summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
@@ -24,6 +35,3 @@ boo.Shiny == TRUE so prompt skipped and value set to '1'.
 `summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
 Chosen IBI from Shiny app = MIEGLE_2020
 Warning in sink() : no sink to remove
-
-
-
