@@ -73,6 +73,7 @@ shinyServer(function(input, output) {
                               ,"EXCLUDE"
                               ,"NONTARGET"
                               ,"Phylum"
+                              ,"Subphylum"
                               ,"Class"
                               ,"Subclass"
                               ,"Order"
