@@ -14,9 +14,9 @@ library(maps)
 library(rmarkdown)
 library(tidyr)
 library(MIEGLEtools)
+library(leaflet)
 # library(plotly)
 library(shinyjs) # used for download button enable
-
 
 
 # Drop-down boxes
