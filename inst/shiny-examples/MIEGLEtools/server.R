@@ -467,34 +467,44 @@ shinyServer(function(input, output, session) {
     ########################
     ##### Map Creation #####
     ########################
-    # subset data by Index_Region
 
-    East_data <- df_data %>%
-        filter(INDEX_REGION == "EAST")
-
-    VN_data <- df_data %>%
-        filter(INDEX_REGION == "VERYNARROW")
-
-    Nar_data <- df_data %>%
-        filter(INDEX_REGION == "NARROW")
-
-    WF_data <- df_data %>%
-        filter(INDEX_REGION == "WESTFLAT")
-
-    WS_data <- df_data %>%
-        filter(INDEX_REGION == "WESTSTEEP")
-
-    WW_data <- df_data %>%
-        filter(INDEX_REGION == "WETWIDE")
-
-    MSD_data <- df_data %>%
-        filter(INDEX_REGION == "MIDSIZEDRY")
 
     # create quantile color palette to change color of markers based on index values
     scale_range <- c(0,100)
     qpal <- colorBin(c("red","yellow", "green"), domain = scale_range, bins = 5)
 
     output$mymap <- renderLeaflet({ ##renderLeaflet~START
+
+        if(is.null(df_metsc)){
+            return(NULL)
+        } else{
+
+            df_data <- df_metsc
+
+        # subset data by Index_Region
+
+        East_data <- df_data %>%
+            filter(INDEX_REGION == "EAST")
+
+        VN_data <- df_data %>%
+            filter(INDEX_REGION == "VERYNARROW")
+
+        Nar_data <- df_data %>%
+            filter(INDEX_REGION == "NARROW")
+
+        WF_data <- df_data %>%
+            filter(INDEX_REGION == "WESTFLAT")
+
+        WS_data <- df_data %>%
+            filter(INDEX_REGION == "WESTSTEEP")
+
+        WW_data <- df_data %>%
+            filter(INDEX_REGION == "WETWIDE")
+
+        MSD_data <- df_data %>%
+            filter(INDEX_REGION == "MIDSIZEDRY")
+
+
         MI_Map <- leaflet() %>%
             addTiles() %>%
             addCircleMarkers(data = East_data, lat = ~Lat, lng = ~Long
@@ -506,8 +516,8 @@ shinyServer(function(input, output, session) {
                                                              ,"Score nt_Trich:", round(East_data$SC_nt_Trich,2), "<br>"
                                                              ,"Score nt_habit_cling:", round(East_data$SC_nt_habit_cling,2), "<br>"
                                                              ,"Score pi_tv_intol:", round(East_data$SC_pi_tv_intol,2), "<br>"
-                                                             ,"<b> Index Value:</b>", round(East_data$Avg_Index, 2))
-                             , color = ~qpal(Avg_Index), fillOpacity = 1, stroke = FALSE
+                                                             ,"<b> Index Value:</b>", round(East_data$Index, 2))
+                             , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
                              , clusterOptions = markerClusterOptions()
             ) %>%
             addCircleMarkers(data = WF_data, lat = ~Lat, lng = ~Long
@@ -519,8 +529,8 @@ shinyServer(function(input, output, session) {
                                                                  ,"Score pt_tv_toler:", round(WF_data$SC_pt_tv_toler,2), "<br>"
                                                                  ,"Score pi_ffg_col:", round(WF_data$SC_pi_ffg_col,2), "<br>"
                                                                  ,"Score pi_habit_sprawl:", round(WF_data$SC_pi_habit_sprawl,2), "<br>"
-                                                                 ,"<b> Index Value:</b>", round(WF_data$Avg_Index, 2))
-                             , color = ~qpal(Avg_Index), fillOpacity = 1, stroke = FALSE
+                                                                 ,"<b> Index Value:</b>", round(WF_data$Index, 2))
+                             , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
                              , clusterOptions = markerClusterOptions()
             ) %>%
             addCircleMarkers(data = WS_data, lat = ~Lat, lng = ~Long
@@ -531,8 +541,8 @@ shinyServer(function(input, output, session) {
                                                                   ,"Score pt_tv_toler:", round(WS_data$SC_pt_tv_toler,2), "<br>"
                                                                   ,"Score pi_ffg_col:", round(WS_data$SC_pi_ffg_col,2), "<br>"
                                                                   ,"Score nt_Trich", round(WS_data$SC_nt_Trich,2), "<br>"
-                                                                  ,"<b> Index Value:</b>", round(WS_data$Avg_Index, 2))
-                             , color = ~qpal(Avg_Index), fillOpacity = 1, stroke = FALSE
+                                                                  ,"<b> Index Value:</b>", round(WS_data$Index, 2))
+                             , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
                              , clusterOptions = markerClusterOptions()
             ) %>%
             addCircleMarkers(data = MSD_data, lat = ~Lat, lng = ~Long
@@ -545,8 +555,8 @@ shinyServer(function(input, output, session) {
                                                                    ,"Score pi_CruMol:", round(MSD_data$SC_pi_CruMol,2), "<br>"
                                                                    ,"Score nt_tv_toler:", round(MSD_data$SC_nt_tv_toler,2), "<br>"
                                                                    ,"Score pt_NonIns:", round(MSD_data$SC_pt_NonIns,2), "<br>"
-                                                                   ,"<b> Index Value:</b>", round(MSD_data$Avg_Index, 2))
-                             , color = ~qpal(Avg_Index), fillOpacity = 1, stroke = FALSE
+                                                                   ,"<b> Index Value:</b>", round(MSD_data$Index, 2))
+                             , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
                              , clusterOptions = markerClusterOptions()
             ) %>%
             addCircleMarkers(data = Nar_data, lat = ~Lat, lng = ~Long
@@ -557,8 +567,8 @@ shinyServer(function(input, output, session) {
                                                                ,"Score pi_habit_climb:", round(Nar_data$SC_pi_habit_climb,2), "<br>"
                                                                ,"Score pi_EPT:", round(Nar_data$SC_pi_EPT,2), "<br>"
                                                                ,"Score pi_tv_toler:", round(Nar_data$SC_pi_tv_toler,2), "<br>"
-                                                               ,"<b> Index Value:</b>", round(Nar_data$Avg_Index, 2))
-                             , color = ~qpal(Avg_Index), fillOpacity = 1, stroke = FALSE
+                                                               ,"<b> Index Value:</b>", round(Nar_data$Index, 2))
+                             , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
                              , clusterOptions = markerClusterOptions()
             ) %>%
             addCircleMarkers(data = VN_data, lat = ~Lat, lng = ~Long
@@ -570,8 +580,8 @@ shinyServer(function(input, output, session) {
                                                                    ,"Score nt_EPT:", round(VN_data$SC_nt_EPT,2), "<br>"
                                                                    ,"Score pi_Cru:", round(VN_data$SC_pi_Cru,2), "<br>"
                                                                    ,"Score pt_tv_intol:", round(VN_data$SC_pt_tv_intol,2), "<br>"
-                                                                   ,"<b> Index Value:</b>", round(VN_data$Avg_Index, 2))
-                             , color = ~qpal(Avg_Index), fillOpacity = 1, stroke = FALSE
+                                                                   ,"<b> Index Value:</b>", round(VN_data$Index, 2))
+                             , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
                              , clusterOptions = markerClusterOptions()
             ) %>%
             addCircleMarkers(data = WW_data, lat = ~Lat, lng = ~Long
@@ -583,8 +593,8 @@ shinyServer(function(input, output, session) {
                                                                 ,"Score pi_NonIns:", round(WW_data$SC_pi_NonIns,2), "<br>"
                                                                 ,"Score pi_Pleco:", round(WW_data$SC_pi_Pleco,2), "<br>"
                                                                 ,"Score pt_tv_toler:", round(WW_data$SC_pt_tv_toler,2), "<br>"
-                                                                ,"<b> Index Value:</b>", round(WW_data$Avg_Index, 2))
-                             , color = ~qpal(Avg_Index), fillOpacity = 1, stroke = FALSE
+                                                                ,"<b> Index Value:</b>", round(WW_data$Index, 2))
+                             , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
                              , clusterOptions = markerClusterOptions()
             ) %>%
             addLegend(pal = qpal,
@@ -595,7 +605,7 @@ shinyServer(function(input, output, session) {
             addLayersControl(overlayGroups = c("East", "WestFlat", "WestSteep", "MidSizeDry",
                                                "Narrow","VeryNarrow", "WetWide"),
                              options = layersControlOptions(collapsed = FALSE))
-
+        }## else statement ~END
     }) ##renderLeaflet~END
 
 

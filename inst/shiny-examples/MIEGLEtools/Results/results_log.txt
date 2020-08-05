@@ -1,18 +1,15 @@
 Results Log from MIEGLEtools Shiny App
-2020-07-31 09:53:49
-file = example_bugs_genus_BB_20200717.txt
-4935taxa have the incorrect FFG descriptor, please use the following:
-Replace 'Collector' with 'CG'
-Replace 'Filterer' with 'CF'
-Replace 'Predator' with 'PR'
-Replace 'Scraper' with 'SC'
-Replace 'Shredder' with 'SH'
-Failure to change FFG to correct coding scheme will result in incorrect metric calculations
+2020-08-05 10:48:17
+file = MI_Input_trimmed_BB_20200731.tsv
+EXCLUDE column does not have any TRUE values. 
+  Valid values are TRUE or FALSE.  
+  Other values are not recognized.
 Warning in eval(expr, env) :
   Metrics related to the following fields are invalid:
-   SUBPHYLUM
    INFRAORDER
    SUBFAMILY
+   TRIBE
+   GENUS
    LIFE_CYCLE
    BCG_ATTR
    THERMAL_INDICATOR
@@ -35,3 +32,5 @@ Warning in eval(expr, env) :
 `summarise()` regrouping output by 'SAMPLEID', 'INDEX_NAME' (override with `.groups` argument)
 Chosen IBI from Shiny app = MIEGLE_2020
 Warning in sink() : no sink to remove
+
+
