@@ -3,16 +3,22 @@ NEWS-MIEGLEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-07-30 14:33:16
+    #> Last Update: 2020-08-06 08:41:56
+
+# MIEGLEtools v0.1.1.956 (2020-08-06)
+
+  - Added R leaflet map to Shiny app. Still in testing. The map requires
+    metric scores to be calculated from input file prior to mapping.
+    Attempting to make reactive.
 
 # MIEGLEtools v0.1.1.946 (2020-07-30)
 
-*Fixed Issues \#1 and \#2 (see GitHub repo). The Shiny app crashed
-because metric.values.MI.R required certain columns that were not in the
-input data set. To combat this, we included a section in server.R that
-tacks on any missing columns onto the input data set prior to metric
-calculation using metric.values(). *Next steps are product testing and
-accuracy testing.
+  - Fixed Issues \#1 and \#2 (see GitHub repo). The Shiny app crashed
+    because metric.values.MI.R required certain columns that were not in
+    the input data set. To combat this, we included a section in
+    server.R that tacks on any missing columns onto the input data set
+    prior to metric calculation using metric.values().
+  - Next steps are product testing and accuracy testing.
 
 # MIEGLEtools v0.1.1.939 (2020-07-30)
 

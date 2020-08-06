@@ -1,5 +1,5 @@
 Results Log from MIEGLEtools Shiny App
-2020-08-05 10:48:17
+2020-08-06 08:34:42
 file = MI_Input_trimmed_BB_20200731.tsv
 EXCLUDE column does not have any TRUE values. 
   Valid values are TRUE or FALSE.  
@@ -34,3 +34,23 @@ Chosen IBI from Shiny app = MIEGLE_2020
 Warning in sink() : no sink to remove
 
 
+Error: object 'df_metsc' not found
+
+
+
+processing file: NEWS.rmd
+output file: NEWS.knit.md
+
+
+Preview created: NEWS.html
+
+Output created: NEWS.md
+Loading required package: usethis
+Updating MIEGLEtools documentation
+Loading MIEGLEtools
+WARNING: Rtools is required to build R packages, but is not currently installed.
+
+Please download and install Rtools 3.5 from https://cran.r-project.org/bin/windows/Rtools/.
+WARNING: Rtools is required to build R packages, but is not currently installed.
+
+Please download and install Rtools 3.5 from https://cran.r-project.org/bin/windows/Rtools/.

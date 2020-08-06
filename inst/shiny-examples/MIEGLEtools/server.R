@@ -473,139 +473,144 @@ shinyServer(function(input, output, session) {
     scale_range <- c(0,100)
     qpal <- colorBin(c("red","yellow", "green"), domain = scale_range, bins = 5)
 
-    observeEvent(!is.null(df_metsc),{
-        output$mymap <- renderLeaflet({ ##renderLeaflet~START
 
-            df_data <- df_metsc
+        output$mymap <- renderLeaflet({
+            if(is.null(df_metsc)==TRUE){
+                return(NULL)
+            } else {
+                df_data <- df_metsc
 
-            # subset data by Index_Region
+                # subset data by Index_Region
 
-            East_data <- df_data %>%
-                filter(INDEX_REGION == "EAST")
+                East_data <- df_data %>%
+                    filter(INDEX_REGION == "EAST")
 
-            VN_data <- df_data %>%
-                filter(INDEX_REGION == "VERYNARROW")
+                VN_data <- df_data %>%
+                    filter(INDEX_REGION == "VERYNARROW")
 
-            Nar_data <- df_data %>%
-                filter(INDEX_REGION == "NARROW")
+                Nar_data <- df_data %>%
+                    filter(INDEX_REGION == "NARROW")
 
-            WF_data <- df_data %>%
-                filter(INDEX_REGION == "WESTFLAT")
+                WF_data <- df_data %>%
+                    filter(INDEX_REGION == "WESTFLAT")
 
-            WS_data <- df_data %>%
-                filter(INDEX_REGION == "WESTSTEEP")
+                WS_data <- df_data %>%
+                    filter(INDEX_REGION == "WESTSTEEP")
 
-            WW_data <- df_data %>%
-                filter(INDEX_REGION == "WETWIDE")
+                WW_data <- df_data %>%
+                    filter(INDEX_REGION == "WETWIDE")
 
-            MSD_data <- df_data %>%
-                filter(INDEX_REGION == "MIDSIZEDRY")
+                MSD_data <- df_data %>%
+                    filter(INDEX_REGION == "MIDSIZEDRY")
 
 
-            MI_Map <- leaflet() %>%
-                addTiles() %>%
-                addCircleMarkers(data = East_data, lat = ~Lat, lng = ~Long
-                                 , group = "East", popup = paste("SampleID:", East_data$SAMPLEID, "<br>"
-                                                                 ,"Site Class:", East_data$INDEX_REGION, "<br>"
-                                                                 ,"Score pt_NonIns:", round(East_data$SC_pt_NonIns,2), "<br>"
-                                                                 ,"Score pi_IsopGastHiru:", round(East_data$SC_pi_IsopGastHiru,2), "<br>"
-                                                                 ,"Score pt_tv_toler:", round(East_data$SC_pt_tv_toler,2), "<br>"
-                                                                 ,"Score nt_Trich:", round(East_data$SC_nt_Trich,2), "<br>"
-                                                                 ,"Score nt_habit_cling:", round(East_data$SC_nt_habit_cling,2), "<br>"
-                                                                 ,"Score pi_tv_intol:", round(East_data$SC_pi_tv_intol,2), "<br>"
-                                                                 ,"<b> Index Value:</b>", round(East_data$Index, 2))
-                                 , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
-                                 , clusterOptions = markerClusterOptions()
-                ) %>%
-                addCircleMarkers(data = WF_data, lat = ~Lat, lng = ~Long
-                                 , group = "WestFlat", popup = paste("SampleID:", WF_data$SAMPLEID, "<br>"
-                                                                     ,"Site Class:", WF_data$INDEX_REGION, "<br>"
-                                                                     ,"Score pt_NonIns:", round(WF_data$SC_pt_NonIns,2), "<br>"
-                                                                     ,"Score pi_EPT:", round(WF_data$SC_pi_EPT,2), "<br>"
-                                                                     ,"Score pt_tv_intol:", round(WF_data$SC_pt_tv_intol,2), "<br>"
-                                                                     ,"Score pt_tv_toler:", round(WF_data$SC_pt_tv_toler,2), "<br>"
-                                                                     ,"Score pi_ffg_col:", round(WF_data$SC_pi_ffg_col,2), "<br>"
-                                                                     ,"Score pi_habit_sprawl:", round(WF_data$SC_pi_habit_sprawl,2), "<br>"
-                                                                     ,"<b> Index Value:</b>", round(WF_data$Index, 2))
-                                 , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
-                                 , clusterOptions = markerClusterOptions()
-                ) %>%
-                addCircleMarkers(data = WS_data, lat = ~Lat, lng = ~Long
-                                 , group = "WestSteep", popup = paste("SampleID:", WS_data$SAMPLEID, "<br>"
-                                                                      ,"Site Class:", WS_data$INDEX_REGION, "<br>"
-                                                                      ,"Score pi_habit_cling:", round(WS_data$SC_pi_habit_cling,2), "<br>"
-                                                                      ,"Score pi_EPTNoBaeHydro:", round(WS_data$SC_pi_EPTNoBaeHydro,2), "<br>"
-                                                                      ,"Score pt_tv_toler:", round(WS_data$SC_pt_tv_toler,2), "<br>"
-                                                                      ,"Score pi_ffg_col:", round(WS_data$SC_pi_ffg_col,2), "<br>"
-                                                                      ,"Score nt_Trich", round(WS_data$SC_nt_Trich,2), "<br>"
-                                                                      ,"<b> Index Value:</b>", round(WS_data$Index, 2))
-                                 , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
-                                 , clusterOptions = markerClusterOptions()
-                ) %>%
-                addCircleMarkers(data = MSD_data, lat = ~Lat, lng = ~Long
-                                 , group = "MidSizeDry", popup = paste("SampleID:", MSD_data$SAMPLEID, "<br>"
-                                                                       ,"Site Class:", MSD_data$INDEX_REGION, "<br>"
-                                                                       ,"Score nt_CruMol:", round(MSD_data$SC_nt_CruMol,2), "<br>"
-                                                                       ,"Score pi_ffg_pred:", round(MSD_data$SC_pi_ffg_pred,2), "<br>"
-                                                                       ,"Score pi_ffg_shred:", round(MSD_data$SC_pi_ffg_shred,2), "<br>"
-                                                                       ,"Score pi_habit_cling:", round(MSD_data$SC_pi_habit_cling,2), "<br>"
-                                                                       ,"Score pi_CruMol:", round(MSD_data$SC_pi_CruMol,2), "<br>"
-                                                                       ,"Score nt_tv_toler:", round(MSD_data$SC_nt_tv_toler,2), "<br>"
-                                                                       ,"Score pt_NonIns:", round(MSD_data$SC_pt_NonIns,2), "<br>"
-                                                                       ,"<b> Index Value:</b>", round(MSD_data$Index, 2))
-                                 , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
-                                 , clusterOptions = markerClusterOptions()
-                ) %>%
-                addCircleMarkers(data = Nar_data, lat = ~Lat, lng = ~Long
-                                 , group = "Narrow", popup = paste("SampleID:", Nar_data$SAMPLEID, "<br>"
-                                                                   ,"Site Class:", Nar_data$INDEX_REGION, "<br>"
-                                                                   ,"Score pi_ffg_shred:", round(Nar_data$SC_pi_ffg_shred,2), "<br>"
-                                                                   ,"Score pt_NonIns:", round(Nar_data$SC_pt_NonIns,2), "<br>"
-                                                                   ,"Score pi_habit_climb:", round(Nar_data$SC_pi_habit_climb,2), "<br>"
-                                                                   ,"Score pi_EPT:", round(Nar_data$SC_pi_EPT,2), "<br>"
-                                                                   ,"Score pi_tv_toler:", round(Nar_data$SC_pi_tv_toler,2), "<br>"
-                                                                   ,"<b> Index Value:</b>", round(Nar_data$Index, 2))
-                                 , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
-                                 , clusterOptions = markerClusterOptions()
-                ) %>%
-                addCircleMarkers(data = VN_data, lat = ~Lat, lng = ~Long
-                                 , group = "VeryNarrow", popup = paste("SampleID:", VN_data$SAMPLEID, "<br>"
-                                                                       ,"Site Class:", VN_data$INDEX_REGION, "<br>"
-                                                                       ,"Score pi_ffg_shred:", round(VN_data$SC_pi_ffg_shred,2), "<br>"
-                                                                       ,"Score pi_habit_cling:", round(VN_data$SC_pi_habit_cling,2), "<br>"
-                                                                       ,"Score pt_NonIns:", round(VN_data$SC_pt_NonIns,2), "<br>"
-                                                                       ,"Score nt_EPT:", round(VN_data$SC_nt_EPT,2), "<br>"
-                                                                       ,"Score pi_Cru:", round(VN_data$SC_pi_Cru,2), "<br>"
-                                                                       ,"Score pt_tv_intol:", round(VN_data$SC_pt_tv_intol,2), "<br>"
-                                                                       ,"<b> Index Value:</b>", round(VN_data$Index, 2))
-                                 , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
-                                 , clusterOptions = markerClusterOptions()
-                ) %>%
-                addCircleMarkers(data = WW_data, lat = ~Lat, lng = ~Long
-                                 , group = "WetWide", popup = paste("SampleID:", WW_data$SAMPLEID, "<br>"
-                                                                    ,"Site Class:", WW_data$INDEX_REGION, "<br>"
-                                                                    ,"Score nt_NonIns:", round(WW_data$SC_nt_NonIns,2), "<br>"
-                                                                    ,"Score pi_ffg_scrap:", round(WW_data$SC_pi_ffg_scrap,2), "<br>"
-                                                                    ,"Score pi_IsopGastHiru:", round(WW_data$SC_pi_IsopGastHiru,2), "<br>"
-                                                                    ,"Score pi_NonIns:", round(WW_data$SC_pi_NonIns,2), "<br>"
-                                                                    ,"Score pi_Pleco:", round(WW_data$SC_pi_Pleco,2), "<br>"
-                                                                    ,"Score pt_tv_toler:", round(WW_data$SC_pt_tv_toler,2), "<br>"
-                                                                    ,"<b> Index Value:</b>", round(WW_data$Index, 2))
-                                 , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
-                                 , clusterOptions = markerClusterOptions()
-                ) %>%
-                addLegend(pal = qpal,
-                          values = scale_range,
-                          position = "bottomright",
-                          title = "Values",
-                          opacity = 1) %>%
-                addLayersControl(overlayGroups = c("East", "WestFlat", "WestSteep", "MidSizeDry",
-                                                   "Narrow","VeryNarrow", "WetWide"),
-                                 options = layersControlOptions(collapsed = FALSE))
+                MI_Map <- leaflet() %>%
+                    addTiles() %>%
+                    addCircleMarkers(data = East_data, lat = ~Lat, lng = ~Long
+                                     , group = "East", popup = paste("SampleID:", East_data$SAMPLEID, "<br>"
+                                                                     ,"Site Class:", East_data$INDEX_REGION, "<br>"
+                                                                     ,"Score pt_NonIns:", round(East_data$SC_pt_NonIns,2), "<br>"
+                                                                     ,"Score pi_IsopGastHiru:", round(East_data$SC_pi_IsopGastHiru,2), "<br>"
+                                                                     ,"Score pt_tv_toler:", round(East_data$SC_pt_tv_toler,2), "<br>"
+                                                                     ,"Score nt_Trich:", round(East_data$SC_nt_Trich,2), "<br>"
+                                                                     ,"Score nt_habit_cling:", round(East_data$SC_nt_habit_cling,2), "<br>"
+                                                                     ,"Score pi_tv_intol:", round(East_data$SC_pi_tv_intol,2), "<br>"
+                                                                     ,"<b> Index Value:</b>", round(East_data$Index, 2))
+                                     , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
+                                     , clusterOptions = markerClusterOptions()
+                    ) %>%
+                    addCircleMarkers(data = WF_data, lat = ~Lat, lng = ~Long
+                                     , group = "WestFlat", popup = paste("SampleID:", WF_data$SAMPLEID, "<br>"
+                                                                         ,"Site Class:", WF_data$INDEX_REGION, "<br>"
+                                                                         ,"Score pt_NonIns:", round(WF_data$SC_pt_NonIns,2), "<br>"
+                                                                         ,"Score pi_EPT:", round(WF_data$SC_pi_EPT,2), "<br>"
+                                                                         ,"Score pt_tv_intol:", round(WF_data$SC_pt_tv_intol,2), "<br>"
+                                                                         ,"Score pt_tv_toler:", round(WF_data$SC_pt_tv_toler,2), "<br>"
+                                                                         ,"Score pi_ffg_col:", round(WF_data$SC_pi_ffg_col,2), "<br>"
+                                                                         ,"Score pi_habit_sprawl:", round(WF_data$SC_pi_habit_sprawl,2), "<br>"
+                                                                         ,"<b> Index Value:</b>", round(WF_data$Index, 2))
+                                     , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
+                                     , clusterOptions = markerClusterOptions()
+                    ) %>%
+                    addCircleMarkers(data = WS_data, lat = ~Lat, lng = ~Long
+                                     , group = "WestSteep", popup = paste("SampleID:", WS_data$SAMPLEID, "<br>"
+                                                                          ,"Site Class:", WS_data$INDEX_REGION, "<br>"
+                                                                          ,"Score pi_habit_cling:", round(WS_data$SC_pi_habit_cling,2), "<br>"
+                                                                          ,"Score pi_EPTNoBaeHydro:", round(WS_data$SC_pi_EPTNoBaeHydro,2), "<br>"
+                                                                          ,"Score pt_tv_toler:", round(WS_data$SC_pt_tv_toler,2), "<br>"
+                                                                          ,"Score pi_ffg_col:", round(WS_data$SC_pi_ffg_col,2), "<br>"
+                                                                          ,"Score nt_Trich", round(WS_data$SC_nt_Trich,2), "<br>"
+                                                                          ,"<b> Index Value:</b>", round(WS_data$Index, 2))
+                                     , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
+                                     , clusterOptions = markerClusterOptions()
+                    ) %>%
+                    addCircleMarkers(data = MSD_data, lat = ~Lat, lng = ~Long
+                                     , group = "MidSizeDry", popup = paste("SampleID:", MSD_data$SAMPLEID, "<br>"
+                                                                           ,"Site Class:", MSD_data$INDEX_REGION, "<br>"
+                                                                           ,"Score nt_CruMol:", round(MSD_data$SC_nt_CruMol,2), "<br>"
+                                                                           ,"Score pi_ffg_pred:", round(MSD_data$SC_pi_ffg_pred,2), "<br>"
+                                                                           ,"Score pi_ffg_shred:", round(MSD_data$SC_pi_ffg_shred,2), "<br>"
+                                                                           ,"Score pi_habit_cling:", round(MSD_data$SC_pi_habit_cling,2), "<br>"
+                                                                           ,"Score pi_CruMol:", round(MSD_data$SC_pi_CruMol,2), "<br>"
+                                                                           ,"Score nt_tv_toler:", round(MSD_data$SC_nt_tv_toler,2), "<br>"
+                                                                           ,"Score pt_NonIns:", round(MSD_data$SC_pt_NonIns,2), "<br>"
+                                                                           ,"<b> Index Value:</b>", round(MSD_data$Index, 2))
+                                     , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
+                                     , clusterOptions = markerClusterOptions()
+                    ) %>%
+                    addCircleMarkers(data = Nar_data, lat = ~Lat, lng = ~Long
+                                     , group = "Narrow", popup = paste("SampleID:", Nar_data$SAMPLEID, "<br>"
+                                                                       ,"Site Class:", Nar_data$INDEX_REGION, "<br>"
+                                                                       ,"Score pi_ffg_shred:", round(Nar_data$SC_pi_ffg_shred,2), "<br>"
+                                                                       ,"Score pt_NonIns:", round(Nar_data$SC_pt_NonIns,2), "<br>"
+                                                                       ,"Score pi_habit_climb:", round(Nar_data$SC_pi_habit_climb,2), "<br>"
+                                                                       ,"Score pi_EPT:", round(Nar_data$SC_pi_EPT,2), "<br>"
+                                                                       ,"Score pi_tv_toler:", round(Nar_data$SC_pi_tv_toler,2), "<br>"
+                                                                       ,"<b> Index Value:</b>", round(Nar_data$Index, 2))
+                                     , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
+                                     , clusterOptions = markerClusterOptions()
+                    ) %>%
+                    addCircleMarkers(data = VN_data, lat = ~Lat, lng = ~Long
+                                     , group = "VeryNarrow", popup = paste("SampleID:", VN_data$SAMPLEID, "<br>"
+                                                                           ,"Site Class:", VN_data$INDEX_REGION, "<br>"
+                                                                           ,"Score pi_ffg_shred:", round(VN_data$SC_pi_ffg_shred,2), "<br>"
+                                                                           ,"Score pi_habit_cling:", round(VN_data$SC_pi_habit_cling,2), "<br>"
+                                                                           ,"Score pt_NonIns:", round(VN_data$SC_pt_NonIns,2), "<br>"
+                                                                           ,"Score nt_EPT:", round(VN_data$SC_nt_EPT,2), "<br>"
+                                                                           ,"Score pi_Cru:", round(VN_data$SC_pi_Cru,2), "<br>"
+                                                                           ,"Score pt_tv_intol:", round(VN_data$SC_pt_tv_intol,2), "<br>"
+                                                                           ,"<b> Index Value:</b>", round(VN_data$Index, 2))
+                                     , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
+                                     , clusterOptions = markerClusterOptions()
+                    ) %>%
+                    addCircleMarkers(data = WW_data, lat = ~Lat, lng = ~Long
+                                     , group = "WetWide", popup = paste("SampleID:", WW_data$SAMPLEID, "<br>"
+                                                                        ,"Site Class:", WW_data$INDEX_REGION, "<br>"
+                                                                        ,"Score nt_NonIns:", round(WW_data$SC_nt_NonIns,2), "<br>"
+                                                                        ,"Score pi_ffg_scrap:", round(WW_data$SC_pi_ffg_scrap,2), "<br>"
+                                                                        ,"Score pi_IsopGastHiru:", round(WW_data$SC_pi_IsopGastHiru,2), "<br>"
+                                                                        ,"Score pi_NonIns:", round(WW_data$SC_pi_NonIns,2), "<br>"
+                                                                        ,"Score pi_Pleco:", round(WW_data$SC_pi_Pleco,2), "<br>"
+                                                                        ,"Score pt_tv_toler:", round(WW_data$SC_pt_tv_toler,2), "<br>"
+                                                                        ,"<b> Index Value:</b>", round(WW_data$Index, 2))
+                                     , color = ~qpal(Index), fillOpacity = 1, stroke = FALSE
+                                     , clusterOptions = markerClusterOptions()
+                    ) %>%
+                    addLegend(pal = qpal,
+                              values = scale_range,
+                              position = "bottomright",
+                              title = "Values",
+                              opacity = 1) %>%
+                    addLayersControl(overlayGroups = c("East", "WestFlat", "WestSteep", "MidSizeDry",
+                                                       "Narrow","VeryNarrow", "WetWide"),
+                                     options = layersControlOptions(collapsed = FALSE))
+
+
+            } ## ELSE statement ~ END
+
+
         }) ##renderLeaflet~END
 
-
-    })## observeEvent~END
 
 
 })##shinyServer~END
