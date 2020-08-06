@@ -102,8 +102,12 @@ shinyUI(navbarPage("MIEGLEtools IBI Calculator v0.1.1.946",
                             )##sidebarLayout~END
 
             ),## tabPanel~END
-            tabPanel("Site and Scores Map",
-                     leafletOutput("mymap", width = 1000, height = 500)
+            tabPanel("Site and Scores Map"
+                     , titlePanel("Site and Scores Map")
+                     , h4("The map below will be generated once metric values and scores have been calculated.")
+                     , h4("Sites are clustered when zoomed out for increased visibility - zoom in for added detail!")
+                     , h4("Sites are color coded by their Index Score value - click on a site for more info!")
+                     ,leafletOutput("mymap", width = 1000, height = 500)
             ) ## tabPanel~END
         )## navbarPage~END
 )## shinyUI~END
