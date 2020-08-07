@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 # Introduction
-`MIEGLEtools` was created by Tetra Tech, Inc. in 2020 to meet the needs of Michigan Environment, Great Lakes and Energy (EGLE) staff to complete data manipulations in an efficient and reproducible manner. The core purpose of this package is to run a web-based Shiny application that uses the `BioMonTools` package to calculate metric values and scores. 
+`MIEGLEtools` was created by Tetra Tech, Inc. in 2020 to meet the needs of Michigan Environment, Great Lakes and Energy (EGLE) staff to complete data manipulations in an efficient and reproducible manner. The core purpose of this package is to run a web-based Shiny application that uses the `BioMonTools` package to calculate metric values and scores. Additionally, a second tab within the app produced an interactive map that displays the index score for each input site. Sites are clickable - popup windows appear that provide details such as Sample ID, Index Region, and scores of individual metrics associated with the particular index. 
 
 It is envisioned that this library will be a living program and will add additional functions and routines in the future.
 
@@ -53,7 +53,7 @@ Several packages were used to build the functionality in `MIEGLEtools`:
 `BioMonTools` 
 `dplyr`
 `shiny`
-
+`leaflet`
 
 To install packages follow the example of the code below for installing `dplyr`.
 

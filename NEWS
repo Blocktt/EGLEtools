@@ -3,7 +3,13 @@ NEWS-MIEGLEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-08-06 08:41:56
+    #> Last Update: 2020-08-07 08:29:37
+
+# MIEGLEtools v0.1.2.900 (2020-08-07)
+
+  - Added R leaflet map to Shiny app - local testing complete. The map
+    requires metric scores to be calculated from input file prior to
+    mapping.
 
 # MIEGLEtools v0.1.1.956 (2020-08-06)
 
