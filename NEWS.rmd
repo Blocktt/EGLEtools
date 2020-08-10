@@ -17,6 +17,10 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+MIEGLEtools v0.1.2.902 (2020-08-10)
+================
+* Minor updates to make input columns correct format. Removed extra internal examples. 
+
 MIEGLEtools v0.1.2.900 (2020-08-07)
 ================
 * Added R leaflet map to Shiny app - local testing complete. The map requires metric scores to be calculated from input file prior to mapping.

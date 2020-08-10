@@ -3,7 +3,12 @@ NEWS-MIEGLEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-08-07 08:29:37
+    #> Last Update: 2020-08-10 12:31:37
+
+# MIEGLEtools v0.1.2.902 (2020-08-10)
+
+  - Minor updates to make input columns correct format. Removed extra
+    internal examples.
 
 # MIEGLEtools v0.1.2.900 (2020-08-07)
 

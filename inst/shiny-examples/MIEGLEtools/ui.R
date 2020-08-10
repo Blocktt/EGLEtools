@@ -24,7 +24,7 @@
 # library(shinyjs) # used for download button enable
 
 # Define UI for application that draws a histogram
-shinyUI(navbarPage("MIEGLEtools IBI Calculator v0.1.2.900",
+shinyUI(navbarPage("MIEGLEtools IBI Calculator v0.1.2.902",
                    tabPanel("Calculator",
                             # SideBar
                             sidebarLayout(

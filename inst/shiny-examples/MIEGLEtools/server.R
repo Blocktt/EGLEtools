@@ -69,21 +69,22 @@ shinyServer(function(input, output, session) {
 
         required_columns <- c("INDEX_NAME"
                               ,"SAMPLEID"
+                              ,"LAT"
+                              ,"LONG"
                               ,"INDEX_REGION"
-                              ,"DATE"
                               ,"TAXAID"
                               ,"N_TAXA"
                               ,"EXCLUDE"
                               ,"NONTARGET"
-                              ,"Phylum"
-                              ,"Subphylum"
-                              ,"Class"
-                              ,"Subclass"
-                              ,"Order"
-                              ,"Family"
+                              ,"PHYLUM"
+                              ,"SUBPHYLUM"
+                              ,"CLASS"
+                              ,"SUBCLASS"
+                              ,"ORDER"
+                              ,"FAMILY"
                               ,"FFG"
-                              ,"TolVal"
-                              ,"Habit")
+                              ,"TOLVAL"
+                              ,"HABIT")
 
         column_names <- colnames(df_input)
 
@@ -203,7 +204,7 @@ shinyServer(function(input, output, session) {
             # Not meaningful when run online via Shiny.io
 
             # Increment the progress bar, and update the detail text.
-            incProgress(1/n_inc, detail = "Calculate, Metrics (takes ~ 15s)")
+            incProgress(1/n_inc, detail = "Calculate, Metrics (takes ~ 30-45s)")
             Sys.sleep(0.5)
 
             # prior to metric calculation, we need to add columns that aren't part of the dataset but need to be in the input dataframe
