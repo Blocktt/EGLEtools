@@ -3,7 +3,12 @@ NEWS-MIEGLEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-08-12 11:40:52
+    #> Last Update: 2020-08-12 12:48:36
+
+# MIEGLEtools v0.1.2.905 (2020-08-12)
+
+  - Created tests folder to test functionality of metric caculations and
+    scoring.
 
 # MIEGLEtools v0.1.2.902 (2020-08-10)
 
