@@ -1,0 +1,26 @@
+---
+title: "Resources"
+date: "2024-09-25"
+output: html_fragment
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE
+                      , results = 'asis'
+                      , warning = FALSE
+                      , message = FALSE)
+```
+
+# Resources
+
+-   <a href="https://www.epa.gov/sites/default/files/2016-02/documents/bcg-practioners-guide-report.pdf" target="_blank">USEPA
+    2016</a>: A Practitioner's Guide to the Biological Condition
+    Gradient: A Framework to Describe Incremental Change in Aquatic
+    Ecosystems. EPA-842-R-16-001. U.S. Environmental Protection Agency,
+    Washington, DC.
+
+-   <a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/FLCoral_BCGCalc/Reports/Florida_Coral_BCG_Report.zip" target="_blank">Florida
+    Coral BCG development report</a>

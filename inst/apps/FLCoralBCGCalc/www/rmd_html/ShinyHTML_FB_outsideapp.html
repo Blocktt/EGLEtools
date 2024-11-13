@@ -1,0 +1,404 @@
+
+
+
+<div id="prepare-an-input-file-outside-of-the-app" class="section level1">
+<h1>Prepare an input file outside of the app</h1>
+<p>If you choose to create the input file outside of the app (versus
+using the ‘File Builder’), the comma-separated file (CSV) needs to have
+all the required fields listed in the tables below depending on the
+biological community. Column names must match the spelling, symbology
+and capitalization scheme exactly as shown.</p>
+<p>IMPORTANT: Make sure you are using the proper Operational Taxonomic
+Unit (OTU) and taxa traits/attributes for your metric calculations. The
+Taxa Translator and Attribute tables (and associated metadata) that were
+used for BCG development can be downloaded from the
+<a href="https://github.com/leppott/BioMonTools_SupportFiles/tree/main/data/taxa_official" target="_blank">BioMonTools_SupportFiles</a>
+GitHub page (look for files starting with “FLCoral_BCG_”. Note, that
+traits are not required for each record (i.e., trait fields allow null
+values).</p>
+<p>The
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/FLCoral_BCGCalc/Example_Files/FL_BCG_FileBuilder_Input_20240328.csv" target="_blank">Florida
+Coral BCG Test File</a> can be used as a guide for your own input
+file.</p>
+<div id="input-file-requirements-for-coral" class="section level2">
+<h2>Input file requirements for coral</h2>
+<table>
+<caption>
+Input file requirements for coral BCG model.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Column Name 
+</th>
+<th style="text-align:left;">
+Data Type
+</th>
+<th style="text-align:left;">
+Domain (allowable entries)
+</th>
+<th style="text-align:left;">
+Null Allowed
+</th>
+<th style="text-align:left;">
+Comment
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+SAMPLEID
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Unique sample identifier (typically comprised of the site name, sample
+date, and replicate number).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TOTTRANLNGTH_M
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+non-negative real number
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Total transect length of the sample (m). Should be repeated for each
+row.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TAXAID
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:left;">
+Taxonomic identification of colonies in each sample.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+JUVENILE
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+TRUE, FALSE
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Juvenile colonies should be marked as ‘TRUE’.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DIAMMAX_CM
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+non-negative real number
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Maximum diameter of the colony (cm)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+DIAMPERP_CM
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+non-negative real number
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Perpendicular diameter of the colony (cm).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+HEIGHT_CM
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+non-negative real number
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Height of the colony (cm).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+TOTMORT_PCT
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+non-negative real number
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+% total mortality of the colony (e.g., 58%). Used to calculate % Living
+Tissue = 100 - TOTMORT_PCT.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_ATTR
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+1, 2, 3, 4, 5, 6
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+BCG Attribute assigned to each taxon. A single taxon can only have one
+entry.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+WEEDY
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+&quot;Sometimes&quot; or &quot;Never&quot;
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Specifies whether a colony is ‘Weedy’ as either &quot;Sometimes&quot; or &quot;Never&quot;.
+Converted to binary TRUE/FALSE WEEDY_CONFIRMED field. Any colony listed
+as &quot;Never&quot; will equal FALSE. Any colony listed as &quot;Sometimes&quot; and under
+75cm maximum diameter will equal TRUE unless they are Siderastrea
+siderea or Stepahnocoenia intersepta. Colonies of those two species are
+considered ‘Weedy’ if the maximum diameter is less than or equal to 30cm
+and the height is less than or equal to 10cm.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+LRBC
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+TRUE, FALSE
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Large reef-building coral colonies should be marked as ‘TRUE’.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MORPHCONVFACT
+</td>
+<td style="text-align:left;">
+numeric
+</td>
+<td style="text-align:left;">
+1, 2, 3, 4
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Morphological Conversion Factor. In general, morphological types and
+relative values included flat (M=1), hemisphere (M=2), overlapping
+plates and lobes (M=3), and branched (M=4) colonies.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PHYLUM
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CLASS
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SUBCLASS
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ORDER
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+FAMILY
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+GENUS
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SUBGENUS
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SPECIES
+</td>
+<td style="text-align:left;">
+text
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+Yes
+</td>
+<td style="text-align:left;">
+Entries should be consistent with the phylogeny.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
