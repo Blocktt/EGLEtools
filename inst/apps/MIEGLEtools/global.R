@@ -5,7 +5,7 @@ pkg_version <- "v1.0.0.9002"
 
 # Packages----
 # nolint start
-library(BCGcalc)
+# library(BCGcalc)
 library(BioMonTools)
 library(shiny)
 library(shinydashboard)
@@ -27,10 +27,25 @@ library(tools)#ok
 library(openxlsx) #ok
 # nolint end
 
+# MIEGLEtools Orig ####
+# source function from metric.values.MI.R
+# source(file.path(".", "external", "metric.values.MI.R"))
+
+
+# define which metrics michigan wants to keep in indices
+MichMetrics <- c("nt_CruMol","pi_ffg_pred","pi_ffg_shred","pi_habit_cling"
+                 ,"pi_CruMol","nt_tv_toler","pt_NonIns","pi_habit_climb"
+                 ,"pi_EPT","pi_EPTNoBaeHydro","pi_tv_toler","nt_EPT"
+                 ,"pi_Cru","pt_tv_intol","nt_NonIns","pi_ffg_scrap"
+                 ,"pi_IsopGastHiru","pi_NonIns","pi_Pleco","pt_tv_toler"
+                 ,"pi_ffg_col","pi_habit_sprawl","nt_Trich","nt_habit_cling"
+                 ,"pi_tv_intol"
+)# END MichMetrics
+
 # Source ----
 
 # Helper Functions ----
-source(file.path("scripts", "helper_functions.R"))
+# source(file.path("scripts", "helper_functions.R"))
 
 ## tabs ----
 # sourced in global.R
@@ -79,39 +94,39 @@ if (dir.exists(path_results) == FALSE) {
 # File and Folder Names ----
 abr_filebuilder <- "FB"
 abr_taxatrans   <- "TaxaTranslator"
-abr_bcg         <- "BCG"
+abr_calc         <- "IBI"
 abr_results     <- "results"
 
 dn_files_input  <- "_user_input"
 dn_files_ref    <- "reference"
 dn_files_fb     <- paste(abr_results, abr_filebuilder, sep = "_")
-dn_files_bcg    <- paste(abr_results, abr_bcg, sep = "_")
+# dn_files_calc    <- paste(abr_results, abr_calc, sep = "_")
 
 # Selection Choices----
-sel_community <- c("CREMP_KEYS", "NOT_CREMP_KEYS")
+# sel_community <- c("CREMP_KEYS", "NOT_CREMP_KEYS")
 
 ##  BCG Models ----
-url_bcg_base <- "https://github.com/leppott/BCGcalc/raw/main/inst/extdata"
-
-url_bcg_models <- file.path(url_bcg_base, "Rules.xlsx")
-temp_bcg_models <- tempfile(fileext = ".xlsx")
-httr::GET(url_bcg_models, httr::write_disk(temp_bcg_models))
-
-df_bcg_models <- as.data.frame(readxl::read_excel(temp_bcg_models
-                                                  , guess_max = 10^3
-                                                  , sheet = "Rules"))
+# url_bcg_base <- "https://github.com/leppott/BCGcalc/raw/main/inst/extdata"
+#
+# url_bcg_models <- file.path(url_bcg_base, "Rules.xlsx")
+# temp_bcg_models <- tempfile(fileext = ".xlsx")
+# httr::GET(url_bcg_models, httr::write_disk(temp_bcg_models))
+#
+# df_bcg_models <- as.data.frame(readxl::read_excel(temp_bcg_models
+#                                                   , guess_max = 10^3
+#                                                   , sheet = "Rules"))
 #sel_bcg_models <- sort(unique(df_bcg_models$Index_Name))
-sel_bcg_models <- "FL_Coral_BCG"
+# sel_bcg_models <- "FL_Coral_BCG"
 
 ## URL BioMonTools
-url_bmt_base <- "https://github.com/leppott/BioMonTools_SupportFiles/raw/main/data"
+# url_bmt_base <- "https://github.com/leppott/BioMonTools_SupportFiles/raw/main/data"
 
 # BMT, Flags ----
-url_bcg_checks <- file.path(url_bcg_base, "MetricFlags.xlsx")
-temp_bcg_checks <- tempfile(fileext = ".xlsx")
-httr::GET(url_bcg_checks, httr::write_disk(temp_bcg_checks))
-
-df_checks <- as.data.frame(readxl::read_excel(temp_bcg_checks, sheet = "Flags"))
+# url_bcg_checks <- file.path(url_bcg_base, "MetricFlags.xlsx")
+# temp_bcg_checks <- tempfile(fileext = ".xlsx")
+# httr::GET(url_bcg_checks, httr::write_disk(temp_bcg_checks))
+#
+# df_checks <- as.data.frame(readxl::read_excel(temp_bcg_checks, sheet = "Flags"))
 
 # BMT, Taxa Official Pick----
 url_taxa_official_pick <- file.path(url_bmt_base
@@ -123,17 +138,17 @@ httr::GET(url_taxa_official_pick, httr::write_disk(temp_taxa_official_pick))
 df_pick_taxoff <- read.csv(temp_taxa_official_pick)
 
 # BMT, Metric Names ----
-url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"
-url_metricnames <- file.path(url_bmt_pkg, "MetricNames.xlsx")
-temp_metricnames <- tempfile(fileext = ".xlsx")
-httr::GET(url_metricnames, httr::write_disk(temp_metricnames))
-
-df_metricnames <- readxl::read_excel(temp_metricnames
-                                     , sheet = "MetricMetadata"
-                                     , skip = 4)
+# url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"
+# url_metricnames <- file.path(url_bmt_pkg, "MetricNames.xlsx")
+# temp_metricnames <- tempfile(fileext = ".xlsx")
+# httr::GET(url_metricnames, httr::write_disk(temp_metricnames))
+#
+# df_metricnames <- readxl::read_excel(temp_metricnames
+#                                      , sheet = "MetricMetadata"
+#                                      , skip = 4)
 
 # BMT, Metric Scoring ----
-url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"
-url_metricscoring <- file.path(url_bmt_pkg, "MetricScoring.xlsx")
-temp_metricscoring <- tempfile(fileext = ".xlsx")
-httr::GET(url_metricscoring, httr::write_disk(temp_metricscoring))
+# url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"
+# url_metricscoring <- file.path(url_bmt_pkg, "MetricScoring.xlsx")
+# temp_metricscoring <- tempfile(fileext = ".xlsx")
+# httr::GET(url_metricscoring, httr::write_disk(temp_metricscoring))
