@@ -52,7 +52,7 @@ tab_code_filebuilder_outsideapp           <- source("external/tab_filebuilder_ou
                                          , local = TRUE)$value
 tab_code_filebuilder_taxatrans <- source("external/tab_filebuilder_taxatrans.R"
                                          , local = TRUE)$value
-tab_code_calc_bcg              <- source("external/tab_calc_bcg.R"
+tab_code_calc              <- source("external/tab_calc.R"
                                          , local = TRUE)$value
 tab_code_resources             <- source("external/tab_resources.R"
                                          , local = TRUE)$value

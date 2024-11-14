@@ -8,6 +8,7 @@ function() {
           # 0. Progress
           #, tags$hr()
           h4("Load File")
+          , p("Use this function for both Prepare Data and Calculation")
           , p("Only comma-separated or tab-separated files.")
           , h5("Select file parameters")
           #, checkboxInput('header', 'Header', TRUE)
@@ -38,7 +39,7 @@ function() {
         )##sidebarPanel~END
       # Main Panel ####
       , mainPanel(
-           p("A table is shown below after data is loaded.")
+           p("The input table is shown below after the data are loaded.")
           , DT::dataTableOutput("df_import_DT")
       )##mainPanel~END
 

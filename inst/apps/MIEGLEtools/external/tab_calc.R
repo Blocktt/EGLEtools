@@ -3,7 +3,7 @@
 function() {
   sidebarLayout(
     sidebarPanel(
-       h2("Calculate BCG Models")
+       h2("Calculate IBI Models")
        , p("This function will render all steps and make available files for download.")
        , br()
 
@@ -42,7 +42,7 @@ function() {
                     , tabPanel(title = "Calc_BCG_Output"
                                ,includeHTML(file.path("www"
                                                       , "rmd_html"
-                                          , "ShinyHTML_Calc_BCG_3Output.html"))
+                                          , "ShinyHTML_Calc_Output.html"))
                                )
                     )## tabsetPanel ~ END
 
