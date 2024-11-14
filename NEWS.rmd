@@ -17,9 +17,21 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+MIEGLEtools v1.0.0.9002 (2024-11-14)
+================
+* Minor setup updates before major overhaul to accommodate information from MI EGLE.
+
+MIEGLEtools v1.0.0.9001 (2024-11-13)
+================
+* New dev branch on GitHub. Copied over Florida BCG app for quick implementation of new features. 
+
+MIEGLEtools v1.0.0 (2024-11-13)
+================
+* Released version 1.0.0. No changes from v0.1.2.905, but accommodates updates for version 2.
+
 MIEGLEtools v0.1.2.905 (2020-08-12)
 ================
-* Created tests folder to test functionality of metric caculations and scoring. 
+* Created tests folder to test functionality of metric calculations and scoring. 
 
 
 MIEGLEtools v0.1.2.902 (2020-08-10)

@@ -8,7 +8,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 dashboardPage(
-  header = dashboardHeader(title = "BCGcalc -- FL Corals", titleWidth = 300)
+  header = dashboardHeader(title = "EGLE IBI Calculator", titleWidth = 275)
   , sidebar = dashboardSidebar(db_main_sb("leftsidebarmenu"))
   # , body = dashboardBody(db_main_body("dbBody"))
   , body = dashboardBody(

@@ -12,6 +12,10 @@ function(id) {
     , HTML("&nbsp;&nbsp;<font size=5><b>Steps</b></font>")
     #Steps, do *not* need to be done sequentially----
     , sidebarMenu(id = id
+                  , HTML(paste0(
+                    "<br>",
+                    "<a href='https://www.michigan.gov/egle/about/organization/water-resources/glwarm/biological-assessments' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='2-EGLE_Logo_Primary_White.png' width = '230'></a>",
+                    "<br>"))
       , menuItem(text = "About"
                , tabName = "tab_about"
                , icon = icon("house")

@@ -3,85 +3,98 @@ NEWS-MIEGLEtools
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-08-12 12:48:36
+    #> Last Update: 2024-11-14 13:54:56.796155
+
+# MIEGLEtools v1.0.0.9002 (2024-11-14)
+
+- Minor setup updates before major overhaul to accommodate information
+  from MI EGLE.
+
+# MIEGLEtools v1.0.0.9001 (2024-11-13)
+
+- New dev branch on GitHub. Copied over Florida BCG app for quick
+  implementation of new features.
+
+# MIEGLEtools v1.0.0 (2024-11-13)
+
+- Released version 1.0.0. No changes from v0.1.2.905, but accommodates
+  updates for version 2.
 
 # MIEGLEtools v0.1.2.905 (2020-08-12)
 
-  - Created tests folder to test functionality of metric caculations and
-    scoring.
+- Created tests folder to test functionality of metric calculations and
+  scoring.
 
 # MIEGLEtools v0.1.2.902 (2020-08-10)
 
-  - Minor updates to make input columns correct format. Removed extra
-    internal examples.
+- Minor updates to make input columns correct format. Removed extra
+  internal examples.
 
 # MIEGLEtools v0.1.2.900 (2020-08-07)
 
-  - Added R leaflet map to Shiny app - local testing complete. The map
-    requires metric scores to be calculated from input file prior to
-    mapping.
+- Added R leaflet map to Shiny app - local testing complete. The map
+  requires metric scores to be calculated from input file prior to
+  mapping.
 
 # MIEGLEtools v0.1.1.956 (2020-08-06)
 
-  - Added R leaflet map to Shiny app. Still in testing. The map requires
-    metric scores to be calculated from input file prior to mapping.
-    Attempting to make reactive.
+- Added R leaflet map to Shiny app. Still in testing. The map requires
+  metric scores to be calculated from input file prior to mapping.
+  Attempting to make reactive.
 
 # MIEGLEtools v0.1.1.946 (2020-07-30)
 
-  - Fixed Issues \#1 and \#2 (see GitHub repo). The Shiny app crashed
-    because metric.values.MI.R required certain columns that were not in
-    the input data set. To combat this, we included a section in
-    server.R that tacks on any missing columns onto the input data set
-    prior to metric calculation using metric.values().
-  - Next steps are product testing and accuracy testing.
+- Fixed Issues \#1 and \#2 (see GitHub repo). The Shiny app crashed
+  because metric.values.MI.R required certain columns that were not in
+  the input data set. To combat this, we included a section in server.R
+  that tacks on any missing columns onto the input data set prior to
+  metric calculation using metric.values().
+- Next steps are product testing and accuracy testing.
 
 # MIEGLEtools v0.1.1.939 (2020-07-30)
 
-  - Took metric.values() function from `BioMonTools` and created a
-    version that is saved within the Shiny app
-  - Updated server.R to reflect new metric values function: df\_metval
-    \<- suppressWarnings(metric.values.MI(fun.DF = df\_data,
-    fun.Community = “bugs”, fun.MetricNames = MichMetrics, boo.Shiny =
-    TRUE))
+- Took metric.values() function from `BioMonTools` and created a version
+  that is saved within the Shiny app
+- Updated server.R to reflect new metric values function: df_metval \<-
+  suppressWarnings(metric.values.MI(fun.DF = df_data, fun.Community =
+  “bugs”, fun.MetricNames = MichMetrics, boo.Shiny = TRUE))
 
 # MIEGLEtools v0.1.1.934 (2020-07-28)
 
-  - Updated thresholds for metric scoring to be obtained from within the
-    `BioMonTools` package
-      - The `BioMonTools` package has a thresholds excel file within the
-        package that is referenced.
-      - This Excel file would need to be edited to changed metric
-        threshold values when scoring metrics.
-  - Version changed to previous naming convention v0.1.1.934 rather than
-    v0.1.0.9001.
+- Updated thresholds for metric scoring to be obtained from within the
+  `BioMonTools` package
+  - The `BioMonTools` package has a thresholds excel file within the
+    package that is referenced.
+  - This Excel file would need to be edited to changed metric threshold
+    values when scoring metrics.
+- Version changed to previous naming convention v0.1.1.934 rather than
+  v0.1.0.9001.
 
 # MIEGLEtools v0.1.0.9001 (2020-07-28)
 
-  - Start adding elements to allow for package creation.
-      - DESCRIPTION
-          - Title, Description, authors, maintainer, IMPORTS, License,
-            and URL
-      - NEWS
-          - Add file and update.
-      - MIEGLEtools
-          - Remove from base directory
-      - .\_MIEGLEtools.Rmd
-          - Add notebook for code to aid in creation of package
-      - Vignette
-          - Ensure each chunk had a unique name (single word only).
-      - runShiny.R
-          - Update URL in details.
-      - README
-          - Need to add RMD file for editing only have MD.
-  - Shiny app updates
-      - Add packages to DESCRIPTION.  
-      - Comment out library() calls in ui.R and server.R.  
-  - License
-      - Recreated with usethis::use\_mit\_license(“Ben Block”)
-  - Ran Check and addressed issues.
-  - UI.r, update version number to the same as the package version.
+- Start adding elements to allow for package creation.
+  - DESCRIPTION
+    - Title, Description, authors, maintainer, IMPORTS, License, and URL
+  - NEWS
+    - Add file and update.
+  - MIEGLEtools
+    - Remove from base directory
+  - .\_MIEGLEtools.Rmd
+    - Add notebook for code to aid in creation of package
+  - Vignette
+    - Ensure each chunk had a unique name (single word only).
+  - runShiny.R
+    - Update URL in details.
+  - README
+    - Need to add RMD file for editing only have MD.
+- Shiny app updates
+  - Add packages to DESCRIPTION.  
+  - Comment out library() calls in ui.R and server.R.  
+- License
+  - Recreated with usethis::use_mit_license(“Ben Block”)
+- Ran Check and addressed issues.
+- UI.r, update version number to the same as the package version.
 
 # MIEGLEtools v0.1.0.9000 (2020-07-28)
 
-  - Forked code from <https://github.com/Blocktt/MIEGLEtools>
+- Forked code from <https://github.com/Blocktt/MIEGLEtools>

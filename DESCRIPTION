@@ -1,7 +1,7 @@
 Package: MIEGLEtools
 Type: Package
 Title: Used to calculate Michigan EGLE IBI Metrics and scores, and produce output files 
-Version: 0.1.2.905
+Version: 1.0.0.9002
 Authors@R: c(
   person("Ben", "Block", email="Ben.Block@tetratech.com", role=c("cre", "aut")),
   person("Erik W.","Leppo", role="aut"))
@@ -10,7 +10,7 @@ Description: Tools to calculate multi-metric index in R and Shiny.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
 Imports:
   BioMonTools,
   shiny,
