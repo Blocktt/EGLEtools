@@ -2,7 +2,8 @@
 
 function() {
   sidebarLayout(
-    sidebarPanel(h2("File Builder: Taxa Translate and Attribute Assignment")
+    sidebarPanel(h2("File Builder")
+            , h3("Taxa Translate, Attribute Assignment, Site Class Assignment")
             , useShinyjs()
 
             , p("The process below will combine user data with an official taxa list.")

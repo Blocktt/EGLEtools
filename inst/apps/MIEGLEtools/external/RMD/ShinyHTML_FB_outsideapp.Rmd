@@ -1,6 +1,6 @@
 ---
 title: "Prepare Data, Outside app"
-date: "2024-11-14"
+date: "2024-11-22"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -18,23 +18,18 @@ knitr::opts_chunk$set(echo = FALSE
 
 If you choose to create the input file outside of the app (versus using
 the 'File Builder'), the comma-separated file (CSV) needs to have all
-the required fields listed in the tables below. Column names must match the spelling, symbology
-and capitalization scheme exactly as shown.
+the required fields listed in the tables below. Column names must match
+the spelling, symbology, and capitalization scheme exactly as shown.
 
 IMPORTANT: Make sure you are using the proper Operational Taxonomic Unit
 (OTU) and taxa traits/attributes for your metric calculations. The Taxa
 Translator and Attribute tables (and associated metadata) that were used
-for IBI development can be downloaded from the
-<a href="https://github.com/leppott/BioMonTools_SupportFiles/tree/main/data/taxa_official" target = "_blank">BioMonTools_SupportFiles</a>
-GitHub page (look for files starting with "FLCoral_BCG\_". Note, that
-traits are not required for each record (i.e., trait fields allow null
-values).
+for IBI development can be downloaded from the [***source TBD***].
 
-The
-<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/FLCoral_BCGCalc/Example_Files/FL_BCG_FileBuilder_Input_20240328.csv" target="_blank">Florida
-Coral BCG Test File</a> can be used as a guide for your own input file.
+The MI EGLE Input Test File can be used as a guide for your own input
+file [***source TBD***].
 
-## Input file requirements for coral
+## Input file requirements for bugs
 
 ```{r}
 # Packages

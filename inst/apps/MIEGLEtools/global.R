@@ -129,13 +129,15 @@ dn_files_fb     <- paste(abr_results, abr_filebuilder, sep = "_")
 # df_checks <- as.data.frame(readxl::read_excel(temp_bcg_checks, sheet = "Flags"))
 
 # BMT, Taxa Official Pick----
-url_taxa_official_pick <- file.path(url_bmt_base
-                                    , "taxa_official"
-                                    , "FLCoral_BCG_Pick_Files.csv")
-temp_taxa_official_pick <- tempfile(fileext = ".csv")
-httr::GET(url_taxa_official_pick, httr::write_disk(temp_taxa_official_pick))
+# url_taxa_official_pick <- file.path(url_bmt_base
+#                                     , "taxa_official"
+#                                     , "FLCoral_BCG_Pick_Files.csv")
+# temp_taxa_official_pick <- tempfile(fileext = ".csv")
+# httr::GET(url_taxa_official_pick, httr::write_disk(temp_taxa_official_pick))
 
-df_pick_taxoff <- read.csv(temp_taxa_official_pick)
+# df_pick_taxoff <- read.csv(temp_taxa_official_pick)
+fn_pick_taxoff <- "MIEGLEtools_Pick_Files.csv"
+df_pick_taxoff <- read.csv(file = file.path("data", fn_pick_taxoff))
 
 # BMT, Metric Names ----
 # url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"

@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
 
   # INPUT Display Names ####
 
-  output$fn_input_display_bcg <- renderText({
+  output$fn_input_display_IBI <- renderText({
     inFile <- input$fn_input
 
     if (is.null(inFile)) {
@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
 
     return(paste0("'", inFile$name, "'"))
 
-  })## fn_input_display_bcg
+  })## fn_input_display_IBI
 
   output$fn_input_display_taxatrans <- renderText({
     inFile <- input$fn_input
@@ -164,7 +164,7 @@ shinyServer(function(input, output) {
 
     ## button, enable, calc ----
     shinyjs::enable("b_calc_taxatrans")
-    shinyjs::enable("b_calc_bcg")
+    shinyjs::enable("b_calc_ibi")
 
     # update cb_taxatrans_sum
     # doesn't work here as timing is after the file is created
@@ -215,13 +215,13 @@ shinyServer(function(input, output) {
                 , multiple = FALSE)
   })## UI_colnames
 
-  # output$UI_taxatrans_pick_official_project <- renderUI({
-  #   str_col <- "Official Taxa Data, Column Taxa_ID"
-  #   selectInput("taxatrans_pick_official_project"
-  #               , label = str_col
-  #               , choices = names(df_pick_taxoff)
-  #               , multiple = FALSE)
-  # })## UI_colnames
+  output$UI_taxatrans_pick_official_project <- renderUI({
+    str_col <- "Official Taxa Data, Column Taxa_ID"
+    selectInput("taxatrans_pick_official_project"
+                , label = str_col
+                , choices = names(df_pick_taxoff)
+                , multiple = FALSE)
+  })## UI_colnames
 
   output$UI_taxatrans_user_col_taxaid <- renderUI({
     str_col <- "Column, TaxaID"
@@ -409,7 +409,7 @@ shinyServer(function(input, output) {
       message(paste0("User response to summarize duplicate sample taxa = "
                , sel_summ))
 
-      dir_proj_results <- paste("MI_EGLE_IBI", dir_proj_results, sep = "_")
+      dir_proj_results <- paste("MI_EGLE", dir_proj_results, sep = "_")
 
       dn_files <- paste(abr_results, dir_proj_results, sep = "_")
 
@@ -607,7 +607,7 @@ shinyServer(function(input, output) {
                             , TranslationTable = fn_taxoff
                             , AttributeTable = fn_taxoff_attr)
       # fn_part <- paste0("_", abr_filebuilder, "_0taxasource", ".csv")
-      fn_part <- "BCG_TaxaTranslator_source.csv"
+      fn_part <- "IBI_TaxaTranslator_source.csv"
       write.csv(df_save
                 , file.path(path_results_sub, fn_part)
                 , row.names = FALSE)
@@ -662,7 +662,7 @@ shinyServer(function(input, output) {
       ## translate - crosswalk
       df_save <- taxatrans_results$taxatrans_unique # df_taxoff_meta
       # fn_part <- paste0(fn_abr_save, "2taxamatch", ".csv")
-      fn_part <- "BCG_TaxaTranslator_modify.csv"
+      fn_part <- "IBI_TaxaTranslator_modify.csv"
       write.csv(df_save
                 , file.path(path_results_sub, fn_part)
                 , row.names = FALSE)
@@ -671,7 +671,7 @@ shinyServer(function(input, output) {
       ## Non Match
       df_save <- data.frame(taxatrans_results$nonmatch)
       # fn_part <- paste0(fn_abr_save, "3nonmatch", ".csv")
-      fn_part <- "BCG_TaxaTranslator_nonmatch.csv"
+      fn_part <- "IBI_TaxaTranslator_nonmatch.csv"
       write.csv(df_save
                 , file.path(path_results_sub, fn_part)
                 , row.names = FALSE)
@@ -680,7 +680,7 @@ shinyServer(function(input, output) {
       ## Taxa Trans
       df_save <- taxatrans_results$merge
       # fn_part <- paste0(fn_abr_save, "4taxaattr", ".csv")
-      fn_part <- "BCG_TaxaTranslator_TAXAATTR.csv"
+      fn_part <- "IBI_TaxaTranslator_TAXAATTR.csv"
       write.csv(df_save
                 , file.path(path_results_sub, fn_part)
                 , row.names = FALSE)
@@ -728,7 +728,7 @@ shinyServer(function(input, output) {
       # validate(msg)
 
     }## expr ~ withProgress ~ END
-    , message = "Calculating BCG"
+    , message = "Calculating IBI"
     )## withProgress
 
   }##expr ~ ObserveEvent
@@ -758,9 +758,9 @@ shinyServer(function(input, output) {
 
   #~~~~CALC~~~~----
 
-  # Calc, BCG ----
-  ## b_Calc_BCG ----
-  observeEvent(input$b_calc_bcg, {
+  # Calc, IBI ----
+  ## b_calc_ibi ----
+  observeEvent(input$b_calc_ibi, {
     shiny::withProgress({
 
       # time, start
@@ -768,7 +768,7 @@ shinyServer(function(input, output) {
 
       ## Calc, 0, Set Up Shiny Code ----
 
-      prog_detail <- "Calculation, BCG..."
+      prog_detail <- "Calculation, IBI..."
       message(paste0("\n", prog_detail))
 
       # Number of increments
@@ -790,7 +790,7 @@ shinyServer(function(input, output) {
 
       # result folder and files
       # 2023-12-14, add community
-      fn_comm <- input$si_community
+      fn_comm <- "Bug"
       fn_abr <- abr_calc
       fn_abr_save <- paste0("_", fn_abr, "_")
       path_results_sub <- file.path(path_results
@@ -810,7 +810,7 @@ shinyServer(function(input, output) {
       }
 
       # button, disable, download
-      shinyjs::disable("b_download_bcg")
+      shinyjs::disable("b_download_IBI")
 
       # data
       inFile <- input$fn_input
@@ -926,7 +926,7 @@ shinyServer(function(input, output) {
 
         # Save Results
         # fn_excl <- paste0(fn_input_base, fn_abr_save, "1markexcl.csv")
-        fn_excl <- "BCG_1markexcl.csv"
+        fn_excl <- "IBI_1markexcl.csv"
         dn_excl <- path_results_sub
         pn_excl <- file.path(dn_excl, fn_excl)
         write.csv(df_input, pn_excl, row.names = FALSE)
@@ -1026,7 +1026,7 @@ shinyServer(function(input, output) {
       ### Save Results ----
 
       # fn_metval <- paste0(fn_input_base, fn_abr_save, "2metval_all.csv")
-      fn_metval <- "BCG_2metvall_all.csv"
+      fn_metval <- "IBI_2metval_all.csv"
       dn_metval <- path_results_sub
       pn_metval <- file.path(dn_metval, fn_metval)
       write.csv(df_metval, pn_metval, row.names = FALSE)
@@ -1046,7 +1046,7 @@ shinyServer(function(input, output) {
       df_metval_slim <- df_metval[, names(df_metval) %in% cols_metrics_flags_keep]
       # Save
       # fn_metval_slim <- paste0(fn_input_base, fn_abr_save, "2metval_BCG.csv")
-      fn_metval_slim <- "BCG_2metval_BCG.csv"
+      fn_metval_slim <- "IBI_2metval_IBI.csv"
       dn_metval_slim <- path_results_sub
       pn_metval_slim <- file.path(dn_metval_slim, fn_metval_slim)
       write.csv(df_metval_slim, pn_metval_slim, row.names = FALSE)
@@ -1209,13 +1209,13 @@ shinyServer(function(input, output) {
       # pn_levflags <- file.path(dn_levflags, fn_levflags)
       # write.csv(df_lev_flags_summ, pn_levflags, row.names = TRUE)
       #
-      # # Save, Results
-      # # fn_results <- paste0(fn_input_base, fn_abr_save, "RESULTS.csv")
-      # fn_results <- "_BCG_RESULTS.csv"
-      # dn_results <- path_results_sub
-      # pn_results <- file.path(dn_results, fn_results)
-      # write.csv(df_results, pn_results, row.names = FALSE)
-      #
+      # Save, Results
+      # fn_results <- paste0(fn_input_base, fn_abr_save, "RESULTS.csv")
+      fn_results <- "_IBI_RESULTS.csv"
+      dn_results <- path_results_sub
+      pn_results <- file.path(dn_results, fn_results)
+      write.csv(df_results, pn_results, row.names = FALSE)
+
       # # Save, Flag Metrics
       # # fn_metflags <- paste0(fn_input_base, fn_abr_save, "6metflags.csv")
       # fn_metflags <- "BCG_6metflags.csv"
@@ -1297,7 +1297,7 @@ shinyServer(function(input, output) {
       zip::zip(file.path(path_results, "results.zip"), fn_4zip)
 
       # button, enable, download
-      shinyjs::enable("b_download_bcg")
+      shinyjs::enable("b_download_IBI")
 
       # time, end
       toc <- Sys.time()
@@ -1315,13 +1315,13 @@ shinyServer(function(input, output) {
       # validate(msg)
 
     }## expr ~ withProgress ~ END
-    , message = "Calculating BCG"
+    , message = "Calculating IBI"
     )## withProgress ~ END
   }##expr ~ ObserveEvent ~ END
-  )##observeEvent ~ b_calc_bcg ~ END
+  )##observeEvent ~ b_calc_ibi ~ END
 
-  ## b_download_BCG ----
-  output$b_download_bcg <- downloadHandler(
+  ## b_download_IBI ----
+  output$b_download_IBI <- downloadHandler(
 
     filename = function() {
       inFile <- input$fn_input
@@ -1339,6 +1339,6 @@ shinyServer(function(input, output) {
 
     }##content~END
     #, contentType = "application/zip"
-  )##download ~ BCG
+  )##download ~ IBI
 
 })##shinyServer ~ END

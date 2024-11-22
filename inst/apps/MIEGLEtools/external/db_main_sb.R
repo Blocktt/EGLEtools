@@ -43,9 +43,9 @@ function(id) {
       , menuItem(text = "Step 2: Calculation"
                  , icon = icon("gears")
                  , tabName = "tab_calc"
-                 , menuSubItem("IBI Models"
-                               , tabName = "tab_calc"
-                               , icon = icon("award"))
+                 # , menuSubItem("IBI Models"
+                 #               , tabName = "tab_calc"
+                 #               , icon = icon("award"))
                  )## menuItem ~ BCG
       , menuItem(text = "Relevant Resources"
                  , tabName = "tab_resources"
