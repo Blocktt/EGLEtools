@@ -1,3 +1,4 @@
-TaxaID
-OTU_BCG
-Rationale
+ColName,Description
+TAXAID,Taxon name from MI EGLE macroinvertebrate database
+OTU_IBI,Operational Taxonomic Unit (OTU) associated with the IBI. This field matches the TAXAID field in the attribute table
+Rationale,Specifies why in some cases OTU_IBI does not match TAXAID.
