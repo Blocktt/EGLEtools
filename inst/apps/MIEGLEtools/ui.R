@@ -8,7 +8,7 @@
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 dashboardPage(
-  header = dashboardHeader(title = "BCGcalc -- FL Corals", titleWidth = 300)
+  header = dashboardHeader(title = "EGLE IBI Calculator", titleWidth = 275)
   , sidebar = dashboardSidebar(db_main_sb("leftsidebarmenu"))
   # , body = dashboardBody(db_main_body("dbBody"))
   , body = dashboardBody(
@@ -16,7 +16,7 @@ dashboardPage(
       body {font-size: 16px;}")),
     db_main_body("dbBody"))
   , footer = dashboardFooter(left = pkg_version
-                             , right = "https://github.com/Blocktt/FLCoralBCGCalc")
+                             , right = "https://github.com/Blocktt/MIEGLEtools")
 ) ## dashboardPage ~ END
 
 # https://rstudio.github.io/shinydashboard/get_started.html

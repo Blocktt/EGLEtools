@@ -1,0 +1,215 @@
+"TAXAID","OTU_IBI","Rationale"
+"Achrysomelidae (Adults)","Chrysomelidae","Removed Adults prefix"
+"Acurculionidae (Adults)","Curculionidae","Removed Adults prefix"
+"Aeshnidae","Aeshnidae",
+"Agyrinidae (Adults)","Gyrinidae","Removed Adults prefix"
+"Ahaliplidae (Adults)","Haliplidae","Removed Adults prefix"
+"Alampyridae (Adults)","Lampyridae","Removed Adults prefix"
+"Alimnichidae (Adults)","Limnichidae","Removed Adults prefix"
+"Ameletidae","Ameletidae",
+"Ametropodidae","Ametropodidae",
+"Amphipoda","Amphipoda","Added in case MI EGLE drops suffixs from database"
+"Amphipoda (Scuds)","Amphipoda","Removed suffix"
+"Ancylidae","Ancylidae","Added in case MI EGLE drops suffixs from database"
+"Ancylidae (Limpets)","Ancylidae","Removed suffix"
+"Anisoptera","Anisoptera","Added in case MI EGLE drops suffixs from database"
+"Anisoptera (Dragonflies)","Anisoptera","Removed suffix"
+"Annelida","Annelida","Added in case MI EGLE drops suffixs from database"
+"Annelida (Segmented Worms)","Annelida","Removed suffix"
+"Anoteridae (Adults)","Noteridae","Removed Adults prefix"
+"Apataniidae","Apataniidae",
+"Apsephenidae (Adults)","Psephenidae","Removed Adults prefix"
+"Aptilodactylidae (Adults)","Ptilodactylidae","Removed Adults prefix"
+"Aptilodactylidae (Nolifestage)","Ptilodactylidae","Removed Adults prefix and suffix"
+"Arachnoidea","Arachnoidea",
+"Arthropleidae","Arthropleidae",
+"Arthropoda","Arthropoda",
+"Ascirtidae (Adults)","Scirtidae","Removed Adults prefix"
+"Athericidae","Athericidae",
+"Baetidae","Baetidae",
+"Baetiscidae","Baetiscidae",
+"Belostomatidae","Belostomatidae",
+"Bithyniidae","Bithyniidae",
+"Blephariceridae","Blephariceridae",
+"Brachycentridae","Brachycentridae",
+"Bryozoa","Bryozoa","Added in case MI EGLE drops suffixs from database"
+"Bryozoa (Moss Animals)","Bryozoa","Removed suffix"
+"Caenidae","Caenidae",
+"Calopterygidae","Calopterygidae",
+"Capniidae","Capniidae",
+"Ceratopogonidae","Ceratopogonidae",
+"Chaoboridae","Chaoboridae",
+"Chironomidae","Chironomidae",
+"Chloroperlidae","Chloroperlidae",
+"Chrysomelidae","Chrysomelidae","Added in case MI EGLE drops suffixs from database"
+"Chrysomelidae (Larvae)","Chrysomelidae","Removed Larvae suffix"
+"Chrysomelidae (Nolifestage)","Chrysomelidae","Removed suffix"
+"Coenagrionidae","Coenagrionidae",
+"Coleoptera","Coleoptera","Added in case MI EGLE drops suffixs from database"
+"Coleoptera (Beetles)","Coleoptera","Removed suffix"
+"Corbicula","Corbicula","Added in case MI EGLE drops suffixs from database"
+"Corbicula Fluminea","Corbicula","Need to keep only genus"
+"Cordulegastridae","Cordulegastridae",
+"Corduliidae","Corduliidae",
+"Corixidae","Corixidae",
+"Corydalidae","Corydalidae","Added in case MI EGLE drops suffixs from database"
+"Corydalidae (Dobson Flies)","Corydalidae","Removed suffix"
+"Crustacea","Crustacea",
+"Culicidae","Culicidae",
+"Curculionidae","Curculionidae","Added in case MI EGLE drops suffixs from database"
+"Curculionidae (Larvae)","Curculionidae","Removed Larvae suffix"
+"Curculionidae (Nolifestage)","Curculionidae","Removed suffix"
+"Decapoda","Decapoda","Added in case MI EGLE drops suffixs from database"
+"Decapoda (Crayfish)","Decapoda","Removed suffix"
+"Dipseudopsidae","Dipseudopsidae",
+"Diptera","Diptera","Added in case MI EGLE drops suffixs from database"
+"Diptera (Flies)","Diptera","Removed suffix"
+"Dixidae","Dixidae",
+"Dolichopodidae","Dolichopodidae",
+"Dreissenidae","Dreissenidae",
+"Dryopidae","Dryopidae",
+"Dytiscidae","Dytiscidae","Added in case MI EGLE drops suffixs from database"
+"Dytiscidae (Total)","Dytiscidae","Removed suffix"
+"Elmidae","Elmidae",
+"Empididae","Empididae",
+"Ephemerellidae","Ephemerellidae",
+"Ephemeridae","Ephemeridae",
+"Ephemeroptera","Ephemeroptera","Added in case MI EGLE drops suffixs from database"
+"Ephemeroptera (Mayflies)","Ephemeroptera","Removed suffix"
+"Ephydridae","Ephydridae",
+"Gastropoda","Gastropoda","Added in case MI EGLE drops suffixs from database"
+"Gastropoda (Snails)","Gastropoda","Removed suffix"
+"Gelastocoridae","Gelastocoridae",
+"Gerridae","Gerridae",
+"Glossosomatidae","Glossosomatidae",
+"Goeridae","Goeridae",
+"Gomphidae","Gomphidae",
+"Gyrinidae","Gyrinidae","Added in case MI EGLE drops suffixs from database"
+"Gyrinidae (Larvae)","Gyrinidae","Removed Larvae suffix"
+"Haliplidae","Haliplidae","Added in case MI EGLE drops suffixs from database"
+"Haliplidae (Larvae)","Haliplidae","Removed Larvae suffix"
+"Helicopsychidae","Helicopsychidae",
+"Hemiptera","Hemiptera","Added in case MI EGLE drops suffixs from database"
+"Hemiptera (True Bugs)","Hemiptera","Removed suffix"
+"Heptageniidae","Heptageniidae",
+"Heteroceridae","Heteroceridae","Added in case MI EGLE drops suffixs from database"
+"Heterocerodae (Total)","Heteroceridae","Misspelling in EGLE database"
+"Hirudinea","Hirudinea","Added in case MI EGLE drops suffixs from database"
+"Hirudinea (Leeches)","Hirudinea","Removed suffix"
+"Hydracarina","Hydracarina",
+"Hydraenidae","Hydraenidae","Added in case MI EGLE drops suffixs from database"
+"Hydraenidae (Total)","Hydraenidae","Removed suffix"
+"Hydrobiidae","Hydrobiidae",
+"Hydrometridae","Hydrometridae",
+"Hydrophilidae","Hydrophilidae","Added in case MI EGLE drops suffixs from database"
+"Hydrophilidae (Total)","Hydrophilidae","Removed suffix"
+"Hydropsychidae","Hydropsychidae",
+"Hydroptilidae","Hydroptilidae",
+"Insecta","Insecta",
+"Isonichiidae","Isonychiidae","Misspelling in EGLE database"
+"Isonychiidae","Isonychiidae","Added in case MI EGLE drops suffixs from database"
+"Isopoda","Isopoda","Added in case MI EGLE drops suffixs from database"
+"Isopoda (Sowbugs)","Isopoda","Removed suffix"
+"Lampyridae","Lampyridae","Added in case MI EGLE drops suffixs from database"
+"Lampyridae (Larvae)","Lampyridae","Removed Larvae suffix"
+"Lampyridae (Nolifestage)","Lampyridae","Removed suffix"
+"Lepidoptera","Lepidoptera","Added in case MI EGLE drops suffixs from database"
+"Lepidoptera (Moths)","Lepidoptera","Removed suffix"
+"Lepidostomatidae","Lepidostomatidae",
+"Leptoceridae","Leptoceridae",
+"Leptophlebiidae","Leptophlebiidae",
+"Lestidae","Lestidae",
+"Leuctridae","Leuctridae",
+"Libellulidae","Libellulidae",
+"Limnephilidae","Limnephilidae",
+"Limnichidae","Limnichidae","Added in case MI EGLE drops suffixs from database"
+"Limnichidae (Larvae)","Limnichidae","Removed Larvae suffix"
+"Limnichidae (Nolifestage)","Limnichidae","Removed suffix"
+"Lymnaeidae","Lymnaeidae",
+"Macromiidae","Macromiidae",
+"Megaloptera","Megaloptera",
+"Mesoveliidae","Mesoveliidae",
+"Metretopodidae","Metretopodidae",
+"Molannidae","Molannidae",
+"Mollusca","Mollusca",
+"Muscidae","Muscidae",
+"Naucoridae","Naucoridae",
+"Nematomorpha","Nematomorpha","Added in case MI EGLE drops suffixs from database"
+"Nematomorpha (Roundworms)","Nematomorpha","Removed suffix"
+"Nemouridae","Nemouridae",
+"Neoephemeridae","Neoephemeridae",
+"Nepidae","Nepidae",
+"Neuroptera","Neuroptera","Added in case MI EGLE drops suffixs from database"
+"Neuroptera (Spongilla Flies)","Neuroptera","Removed suffix"
+"Noctuidae","Noctuidae",
+"Noteridae","Noteridae","Added in case MI EGLE drops suffixs from database"
+"Noteridae (Larvae)","Noteridae","Removed Larvae suffix"
+"Noteridae (Nolifestage)","Noteridae","Removed suffix"
+"Notonectidae","Notonectidae",
+"Odonata","Odonata",
+"Odontoceridae","Odontoceridae",
+"Oligochaeta","Oligochaeta","Added in case MI EGLE drops suffixs from database"
+"Oligochaeta (Worms)","Oligochaeta","Removed suffix"
+"Oligoneuriidae","Oligoneuriidae",
+"Pelecypoda","Pelecypoda","Added in case MI EGLE drops suffixs from database"
+"Pelecypoda (Bivalves)","Pelecypoda","Removed suffix"
+"Peltoperlidae","Peltoperlidae",
+"Perlidae","Perlidae",
+"Perlodidae","Perlodidae",
+"Philopotamidae","Philopotamidae",
+"Phryganeidae","Phryganeidae",
+"Physidae","Physidae",
+"Pisidiidae","Pisidiidae",
+"Planorbidae","Planorbidae",
+"Platyhelminthes","Platyhelminthes","Added in case MI EGLE drops suffixs from database"
+"Platyhelminthes (Flatworms)","Platyhelminthes","Removed suffix"
+"Plecoptera","Plecoptera","Added in case MI EGLE drops suffixs from database"
+"Plecoptera (Stoneflies)","Plecoptera","Removed suffix"
+"Pleidae","Pleidae",
+"Pleuroceridae","Pleuroceridae",
+"Polycentropodidae","Polycentropodidae",
+"Polymitarcyidae","Polymitarcyidae",
+"Pomatiopsidae","Pomatiopsidae",
+"Porifera","Porifera","Added in case MI EGLE drops suffixs from database"
+"Porifera (Sponges)","Porifera","Removed suffix"
+"Potamanthidae","Potamanthidae",
+"Psephenidae","Psephenidae","Added in case MI EGLE drops suffixs from database"
+"Psephenidae (Larvae)","Psephenidae","Removed Larvae suffix"
+"Pseudironidae","Pseudironidae",
+"Psychodidae","Psychodidae",
+"Psychomyiidae","Psychomyiidae",
+"Pteronarcyidae","Pteronarcyidae",
+"Ptilodactylidae","Ptilodactylidae","Added in case MI EGLE drops suffixs from database"
+"Ptilodactylidae (Larvae)","Ptilodactylidae","Removed Larvae suffix"
+"Ptychopteridae","Ptychopteridae",
+"Pyralidae","Pyralidae",
+"Rhyacophilidae","Rhyacophilidae",
+"Saldidae","Saldidae",
+"Sciomyzidae","Sciomyzidae",
+"Scirtidae","Scirtidae","Added in case MI EGLE drops suffixs from database"
+"Scirtidae (Larvae)","Scirtidae","Removed Larvae suffix"
+"Sericostomatidae","Sericostomatidae",
+"Sialidae","Sialidae","Added in case MI EGLE drops suffixs from database"
+"Sialidae (Alder Flies)","Sialidae","Removed suffix"
+"Simulidae","Simuliidae","Misspelling in EGLE database"
+"Simuliidae","Simuliidae","Added in case MI EGLE drops suffixs from database"
+"Siphlonuridae","Siphlonuridae",
+"Sisyridae","Sisyridae",
+"Stratiomyidae","Stratiomyidae",
+"Syrphidae","Syrphidae",
+"Tabanidae","Tabanidae",
+"Taeniopterygidae","Taeniopterygidae",
+"Thaumaleidae","Thaumaleidae",
+"Tipulidae","Tipulidae",
+"Trichoptera","Trichoptera","Added in case MI EGLE drops suffixs from database"
+"Trichoptera (Caddisflies)","Trichoptera","Removed suffix"
+"Tricorythidae","Tricorythidae",
+"Turbellaria","Turbellaria",
+"Uenoidae","Uenoidae",
+"Unionidae","Unionidae","Added in case MI EGLE drops suffixs from database"
+"Unionidae (Mussels)","Unionidae","Removed suffix"
+"Valvatidae","Valvatidae",
+"Veliidae","Veliidae",
+"Viviparidae","Viviparidae",
+"Zygoptera","Zygoptera","Added in case MI EGLE drops suffixs from database"
+"Zygoptera (Damselflies)","Zygoptera","Removed suffix"
