@@ -42,7 +42,7 @@ function() {
                     , tabPanel(title = "Calc_BCG_Output"
                                ,includeHTML(file.path("www"
                                                       , "rmd_html"
-                                          , "ShinyHTML_Calc_BCG_3Output.html"))
+                                          , "ShinyHTML_Calc_Output.html"))
                                )
                     )## tabsetPanel ~ END
 
