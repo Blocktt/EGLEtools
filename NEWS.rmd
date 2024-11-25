@@ -1,5 +1,5 @@
 ---
-title: "FLCoralBCGCalc-NEWS"
+title: "MIEGLEtools-NEWS"
 author: "Ben.Block@tetratech.com"
 date: "`r Sys.time()`"
 output: github_document
@@ -21,16 +21,7 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
-# FLCoralBCGCalc 0.1.1.9004 (2024-09-25)
+# MIEGLEtools 1.0.0.9010 (2024-11-25)
 
--   Updated UI to include references to finalized report
+-   Copied original files from FLCoralBCGCalc app for remake of MIEGLEtools
 
-# FLCoralBCGCalc 0.1.1.9000 (2024-04-03)
-
--   Updated app into functionally work for Florida BCG models
--   Testing complete on local system
-
-# FLCoralBCGCalc 0.1.0.9000 (2024-03-20)
-
--   Created GitHub repository
--   Copied original functionality from NM_BCGCalc repo

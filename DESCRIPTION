@@ -1,12 +1,13 @@
-Package: FLCoralBCGCalc
+Package: MIEGLEtools
 Type: Package
-Title: Florida Coral BCG Calculator
-Version: 0.1.1
+Title: Michigan EGLE IBI Calculator
+Version: 1.0.1
 Authors@R: person("Benjamin D.", "Block", , "Ben.Block@tetratech.com", role = c("aut", "cre"))
            person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com", role=c("aut","cre"))
 Maintainer: Ben Block <Ben.Block@tetratech.com>
-Description: Shiny app developed for the calculation of the Florida Coral
-             Biological Condition Gradient (BCG) models. Developed by Tetra Tech. 
+Description: Shiny app developed for the calculation of the Michigan EGLE 
+             Macroinvertebrate Index of Biotic Integrity (IBI) models.
+             Developed by Tetra Tech. 
              Includes taxa translation and attributes tables.
 License: MIT
 Encoding: UTF-8
