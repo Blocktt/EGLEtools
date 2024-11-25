@@ -1,7 +1,0 @@
-{
-    "installOptions" : {
-        "installDependencies" : true,
-        "installFromRepository" : true,
-        "libraryPath" : "C:/Users/Ben.Block/Documents/R/R-3.6.3/library"
-    }
-}
