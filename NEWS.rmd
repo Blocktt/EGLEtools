@@ -1,0 +1,36 @@
+---
+title: "FLCoralBCGCalc-NEWS"
+author: "Ben.Block@tetratech.com"
+date: "`r Sys.time()`"
+output: github_document
+  #md_document:
+   # variant: markdown_github
+---
+
+<!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "NEWS-"
+)
+```
+
+```{r, echo = FALSE}
+cat(paste0("Last Update: ",Sys.time()))
+```
+
+# FLCoralBCGCalc 0.1.1.9004 (2024-09-25)
+
+-   Updated UI to include references to finalized report
+
+# FLCoralBCGCalc 0.1.1.9000 (2024-04-03)
+
+-   Updated app into functionally work for Florida BCG models
+-   Testing complete on local system
+
+# FLCoralBCGCalc 0.1.0.9000 (2024-03-20)
+
+-   Created GitHub repository
+-   Copied original functionality from NM_BCGCalc repo

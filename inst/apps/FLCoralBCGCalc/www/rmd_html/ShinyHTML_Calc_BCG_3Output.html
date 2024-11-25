@@ -1,0 +1,204 @@
+
+
+
+<p>A single zip file will be available for download. It will include all
+result files, reference files, and the original input data file. All
+result data files will be CSV format, unless otherwise noted.</p>
+<p>The zip file will included the base name of the original file along
+with the date and time.</p>
+<p>The individual files and their contents are output in three
+subfolders. Each output file is described in the table below.</p>
+<table>
+<caption>
+Calculation, BCG, zip file contents.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Output file
+</th>
+<th style="text-align:left;">
+Subfolder
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Original file name
+</td>
+<td style="text-align:left;">
+_user_input
+</td>
+<td style="text-align:left;">
+original input file
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MetricFlags.xlsx
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+Metric flags associated with any metrics in the BCG.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MetricNames.xlsx
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+Metrics calculated by the BioMonTools R package, their description, and
+input fields.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+MetricScoring.xlsx
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+Metric scoring table used by the BioMonTools R package.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rules.xlsx
+</td>
+<td style="text-align:left;">
+reference
+</td>
+<td style="text-align:left;">
+Rules table used by the BCGCalc R package to assign metric and level
+memberships.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+_BCG_RESULTS
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+For each sample, BCG model output (primary, secondary BCG levels and
+membership, continuous BCG score, narrative with and without pluses and
+minuses) plus flags (flag or NA)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+_BCG_RESULTS.html
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+Histogram showing distribution of samples across BCG levels.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_2metval_all
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+Values for all coral metrics in the BioMonTools R package (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_2metval_BCG
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+Values for coral metrics used in the FL BCG models; the calculations are
+done with the BioMonTools R package (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_3metmemb
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+Values for coral metrics used in the FL BCG models; each metric is
+assigned to assigned metric membership values (0-1)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_3metrules
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+Rules for each BCG level (metrics, thresholds, symbols).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_4levmemb
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+For each sample, membership in each BCG level (0-1). Includes Index_Name
+and Index_Class
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_5levassign
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+Results without the flags (primary, secondary BCG levels and membership,
+continuous BCG score, narrative with and without pluses and minuses)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_6levflags
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+Summary of how many samples had flagged metrics (and not flagged) based
+on the input file; count of # flagged (flag) and not flagged (NA)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BCG_6metflags
+</td>
+<td style="text-align:left;">
+results_Coral_BCG
+</td>
+<td style="text-align:left;">
+Results of flag calculations for all metrics and samples
+</td>
+</tr>
+</tbody>
+</table>

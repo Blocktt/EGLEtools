@@ -1,0 +1,87 @@
+---
+title: "Taxa Translator, About"
+date: "2024-03-21"
+output: html_fragment
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE
+                      , results = 'asis'
+                      , warning = FALSE
+                      , message = FALSE)
+```
+
+# Purpose
+
+Create an input file with the proper Operational Taxonomic Units (OTUs)
+and attributes for each calculation. This function performs two steps to
+the input file:
+
+1.  "Translates" the original TaxonID to the proper OTU based on the
+    selected calculation.
+
+2.  Appends the Florida taxa attributes, which include phylogenetic data
+    and traits. For corals, taxon-specific traits include BCG attribute
+    assignments (BCG_ATTR), whether the taxon is 'Sometimes' or 'Never'
+    weedy (WEEDY), whether the taxon is a 'Large Reef-Building Coral'
+    (LRBC), and the Morphological Conversion Factor (MORPHCONVFACT)
+    which is used to calculate Live tissue area on Colony Surface Area
+    (LCSA).
+
+The 'taxa translator' and attribute tables are based on reef
+biomonitoring data from Florida reefs and will be updated regularly.
+
+Download the
+<a href="https://github.com/leppott/BioMonTools_SupportFiles/tree/main/data/taxa_official" target = "_blank">Taxa
+Translator, Taxa Attributes, and Metadata</a> from Github page (look for
+files starting with "FLCoral_BCG\_". Note, that traits are not required
+for each record (i.e., trait fields allow null values).
+
+![Filebuilder Taxa Translate
+steps.](images/FileBuilder_TaxaTrans_About_Fig1.jpg){width="80%"}
+
+# Input File
+
+There are multiple fields that the user is required to provide:
+
+-   **SampleID** (Unique sample identifier; typically comprised of the
+    site name, sample date, and replicate number.)
+
+-   **TaxaID** (Unique taxa name.)
+
+-   **TotTranLngth_M** (Juvenile colonies should be marked as 'TRUE'.)
+
+-   **Juvenile** (Juvenile colonies should be marked as 'TRUE'.)
+
+-   **DiamMax_cm** (Maximum diameter of the colony (cm).)
+
+-   **DiamPerp_cm** (Perpendicular diameter of the colony (cm).)
+
+-   **Height_cm** (Height of the colony (cm).)
+
+-   **TotMort_pct** (% total mortality of the colony (e.g., 58%). Used
+    to calculate % Living Tissue = 100 - TotMort_pct.)
+
+SampleID and TaxaID will be used to match the input file with the taxa
+translator table and attributes table. It is acceptable for your input
+file to have these two fields named differently. Click on the drop-down
+menus. The list of fields in your input file will appear. Select the
+correct column headings.
+
+Other required fields (i.e., TotTranLngth_M, Juvenile, etc.) and any
+option fields that should be carried through into the output file (e.g.,
+stationID, collection date, etc.) should be specified by clicking on the
+'Columns to keep in output' box. The list of fields in your input file
+will appear. Click on the fields that you want to include. If you change
+your mind and want to remove a field, click on it and hit 'delete.'
+[IMPORTANT]{.underline}: Do not add SampleID or TaxaID to this box as
+they are already included from the drop-downs above.
+
+# Test File
+
+Download a test file from GitHub:
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/main/FLCoral_BCGCalc/Example_Files/FL_BCG_FileBuilder_Input_20240328.csv" target="_blank">Example
+File Builder Input File</a>.
