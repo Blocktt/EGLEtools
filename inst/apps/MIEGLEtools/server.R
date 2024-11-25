@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
 
   # INPUT Display Names ####
 
-  output$fn_input_display_IBI <- renderText({
+  output$fn_input_display_ibi <- renderText({
     inFile <- input$fn_input
 
     if (is.null(inFile)) {
@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
 
     return(paste0("'", inFile$name, "'"))
 
-  })## fn_input_display_IBI
+  })## fn_input_display_ibi
 
   output$fn_input_display_taxatrans <- renderText({
     inFile <- input$fn_input
@@ -1168,9 +1168,9 @@ shinyServer(function(input, output) {
     , message = "Calculating IBI"
     )## withProgress ~ END
   }##expr ~ ObserveEvent ~ END
-  )##observeEvent ~ b_calc_IBI ~ END
+  )##observeEvent ~ b_calc_ibi ~ END
 
-  ## b_download_IBI ----
+  ## b_download_ibi ----
   output$b_download_ibi <- downloadHandler(
 
     filename = function() {

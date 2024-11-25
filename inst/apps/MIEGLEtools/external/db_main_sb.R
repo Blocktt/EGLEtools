@@ -9,9 +9,11 @@
 function(id) {
   dashboardSidebar(
     width = 275
-    , HTML("&nbsp;&nbsp;<font size=5><b>Steps</b></font>")
-    #Steps, do *not* need to be done sequentially----
     , sidebarMenu(id = id
+                  , HTML(paste0(
+                    "<br>",
+                    "<a href='https://www.michigan.gov/egle/about/organization/water-resources/glwarm/biological-assessments' target='_blank'><img style = 'display: block; margin-left: auto; margin-right: auto;' src='EGLE_Logo_Primary_White.png' width = '230'></a>",
+                    "<br>"))
       , menuItem(text = "About"
                , tabName = "tab_about"
                , icon = icon("house")
@@ -20,7 +22,7 @@ function(id) {
                  , tabName = "tab_import"
                  , icon = icon("file-arrow-up")
                  , startExpanded = TRUE)
-      , menuItem(text = "Prepare Data"
+      , menuItem(text = "Step 1: Prepare Data"
                  , icon = icon("toolbox")
                  #, tabName = "tab_filebuilder"
                  , menuSubItem("Introduction"
@@ -36,7 +38,7 @@ function(id) {
                                , icon = icon("language")
                  )
                  )## menuItem ~ File Builder
-      , menuItem(text = "Calculation"
+      , menuItem(text = "Step 2: Calculation"
                  , icon = icon("gears")
                  , tabName = "tab_calc"
                  # , menuSubItem("BCG Models"
