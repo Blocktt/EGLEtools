@@ -39,9 +39,9 @@ function(id) {
       , menuItem(text = "Calculation"
                  , icon = icon("gears")
                  , tabName = "tab_calc"
-                 , menuSubItem("BCG Models"
-                               , tabName = "tab_calc_bcg"
-                               , icon = icon("award"))
+                 # , menuSubItem("BCG Models"
+                 #               , tabName = "tab_calc_bcg"
+                 #               , icon = icon("award"))
                  )## menuItem ~ BCG
       , menuItem(text = "Relevant Resources"
                  , tabName = "tab_resources"

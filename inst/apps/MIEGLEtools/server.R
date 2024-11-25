@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
 
   # INPUT Display Names ####
 
-  output$fn_input_display_bcg <- renderText({
+  output$fn_input_display_IBI <- renderText({
     inFile <- input$fn_input
 
     if (is.null(inFile)) {
@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
 
     return(paste0("'", inFile$name, "'"))
 
-  })## fn_input_display_bcg
+  })## fn_input_display_IBI
 
   output$fn_input_display_taxatrans <- renderText({
     inFile <- input$fn_input
@@ -47,13 +47,6 @@ shinyServer(function(input, output) {
 
   ## IMPORT, df_import ####
   df_import <- eventReactive(file_watch(), {
-    # use a multi-item reactive so keep on a single line (if needed later)
-
-    # input$df_import will be NULL initially. After the user selects
-    # and uploads a file, it will be a data frame with 'name',
-    # 'size', 'type', and 'datapath' columns. The 'datapath'
-    # column will contain the local filenames where the data can
-    # be found.
 
     inFile <- input$fn_input
 
@@ -70,97 +63,23 @@ shinyServer(function(input, output) {
     message(paste0("Import, separator: '", input$sep,"'"))
     message(paste0("Import, file name: ", input$fn_input$name))
 
-    # # Add "Results" folder if missing
-    # boo_Results <- dir.exists(file.path(".", "results"))
-    # if(boo_Results==FALSE){
-    #   dir.create(file.path(".", "Results"))
-    # }
-
     # Remove existing files in "results"
     clean_results()
 
-    ### Mod, BCG_ATTR----
-    # Read user imported file
-    # Add extra colClasses parameter for BCG_Attr
-    # the "i" values default to complex numbers
-    # many permutations of BCG_Attr so check for it first then import
+    # BenB copied from below 2024-11-14
+    df_input <- read.delim(fn_inFile
+                           , header = TRUE
+                           , sep = sep_user
+                           , stringsAsFactors = FALSE
+                           , na.strings = c("", "NA"))
 
-    df_header <- read.delim(fn_inFile
-                            , header = TRUE
-                            , sep = sep_user
-                            , stringsAsFactors = FALSE
-                            , na.strings = c("", "NA")
-                            , nrows = 0)
-    col_num_bcgattr <- grep("BCG_ATTR", toupper(names(df_header)))
-    classes_df <- sapply(df_header, class)
-    col_name_bcgattr <- names(df_header)[col_num_bcgattr]
-
-    # 2023-12-04, modify for MN with multiple BCG_ATTR fields
-
-    if (length(col_num_bcgattr) == 0) {
-      # BCG_Attr present = FALSE
-      # define classes = FALSE
-      df_input <- read.delim(fn_inFile
-                             , header = TRUE
-                             , sep = sep_user
-                             , stringsAsFactors = FALSE
-                             , na.strings = c("", "NA"))
-    } else if (!"complex" %in%  as.vector(classes_df[col_num_bcgattr])) {
-      # BCG_Attr present = TRUE
-      # BCG_Attr Class is complex = FALSE
-      # define classes on import = FALSE (change to text after import)
-      df_input <- read.delim(fn_inFile
-                             , header = TRUE
-                             , sep = sep_user
-                             , stringsAsFactors = FALSE
-                             , na.strings = c("", "NA"))
-      #df_input[, col_num_bcgattr] <- as.character(df_input[, col_num_bcgattr])
-      # doesn't work for multiple columns
-      # df_input[, col_num_bcgattr] <- lapply(df_input[, col_num_bcgattr], as.character)
-      # error for some files
-      # use a loop :(
-      for (b in col_num_bcgattr) {
-        df_input[, b] <- as.character(df_input[, b])
-      }## FOR ~ b
-      #
-    } else {
-      # BCG_Attr present = TRUE
-      # BCG_Attr Class is complex = TRUE
-      # define classes on import = TRUE
-      #classes_df <- sapply(df_header, class)
-      classes_df[col_num_bcgattr] <- "character"
-      df_input <- read.table(fn_inFile
-                             , header = TRUE
-                             , sep = sep_user
-                             , stringsAsFactors = FALSE
-                             , na.strings = c("", "NA")
-                             #, colClasses = c(col_name_bcgattr = "character"))
-                             # , colClasses = classes_df)
-                             , colClasses = classes_df[col_name_bcgattr])
-    }## IF ~ col_num_bcgattr
-
-
-
-    # OLD
-    # Will get a 'warning' for unknown columns but harmless
-    # df_input <- read.delim(fn_inFile
-    #                        , header = TRUE
-    #                        , sep = ","
-    #                        , stringsAsFactors = FALSE
-    #                        , colClasses = c("BCG_Attr" = "character"
-    #                                         , "BCG_ATTR" = "character"
-    #                                         , "bcg_attr" = "character"
-    #                                         , "BCG_attr" = "character"))
 
     # Copy user files to results sub-folder
     copy_import_file(import_file = input$fn_input)
 
     ## button, enable, calc ----
     shinyjs::enable("b_calc_taxatrans")
-    shinyjs::enable("b_calc_bcg")
-
-    # update cb_taxatrans_sum
-    # doesn't work here as timing is after the file is created
+    shinyjs::enable("b_calc_ibi")
 
     return(df_input)
 
@@ -401,7 +320,7 @@ shinyServer(function(input, output) {
       message(paste0("User response to summarize duplicate sample taxa = "
                , sel_summ))
 
-      dir_proj_results <- paste("FLCoral_BCG", dir_proj_results, sep = "_")
+      dir_proj_results <- paste("MI_EGLE_IBI", dir_proj_results, sep = "_")
 
       dn_files <- paste(abr_results, dir_proj_results, sep = "_")
 
@@ -600,7 +519,7 @@ shinyServer(function(input, output) {
                             , TranslationTable = fn_taxoff
                             , AttributeTable = fn_taxoff_attr)
       # fn_part <- paste0("_", abr_filebuilder, "_0taxasource", ".csv")
-      fn_part <- "BCG_TaxaTranslator_source.csv"
+      fn_part <- "IBI_TaxaTranslator_source.csv"
       write.csv(df_save
                 , file.path(path_results_sub, fn_part)
                 , row.names = FALSE)
@@ -655,7 +574,7 @@ shinyServer(function(input, output) {
       ## translate - crosswalk
       df_save <- taxatrans_results$taxatrans_unique # df_taxoff_meta
       # fn_part <- paste0(fn_abr_save, "2taxamatch", ".csv")
-      fn_part <- "BCG_TaxaTranslator_modify.csv"
+      fn_part <- "IBI_TaxaTranslator_modify.csv"
       write.csv(df_save
                 , file.path(path_results_sub, fn_part)
                 , row.names = FALSE)
@@ -664,7 +583,7 @@ shinyServer(function(input, output) {
       ## Non Match
       df_save <- data.frame(taxatrans_results$nonmatch)
       # fn_part <- paste0(fn_abr_save, "3nonmatch", ".csv")
-      fn_part <- "BCG_TaxaTranslator_nonmatch.csv"
+      fn_part <- "IBI_TaxaTranslator_nonmatch.csv"
       write.csv(df_save
                 , file.path(path_results_sub, fn_part)
                 , row.names = FALSE)
@@ -673,7 +592,7 @@ shinyServer(function(input, output) {
       ## Taxa Trans
       df_save <- taxatrans_results$merge
       # fn_part <- paste0(fn_abr_save, "4taxaattr", ".csv")
-      fn_part <- "BCG_TaxaTranslator_TAXAATTR.csv"
+      fn_part <- "IBI_TaxaTranslator_TAXAATTR.csv"
       write.csv(df_save
                 , file.path(path_results_sub, fn_part)
                 , row.names = FALSE)
@@ -721,7 +640,7 @@ shinyServer(function(input, output) {
       # validate(msg)
 
     }## expr ~ withProgress ~ END
-    , message = "Calculating BCG"
+    , message = "Calculating IBI"
     )## withProgress
 
   }##expr ~ ObserveEvent
@@ -751,9 +670,9 @@ shinyServer(function(input, output) {
 
   #~~~~CALC~~~~----
 
-  # Calc, BCG ----
-  ## b_Calc_BCG ----
-  observeEvent(input$b_calc_bcg, {
+  # Calc, IBI ----
+  ## b_Calc_IBI ----
+  observeEvent(input$b_calc_ibi, {
     shiny::withProgress({
 
       # time, start
@@ -761,7 +680,7 @@ shinyServer(function(input, output) {
 
       ### Calc, 0, Set Up Shiny Code ----
 
-      prog_detail <- "Calculation, BCG..."
+      prog_detail <- "Calculation, IBI..."
       message(paste0("\n", prog_detail))
 
       # Number of increments
@@ -785,7 +704,7 @@ shinyServer(function(input, output) {
       # 2023-12-14, add community
       # fn_comm <- input$si_community
       fn_comm <- "Bug"
-      fn_abr <- abr_bcg
+      fn_abr <- abr_calc
       fn_abr_save <- paste0("_", fn_abr, "_")
       path_results_sub <- file.path(path_results
                                     , paste(abr_results, fn_comm, fn_abr, sep = "_"))
@@ -804,7 +723,7 @@ shinyServer(function(input, output) {
       }
 
       # button, disable, download
-      shinyjs::disable("b_download_bcg")
+      shinyjs::disable("b_download_ibi")
 
       # data
       inFile <- input$fn_input
@@ -843,95 +762,95 @@ shinyServer(function(input, output) {
       incProgress(1/prog_n, detail = prog_detail)
       Sys.sleep(prog_sleep)
 
-      # # Calc
-      # message(paste0("User response to generate ExclTaxa = ", input$ExclTaxa))
-      #
-      # if (input$ExclTaxa) {
-      #   ## Get TaxaLevel names present in user file
-      #   phylo_all <- c("Kingdom"
-      #                  , "Phylum"
-      #                  , "SubPhylum"
-      #                  , "Class"
-      #                  , "SubClass"
-      #                  , "Order"
-      #                  , "SubOrder"
-      #                  , "InfraOrder"
-      #                  , "SuperFamily"
-      #                  , "Family"
-      #                  , "SubFamily"
-      #                  , "Tribe"
-      #                  , "Genus"
-      #                  , "SubGenus"
-      #                  , "Species"
-      #                  , "Variety")
-      #   phylo_all <- toupper(phylo_all) # so matches rest of file
-      #
-      #   # case and matching of taxa levels handled inside of markExluded
-      #
-      #   # Overwrite existing column if present
-      #   # ok since user checked the box to calculate
-      #   if ("EXCLUDE" %in% toupper(names(df_input))) {
-      #     # save original user input
-      #     df_input[, "EXCLUDE_USER"] <- df_input[, "EXCLUDE"]
-      #     # drop column
-      #     df_input <- df_input[, !names(df_input) %in% "EXCLUDE"]
-      #   }## IF ~ Exclude
-      #
-      #   # overwrite current data frame
-      #   df_input <- BioMonTools::markExcluded(df_samptax = df_input
-      #                                         , SampID = "SAMPLEID"
-      #                                         , TaxaID = "TAXAID"
-      #                                         , TaxaCount = "N_TAXA"
-      #                                         , Exclude = "EXCLUDE"
-      #                                         , TaxaLevels = phylo_all
-      #                                         , Exceptions = NA)
-      #
-      #   # Save Results
-      #   # fn_excl <- paste0(fn_input_base, fn_abr_save, "1markexcl.csv")
-      #   fn_excl <- "BCG_1markexcl.csv"
-      #   dn_excl <- path_results_sub
-      #   pn_excl <- file.path(dn_excl, fn_excl)
-      #   write.csv(df_input, pn_excl, row.names = FALSE)
-      #
-      # }## IF ~ input$ExclTaxa
+      # Calc
+      message(paste0("User response to generate ExclTaxa = ", input$ExclTaxa))
+
+      if (input$ExclTaxa) {
+        ## Get TaxaLevel names present in user file
+        phylo_all <- c("Kingdom"
+                       , "Phylum"
+                       , "SubPhylum"
+                       , "Class"
+                       , "SubClass"
+                       , "Order"
+                       , "SubOrder"
+                       , "InfraOrder"
+                       , "SuperFamily"
+                       , "Family"
+                       , "SubFamily"
+                       , "Tribe"
+                       , "Genus"
+                       , "SubGenus"
+                       , "Species"
+                       , "Variety")
+        phylo_all <- toupper(phylo_all) # so matches rest of file
+
+        # case and matching of taxa levels handled inside of markExluded
+
+        # Overwrite existing column if present
+        # ok since user checked the box to calculate
+        if ("EXCLUDE" %in% toupper(names(df_input))) {
+          # save original user input
+          df_input[, "EXCLUDE_USER"] <- df_input[, "EXCLUDE"]
+          # drop column
+          df_input <- df_input[, !names(df_input) %in% "EXCLUDE"]
+        }## IF ~ Exclude
+
+        # overwrite current data frame
+        df_input <- BioMonTools::markExcluded(df_samptax = df_input
+                                              , SampID = "SAMPLEID"
+                                              , TaxaID = "TAXAID"
+                                              , TaxaCount = "N_TAXA"
+                                              , Exclude = "EXCLUDE"
+                                              , TaxaLevels = phylo_all
+                                              , Exceptions = NA)
+
+        # Save Results
+        # fn_excl <- paste0(fn_input_base, fn_abr_save, "1markexcl.csv")
+        fn_excl <- "IBI_1markexcl.csv"
+        dn_excl <- path_results_sub
+        pn_excl <- file.path(dn_excl, fn_excl)
+        write.csv(df_input, pn_excl, row.names = FALSE)
+
+      }## IF ~ input$ExclTaxa
 
 
       ## Calc, 3, BCG Flag Cols ----
-      # get columns from Flags (non-metrics) to carry through
-      prog_detail <- "Calculate, Keep BCG Model Columns"
-      message(paste0("\n", prog_detail))
-      # Increment the progress bar, and update the detail text.
-      incProgress(1/prog_n, detail = prog_detail)
-      Sys.sleep(prog_sleep)
-
-      # Rules - should all be metrics but leaving here just in case
-      # Flags - not always metrics,
-      # Index Name for import data
-      import_IndexName <- unique(df_input$INDEX_NAME)
-      # QC Flags for chosen BCG model (non-metrics)
-      cols_flags <- unique(df_checks[df_checks$Index_Name == import_IndexName
-                                     , "Metric_Name"])
-      # can also add other columns to keep if feel so inclined
-      cols_flags_keep <- cols_flags[cols_flags %in% names(df_input)]
+      # # get columns from Flags (non-metrics) to carry through
+      # prog_detail <- "Calculate, Keep BCG Model Columns"
+      # message(paste0("\n", prog_detail))
+      # # Increment the progress bar, and update the detail text.
+      # incProgress(1/prog_n, detail = prog_detail)
+      # Sys.sleep(prog_sleep)
+      #
+      # # Rules - should all be metrics but leaving here just in case
+      # # Flags - not always metrics,
+      # # Index Name for import data
+      # import_IndexName <- unique(df_input$INDEX_NAME)
+      # # QC Flags for chosen BCG model (non-metrics)
+      # cols_flags <- unique(df_checks[df_checks$Index_Name == import_IndexName
+      #                                , "Metric_Name"])
+      # # can also add other columns to keep if feel so inclined
+      # cols_flags_keep <- cols_flags[cols_flags %in% names(df_input)]
 
 
       ## Calc, 3b, Rules ----
-      prog_detail <- "Calculate, BCG Rules"
-      message(paste0("\n", prog_detail))
-      # message(paste0("Community = ", input$si_community))
-      # Increment the progress bar, and update the detail text.
-      incProgress(1/prog_n, detail = prog_detail)
-      Sys.sleep(prog_sleep)
-
-      # filter for data Index_Name in data (drop 2 extra columns)
-      df_rules <- df_bcg_models[df_bcg_models$Index_Name == import_IndexName
-                                , !names(df_bcg_models) %in% c("SITE_TYPE", "INDEX_REGION")]
-      # Save
-      # fn_rules <- paste0(fn_input_base, fn_abr_save, "3metrules.csv")
-      fn_rules <- "BCG_3metrules.csv"
-      dn_rules <- path_results_sub
-      pn_rules <- file.path(dn_rules, fn_rules)
-      write.csv(df_rules, pn_rules, row.names = FALSE)
+      # prog_detail <- "Calculate, BCG Rules"
+      # message(paste0("\n", prog_detail))
+      # # message(paste0("Community = ", input$si_community))
+      # # Increment the progress bar, and update the detail text.
+      # incProgress(1/prog_n, detail = prog_detail)
+      # Sys.sleep(prog_sleep)
+      #
+      # # filter for data Index_Name in data (drop 2 extra columns)
+      # df_rules <- df_bcg_models[df_bcg_models$Index_Name == import_IndexName
+      #                           , !names(df_bcg_models) %in% c("SITE_TYPE", "INDEX_REGION")]
+      # # Save
+      # # fn_rules <- paste0(fn_input_base, fn_abr_save, "3metrules.csv")
+      # fn_rules <- "BCG_3metrules.csv"
+      # dn_rules <- path_results_sub
+      # pn_rules <- file.path(dn_rules, fn_rules)
+      # write.csv(df_rules, pn_rules, row.names = FALSE)
 
       ## Calc, 4, MetVal----
       prog_detail <- "Calculate, Metric, Values"
@@ -942,7 +861,7 @@ shinyServer(function(input, output) {
       Sys.sleep(prog_sleep)
 
       # Add INDEX_NAME and INDEX_CLASS
-      df_input$INDEX_NAME <- "FL_Coral_BCG"
+      # df_input$INDEX_NAME <- "FL_Coral_BCG"
 
       # if (my_comm == "CREMP_KEYS") {
       #   df_input$INDEX_CLASS <- "CREMP_Keys"
@@ -981,17 +900,17 @@ shinyServer(function(input, output) {
       ### Save Results ----
 
       # fn_metval <- paste0(fn_input_base, fn_abr_save, "2metval_all.csv")
-      fn_metval <- "BCG_2metvall_all.csv"
+      fn_metval <- "IBI_2metvall_all.csv"
       dn_metval <- path_results_sub
       pn_metval <- file.path(dn_metval, fn_metval)
       write.csv(df_metval, pn_metval, row.names = FALSE)
 
-      ### Save Results (BCG) ----
+      ### Save Results (IBI) ----
       # Munge
       ## Model and QC Flag metrics only
       # cols_flags defined above
-      cols_model_metrics <- unique(df_bcg_models[
-        df_bcg_models$Index_Name == import_IndexName, "Metric_Name"])
+      cols_model_metrics <- unique(df_IBI_models[
+        df_IBI_models$Index_Name == import_IndexName, "Metric_Name"])
       cols_req <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"
                     , "ncol_total", "nt_total")
       cols_metrics_flags_keep <- unique(c(cols_req
@@ -999,181 +918,181 @@ shinyServer(function(input, output) {
                                           , cols_model_metrics))
       df_metval_slim <- df_metval[, names(df_metval) %in% cols_metrics_flags_keep]
       # Save
-      # fn_metval_slim <- paste0(fn_input_base, fn_abr_save, "2metval_BCG.csv")
-      fn_metval_slim <- "BCG_2metval_BCG.csv"
+      # fn_metval_slim <- paste0(fn_input_base, fn_abr_save, "2metval_IBI.csv")
+      fn_metval_slim <- "IBI_2metval_IBI.csv"
       dn_metval_slim <- path_results_sub
       pn_metval_slim <- file.path(dn_metval_slim, fn_metval_slim)
       write.csv(df_metval_slim, pn_metval_slim, row.names = FALSE)
 
 
       ## Calc, 5, MetMemb----
-      prog_detail <- "Calculate, Metric, Membership"
-      message(paste0("\n", prog_detail))
-      # Increment the progress bar, and update the detail text.
-      incProgress(1/prog_n, detail = prog_detail)
-      Sys.sleep(prog_sleep)
-
-      # Calc
-      df_metmemb <- BCGcalc::BCG.Metric.Membership(df_metval, df_bcg_models)
-      # Save Results
-      # fn_metmemb <- paste0(fn_input_base, fn_abr_save, "3metmemb.csv")
-      fn_metmemb <- "BCG_3metmemb.csv"
-      dn_metmemb <- path_results_sub
-      pn_metmemb <- file.path(dn_metmemb, fn_metmemb)
-      write.csv(df_metmemb, pn_metmemb, row.names = FALSE)
-
-
+      # prog_detail <- "Calculate, Metric, Membership"
+      # message(paste0("\n", prog_detail))
+      # # Increment the progress bar, and update the detail text.
+      # incProgress(1/prog_n, detail = prog_detail)
+      # Sys.sleep(prog_sleep)
+      #
+      # # Calc
+      # df_metmemb <- BCGcalc::BCG.Metric.Membership(df_metval, df_bcg_models)
+      # # Save Results
+      # # fn_metmemb <- paste0(fn_input_base, fn_abr_save, "3metmemb.csv")
+      # fn_metmemb <- "BCG_3metmemb.csv"
+      # dn_metmemb <- path_results_sub
+      # pn_metmemb <- file.path(dn_metmemb, fn_metmemb)
+      # write.csv(df_metmemb, pn_metmemb, row.names = FALSE)
+      #
+      #
       ## Calc, 6, LevMemb----
-      prog_detail <- "Calculate, Level, Membership"
-      message(paste0("\n", prog_detail))
-      # Increment the progress bar, and update the detail text.
-      incProgress(1/prog_n, detail = prog_detail)
-      Sys.sleep(prog_sleep)
-
-      # Calc
-      df_levmemb <- BCGcalc::BCG.Level.Membership(df_metmemb, df_bcg_models)
-      # Save Results
-      # fn_levmemb <- paste0(fn_input_base, fn_abr_save, "4levmemb.csv")
-      fn_levmemb <- "BCG_4levmemb.csv"
-      dn_levmemb <- path_results_sub
-      pn_levmemb <- file.path(dn_levmemb, fn_levmemb)
-      write.csv(df_levmemb, pn_levmemb, row.names = FALSE)
-
-
+      # prog_detail <- "Calculate, Level, Membership"
+      # message(paste0("\n", prog_detail))
+      # # Increment the progress bar, and update the detail text.
+      # incProgress(1/prog_n, detail = prog_detail)
+      # Sys.sleep(prog_sleep)
+      #
+      # # Calc
+      # df_levmemb <- BCGcalc::BCG.Level.Membership(df_metmemb, df_bcg_models)
+      # # Save Results
+      # # fn_levmemb <- paste0(fn_input_base, fn_abr_save, "4levmemb.csv")
+      # fn_levmemb <- "BCG_4levmemb.csv"
+      # dn_levmemb <- path_results_sub
+      # pn_levmemb <- file.path(dn_levmemb, fn_levmemb)
+      # write.csv(df_levmemb, pn_levmemb, row.names = FALSE)
+      #
+      #
       ## Calc, 7, LevAssign----
-      prog_detail <- "Calculate, Level, Assignment"
-      message(paste0("\n", prog_detail))
-      # Increment the progress bar, and update the detail text.
-      incProgress(1/prog_n, detail = prog_detail)
-      Sys.sleep(prog_sleep)
-
-      # Calc
-      df_levassign <- BCGcalc::BCG.Level.Assignment(df_levmemb)
-
-      # Save Results
-      # fn_levassign <- paste0(fn_input_base, fn_abr_save, "5levassign.csv")
-      fn_levassign <- "BCG_5levassign.csv"
-      dn_levassign <- path_results_sub
-      pn_levassign <- file.path(dn_levassign, fn_levassign)
-      write.csv(df_levassign, pn_levassign, row.names = FALSE)
-
-
+      # prog_detail <- "Calculate, Level, Assignment"
+      # message(paste0("\n", prog_detail))
+      # # Increment the progress bar, and update the detail text.
+      # incProgress(1/prog_n, detail = prog_detail)
+      # Sys.sleep(prog_sleep)
+      #
+      # # Calc
+      # df_levassign <- BCGcalc::BCG.Level.Assignment(df_levmemb)
+      #
+      # # Save Results
+      # # fn_levassign <- paste0(fn_input_base, fn_abr_save, "5levassign.csv")
+      # fn_levassign <- "BCG_5levassign.csv"
+      # dn_levassign <- path_results_sub
+      # pn_levassign <- file.path(dn_levassign, fn_levassign)
+      # write.csv(df_levassign, pn_levassign, row.names = FALSE)
+      #
+      #
       ## Calc, 8, QC Flags----
-      prog_detail <- "Calculate, QC Flags"
-      message(paste0("\n", prog_detail))
-      # Increment the progress bar, and update the detail text.
-      incProgress(1/prog_n, detail = prog_detail)
-      Sys.sleep(prog_sleep)
-
-      # 2023-12-06
-      # Split if no flags so doesn't crash
-
-      # Check if Flags exist for data
-      col_index_metval <- c("INDEX_NAME", "INDEX_CLASS")
-      col_index_checks <- c("Index_Name", "INDEX_CLASS")
-      index_metval <- unique(df_metval[, col_index_metval])
-      index_checks <- unique(df_checks[, col_index_checks])
-      index_merge <- merge(index_metval, index_checks
-                           , by.x = col_index_metval
-                           , by.y = col_index_checks)
-
-      if (nrow(index_merge) == 0) {
-
-        # create dummy files
-        str_nodata <- "No flags for the Index Name/Class combinations present in data"
-        # Flags
-        df_flags <- data.frame(x = str_nodata
-                                   , CHECKNAME = "No Flags"
-                                   , FLAG = NA)
-        df_lev_flags <- df_levassign
-        # Flags Summary
-        df_lev_flags_summ <- data.frame(x = str_nodata)
-        # Results
-        df_results <- df_lev_flags[, !names(df_lev_flags) %in% c(paste0("L", 1:6))]
-        # Flag Metrics
-        df_metflags <- data.frame(x = str_nodata)
-
-      } else {
-
-        # Calc
-        # df_checks loaded in global.R
-        df_flags <- BioMonTools::qc.checks(df_metval, df_checks)
-        # Change terminology; PASS/FAIL to NA/flag
-        df_flags[, "FLAG"][df_flags[, "FLAG"] == "FAIL"] <- "flag"
-        df_flags[, "FLAG"][df_flags[, "FLAG"] == "PASS"] <- NA
-        # long to wide format
-        df_flags_wide <- reshape2::dcast(df_flags
-                                         , SAMPLEID ~ CHECKNAME
-                                         , value.var = "FLAG")
-        # Calc number of "flag"s by row.
-        df_flags_wide$NumFlags <- rowSums(df_flags_wide == "flag", na.rm = TRUE)
-        # Rearrange columns
-        NumCols <- ncol(df_flags_wide)
-        df_flags_wide <- df_flags_wide[, c(1, NumCols, 2:(NumCols - 1))]
-        # Merge Levels and Flags
-        df_lev_flags <- merge(df_levassign
-                              , df_flags_wide
-                              , by.x = "SampleID"
-                              , by.y = "SAMPLEID"
-                              , all.x = TRUE)
-        # Flags Summary
-        df_lev_flags_summ <- as.data.frame.matrix(table(df_flags[, "CHECKNAME"]
-                                                        , df_flags[, "FLAG"]
-                                                        , useNA = "ifany"))
-        # Results
-        df_results <- df_lev_flags[, !names(df_lev_flags) %in% c(paste0("L", 1:6))]
-        ## remove L1:6
-
-        # Flag Metrics
-        col2keep_metflags <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"
-                               , "METRIC_NAME", "CHECKNAME", "METRIC_VALUE"
-                               , "SYMBOL", "VALUE", "FLAG")
-        df_metflags <- df_flags[, col2keep_metflags]
-
-      }## IF ~ check for matching index name and class
-
-
-      # Save, Flags Summary
-      # fn_levflags <- paste0(fn_input_base, fn_abr_save, "6levflags.csv")
-      fn_levflags <- "BCG_6levflags.csv"
-      dn_levflags <- path_results_sub
-      pn_levflags <- file.path(dn_levflags, fn_levflags)
-      write.csv(df_lev_flags_summ, pn_levflags, row.names = TRUE)
-
-      # Save, Results
-      # fn_results <- paste0(fn_input_base, fn_abr_save, "RESULTS.csv")
-      fn_results <- "_BCG_RESULTS.csv"
-      dn_results <- path_results_sub
-      pn_results <- file.path(dn_results, fn_results)
-      write.csv(df_results, pn_results, row.names = FALSE)
-
-      # Save, Flag Metrics
-      # fn_metflags <- paste0(fn_input_base, fn_abr_save, "6metflags.csv")
-      fn_metflags <- "BCG_6metflags.csv"
-      dn_metflags <- path_results_sub
-      pn_metflags <- file.path(dn_metflags, fn_metflags)
-      write.csv(df_metflags, pn_metflags, row.names = FALSE)
-
-
+      # prog_detail <- "Calculate, QC Flags"
+      # message(paste0("\n", prog_detail))
+      # # Increment the progress bar, and update the detail text.
+      # incProgress(1/prog_n, detail = prog_detail)
+      # Sys.sleep(prog_sleep)
+      #
+      # # 2023-12-06
+      # # Split if no flags so doesn't crash
+      #
+      # # Check if Flags exist for data
+      # col_index_metval <- c("INDEX_NAME", "INDEX_CLASS")
+      # col_index_checks <- c("Index_Name", "INDEX_CLASS")
+      # index_metval <- unique(df_metval[, col_index_metval])
+      # index_checks <- unique(df_checks[, col_index_checks])
+      # index_merge <- merge(index_metval, index_checks
+      #                      , by.x = col_index_metval
+      #                      , by.y = col_index_checks)
+      #
+      # if (nrow(index_merge) == 0) {
+      #
+      #   # create dummy files
+      #   str_nodata <- "No flags for the Index Name/Class combinations present in data"
+      #   # Flags
+      #   df_flags <- data.frame(x = str_nodata
+      #                              , CHECKNAME = "No Flags"
+      #                              , FLAG = NA)
+      #   df_lev_flags <- df_levassign
+      #   # Flags Summary
+      #   df_lev_flags_summ <- data.frame(x = str_nodata)
+      #   # Results
+      #   df_results <- df_lev_flags[, !names(df_lev_flags) %in% c(paste0("L", 1:6))]
+      #   # Flag Metrics
+      #   df_metflags <- data.frame(x = str_nodata)
+      #
+      # } else {
+      #
+      #   # Calc
+      #   # df_checks loaded in global.R
+      #   df_flags <- BioMonTools::qc.checks(df_metval, df_checks)
+      #   # Change terminology; PASS/FAIL to NA/flag
+      #   df_flags[, "FLAG"][df_flags[, "FLAG"] == "FAIL"] <- "flag"
+      #   df_flags[, "FLAG"][df_flags[, "FLAG"] == "PASS"] <- NA
+      #   # long to wide format
+      #   df_flags_wide <- reshape2::dcast(df_flags
+      #                                    , SAMPLEID ~ CHECKNAME
+      #                                    , value.var = "FLAG")
+      #   # Calc number of "flag"s by row.
+      #   df_flags_wide$NumFlags <- rowSums(df_flags_wide == "flag", na.rm = TRUE)
+      #   # Rearrange columns
+      #   NumCols <- ncol(df_flags_wide)
+      #   df_flags_wide <- df_flags_wide[, c(1, NumCols, 2:(NumCols - 1))]
+      #   # Merge Levels and Flags
+      #   df_lev_flags <- merge(df_levassign
+      #                         , df_flags_wide
+      #                         , by.x = "SampleID"
+      #                         , by.y = "SAMPLEID"
+      #                         , all.x = TRUE)
+      #   # Flags Summary
+      #   df_lev_flags_summ <- as.data.frame.matrix(table(df_flags[, "CHECKNAME"]
+      #                                                   , df_flags[, "FLAG"]
+      #                                                   , useNA = "ifany"))
+      #   # Results
+      #   df_results <- df_lev_flags[, !names(df_lev_flags) %in% c(paste0("L", 1:6))]
+      #   ## remove L1:6
+      #
+      #   # Flag Metrics
+      #   col2keep_metflags <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"
+      #                          , "METRIC_NAME", "CHECKNAME", "METRIC_VALUE"
+      #                          , "SYMBOL", "VALUE", "FLAG")
+      #   df_metflags <- df_flags[, col2keep_metflags]
+      #
+      # }## IF ~ check for matching index name and class
+      #
+      #
+      # # Save, Flags Summary
+      # # fn_levflags <- paste0(fn_input_base, fn_abr_save, "6levflags.csv")
+      # fn_levflags <- "BCG_6levflags.csv"
+      # dn_levflags <- path_results_sub
+      # pn_levflags <- file.path(dn_levflags, fn_levflags)
+      # write.csv(df_lev_flags_summ, pn_levflags, row.names = TRUE)
+      #
+      # # Save, Results
+      # # fn_results <- paste0(fn_input_base, fn_abr_save, "RESULTS.csv")
+      # fn_results <- "_BCG_RESULTS.csv"
+      # dn_results <- path_results_sub
+      # pn_results <- file.path(dn_results, fn_results)
+      # write.csv(df_results, pn_results, row.names = FALSE)
+      #
+      # # Save, Flag Metrics
+      # # fn_metflags <- paste0(fn_input_base, fn_abr_save, "6metflags.csv")
+      # fn_metflags <- "BCG_6metflags.csv"
+      # dn_metflags <- path_results_sub
+      # pn_metflags <- file.path(dn_metflags, fn_metflags)
+      # write.csv(df_metflags, pn_metflags, row.names = FALSE)
+      #
+      #
       ## Calc, 9, RMD----
-      prog_detail <- "Calculate, Create Report"
-      message(paste0("\n", prog_detail))
-      # Increment the progress bar, and update the detail text.
-      incProgress(1/prog_n, detail = prog_detail)
-      Sys.sleep(2 * prog_sleep)
-
-      strFile.RMD <- file.path("external"
-                               , "RMD_Results"
-                               , "Results_BCG_Summary.Rmd")
-      strFile.RMD.format <- "html_document"
-      # strFile.out <- paste0(fn_input_base, fn_abr_save, "RESULTS.html")
-      strFile.out <- "_BCG_RESULTS.html"
-      dir.export <- path_results_sub
-      rmarkdown::render(strFile.RMD
-                        , output_format = strFile.RMD.format
-                        , output_file = strFile.out
-                        , output_dir = dir.export
-                        , quiet = TRUE)
+      # prog_detail <- "Calculate, Create Report"
+      # message(paste0("\n", prog_detail))
+      # # Increment the progress bar, and update the detail text.
+      # incProgress(1/prog_n, detail = prog_detail)
+      # Sys.sleep(2 * prog_sleep)
+      #
+      # strFile.RMD <- file.path("external"
+      #                          , "RMD_Results"
+      #                          , "Results_BCG_Summary.Rmd")
+      # strFile.RMD.format <- "html_document"
+      # # strFile.out <- paste0(fn_input_base, fn_abr_save, "RESULTS.html")
+      # strFile.out <- "_BCG_RESULTS.html"
+      # dir.export <- path_results_sub
+      # rmarkdown::render(strFile.RMD
+      #                   , output_format = strFile.RMD.format
+      #                   , output_file = strFile.out
+      #                   , output_dir = dir.export
+      #                   , quiet = TRUE)
 
       ## Calc, 10, Save, Reference----
       prog_detail <- "Calculate, Save, Reference"
@@ -1191,10 +1110,10 @@ shinyServer(function(input, output) {
       # file.copy(file_from, file_to)
 
       ## Metric Flags
-      fn_save <- "MetricFlags.xlsx"
-      file_from <- temp_bcg_checks
-      file_to <- file.path(path_results_ref, fn_save)
-      file.copy(file_from, file_to)
+      # fn_save <- "MetricFlags.xlsx"
+      # file_from <- temp_bcg_checks
+      # file_to <- file.path(path_results_ref, fn_save)
+      # file.copy(file_from, file_to)
 
       ## Metric Names
       fn_save <- "MetricNames.xlsx"
@@ -1209,10 +1128,10 @@ shinyServer(function(input, output) {
       file.copy(file_from, file_to)
 
       ## BCG Rules
-      fn_save <- "Rules.xlsx"
-      file_from <- temp_bcg_models
-      file_to <- file.path(path_results_ref, fn_save)
-      file.copy(file_from, file_to)
+      # fn_save <- "Rules.xlsx"
+      # file_from <- temp_bcg_models
+      # file_to <- file.path(path_results_ref, fn_save)
+      # file.copy(file_from, file_to)
 
 
       ## Calc, 11, Clean Up----
@@ -1228,7 +1147,7 @@ shinyServer(function(input, output) {
       zip::zip(file.path(path_results, "results.zip"), fn_4zip)
 
       # button, enable, download
-      shinyjs::enable("b_download_bcg")
+      shinyjs::enable("b_download_ibi")
 
       # time, end
       toc <- Sys.time()
@@ -1246,18 +1165,18 @@ shinyServer(function(input, output) {
       # validate(msg)
 
     }## expr ~ withProgress ~ END
-    , message = "Calculating BCG"
+    , message = "Calculating IBI"
     )## withProgress ~ END
   }##expr ~ ObserveEvent ~ END
-  )##observeEvent ~ b_calc_bcg ~ END
+  )##observeEvent ~ b_calc_IBI ~ END
 
-  ## b_download_BCG ----
-  output$b_download_bcg <- downloadHandler(
+  ## b_download_IBI ----
+  output$b_download_ibi <- downloadHandler(
 
     filename = function() {
       inFile <- input$fn_input
       fn_input_base <- tools::file_path_sans_ext(inFile$name)
-      fn_abr <- abr_bcg
+      fn_abr <- abr_calc
       fn_abr_save <- paste0("_", fn_abr, "_")
       paste0(fn_input_base
              , fn_abr_save
@@ -1270,6 +1189,6 @@ shinyServer(function(input, output) {
 
     }##content~END
     #, contentType = "application/zip"
-  )##download ~ BCG
+  )##download ~ IBI
 
 })##shinyServer ~ END
