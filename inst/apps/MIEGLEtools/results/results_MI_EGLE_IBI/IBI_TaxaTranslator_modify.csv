@@ -1,0 +1,103 @@
+"TAXAID","TAXAID_CAPS","OTU_IBI","Match_Official","Modified_woCAPS","Modified_wCAPS"
+"Aeshnidae","AESHNIDAE","Aeshnidae",TRUE,FALSE,TRUE
+"Agyrinidae (Adults)","AGYRINIDAE (ADULTS)","Gyrinidae",TRUE,TRUE,TRUE
+"Ahaliplidae (Adults)","AHALIPLIDAE (ADULTS)","Haliplidae",TRUE,TRUE,TRUE
+"Amphipoda (Scuds)","AMPHIPODA (SCUDS)","Amphipoda",TRUE,TRUE,TRUE
+"Ancylidae (Limpets)","ANCYLIDAE (LIMPETS)","Ancylidae",TRUE,TRUE,TRUE
+"Ascirtidae (Adults)","ASCIRTIDAE (ADULTS)","Scirtidae",TRUE,TRUE,TRUE
+"Athericidae","ATHERICIDAE","Athericidae",TRUE,FALSE,TRUE
+"Baetidae","BAETIDAE","Baetidae",TRUE,FALSE,TRUE
+"Baetiscidae","BAETISCIDAE","Baetiscidae",TRUE,FALSE,TRUE
+"Belostomatidae","BELOSTOMATIDAE","Belostomatidae",TRUE,FALSE,TRUE
+"Bithyniidae","BITHYNIIDAE","Bithyniidae",TRUE,FALSE,TRUE
+"Brachycentridae","BRACHYCENTRIDAE","Brachycentridae",TRUE,FALSE,TRUE
+"Caenidae","CAENIDAE","Caenidae",TRUE,FALSE,TRUE
+"Calopterygidae","CALOPTERYGIDAE","Calopterygidae",TRUE,FALSE,TRUE
+"Ceratopogonidae","CERATOPOGONIDAE","Ceratopogonidae",TRUE,FALSE,TRUE
+"Chironomidae","CHIRONOMIDAE","Chironomidae",TRUE,FALSE,TRUE
+"Coenagrionidae","COENAGRIONIDAE","Coenagrionidae",TRUE,FALSE,TRUE
+"Corbicula Fluminea","CORBICULA FLUMINEA","Corbicula",TRUE,TRUE,TRUE
+"Cordulegastridae","CORDULEGASTRIDAE","Cordulegastridae",TRUE,FALSE,TRUE
+"Corduliidae","CORDULIIDAE","Corduliidae",TRUE,FALSE,TRUE
+"Corixidae","CORIXIDAE","Corixidae",TRUE,FALSE,TRUE
+"Corydalidae (Dobson Flies)","CORYDALIDAE (DOBSON FLIES)","Corydalidae",TRUE,TRUE,TRUE
+"Culicidae","CULICIDAE","Culicidae",TRUE,FALSE,TRUE
+"Decapoda (Crayfish)","DECAPODA (CRAYFISH)","Decapoda",TRUE,TRUE,TRUE
+"Dixidae","DIXIDAE","Dixidae",TRUE,FALSE,TRUE
+"Dreissenidae","DREISSENIDAE","Dreissenidae",TRUE,FALSE,TRUE
+"Dryopidae","DRYOPIDAE","Dryopidae",TRUE,FALSE,TRUE
+"Dytiscidae (Total)","DYTISCIDAE (TOTAL)","Dytiscidae",TRUE,TRUE,TRUE
+"Elmidae","ELMIDAE","Elmidae",TRUE,FALSE,TRUE
+"Empididae","EMPIDIDAE","Empididae",TRUE,FALSE,TRUE
+"Ephemerellidae","EPHEMERELLIDAE","Ephemerellidae",TRUE,FALSE,TRUE
+"Ephemeridae","EPHEMERIDAE","Ephemeridae",TRUE,FALSE,TRUE
+"Gelastocoridae","GELASTOCORIDAE","Gelastocoridae",TRUE,FALSE,TRUE
+"Gerridae","GERRIDAE","Gerridae",TRUE,FALSE,TRUE
+"Glossosomatidae","GLOSSOSOMATIDAE","Glossosomatidae",TRUE,FALSE,TRUE
+"Goeridae","GOERIDAE","Goeridae",TRUE,FALSE,TRUE
+"Gomphidae","GOMPHIDAE","Gomphidae",TRUE,FALSE,TRUE
+"Gyrinidae (Larvae)","GYRINIDAE (LARVAE)","Gyrinidae",TRUE,TRUE,TRUE
+"Haliplidae (Larvae)","HALIPLIDAE (LARVAE)","Haliplidae",TRUE,TRUE,TRUE
+"Helicopsychidae","HELICOPSYCHIDAE","Helicopsychidae",TRUE,FALSE,TRUE
+"Heptageniidae","HEPTAGENIIDAE","Heptageniidae",TRUE,FALSE,TRUE
+"Hirudinea (Leeches)","HIRUDINEA (LEECHES)","Hirudinea",TRUE,TRUE,TRUE
+"Hydracarina","HYDRACARINA","Hydracarina",TRUE,FALSE,TRUE
+"Hydrobiidae","HYDROBIIDAE","Hydrobiidae",TRUE,FALSE,TRUE
+"Hydrometridae","HYDROMETRIDAE","Hydrometridae",TRUE,FALSE,TRUE
+"Hydrophilidae (Total)","HYDROPHILIDAE (TOTAL)","Hydrophilidae",TRUE,TRUE,TRUE
+"Hydropsychidae","HYDROPSYCHIDAE","Hydropsychidae",TRUE,FALSE,TRUE
+"Hydroptilidae","HYDROPTILIDAE","Hydroptilidae",TRUE,FALSE,TRUE
+"Isonichiidae","ISONICHIIDAE","Isonychiidae",TRUE,TRUE,TRUE
+"Isopoda (Sowbugs)","ISOPODA (SOWBUGS)","Isopoda",TRUE,TRUE,TRUE
+"Lepidoptera (Moths)","LEPIDOPTERA (MOTHS)","Lepidoptera",TRUE,TRUE,TRUE
+"Lepidostomatidae","LEPIDOSTOMATIDAE","Lepidostomatidae",TRUE,FALSE,TRUE
+"Leptoceridae","LEPTOCERIDAE","Leptoceridae",TRUE,FALSE,TRUE
+"Leptophlebiidae","LEPTOPHLEBIIDAE","Leptophlebiidae",TRUE,FALSE,TRUE
+"Lestidae","LESTIDAE","Lestidae",TRUE,FALSE,TRUE
+"Leuctridae","LEUCTRIDAE","Leuctridae",TRUE,FALSE,TRUE
+"Libellulidae","LIBELLULIDAE","Libellulidae",TRUE,FALSE,TRUE
+"Limnephilidae","LIMNEPHILIDAE","Limnephilidae",TRUE,FALSE,TRUE
+"Lymnaeidae","LYMNAEIDAE","Lymnaeidae",TRUE,FALSE,TRUE
+"Macromiidae","MACROMIIDAE","Macromiidae",TRUE,FALSE,TRUE
+"Mesoveliidae","MESOVELIIDAE","Mesoveliidae",TRUE,FALSE,TRUE
+"Molannidae","MOLANNIDAE","Molannidae",TRUE,FALSE,TRUE
+"Muscidae","MUSCIDAE","Muscidae",TRUE,FALSE,TRUE
+"Naucoridae","NAUCORIDAE","Naucoridae",TRUE,FALSE,TRUE
+"Nematomorpha (Roundworms)","NEMATOMORPHA (ROUNDWORMS)","Nematomorpha",TRUE,TRUE,TRUE
+"Nemouridae","NEMOURIDAE","Nemouridae",TRUE,FALSE,TRUE
+"Nepidae","NEPIDAE","Nepidae",TRUE,FALSE,TRUE
+"Notonectidae","NOTONECTIDAE","Notonectidae",TRUE,FALSE,TRUE
+"Oligochaeta (Worms)","OLIGOCHAETA (WORMS)","Oligochaeta",TRUE,TRUE,TRUE
+"Perlidae","PERLIDAE","Perlidae",TRUE,FALSE,TRUE
+"Perlodidae","PERLODIDAE","Perlodidae",TRUE,FALSE,TRUE
+"Philopotamidae","PHILOPOTAMIDAE","Philopotamidae",TRUE,FALSE,TRUE
+"Phryganeidae","PHRYGANEIDAE","Phryganeidae",TRUE,FALSE,TRUE
+"Physidae","PHYSIDAE","Physidae",TRUE,FALSE,TRUE
+"Pisidiidae","PISIDIIDAE","Pisidiidae",TRUE,FALSE,TRUE
+"Planorbidae","PLANORBIDAE","Planorbidae",TRUE,FALSE,TRUE
+"Pleidae","PLEIDAE","Pleidae",TRUE,FALSE,TRUE
+"Pleuroceridae","PLEUROCERIDAE","Pleuroceridae",TRUE,FALSE,TRUE
+"Polycentropodidae","POLYCENTROPODIDAE","Polycentropodidae",TRUE,FALSE,TRUE
+"Pomatiopsidae","POMATIOPSIDAE","Pomatiopsidae",TRUE,FALSE,TRUE
+"Porifera (Sponges)","PORIFERA (SPONGES)","Porifera",TRUE,TRUE,TRUE
+"Psephenidae (Larvae)","PSEPHENIDAE (LARVAE)","Psephenidae",TRUE,TRUE,TRUE
+"Psychomyiidae","PSYCHOMYIIDAE","Psychomyiidae",TRUE,FALSE,TRUE
+"Pteronarcyidae","PTERONARCYIDAE","Pteronarcyidae",TRUE,FALSE,TRUE
+"Ptychopteridae","PTYCHOPTERIDAE","Ptychopteridae",TRUE,FALSE,TRUE
+"Rhyacophilidae","RHYACOPHILIDAE","Rhyacophilidae",TRUE,FALSE,TRUE
+"Scirtidae (Larvae)","SCIRTIDAE (LARVAE)","Scirtidae",TRUE,TRUE,TRUE
+"Sialidae (Alder Flies)","SIALIDAE (ALDER FLIES)","Sialidae",TRUE,TRUE,TRUE
+"Simulidae","SIMULIDAE","Simuliidae",TRUE,TRUE,TRUE
+"Siphlonuridae","SIPHLONURIDAE","Siphlonuridae",TRUE,FALSE,TRUE
+"Sisyridae","SISYRIDAE","Sisyridae",TRUE,FALSE,TRUE
+"Stratiomyidae","STRATIOMYIDAE","Stratiomyidae",TRUE,FALSE,TRUE
+"Tabanidae","TABANIDAE","Tabanidae",TRUE,FALSE,TRUE
+"Taeniopterygidae","TAENIOPTERYGIDAE","Taeniopterygidae",TRUE,FALSE,TRUE
+"Tipulidae","TIPULIDAE","Tipulidae",TRUE,FALSE,TRUE
+"Tricorythidae","TRICORYTHIDAE","Tricorythidae",TRUE,FALSE,TRUE
+"Turbellaria","TURBELLARIA","Turbellaria",TRUE,FALSE,TRUE
+"Uenoidae","UENOIDAE","Uenoidae",TRUE,FALSE,TRUE
+"Unionidae (Mussels)","UNIONIDAE (MUSSELS)","Unionidae",TRUE,TRUE,TRUE
+"Valvatidae","VALVATIDAE","Valvatidae",TRUE,FALSE,TRUE
+"Veliidae","VELIIDAE","Veliidae",TRUE,FALSE,TRUE
+"Viviparidae","VIVIPARIDAE","Viviparidae",TRUE,FALSE,TRUE

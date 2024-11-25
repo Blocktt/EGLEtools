@@ -127,13 +127,14 @@ shinyServer(function(input, output) {
                 , multiple = FALSE)
   })## UI_colnames
 
-  # output$UI_taxatrans_pick_official_project <- renderUI({
-  #   str_col <- "Official Taxa Data, Column Taxa_ID"
-  #   selectInput("taxatrans_pick_official_project"
-  #               , label = str_col
-  #               , choices = names(df_pick_taxoff)
-  #               , multiple = FALSE)
-  # })## UI_colnames
+  output$UI_taxatrans_user_col_sampid <- renderUI({
+    str_col <- "Column, Unique Sample Identifier (e.g., SampleID)"
+    selectInput("taxatrans_user_col_sampid"
+                , label = str_col
+                , choices = c("", names(df_import()))
+                , selected = "SampleID"
+                , multiple = FALSE)
+  })## UI_colnames
 
   output$UI_taxatrans_user_col_taxaid <- renderUI({
     str_col <- "Column, TaxaID"
@@ -144,13 +145,22 @@ shinyServer(function(input, output) {
                 , multiple = FALSE)
   })## UI_colnames
 
-  output$UI_taxatrans_user_col_drop <- renderUI({
-    str_col <- "Columns to Drop"
-    selectInput("taxatrans_user_col_drop"
+  output$UI_taxatrans_user_col_n_taxa <- renderUI({
+    str_col <- "Column, Taxa Count (number of individuals or N_Taxa)"
+    selectInput("taxatrans_user_col_n_taxa"
                 , label = str_col
                 , choices = c("", names(df_import()))
-                , multiple = TRUE)
+                , selected = "N_Taxa"
+                , multiple = FALSE)
   })## UI_colnames
+
+  # output$UI_taxatrans_user_col_drop <- renderUI({
+  #   str_col <- "Columns to Drop"
+  #   selectInput("taxatrans_user_col_drop"
+  #               , label = str_col
+  #               , choices = c("", names(df_import()))
+  #               , multiple = TRUE)
+  # })## UI_colnames
 
   output$UI_taxatrans_user_col_groupby <- renderUI({
     str_col <- "Columns to Keep in Output"
@@ -158,15 +168,6 @@ shinyServer(function(input, output) {
                 , label = str_col
                 , choices = c("", names(df_import()))
                 , multiple = TRUE)
-  })## UI_colnames
-
-  output$UI_taxatrans_user_col_sampid <- renderUI({
-    str_col <- "Column, Unique Sample Identifier (e.g., SampleID)"
-    selectInput("taxatrans_user_col_sampid"
-                , label = str_col
-                , choices = c("", names(df_import()))
-                , selected = "SampleID"
-                , multiple = FALSE)
   })## UI_colnames
 
   # ## TaxaTrans, combine ----
@@ -242,11 +243,12 @@ shinyServer(function(input, output) {
 
       # Fun Param, Define
       sel_proj <- input$taxatrans_pick_official
+      sel_user_sampid <- input$taxatrans_user_col_sampid
       sel_user_taxaid <- input$taxatrans_user_col_taxaid
       #sel_col_drop <- unlist(input$taxatrans_user_col_drop)
-      # sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
+      sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
       sel_user_groupby <- unlist(input$taxatrans_user_col_groupby)
-      sel_summ <- input$cb_TaxaTrans_Summ
+      # sel_summ <- input$cb_TaxaTrans_Summ
       # sel_user_indexclass <- input$taxatrans_user_col_indexclass
       # sel_user_gprr <- input$taxatrans_user_col_gprr
 
@@ -266,8 +268,6 @@ shinyServer(function(input, output) {
                                        , "attributes_metadata_filename"]
       col_taxaid_attr <- df_pick_taxoff[df_pick_taxoff$project == sel_proj
                                         , "attributes_taxaid"]
-      sel_user_sampid <- input$taxatrans_user_col_sampid
-
       sel_taxaid_drop <-  df_pick_taxoff[df_pick_taxoff$project == sel_proj
                                      , "taxaid_drop"]
       dir_proj_results <- df_pick_taxoff[df_pick_taxoff$project == sel_proj
@@ -278,7 +278,7 @@ shinyServer(function(input, output) {
       user_col_keep <- names(df_input)[names(df_input) %in% c(sel_user_groupby
                                                               , sel_user_sampid
                                                               , sel_user_taxaid
-                                                              # , sel_user_ntaxa
+                                                              , sel_user_ntaxa
                                                               )]
       # flip to col_drop
       user_col_drop <- names(df_input)[!names(df_input) %in% user_col_keep]
@@ -301,13 +301,13 @@ shinyServer(function(input, output) {
         df_official_metadata <- NULL
       }## IF ~ fn_taxaoff_meta
 
-      # if (is.na(sel_user_ntaxa) | sel_user_ntaxa == "") {
-      #   sel_user_ntaxa <- NULL
-      # }## IF ~ fn_taxaoff_meta
+      if (is.na(sel_user_ntaxa) | sel_user_ntaxa == "") {
+        sel_user_ntaxa <- NULL
+      }## IF ~ fn_taxaoff_meta
 
-      if (is.null(sel_summ)) {
-        sel_summ <- FALSE
-      }## IF ~ sel_summ
+      # if (is.null(sel_summ)) {
+      #   sel_summ <- FALSE
+      # }## IF ~ sel_summ
 
       if (sel_taxaid_drop == "NULL") {
         sel_taxaid_drop <- NULL
@@ -317,10 +317,10 @@ shinyServer(function(input, output) {
       #   sel_user_indexclass <- NULL
       # }## IF ~ sel_user_indexclass
 
-      message(paste0("User response to summarize duplicate sample taxa = "
-               , sel_summ))
+      # message(paste0("User response to summarize duplicate sample taxa = "
+      #          , sel_summ))
 
-      dir_proj_results <- paste("MI_EGLE_IBI", dir_proj_results, sep = "_")
+      dir_proj_results <- paste("MI_EGLE", dir_proj_results, sep = "_")
 
       dn_files <- paste(abr_results, dir_proj_results, sep = "_")
 
@@ -339,45 +339,51 @@ shinyServer(function(input, output) {
       Sys.sleep(prog_sleep)
 
       ## Data,  Official Taxa----
-      url_taxoff <- file.path(url_bmt_base
-                              , "taxa_official"
-                              , fn_taxoff)
+      # url_taxoff <- file.path(url_bmt_base
+      #                         , "taxa_official"
+      #                         , fn_taxoff)
       temp_taxoff <- tempfile(fileext = ".csv")
-      httr::GET(url_taxoff, write_disk(temp_taxoff))
+      # httr::GET(url_taxoff, write_disk(temp_taxoff))
 
-      df_taxoff <- read.csv(temp_taxoff)
+      df_taxoff <- read.csv(file.path("data", fn_taxoff))
 
       ## Data, Official Taxa, Meta Data----
       if (!is.null(fn_taxoff_meta)) {
-        url_taxoff_meta <- file.path(url_bmt_base
-                                     , "taxa_official"
-                                     , fn_taxoff_meta)
+        # url_taxoff_meta <- file.path(url_bmt_base
+        #                              , "taxa_official"
+        #                              , fn_taxoff_meta)
         temp_taxoff_meta <- tempfile(fileext = ".csv")
-        httr::GET(url_taxoff_meta, write_disk(temp_taxoff_meta))
+        # httr::GET(url_taxoff_meta, write_disk(temp_taxoff_meta))
+        #
+        # df_taxoff_meta <- read.csv(temp_taxoff_meta)
 
-        df_taxoff_meta <- read.csv(temp_taxoff_meta)
+        df_taxoff_meta <- read.csv(file.path("data", fn_taxoff_meta))
       }## IF ~ fn_taxaoff_meta
 
       ## Data, Official Attributes----
       if (!is.null(fn_taxoff_attr)) {
-        url_taxoff_attr <- file.path(url_bmt_base
-                                     , "taxa_official"
-                                     , fn_taxoff_attr)
+        # url_taxoff_attr <- file.path(url_bmt_base
+        #                              , "taxa_official"
+        #                              , fn_taxoff_attr)
         temp_taxoff_attr <- tempfile(fileext = ".csv")
-        httr::GET(url_taxoff_attr, write_disk(temp_taxoff_attr))
+        # httr::GET(url_taxoff_attr, write_disk(temp_taxoff_attr))
+        #
+        # df_taxoff_attr <- read.csv(temp_taxoff_attr)
 
-        df_taxoff_attr <- read.csv(temp_taxoff_attr)
+        df_taxoff_attr <- read.csv(file.path("data", fn_taxoff_attr))
       }## IF ~ fn_taxoff_attr
 
       ## Data, Official Attributes, Meta Data----
       if (!is.null(fn_taxoff_meta)) {
-        url_taxoff_attr_meta <- file.path(url_bmt_base
-                                     , "taxa_official"
-                                     , fn_taxoff_attr_meta)
+        # url_taxoff_attr_meta <- file.path(url_bmt_base
+        #                              , "taxa_official"
+        #                              , fn_taxoff_attr_meta)
         temp_taxoff_attr_meta <- tempfile(fileext = ".csv")
-        httr::GET(url_taxoff_attr_meta, write_disk(temp_taxoff_attr_meta))
+        # httr::GET(url_taxoff_attr_meta, write_disk(temp_taxoff_attr_meta))
+        #
+        # df_taxoff_attr_meta <- read.csv(temp_taxoff_attr_meta)
 
-        df_taxoff_attr_meta <- read.csv(temp_taxoff_attr_meta)
+        df_taxoff_attr_meta <- read.csv(file.path("data", fn_taxoff_attr_meta))
       }## IF ~ fn_taxaoff_meta
 
 
@@ -390,7 +396,6 @@ shinyServer(function(input, output) {
 
       # function parameters
       df_user                 <- df_input
-      df_user$N_TAXA <- 1
       df_official             <- df_taxoff
       df_official_metadata    <- df_taxoff_meta
       taxaid_user             <- sel_user_taxaid
@@ -399,7 +404,7 @@ shinyServer(function(input, output) {
       taxaid_drop             <- sel_taxaid_drop
       col_drop                <- user_col_drop #NULL #sel_col_drop
       sum_n_taxa_boo          <- TRUE
-      sum_n_taxa_col          <- "N_TAXA"
+      sum_n_taxa_col          <- sel_user_ntaxa
       sum_n_taxa_group_by     <- c(sel_user_sampid
                                    , sel_user_taxaid
                                    , sel_user_groupby)
@@ -415,7 +420,9 @@ shinyServer(function(input, output) {
                                                        , col_drop
                                                        , sum_n_taxa_boo
                                                        , sum_n_taxa_col
-                                                       , sum_n_taxa_group_by)
+                                                       , sum_n_taxa_group_by
+                                                       , trim_ws = TRUE
+                                                       , match_caps = TRUE)
 
       ## Munge ----
 
@@ -431,7 +438,7 @@ shinyServer(function(input, output) {
         # drop translation file columns
         col_keep_ttrm <- names(df_ttrm)[names(df_ttrm) %in% c(sel_user_sampid
                                                             , sel_user_taxaid
-                                                            # , sel_user_ntaxa
+                                                            , sel_user_ntaxa
                                                             , "Match_Official"
                                                             , sel_user_groupby)]
         df_ttrm <- df_ttrm[, col_keep_ttrm]
@@ -444,6 +451,7 @@ shinyServer(function(input, output) {
                                , all.x = TRUE
                                , sort = FALSE
                                , suffixes = c("_xDROP", "_yKEEP"))
+
         # Drop duplicate names from Trans file (x)
         col_keep <- names(df_merge_attr)[!grepl("_xDROP$"
                                                 , names(df_merge_attr))]
@@ -472,7 +480,7 @@ shinyServer(function(input, output) {
       # Resort columns
       col_start <- c(sel_user_sampid
                      , sel_user_taxaid
-                     # , sel_user_ntaxa
+                     , sel_user_ntaxa
                      , "file_taxatrans"
                      , "file_attributes")
       col_other <- names(taxatrans_results$merge)[!names(taxatrans_results$merge)
@@ -488,21 +496,9 @@ shinyServer(function(input, output) {
                                        %in% sel_user_sampid] <- "SampleID"
         names(taxatrans_results$merge)[names(taxatrans_results$merge)
                                        %in% sel_user_taxaid] <- "TaxaID"
-        # names(taxatrans_results$merge)[names(taxatrans_results$merge)
-        #                                %in% sel_user_ntaxa] <- "N_Taxa"
+        names(taxatrans_results$merge)[names(taxatrans_results$merge)
+                                       %in% sel_user_ntaxa] <- "N_Taxa"
       }## IF ~ boo_req_names
-
-      # Hack/Fix
-      # Noteworthy NA causing issue later in Shiny app
-      # 20231201, only if have Noteworthy
-      # if ("NOTEWORTHY" %in% toupper(taxatrans_results$merge)) {
-      #   taxatrans_results$merge$Noteworthy <- ifelse(is.na(taxatrans_results$merge$Noteworthy)
-      #                                                , FALSE
-      #                                                , TRUE)
-      # }## IF ~ Noteworthy
-
-      # need index class brought through
-
 
       ## Calc, 04, Save Results ----
       prog_detail <- "Save Results"
@@ -538,7 +534,7 @@ shinyServer(function(input, output) {
       #           , file.path(path_results_ref, paste0(fn_input_base, fn_part))
       #           , row.names = FALSE)
       # rm(df_save, fn_part)
-      file.copy(temp_taxoff
+      file.copy(file.path("data", fn_taxoff)
                 , file.path(path_results_ref, fn_taxoff))
 
       ## Taxa Official, meta data
@@ -548,7 +544,7 @@ shinyServer(function(input, output) {
       #           , file.path(path_results_ref, paste0(fn_input_base, fn_part))
       #           , row.names = FALSE)
       # rm(df_save, fn_part)
-      file.copy(temp_taxoff_meta
+      file.copy(file.path("data", fn_taxoff_meta)
                 , file.path(path_results_ref, fn_taxoff_meta))
 
       ## Taxa Official, Attributes
@@ -558,7 +554,7 @@ shinyServer(function(input, output) {
       #           , file.path(path_results, paste0(fn_input_base, fn_part))
       #           , row.names = FALSE)
       # rm(df_save, fn_part)
-      file.copy(temp_taxoff_attr
+      file.copy(file.path("data", fn_taxoff_attr)
                 , file.path(path_results_ref, fn_taxoff_attr))
 
       ## Taxa Official, Attributes, meta data
@@ -568,7 +564,7 @@ shinyServer(function(input, output) {
       #           , file.path(path_results_ref, paste0(fn_input_base, fn_part))
       #           , row.names = FALSE)
       # rm(df_save, fn_part)
-      file.copy(temp_taxoff_attr_meta
+      file.copy(file.path("data", fn_taxoff_attr_meta)
                 , file.path(path_results_ref, fn_taxoff_attr_meta))
 
       ## translate - crosswalk
