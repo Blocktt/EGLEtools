@@ -103,7 +103,7 @@ dn_files_fb     <- paste(abr_results, abr_filebuilder, sep = "_")
 # dn_files_bcg    <- paste(abr_results, abr_bcg, sep = "_")
 
 # Selection Choices----
-sel_community <- c("CREMP_KEYS", "NOT_CREMP_KEYS")
+# sel_community <- c("CREMP_KEYS", "NOT_CREMP_KEYS")
 
 ##  BCG Models ----
 # url_bcg_base <- "https://github.com/leppott/BCGcalc/raw/main/inst/extdata"

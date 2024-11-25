@@ -12,9 +12,9 @@ function() {
        , p(textOutput("fn_input_display_bcg"))
 
        , h4("B. Define Data Source (for metrics and rules)")
-       , selectInput("si_community"
-                     , label = "Data Source"
-                     , choices = c("", sel_community))
+       , shinyjs::disabled(selectInput("si_community" # DO NOT DELETE; CAUSES TAXATOL ISSUE
+                     , label = "Data Source" # DO NOT DELETE; CAUSES TAXATOL ISSUE
+                     , choices = c("", "sel_community"))) # DO NOT DELETE; CAUSES TAXATOL ISSUE
 
        # , h4("C. Mark Redundant (Non-Distinct) Taxa")
        # , includeHTML(file.path("www", "rmd_html", "ShinyHTML_RedundantTaxa.html"))

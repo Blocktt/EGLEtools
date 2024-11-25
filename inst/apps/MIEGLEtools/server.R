@@ -783,7 +783,8 @@ shinyServer(function(input, output) {
 
       # result folder and files
       # 2023-12-14, add community
-      fn_comm <- input$si_community
+      # fn_comm <- input$si_community
+      fn_comm <- "Bug"
       fn_abr <- abr_bcg
       fn_abr_save <- paste0("_", fn_abr, "_")
       path_results_sub <- file.path(path_results
@@ -822,18 +823,18 @@ shinyServer(function(input, output) {
       names(df_input) <- toupper(names(df_input))
 
       # QC, Index_Name & Index_Class
-      my_comm <- input$si_community
-      if ((!"INDEX_CLASS" %in% toupper(names(df_input)))
-          & (my_comm == "CREMP_Keys")) {
-        df_input[, "INDEX_CLASS"] <- "CREMP_Keys"
-      } else if((!"INDEX_CLASS" %in% toupper(names(df_input)))
-                & (my_comm == "NOT_CREMP_Keys")){
-        df_input[, "INDEX_CLASS"] <- "NOT_CREMP_Keys"
-      }## IF ~ INDEX_NAME
-
-      if (!"INDEX_NAME" %in% toupper(names(df_input))) {
-        df_input[, "INDEX_NAME"] <- "FL_Coral_BCG"
-      }## IF ~ INDEX_NAME
+      # my_comm <- input$si_community
+      # if ((!"INDEX_CLASS" %in% toupper(names(df_input)))
+      #     & (my_comm == "CREMP_Keys")) {
+      #   df_input[, "INDEX_CLASS"] <- "CREMP_Keys"
+      # } else if((!"INDEX_CLASS" %in% toupper(names(df_input)))
+      #           & (my_comm == "NOT_CREMP_Keys")){
+      #   df_input[, "INDEX_CLASS"] <- "NOT_CREMP_Keys"
+      # }## IF ~ INDEX_NAME
+      #
+      # if (!"INDEX_NAME" %in% toupper(names(df_input))) {
+      #   df_input[, "INDEX_NAME"] <- "FL_Coral_BCG"
+      # }## IF ~ INDEX_NAME
 
       ## Calc, 2, Exclude Taxa ----
       prog_detail <- "Calculate, Exclude Taxa"
@@ -917,7 +918,7 @@ shinyServer(function(input, output) {
       ## Calc, 3b, Rules ----
       prog_detail <- "Calculate, BCG Rules"
       message(paste0("\n", prog_detail))
-      message(paste0("Community = ", input$si_community))
+      # message(paste0("Community = ", input$si_community))
       # Increment the progress bar, and update the detail text.
       incProgress(1/prog_n, detail = prog_detail)
       Sys.sleep(prog_sleep)
@@ -935,7 +936,7 @@ shinyServer(function(input, output) {
       ## Calc, 4, MetVal----
       prog_detail <- "Calculate, Metric, Values"
       message(paste0("\n", prog_detail))
-      message(paste0("Community = ", input$si_community))
+      # message(paste0("Community = ", input$si_community))
       # Increment the progress bar, and update the detail text.
       incProgress(1/prog_n, detail = prog_detail)
       Sys.sleep(prog_sleep)
@@ -943,11 +944,11 @@ shinyServer(function(input, output) {
       # Add INDEX_NAME and INDEX_CLASS
       df_input$INDEX_NAME <- "FL_Coral_BCG"
 
-      if (my_comm == "CREMP_KEYS") {
-        df_input$INDEX_CLASS <- "CREMP_Keys"
-      } else {
-        df_input$INDEX_CLASS <- "NOT_CREMP_Keys"
-      } # end if/else
+      # if (my_comm == "CREMP_KEYS") {
+      #   df_input$INDEX_CLASS <- "CREMP_Keys"
+      # } else {
+      #   df_input$INDEX_CLASS <- "NOT_CREMP_Keys"
+      # } # end if/else
 
       # Add default value for Juveniles
       df_input <- df_input %>%
