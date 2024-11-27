@@ -1,11 +1,21 @@
 MIEGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2024-11-25 13:58:36.234671
+2024-11-27 10:08:52.33042
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-25 13:58:36.251405
+    #> Last Update: 2024-11-27 10:08:52.357344
+
+# MIEGLEtools 1.0.0.9017 (2024-11-27)
+
+- Got rid of most Florida content and left structure in place
+- Created taxa translator and attribute tables from MI EGLE data
+- Tested and confirmed functionality of taxa translator
+- To do:
+  - Add site classification function
+  - Test metric calc, metric scoring, and index scoring functionality
+  - Add UI content related to MI EGLE IBI models
 
 # MIEGLEtools 1.0.0.9010 (2024-11-25)
 
