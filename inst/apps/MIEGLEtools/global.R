@@ -39,8 +39,7 @@ MichMetrics <- c("nt_CruMol","pi_ffg_pred","pi_ffg_shred","pi_habit_cling"
                  ,"pi_Cru","pt_tv_intol","nt_NonIns","pi_ffg_scrap"
                  ,"pi_IsopGastHiru","pi_NonIns","pi_Pleco","pt_tv_toler"
                  ,"pi_ffg_col","pi_habit_sprawl","nt_Trich","nt_habit_cling"
-                 ,"pi_tv_intol"
-)# END MichMetrics
+                 ,"pi_tv_intol")# END MichMetrics
 
 # Source ----
 
@@ -141,17 +140,17 @@ fn_pick_taxoff <- "MIEGLEtools_Pick_Files.csv"
 df_pick_taxoff <- read.csv(file = file.path("data", fn_pick_taxoff))
 
 # BMT, Metric Names ----
-# url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"
-# url_metricnames <- file.path(url_bmt_pkg, "MetricNames.xlsx")
-# temp_metricnames <- tempfile(fileext = ".xlsx")
-# httr::GET(url_metricnames, httr::write_disk(temp_metricnames))
-#
-# df_metricnames <- readxl::read_excel(temp_metricnames
-#                                      , sheet = "MetricMetadata"
-#                                      , skip = 4)
+url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"
+url_metricnames <- file.path(url_bmt_pkg, "MetricNames.xlsx")
+temp_metricnames <- tempfile(fileext = ".xlsx")
+httr::GET(url_metricnames, httr::write_disk(temp_metricnames))
+
+df_metricnames <- readxl::read_excel(temp_metricnames
+                                     , sheet = "MetricMetadata"
+                                     , skip = 4)
 
 # BMT, Metric Scoring ----
-# url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"
-# url_metricscoring <- file.path(url_bmt_pkg, "MetricScoring.xlsx")
-# temp_metricscoring <- tempfile(fileext = ".xlsx")
-# httr::GET(url_metricscoring, httr::write_disk(temp_metricscoring))
+url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"
+url_metricscoring <- file.path(url_bmt_pkg, "MetricScoring.xlsx")
+temp_metricscoring <- tempfile(fileext = ".xlsx")
+httr::GET(url_metricscoring, httr::write_disk(temp_metricscoring))

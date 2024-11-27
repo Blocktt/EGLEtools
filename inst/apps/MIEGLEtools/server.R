@@ -737,19 +737,28 @@ shinyServer(function(input, output) {
       # QC, names to upper case
       names(df_input) <- toupper(names(df_input))
 
-      # QC, Index_Name & Index_Class
-      # my_comm <- input$si_community
-      # if ((!"INDEX_CLASS" %in% toupper(names(df_input)))
-      #     & (my_comm == "CREMP_Keys")) {
-      #   df_input[, "INDEX_CLASS"] <- "CREMP_Keys"
-      # } else if((!"INDEX_CLASS" %in% toupper(names(df_input)))
-      #           & (my_comm == "NOT_CREMP_Keys")){
-      #   df_input[, "INDEX_CLASS"] <- "NOT_CREMP_Keys"
-      # }## IF ~ INDEX_NAME
-      #
-      # if (!"INDEX_NAME" %in% toupper(names(df_input))) {
-      #   df_input[, "INDEX_NAME"] <- "FL_Coral_BCG"
-      # }## IF ~ INDEX_NAME
+      # QC, specify "INDEX_NAME"
+      "INDEX_NAME"
+      df_input$INDEX_NAME <- "MIEGLE_2020"
+
+      # QC, required input fields
+      required_columns <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID"
+                            ,"TAXAID", "N_TAXA", "NONTARGET", "PHYLUM"
+                            ,"SUBPHYLUM", "CLASS", "SUBCLASS", "ORDER"
+                            , "FAMILY", "FFG", "TOLVAL", "HABIT")
+
+      column_names <- colnames(df_input)
+
+      # QC Check for column names
+      col_req_match <- required_columns %in% column_names
+      col_missing <- required_columns[!col_req_match]
+
+      shiny::validate(
+        need(all(required_columns %in% column_names)
+             , paste("You may have missing required columns for IBI calculation!\n"
+                      , paste("Required columns missing from the data:\n")
+                      , paste("* ", col_missing, collapse = "\n")))
+      )##END ~ validate() code
 
       ## Calc, 2, Exclude Taxa ----
       prog_detail <- "Calculate, Exclude Taxa"
@@ -866,30 +875,34 @@ shinyServer(function(input, output) {
       # } # end if/else
 
       # Add default value for Juveniles
-      df_input <- df_input %>%
-        mutate(DIAMMAX_CM = case_when((JUVENILE == TRUE & is.na(DIAMMAX_CM) ~ 3)
-                                       , TRUE ~ DIAMMAX_CM)
-               , DIAMPERP_CM = case_when((JUVENILE == TRUE & is.na(DIAMPERP_CM) ~ 2)
-                                        , TRUE ~ DIAMPERP_CM)
-               , HEIGHT_CM = case_when((JUVENILE == TRUE & is.na(HEIGHT_CM) ~ 1)
-                                         , TRUE ~ HEIGHT_CM))
+      # df_input <- df_input %>%
+      #   mutate(DIAMMAX_CM = case_when((JUVENILE == TRUE & is.na(DIAMMAX_CM) ~ 3)
+      #                                  , TRUE ~ DIAMMAX_CM)
+      #          , DIAMPERP_CM = case_when((JUVENILE == TRUE & is.na(DIAMPERP_CM) ~ 2)
+      #                                   , TRUE ~ DIAMPERP_CM)
+      #          , HEIGHT_CM = case_when((JUVENILE == TRUE & is.na(HEIGHT_CM) ~ 1)
+      #                                    , TRUE ~ HEIGHT_CM))
 
       # Calc
-      if (length(cols_flags_keep) > 0) {
-        # keep extra cols from Flags (non-metric)
-        df_metval <- BioMonTools::metric.values(df_input
-                                                , fun.Community = "CORAL"
-                                                , fun.cols2keep = cols_flags_keep
-                                                , boo.Shiny = TRUE
-                                                , verbose = TRUE
-                                                , taxaid_dni = "DNI")
-      } else {
-        df_metval <- BioMonTools::metric.values(df_input
-                                                , fun.Community = "CORAL"
-                                                , boo.Shiny = TRUE
-                                                , verbose = TRUE
-                                                , taxaid_dni = "DNI")
-      }## IF ~ length(col_rules_keep)
+      df_metval <- BioMonTools::metric.values(fun.DF = df_input
+                                    , fun.Community = "bugs"
+                                    , boo.Shiny = TRUE
+                                    , verbose = TRUE)
+      # if (length(cols_flags_keep) > 0) {
+      #   # keep extra cols from Flags (non-metric)
+      #   df_metval <- BioMonTools::metric.values(df_input
+      #                                           , fun.Community = "CORAL"
+      #                                           , fun.cols2keep = cols_flags_keep
+      #                                           , boo.Shiny = TRUE
+      #                                           , verbose = TRUE
+      #                                           , taxaid_dni = "DNI")
+      # } else {
+      #   df_metval <- BioMonTools::metric.values(df_input
+      #                                           , fun.Community = "CORAL"
+      #                                           , boo.Shiny = TRUE
+      #                                           , verbose = TRUE
+      #                                           , taxaid_dni = "DNI")
+      # }## IF ~ length(col_rules_keep)
 
       #df_metval$INDEX_CLASS <- df_metval$INDEX_CLASS
 
@@ -903,22 +916,55 @@ shinyServer(function(input, output) {
 
       ### Save Results (IBI) ----
       # Munge
-      ## Model and QC Flag metrics only
-      # cols_flags defined above
-      cols_model_metrics <- unique(df_IBI_models[
-        df_IBI_models$Index_Name == import_IndexName, "Metric_Name"])
+      ## Model metrics only
       cols_req <- c("SAMPLEID", "INDEX_NAME", "INDEX_CLASS"
-                    , "ncol_total", "nt_total")
-      cols_metrics_flags_keep <- unique(c(cols_req
-                                          , cols_flags
-                                          , cols_model_metrics))
-      df_metval_slim <- df_metval[, names(df_metval) %in% cols_metrics_flags_keep]
+                    , "nt_total", "ni_total")
+      cols_metrics_keep <- unique(c(cols_req, MichMetrics))
+      df_metval_slim <- df_metval[, names(df_metval) %in% cols_metrics_keep]
       # Save
       # fn_metval_slim <- paste0(fn_input_base, fn_abr_save, "2metval_IBI.csv")
       fn_metval_slim <- "IBI_2metval_IBI.csv"
       dn_metval_slim <- path_results_sub
       pn_metval_slim <- file.path(dn_metval_slim, fn_metval_slim)
       write.csv(df_metval_slim, pn_metval_slim, row.names = FALSE)
+
+      ## Calc, 5, MetScoring----
+      # Thresholds
+      fn_thresh <- file.path(system.file(package="BioMonTools")
+                             , "extdata"
+                             , "MetricScoring.xlsx")
+      df_thresh_metric <- read_excel(fn_thresh, sheet="metric.scoring")
+      df_thresh_index <- read_excel(fn_thresh, sheet="index.scoring")
+
+      # run scoring code
+      df_metsc <- BioMonTools::metric.scores(DF_Metrics = df_metval_slim
+                                             , col_MetricNames = MichMetrics
+                                             , col_IndexName = "INDEX_NAME"
+                                             , col_IndexClass = "INDEX_CLASS"
+                                             , DF_Thresh_Metric = df_thresh_metric
+                                             , DF_Thresh_Index = df_thresh_index
+                                             , col_ni_total = "ni_total")
+
+      # Save Results
+      # fn_metmemb <- paste0(fn_input_base, fn_abr_save, "3metmemb.csv")
+      fn_metsc <- "IBI_3metsc.csv"
+      dn_metsc <- path_results_sub
+      pn_metsc <- file.path(dn_metsc, fn_metsc)
+      write.csv(dn_metsc, pn_metsc, row.names = FALSE)
+
+      ## Calc, 6, Attainment----
+      df_index_attn <- df_metsc %>%
+        select(-c(Index_Nar)) %>%
+        mutate(AttainmentCategory = case_when(
+          INDEX_CLASS == "WESTSTEEP" & Index < 42 ~ "Does not meet expectations",
+          INDEX_CLASS == "WESTFLAT" & Index < 46 ~ "Does not meet expectations",
+          INDEX_CLASS == "EAST" & Index < 46 ~ "Does not meet expectations",
+          INDEX_CLASS == "VERYNARROW" & Index < 59 ~ "Does not meet expectations",
+          INDEX_CLASS == "NARROW" & Index < 48 ~ "Does not meet expectations",
+          INDEX_CLASS == "MIDSIZEDRY" & Index < 45 ~ "Does not meet expectations",
+          INDEX_CLASS == "WETWIDE" & Index < 45 ~ "Does not meet expectations",
+          TRUE ~ "Meets expectations"))
+
 
 
       ## Calc, 5, MetMemb----
