@@ -753,12 +753,22 @@ shinyServer(function(input, output) {
       col_req_match <- required_columns %in% column_names
       col_missing <- required_columns[!col_req_match]
 
-      shiny::validate(
-        need(all(required_columns %in% column_names)
-             , paste("You may have missing required columns for IBI calculation!\n"
-                      , paste("Required columns missing from the data:\n")
-                      , paste("* ", col_missing, collapse = "\n")))
-      )##END ~ validate() code
+      if (length(col_missing) > 0) {
+        shinyalert(
+          title = "Missing Columns",
+          text = paste("You may have missing required columns for IBI calculation!\n"
+                       , "Required columns missing from the data:\n"
+                       , paste("* ", col_missing, collapse = "\n"))
+          , type = "error")
+        req(length(col_missing) == 0)# This will stop the function if there are missing columns
+      }# END ~ shinyalert
+
+      # shiny::validate(
+      #   need(all(required_columns %in% column_names)
+      #        , paste("You may have missing required columns for IBI calculation!\n"
+      #                 , paste("Required columns missing from the data:\n")
+      #                 , paste("* ", col_missing, collapse = "\n")))
+      # )##END ~ validate() code
 
       ## Calc, 2, Exclude Taxa ----
       prog_detail <- "Calculate, Exclude Taxa"
