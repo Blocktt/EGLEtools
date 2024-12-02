@@ -1,4 +1,4 @@
-# Calculate BCG Panel
+# Calculate Panel
 
 function() {
   sidebarLayout(
@@ -19,13 +19,9 @@ function() {
                      , choices = c("", "sel_community"))) # DO NOT DELETE; CAUSES TAXATOL ISSUE
 
        , h4("C. Mark Redundant (Non-Distinct) Taxa")
-       # , includeHTML(file.path("www", "rmd_html", "ShinyHTML_RedundantTaxa.html"))
        , checkboxInput("ExclTaxa"
                        , "Generate Redundant Taxa Column"
                        , TRUE)
-
-       # , h4("C. Define BCG Model")
-       # , p("Determined by Data Source chosen in Step B.")
 
        , h4("D. Run Calculations")
        , p("This button will calculate metrics values, metric scores
@@ -39,16 +35,13 @@ function() {
        , p("All input and output files will be available in a single zip file.")
        , shinyjs::disabled(downloadButton("b_download_ibi"
                                           , "Download Results"))
-        )## sidebarPanel ~ END
+       )## sidebarPanel ~ END
     , mainPanel(
         tabsetPanel(type = "tabs"
                     , tabPanel(title = "Calc_IBI_Output"
                                ,includeHTML(file.path("www"
                                                       , "rmd_html"
-                                          , "ShinyHTML_Calc_Output.html"))
-                               )
-                    )## tabsetPanel ~ END
-
-    )## mainPanel ~ END
+                                          , "ShinyHTML_Calc_Output.html"))))## tabsetPanel ~ END
+        )## mainPanel ~ END
   )##sidebarLayout ~ END
 }##FUNCTION ~ END

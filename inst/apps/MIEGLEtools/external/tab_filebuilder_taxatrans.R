@@ -7,7 +7,7 @@ function() {
             , useShinyjs()
 
             , p("The process below will combine user data with an official taxa list.")
-            #, br()
+
             , h4("A. Upload a File")
             , p("If no file name showing below, then repeat 'Import File' in the left sidebar.")
             , p(textOutput("fn_input_display_taxatrans"))
@@ -40,23 +40,17 @@ function() {
             , p("All input and output files will be available in a single zip file.")
             , shinyjs::disabled(downloadButton("b_download_taxatrans"
                                                , "Download Results"))
-
-    )## sidebarPanel ~ END
-       , mainPanel(
-            tabsetPanel(type = "tabs"
-                        , tabPanel(title = "TaxaTrans_About"
-                                   ,includeHTML(file.path("www"
-                                                          , "rmd_html"
-                                          , "ShinyHTML_FB_TaxaTrans_1About.html"))
-                                   )
-                            , tabPanel(title = "TaxaTrans_Output"
-                                       ,includeHTML(file.path("www"
-                                                              , "rmd_html"
-                                          , "ShinyHTML_FB_TaxaTrans_2Output.html"))
-                            )
-            )## tabsetPanel ~ END
-    )## mainPanel ~ END
-  )##sidebarLayout ~ END
-
-
-}##FUNCTION ~ END
+            )## sidebarPanel ~ END
+       , mainPanel(tabsetPanel(type = "tabs"
+                               , tabPanel(title = "TaxaTrans_About"
+                                          , includeHTML(file.path("www"
+                                                                  , "rmd_html"
+                                      , "ShinyHTML_FB_TaxaTrans_1About.html")))# END ~ tabPanel
+                               , tabPanel(title = "TaxaTrans_Output"
+                                          , includeHTML(file.path("www"
+                                                                  , "rmd_html"
+                                      , "ShinyHTML_FB_TaxaTrans_2Output.html")))# END ~ tabPanel
+                               )## tabsetPanel ~ END
+                   )## mainPanel ~ END
+    )##sidebarLayout ~ END
+  }##FUNCTION ~ END
