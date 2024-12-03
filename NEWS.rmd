@@ -21,6 +21,9 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# MIEGLEtools 1.0.0.9024 (2024-12-03)
+-   Added and tested metric calc, metric scoring, and index scoring functionality
+
 # MIEGLEtools 1.0.0.9017 (2024-11-27)
 
 -   Got rid of most Florida content and left structure in place

@@ -1,11 +1,16 @@
 MIEGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2024-11-27 10:08:52.33042
+2024-12-03 11:31:03.731317
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-11-27 10:08:52.357344
+    #> Last Update: 2024-12-03 11:31:03.756927
+
+# MIEGLEtools 1.0.0.9024 (2024-12-03)
+
+- Added and tested metric calc, metric scoring, and index scoring
+  functionality
 
 # MIEGLEtools 1.0.0.9017 (2024-11-27)
 
