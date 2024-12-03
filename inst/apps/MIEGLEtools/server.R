@@ -1,6 +1,6 @@
 library(shiny)
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
   # INPUT Display Names ####
 
@@ -30,6 +30,7 @@ shinyServer(function(input, output) {
   # IMPORT ----
   file_watch <- reactive({
     input$fn_input
+    print("File has been uploaded")
   })## file_watch
 
   ## IMPORT, df_import ####
@@ -105,48 +106,26 @@ shinyServer(function(input, output) {
   # ~~~~FILE BUILDER~~~~ ----
   # TaxaTrans, UI ----
 
-  output$UI_taxatrans_pick_official <- renderUI({
-    str_col <- "Calculation"
-    selectInput("taxatrans_pick_official"
-                , label = str_col
-                , choices = c("", df_pick_taxoff[, "project"])
-                , multiple = FALSE)
-  })## UI_colnames
+  observe({
+    req(df_pick_taxoff)
+    updateSelectInput(session, "taxatrans_pick_official"
+                      , choices = c("", df_pick_taxoff[, "project"]))
+  })# END ~ observe
 
-  output$UI_taxatrans_user_col_sampid <- renderUI({
-    str_col <- "Column, Unique Sample Identifier (e.g., SampleID)"
-    selectInput("taxatrans_user_col_sampid"
-                , label = str_col
-                , choices = c("", names(df_import()))
-                , selected = "SampleID"
-                , multiple = FALSE)
-  })## UI_colnames
+  observe({
+    req(df_import())
+    updateSelectInput(session, "taxatrans_user_col_sampid"
+                      , choices = c("", names(df_import())))
 
-  output$UI_taxatrans_user_col_taxaid <- renderUI({
-    str_col <- "Column, TaxaID"
-    selectInput("taxatrans_user_col_taxaid"
-                , label = str_col
-                , choices = c("", names(df_import()))
-                , selected = "TaxaID"
-                , multiple = FALSE)
-  })## UI_colnames
+    updateSelectInput(session, "taxatrans_user_col_taxaid"
+                      , choices = c("", names(df_import())))
 
-  output$UI_taxatrans_user_col_n_taxa <- renderUI({
-    str_col <- "Column, Taxa Count (number of individuals or N_Taxa)"
-    selectInput("taxatrans_user_col_n_taxa"
-                , label = str_col
-                , choices = c("", names(df_import()))
-                , selected = "N_Taxa"
-                , multiple = FALSE)
-  })## UI_colnames
+    updateSelectInput(session, "taxatrans_user_col_n_taxa"
+                      , choices = c("", names(df_import())))
 
-  output$UI_taxatrans_user_col_groupby <- renderUI({
-    str_col <- "Columns to Keep in Output"
-    selectInput("taxatrans_user_col_groupby"
-                , label = str_col
-                , choices = c("", names(df_import()))
-                , multiple = TRUE)
-  })## UI_colnames
+    updateSelectInput(session, "taxatrans_user_col_groupby"
+                      , choices = c("", names(df_import())))
+  })# END ~ observe
 
   # TaxaTrans, combine ----
   ## b_Calc_TaxaTrans
@@ -590,11 +569,10 @@ shinyServer(function(input, output) {
       copy_import_file(import_file = input$fn_input)
 
       # result folder and files
-      fn_comm <- "Bug"
       fn_abr <- abr_calc
       fn_abr_save <- paste0("_", fn_abr, "_")
       path_results_sub <- file.path(path_results
-                                    , paste(abr_results, fn_comm, fn_abr, sep = "_"))
+                                    , paste(abr_results, fn_abr, sep = "_"))
       # Add "Results" folder if missing
       boo_Results <- dir.exists(file.path(path_results_sub))
       if (boo_Results == FALSE) {
@@ -771,11 +749,15 @@ shinyServer(function(input, output) {
                                              , DF_Thresh_Index = df_thresh_index
                                              , col_ni_total = "ni_total")
 
+      # remove Index_Nar field from BioMonTools
+      df_metsc <- df_metsc %>%
+        select(-c(Index_Nar))
+
       # Save Results
       fn_metsc <- "IBI_3metsc.csv"
       dn_metsc <- path_results_sub
       pn_metsc <- file.path(dn_metsc, fn_metsc)
-      write.csv(dn_metsc, pn_metsc, row.names = FALSE)
+      write.csv(df_metsc, pn_metsc, row.names = FALSE)
 
       ## Calc, 5, Attainment----
       prog_detail <- "Calculate, Index, Attainment"
@@ -787,7 +769,6 @@ shinyServer(function(input, output) {
 
       # Attainment
       df_index_attn <- df_metsc %>%
-        select(-c(Index_Nar)) %>%
         mutate(AttainmentCategory = case_when(
           INDEX_CLASS == "WESTSTEEP" & Index < 42 ~ "Does not meet expectations",
           INDEX_CLASS == "WESTFLAT" & Index < 46 ~ "Does not meet expectations",
@@ -797,6 +778,12 @@ shinyServer(function(input, output) {
           INDEX_CLASS == "MIDSIZEDRY" & Index < 45 ~ "Does not meet expectations",
           INDEX_CLASS == "WETWIDE" & Index < 45 ~ "Does not meet expectations",
           TRUE ~ "Meets expectations"))
+
+      # Save Results
+      fn_index_attn <- "IBI_4Index_Attain.csv"
+      dn_index_attn <- path_results_sub
+      pn_index_attn <- file.path(dn_index_attn, fn_index_attn)
+      write.csv(df_index_attn, pn_index_attn, row.names = FALSE)
 
       ## Calc, 6, Save, Reference----
       prog_detail <- "Calculate, Save, Reference"

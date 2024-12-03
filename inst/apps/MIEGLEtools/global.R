@@ -48,8 +48,6 @@ tab_code_about                 <- source("external/tab_about.R"
                                          , local = TRUE)$value
 tab_code_import                <- source("external/tab_import.R"
                                          , local = TRUE)$value
-tab_code_filebuilder           <- source("external/tab_filebuilder.R"
-                                         , local = TRUE)$value
 tab_code_filebuilder_intro    <- source("external/tab_filebuilder_intro.R"
                                          , local = TRUE)$value
 tab_code_filebuilder_outsideapp   <- source("external/tab_filebuilder_outsideapp.R"
@@ -83,7 +81,7 @@ if (dir.exists(path_results) == FALSE) {
 # File and Folder Names ----
 abr_filebuilder <- "FB"
 abr_taxatrans   <- "TaxaTranslator"
-abr_calc        <- "IBI"
+abr_calc        <- "MI_EGLE_IBI"
 abr_results     <- "results"
 
 dn_files_input  <- "_user_input"

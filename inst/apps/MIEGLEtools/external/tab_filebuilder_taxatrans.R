@@ -13,23 +13,34 @@ function() {
             , p(textOutput("fn_input_display_taxatrans"))
 
             , h4("B. Select Calculation.")
-            , uiOutput("UI_taxatrans_pick_official")
+            , selectInput(inputId = "taxatrans_pick_official"
+                          , label = "Calculation"
+                          , choices = NULL)
 
             , h4("C. User File Column Names")
 
             , h6("Required Matching Fields")
             , p("If the default values are present they will be auto-populated.")
 
-            , uiOutput("UI_taxatrans_user_col_sampid")
-            , uiOutput("UI_taxatrans_user_col_taxaid")
-            , uiOutput("UI_taxatrans_user_col_n_taxa")
+            , selectInput(inputId = "taxatrans_user_col_sampid"
+                          , label = "Column, Unique Sample Identifier (e.g., SampleID)"
+                          , choices = NULL)
+            , selectInput(inputId = "taxatrans_user_col_taxaid"
+                          , label = "Column, TaxaID"
+                          , choices = NULL)
+            , selectInput(inputId = "taxatrans_user_col_n_taxa"
+                          , label = "Column, Taxa Count (number of individuals or N_Taxa)"
+                          , choices = NULL)
 
             , h6("Other Required Fields and Optional Fields")
             , p("Specify all other required fields here. Do not repeat SampleID and TaxaID.")
             , p("Specify all optional fields here.")
             , p("All fields not specified below will be dropped from the output.")
 
-            , uiOutput("UI_taxatrans_user_col_groupby")
+            , selectInput(inputId = "taxatrans_user_col_groupby"
+                          , label = "Columns to Keep in Output"
+                          , choices = "Imported file necessary for selection..."
+                          , multiple = TRUE)
 
             , h4("D. Run Operation")
             , p("This button will merge the user file with the official taxa file.")

@@ -14,9 +14,6 @@ function() {
        , h4("B. Data Source (for metrics and rules)")
        , p("The correct macroinvertebrate IBI is applied based on the"
            , "INDEX_CLASS field in the input file.")
-       , shinyjs::disabled(selectInput("si_community" # DO NOT DELETE; CAUSES TAXATOL ISSUE
-                     , label = "Data Source" # DO NOT DELETE; CAUSES TAXATOL ISSUE
-                     , choices = c("", "sel_community"))) # DO NOT DELETE; CAUSES TAXATOL ISSUE
 
        , h4("C. Mark Redundant (Non-Distinct) Taxa")
        , checkboxInput("ExclTaxa"
