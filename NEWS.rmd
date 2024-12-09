@@ -21,6 +21,10 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# MIEGLEtools 1.0.0.9025 (2024-12-09)
+-   Added site classification functionality
+-   Uses MI EGLE Site Class geospatial layer to join sites
+
 # MIEGLEtools 1.0.0.9024 (2024-12-03)
 -   Added and tested metric calc, metric scoring, and index scoring functionality
 

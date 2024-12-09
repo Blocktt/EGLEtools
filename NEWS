@@ -1,11 +1,16 @@
 MIEGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2024-12-03 11:31:03.731317
+2024-12-09 12:20:39.340581
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-12-03 11:31:03.756927
+    #> Last Update: 2024-12-09 12:20:39.365316
+
+# MIEGLEtools 1.0.0.9025 (2024-12-09)
+
+- Added site classification functionality
+- Uses MI EGLE Site Class geospatial layer to join sites
 
 # MIEGLEtools 1.0.0.9024 (2024-12-03)
 
