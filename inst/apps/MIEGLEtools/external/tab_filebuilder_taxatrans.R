@@ -19,22 +19,33 @@ function() {
 
             , h4("C. User File Column Names")
 
-            , h6("Required Matching Fields")
+            , h5("Required Matching Fields")
             , p("If the default values are present they will be auto-populated.")
 
             , selectInput(inputId = "taxatrans_user_col_sampid"
                           , label = "Column, Unique Sample Identifier (e.g., SampleID)"
-                          , choices = NULL)
+                          , choices = "Imported file necessary for selection...")
             , selectInput(inputId = "taxatrans_user_col_taxaid"
                           , label = "Column, TaxaID"
-                          , choices = NULL)
+                          , choices = "Imported file necessary for selection...")
             , selectInput(inputId = "taxatrans_user_col_n_taxa"
                           , label = "Column, Taxa Count (number of individuals or N_Taxa)"
-                          , choices = NULL)
+                          , choices = "Imported file necessary for selection...")
+            , selectInput(inputId = "siteclass_user_col_siteid"
+                          , label = "Column, SiteID"
+                          , choices = "Imported file necessary for selection...")
+            , selectInput(inputId = "siteclass_user_col_lat"
+                          , label = "Column, Latitude (decimal degrees)"
+                          , choices = "Imported file necessary for selection...")
+            , selectInput(inputId = "siteclass_user_col_long"
+                          , label = "Column, Longitude (decimal degrees)"
+                          , choices = "Imported file necessary for selection...")
+            , selectInput(inputId = "siteclass_user_col_width"
+                          , label = "Column, Stream Width (ft)"
+                          , choices = "Imported file necessary for selection...")
 
             , h6("Other Required Fields and Optional Fields")
-            , p("Specify all other required fields here. Do not repeat SampleID and TaxaID.")
-            , p("Specify all optional fields here.")
+            , p("Specify all optional fields here. Do not repeat any of the required fields from above.")
             , p("All fields not specified below will be dropped from the output.")
 
             , selectInput(inputId = "taxatrans_user_col_groupby"

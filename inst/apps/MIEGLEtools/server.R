@@ -30,7 +30,6 @@ shinyServer(function(input, output, session) {
   # IMPORT ----
   file_watch <- reactive({
     input$fn_input
-    print("File has been uploaded")
   })## file_watch
 
   ## IMPORT, df_import ####
@@ -104,7 +103,7 @@ shinyServer(function(input, output, session) {
   })## col_import
 
   # ~~~~FILE BUILDER~~~~ ----
-  # TaxaTrans, UI ----
+  # TaxaTrans/SiteClass, UI ----
 
   observe({
     req(df_pick_taxoff)
@@ -125,9 +124,21 @@ shinyServer(function(input, output, session) {
 
     updateSelectInput(session, "taxatrans_user_col_groupby"
                       , choices = c("", names(df_import())))
+
+    updateSelectInput(session, "siteclass_user_col_siteid"
+                      , choices = c("", names(df_import())))
+
+    updateSelectInput(session, "siteclass_user_col_lat"
+                      , choices = c("", names(df_import())))
+
+    updateSelectInput(session, "siteclass_user_col_long"
+                      , choices = c("", names(df_import())))
+
+    updateSelectInput(session, "siteclass_user_col_width"
+                      , choices = c("", names(df_import())))
   })# END ~ observe
 
-  # TaxaTrans, combine ----
+  # TaxaTrans/SiteClass, combine ----
   ## b_Calc_TaxaTrans
   observeEvent(input$b_calc_taxatrans, {
     shiny::withProgress({
@@ -199,8 +210,13 @@ shinyServer(function(input, output, session) {
       sel_user_sampid <- input$taxatrans_user_col_sampid
       sel_user_taxaid <- input$taxatrans_user_col_taxaid
       sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
+      sel_user_siteid <- input$siteclass_user_col_siteid
+      sel_user_lat <- input$siteclass_user_col_lat
+      sel_user_long <- input$siteclass_user_col_long
+      sel_user_width <- input$siteclass_user_col_width
       sel_user_groupby <- unlist(input$taxatrans_user_col_groupby)
 
+      # Pull data
       fn_taxoff <- df_pick_taxoff[df_pick_taxoff$project == sel_proj
                                   , "filename"]
       fn_taxoff_meta <- df_pick_taxoff[df_pick_taxoff$project == sel_proj
@@ -226,6 +242,7 @@ shinyServer(function(input, output, session) {
                                                               , sel_user_sampid
                                                               , sel_user_taxaid
                                                               , sel_user_ntaxa
+                                                              , sel_user_siteid
                                                               )]
       # flip to col_drop
       user_col_drop <- names(df_input)[!names(df_input) %in% user_col_keep]
@@ -242,6 +259,83 @@ shinyServer(function(input, output, session) {
                                , closeOnClickOutside = TRUE)
 
       }## IF ~ sel_proj
+
+      if (sel_user_sampid == "") {
+        # end process with pop up
+        msg <- "'SampleID' column name is missing!"
+        shinyalert::shinyalert(title = "Taxa Translator/Site Classification"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+
+      }## IF ~ sel_user_sampid
+
+      if (sel_user_taxaid == "") {
+        # end process with pop up
+        msg <- "'TaxaID' column name is missing!"
+        shinyalert::shinyalert(title = "Taxa Translator"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+
+      }## IF ~ sel_user_taxaid
+
+      if (sel_user_ntaxa == "") {
+        # end process with pop up
+        msg <- "'N_Taxa' column name is missing!"
+        shinyalert::shinyalert(title = "Taxa Translator"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+
+      }## IF ~ sel_user_ntaxa
+
+      if (sel_user_siteid == "") {
+        # end process with pop up
+        msg <- "'SiteID' column name is missing!"
+        shinyalert::shinyalert(title = "Site Classification"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+
+      }## IF ~ sel_user_siteid
+
+      if (sel_user_lat == "") {
+        # end process with pop up
+        msg <- "'Latitude' column name is missing!"
+        shinyalert::shinyalert(title = "Site Classification"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+
+      }## IF ~ sel_col_lat
+
+      if (sel_user_long == "") {
+        # end process with pop up
+        msg <- "'Longitude' column name is missing!"
+        shinyalert::shinyalert(title = "Site Classification"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+
+      }## IF ~ sel_col_lon
+
+      if (sel_user_width == "") {
+        # end process with pop up
+        msg <- "'Width' column name is missing!"
+        shinyalert::shinyalert(title = "Site Classification"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+
+      }## IF ~ sel_user_width
 
       if (is.na(fn_taxoff_meta) | fn_taxoff_meta == "") {
         # set value to NULL
@@ -320,6 +414,7 @@ shinyServer(function(input, output, session) {
       sum_n_taxa_col          <- sel_user_ntaxa
       sum_n_taxa_group_by     <- c(sel_user_sampid
                                    , sel_user_taxaid
+                                   , sel_user_siteid
                                    , sel_user_groupby)
 
       ### run the function ----
@@ -349,6 +444,7 @@ shinyServer(function(input, output, session) {
         # drop translation file columns
         col_keep_ttrm <- names(df_ttrm)[names(df_ttrm) %in% c(sel_user_sampid
                                                             , sel_user_taxaid
+                                                            , sel_user_siteid
                                                             , sel_user_ntaxa
                                                             , "Match_Official"
                                                             , sel_user_groupby)]
@@ -407,7 +503,252 @@ shinyServer(function(input, output, session) {
                                        %in% sel_user_ntaxa] <- "N_Taxa"
       }## IF ~ boo_req_names
 
-      ## Calc, 05, Save Results ----
+      ### Calc, 05, Site Classification ----
+      prog_detail <- "Site Classification"
+      message(paste0("\n", prog_detail))
+
+      # Increment the progress bar, and update the detail text.
+      incProgress(1/prog_n, detail = prog_detail)
+      Sys.sleep(prog_sleep)
+
+      #### Pull sites ----
+      df_sites <- df_input[, names(df_input) %in% c(sel_user_siteid
+                                                  , sel_user_lat
+                                                  , sel_user_long
+                                                  , sel_user_width)]
+
+      df_sites <- unique(df_sites) %>%
+        rename(SiteID = all_of(sel_user_siteid)
+               , Latitude = all_of(sel_user_lat)
+               , Longitude = all_of(sel_user_long)
+               , Width = all_of(sel_user_width))
+
+      #### QC ----
+      # App will crash if there are duplicate named fields
+      ## Remove StreamCat variable fields if included in input file
+      flds_new <- c("COMID"
+                    , "PctSlope"
+                    , "PctWetlands"
+                    , "SiteClass_tmp"
+                    , "Width_CAT"
+                    , "INDEX_CLASS")
+      boo_dup <- toupper(names(df_sites)) %in% toupper(flds_new)
+      if (sum(boo_dup) > 0) {
+        names_dup <- names(df_sites)[boo_dup]
+        names_old <- paste0(names(df_sites), "_OLD")
+        names(df_sites)[boo_dup] <- names_old[boo_dup]
+      }## IF ~ boo_dup
+
+      # File Size
+      # nrow_sites <- nrow(df_sites)
+      # if (nrow_sites > 500) {
+      #   # end process with pop up
+      #   msg <- paste0("More than 500 sites will cause a timeout on downloading
+      #                 NHD+ and StreamCat data."
+      #                 , "Your file has "
+      #                 , nrow_sites
+      #                 , " records.")
+      #
+      #   shinyalert::shinyalert(title = "Site Classification"
+      #                          , text = msg
+      #                          , type = "error"
+      #                          , closeOnEsc = TRUE
+      #                          , closeOnClickOutside = TRUE)
+      #   # validate(msg)
+      # }## IF ~ nrow_sites
+
+      #### Join P51 Classes ----
+      polygon_crs <- st_crs(GIS_layer_P51)
+      df_sites_sf <- st_as_sf(df_sites, coords = c("Longitude", "Latitude")
+                              , crs = 4326) %>% st_transform(crs = polygon_crs)
+
+      df_results <- st_join(df_sites_sf, GIS_layer_P51) %>%
+        st_drop_geometry()
+
+      #### Get COMIDs ----
+      # COMID
+      # comid <- StreamCatTools::sc_get_comid(df_sites
+      #                                       , xcoord = "Longitude"
+      #                                       , ycoord = "Latitude"
+      #                                       , crsys = 4269)
+      #
+      # # Add COMID to data
+      # df_sites[, "COMID"] <- strsplit(comid, ",")
+      #
+      # # END if COMID all NA
+      # comid_unique <- unique(df_sites[, "COMID"])
+      # if (length(comid_unique) == 1 & any(comid_unique == "NA")) {
+      #   # end process with pop up
+      #   m1 <- "'COMID' all NA!"
+      #   m2 <- "Coordinates likely not valid."
+      #   msg <- paste(m1, m2, sep = "\n")
+      #   shinyalert::shinyalert(title = "Site Classification"
+      #                          , text = msg
+      #                          , type = "error"
+      #                          , closeOnEsc = TRUE
+      #                          , closeOnClickOutside = TRUE)
+      #
+      # }## IF ~ comid_unique
+
+      #### StreamCat ----
+      ## format COMIDs into single string
+      # myCOMIDs <- df_sites %>%
+      #   mutate(COMID = as.character(COMID)) %>%
+      #   filter(!is.na(COMID)) %>%
+      #   pull(COMID)
+      #
+      # myCOMIDs_string <- paste(myCOMIDs, collapse = ",")
+      #
+      # ## get StreamCat data
+      # df_sc <- StreamCatTools::sc_get_data(aoi = 'catchment'
+      #   , comid = myCOMIDs_string
+      #   , metric = "pctwdwet2011,pctow2011,pcthbwet2011")
+      #
+      # # cols to keep
+      # sc_names_drop <- c("CATAREASQKM", "WSAREASQKM")
+      # sc_names_keep <- names(df_sc)[!names(df_sc) %in% sc_names_drop]
+      #
+      # # add StreamCat data to sites
+      # df_sites_sc <- merge(df_sites
+      #                     , df_sc[, sc_names_keep]
+      #                     , by.x = "COMID"
+      #                     , by.y = "COMID"
+      #                     , all.x = TRUE)
+      #
+      # df_sites_sc <- df_sites_sc %>%
+      #   mutate(PctWetOw2011Cat = PCTOW2011CAT + PCTHBWET2011CAT
+      #          + PCTWDWET2011CAT) %>%
+      #   select(-c(PCTOW2011CAT, PCTHBWET2011CAT, PCTWDWET2011CAT))
+
+
+      #### NHD+ ----
+      # NHDplus
+      ## download VAA
+      # nhdplusTools::nhdplusTools_data_dir(file.path("data")) # set dir
+      # nhdplusTools::download_vaa(path = nhdplusTools::get_vaa_path()
+      #                            , force = FALSE
+      #                            , updated_network = FALSE)
+      # # get_vaa_names() # VAA table names
+      # vaa_names2get <- c("slope")
+      # nhdplus_vaa <- nhdplusTools::get_vaa(vaa_names2get)
+      # ## merge with sites_sc
+      # df_sites_sc_nhd <- merge(df_sites_sc
+      #                     , nhdplus_vaa
+      #                     , by.x = "COMID"
+      #                     , by.y = "comid"
+      #                     , all.x = TRUE)
+      #
+      # df_sites_sc_nhd <- df_sites_sc_nhd %>%
+      #   mutate(pct_slope_nhd = 100*slope) %>%
+      #   select(-c(slope))
+
+      #### L3 Ecoregions ----
+      # Calc Ecoregions
+      # df_sites_sf <- sf::st_as_sf(df_sites
+      #                             , coords = c("Longitude", "Latitude")
+      #                             , crs = 4326)
+      #
+      # df_sites_sf <- sf::st_transform(df_sites_sf, st_crs(GIS_layer_L3Eco))
+      #
+      # df_eco3 <- sf::st_join(df_sites_sf, GIS_layer_L3Eco
+      #                        , join = st_intersects)
+      #
+      # df_eco3 <- sf::st_drop_geometry(df_eco3[, c("SiteID", "US_L3CODE")])
+
+
+      # Merge with results
+      # df_results <- merge(df_sites_sc_nhd
+      #                     , df_eco3
+      #                     , by = "SiteID"
+      #                     , all.x = TRUE)
+
+      #### Site Classes ----
+      df_SiteClass <- df_results %>%
+        mutate(Width_CAT = case_when(Width < 13 ~ "Very Narrow"
+                                     , Width < 21.270001 ~ "Narrow"
+                                     , Width < 68.3670001 ~ "Mid"
+                                     , TRUE ~ "Wide")#END ~ Width_CAT
+               , INDEX_CLASS = case_when(SiteClass_tmp == "East" ~ "East"
+                                         , (SiteClass_tmp == "North- Wetland > 40%"
+                                            | SiteClass_tmp == "North- Wetland < 40%")
+                                            & Width_CAT == "Very Narrow"
+                                            ~ "VeryNarrow"
+                                         , (SiteClass_tmp == "North- Wetland > 40%"
+                                            | SiteClass_tmp == "North- Wetland < 40%")
+                                            & Width_CAT == "Narrow"
+                                            ~ "Narrow"
+                                         , SiteClass_tmp == "North- Wetland < 40%"
+                                            & Width_CAT == "Mid"
+                                            ~ "MidSizeDry"
+                                         , (SiteClass_tmp == "North- Wetland > 40%"
+                                            & Width_CAT %in% c("Mid", "Wide"))
+                                            |(SiteClass_tmp == "North- Wetland < 40%"
+                                            & Width_CAT == "Wide")
+                                            ~ "WetWide"
+                                         , SiteClass_tmp == "Southwest Flat"
+                                            ~ "WestFlat"
+                                         , SiteClass_tmp == "Southwest Steep"
+                                            ~ "WestSteep"
+                                         , TRUE ~ "FLAG")#END ~ INDEX_CLASS
+               )#END ~ mutate
+
+      # df_SiteClass <- df_results %>%
+      #   mutate(Region = case_when(US_L3CODE %in% c(50, 51) ~ "North"
+      #                        , US_L3CODE %in% c(55, 56, 57) ~ "South"
+      #                        , TRUE ~ "FLAG")#END ~ Region
+      #          , East_West = if_else(Region == "South"
+      #                                , if_else(Longitude < -83.7200001
+      #                                          , "West"
+      #                                          , "East")
+      #                                , NA_character_)#END ~ East_West
+      #          , Width_CAT = case_when(Width < 13 ~ "Very Narrow"
+      #                                  , Width < 21.270001 ~ "Narrow"
+      #                                  , Width < 68.3670001 ~ "Mid"
+      #                                  , TRUE ~ "Wide")#END ~ Width_CAT
+      #          , Slope_CAT = if_else(pct_slope_nhd > 0.2976, "Steep", "Flat")#END ~ Slope_CAT
+      #          , PctWetOw2011Cat_CAT = if_else(PctWetOw2011Cat < 40.0670001, "Dry", "Wet")
+      #          , INDEX_CLASS = case_when(Region == "South" & East_West == "East"
+      #                                     ~ "East"
+      #                                  , Region == "South" & East_West == "West"
+      #                                     ~ paste0("West", Slope_CAT)
+      #                                  , Region == "North"
+      #                                     & Width_CAT == "Very Narrow"
+      #                                     ~ "VeryNarrow"
+      #                                  , Region == "North"
+      #                                     & Width_CAT == "Narrow" ~ "Narrow"
+      #                                  , Region == "North" & Width_CAT == "Mid"
+      #                                     & PctWetOw2011Cat_CAT == "Dry"
+      #                                     ~ "MidSizeDry"
+      #                                  , Region == "North"
+      #                                     & Width_CAT %in% c("Mid", "Wide")
+      #                                     & PctWetOw2011Cat_CAT == "Wet"
+      #                                     ~ "WetWide"
+      #                                  , TRUE ~ "FLAG")#END ~ INDEX_CLASS
+      #          )#END ~ mutate
+
+      # Fix names to match user input
+      names(df_SiteClass)[names(df_SiteClass) == "SiteID"] <- sel_user_siteid
+      names(df_SiteClass)[names(df_SiteClass) == "Latitude"] <- sel_user_lat
+      names(df_SiteClass)[names(df_SiteClass) == "Longitude"] <- sel_user_long
+      names(df_SiteClass)[names(df_SiteClass) == "Width"] <- sel_user_width
+
+      # Save Results
+      fn_siteclass <- "IBI_SiteClassification.csv"
+      dn_siteclass <- path_results_sub
+      pn_siteclass <- file.path(dn_siteclass, fn_siteclass)
+      write.csv(df_SiteClass, pn_siteclass, row.names = FALSE)
+
+      #### Join to taxa data ----
+
+      # trim site class data
+      df_SiteClass_trim <- df_SiteClass[, c(sel_user_siteid, "INDEX_CLASS")]
+
+      # join to taxa data
+      taxatrans_results$merge <- taxatrans_results$merge %>%
+        left_join(df_SiteClass_trim, by = sel_user_siteid)
+
+
+      ### Calc, 06, Save Results ----
       prog_detail <- "Save Results"
       message(paste0("\n", prog_detail))
 
@@ -469,7 +810,7 @@ shinyServer(function(input, output, session) {
                 , row.names = FALSE)
       rm(df_save, fn_part)
 
-      ## Calc, 06, Create Zip ----
+      ### Calc, 07, Create Zip ----
       prog_detail <- "Create Zip File For Download"
       message(paste0("\n", prog_detail))
 
@@ -482,7 +823,7 @@ shinyServer(function(input, output, session) {
                             , full.names = TRUE)
       zip::zip(file.path(path_results, "results.zip"), fn_4zip)
 
-      ## Calc, 07, Clean Up ----
+      ### Calc, 08, Clean Up ----
       prog_detail <- "Calculate, Clean Up"
       message(paste0("\n", prog_detail))
 

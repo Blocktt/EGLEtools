@@ -47,3 +47,9 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+data-raw/GIS_Data/WRD_P51_Site_Classifications.cpg
+data-raw/GIS_Data/WRD_P51_Site_Classifications.dbf
+data-raw/GIS_Data/WRD_P51_Site_Classifications.prj
+data-raw/GIS_Data/WRD_P51_Site_Classifications.shp
+data-raw/GIS_Data/WRD_P51_Site_Classifications.shp.xml
+data-raw/GIS_Data/WRD_P51_Site_Classifications.shx

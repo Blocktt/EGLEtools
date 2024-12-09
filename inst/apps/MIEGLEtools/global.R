@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_version <- "v1.0.0.9024"
+pkg_version <- "v1.0.0.9025"
 
 # Packages----
 library(BioMonTools)
@@ -22,6 +22,9 @@ library(readr)
 library(rmarkdown)
 library(tools)
 library(openxlsx)
+# library(StreamCatTools)
+# library(nhdplusTools)
+library(sf)
 
 # Metrics ----
 MichMetrics <- c("nt_CruMol","pi_ffg_pred","pi_ffg_shred","pi_habit_cling"
@@ -109,3 +112,9 @@ url_bmt_pkg <- "https://github.com/leppott/BioMonTools/raw/main/inst/extdata"
 url_metricscoring <- file.path(url_bmt_pkg, "MetricScoring.xlsx")
 temp_metricscoring <- tempfile(fileext = ".xlsx")
 httr::GET(url_metricscoring, httr::write_disk(temp_metricscoring))
+
+# Site Classification ----
+# Geospatial data for site classification
+# load(file.path(".","Data", "GIS_layer_L3Eco.rda"))
+load(file.path(".","Data", "GIS_layer_P51.rda"))
+
