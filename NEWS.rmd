@@ -21,6 +21,10 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# MIEGLEtools 1.0.0.9027 (2024-12-09)
+-   Added content to UI that represents MI EGLE's P51 documentation
+-   Added guidance information to UI tabs
+
 # MIEGLEtools 1.0.0.9025 (2024-12-09)
 -   Added site classification functionality
 -   Uses MI EGLE Site Class geospatial layer to join sites

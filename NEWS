@@ -1,11 +1,16 @@
 MIEGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2024-12-09 12:20:39.340581
+2024-12-10 15:45:06.177099
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-12-09 12:20:39.365316
+    #> Last Update: 2024-12-10 15:45:06.202774
+
+# MIEGLEtools 1.0.0.9027 (2024-12-09)
+
+- Added content to UI that represents MI EGLE’s P51 documentation
+- Added guidance information to UI tabs
 
 # MIEGLEtools 1.0.0.9025 (2024-12-09)
 
