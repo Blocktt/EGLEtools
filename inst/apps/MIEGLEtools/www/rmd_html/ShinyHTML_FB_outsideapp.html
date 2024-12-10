@@ -4,317 +4,291 @@
 <div id="prepare-an-input-file-outside-of-the-app" class="section level1">
 <h1>Prepare an input file outside of the app</h1>
 <p>If you choose to create the input file outside of the app (versus
-using the ‘File Builder’), the comma-separated file (CSV) needs to have
-all the required fields listed in the tables below. Column names must
-match the spelling, symbology, and capitalization scheme exactly as
-shown.</p>
+using the ‘File Builder’), the file needs to have all the required
+fields listed in the tables below. Column names must match the spelling,
+symbology, and capitalization scheme exactly as shown.</p>
 <p>IMPORTANT: Make sure you are using the proper Operational Taxonomic
 Unit (OTU) and taxa traits/attributes for your metric calculations. The
 Taxa Translator and Attribute tables (and associated metadata) that were
-used for IBI development can be downloaded from the [<strong><em>source
-TBD</em></strong>].</p>
+used for IBI development can be downloaded:
+<a href="https://github.com/Blocktt/MIEGLEtools/tree/dev2024/inst/apps/MIEGLEtools/data" target="_blank">MI
+EGLE Taxa Translator Files</a>.</p>
 <p>The MI EGLE Input Test File can be used as a guide for your own input
-file [<strong><em>source TBD</em></strong>].</p>
+file:
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/MIEGLEtools/Example_Files/" target="_blank">MI
+EGLE Test Files</a>.</p>
 <div id="input-file-requirements-for-bugs" class="section level2">
 <h2>Input file requirements for bugs</h2>
-<table>
+<table class="table" style="color: black; width: auto !important; ">
 <caption>
 Input file requirements for ELGE IBI models.
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
 Column Name 
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
 Data Type
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
 Domain (allowable entries)
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
 Null Allowed
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
 Comment
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 SAMPLEID
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 No
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Unique sample identifier (typically comprised of the site name, sample
 date, and replicate number).
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-LATITUDE
-</td>
-<td style="text-align:left;">
-numeric
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-Latitude (y-coordinate) in decimal degrees. Only necessary for site
-classification app function; otherwise, can be excluded.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-LONGITUDE
-</td>
-<td style="text-align:left;">
-numeric
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:left;">
-Yes
-</td>
-<td style="text-align:left;">
-Longitude (x-coordinate) in decimal degrees. Only necessary for site
-classification app function; otherwise, can be excluded.
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 INDEX_CLASS
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Narrow, VeryNarrow, MidSizeDry, WetWide, WestFlat, WestSteep, East
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 No
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Index class is assigned based on site characteristics. Can be manually
-chosen or chosen through the site classification app function.
+chosen or chosen through the index classification app function (see File
+Builder).
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 TAXAID
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 No
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Taxonomic identification of macroinvertebrates in each sample.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 N_TAXA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 numeric
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 No
 </td>
-<td style="text-align:left;">
-Number of individuals
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of individuals.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NONTARGET
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 TRUE, FALSE
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 No
 </td>
-<td style="text-align:left;">
-Confirm
+<td style="text-align:left;border-bottom: 1px solid black;">
+Non-target taxa are those that are not part of the intended capture
+list. These taxa will be removed before any calculations.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 PHYLUM
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Yes
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Entries should be consistent with the phylogeny.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 SUBPHYLUM
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Yes
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Entries should be consistent with the phylogeny.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 CLASS
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Yes
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Entries should be consistent with the phylogeny.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 SUBCLASS
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Yes
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Entries should be consistent with the phylogeny.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 ORDER
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Yes
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Entries should be consistent with the phylogeny.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 FAMILY
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Yes
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Entries should be consistent with the phylogeny.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 FFG
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 text
 </td>
-<td style="text-align:left;">
-Confirm
+<td style="text-align:left;border-bottom: 1px solid black;">
+CF; CG; PR; SC; SH
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Yes
 </td>
-<td style="text-align:left;">
-Confirm
+<td style="text-align:left;border-bottom: 1px solid black;">
+Functional feeding group. CF = “collector-filterer”; CG =
+“collector-gatherer”; PR = “predator”; SC = “scrapper”, and SH =
+“shredder”. More than one FFG can be assigned to a taxon - separated by
+“;” (e.g., “SH;SC”). Note, that other FFG designations are allowed, but
+are not used in the MI EGLE IBIs.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 TOLVAL
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 numeric
 </td>
-<td style="text-align:left;">
-Confirm
+<td style="text-align:left;border-bottom: 1px solid black;">
+NA
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Yes
 </td>
-<td style="text-align:left;">
-Confirm
+<td style="text-align:left;border-bottom: 1px solid black;">
+Taxa tolerance values. Range from 0 (intolerant) to 10 (tolerant).
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 2px solid black;">
 HABIT
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 2px solid black;">
 text
 </td>
-<td style="text-align:left;">
-Confirm
+<td style="text-align:left;border-bottom: 2px solid black;">
+BU; CB; CN; SP; SW
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 2px solid black;">
 Yes
 </td>
-<td style="text-align:left;">
-Confirm
+<td style="text-align:left;border-bottom: 2px solid black;">
+Taxon habit. BU = “burrower”; CB = “climber”; CN = “clinger”; SP =
+“sprawler”, and SW = “swimmer”. More than one habit can be assigned to a
+taxon - separated by “;” (e.g., “CB;CN”).
 </td>
 </tr>
 </tbody>

@@ -11,24 +11,20 @@ function() {
        , p("If no file name showing below, then repeat 'Import File' in the left sidebar.")
        , p(textOutput("fn_input_display_ibi"))
 
-       , h4("B. Data Source (for metrics and rules)")
-       , p("The correct macroinvertebrate IBI is applied based on the"
-           , "INDEX_CLASS field in the input file.")
-
-       , h4("C. Mark Redundant (Non-Distinct) Taxa")
+       , h4("B. Mark Redundant (Non-Distinct) Taxa")
        , checkboxInput("ExclTaxa"
                        , "Generate Redundant Taxa Column"
                        , TRUE)
 
-       , h4("D. Run Calculations")
+       , h4("C. Run Calculations")
        , p("This button will calculate metrics values, metric scores
-           , index scores, and attainment status.")
+           , index scores, and attainment status for every sample.")
 
        , useShinyjs()
        , shinyjs::disabled(shinyBS::bsButton("b_calc_ibi"
                                              , label = "Run Calculations"))
 
-       , h4("E. Download Results")
+       , h4("D. Download Results")
        , p("All input and output files will be available in a single zip file.")
        , shinyjs::disabled(downloadButton("b_download_ibi"
                                           , "Download Results"))

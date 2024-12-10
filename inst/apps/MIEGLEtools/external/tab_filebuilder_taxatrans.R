@@ -3,7 +3,7 @@
 function() {
   sidebarLayout(
     sidebarPanel(h2("File Builder")
-            , h3("Taxa Translate, Attribute Assignment, Site Class Assignment")
+            , h3("Taxa Translator, Attribute Assignment, and Index Class Assignment")
             , useShinyjs()
 
             , p("The process below will combine user data with an official taxa list.")
@@ -44,7 +44,7 @@ function() {
                           , label = "Column, Stream Width (ft)"
                           , choices = "Imported file necessary for selection...")
 
-            , h6("Other Required Fields and Optional Fields")
+            , h5("Other Required Fields and Optional Fields")
             , p("Specify all optional fields here. Do not repeat any of the required fields from above.")
             , p("All fields not specified below will be dropped from the output.")
 

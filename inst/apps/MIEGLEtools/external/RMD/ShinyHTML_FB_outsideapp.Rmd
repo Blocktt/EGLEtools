@@ -1,6 +1,6 @@
 ---
 title: "Prepare Data, Outside app"
-date: "2024-11-22"
+date: "2024-12-10"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -17,17 +17,21 @@ knitr::opts_chunk$set(echo = FALSE
 # Prepare an input file outside of the app
 
 If you choose to create the input file outside of the app (versus using
-the 'File Builder'), the comma-separated file (CSV) needs to have all
-the required fields listed in the tables below. Column names must match
-the spelling, symbology, and capitalization scheme exactly as shown.
+the 'File Builder'), the file needs to have all the required fields
+listed in the tables below. Column names must match the spelling,
+symbology, and capitalization scheme exactly as shown.
 
 IMPORTANT: Make sure you are using the proper Operational Taxonomic Unit
 (OTU) and taxa traits/attributes for your metric calculations. The Taxa
 Translator and Attribute tables (and associated metadata) that were used
-for IBI development can be downloaded from the [***source TBD***].
+for IBI development can be downloaded:
+<a href="https://github.com/Blocktt/MIEGLEtools/tree/dev2024/inst/apps/MIEGLEtools/data" target="_blank">MI
+EGLE Taxa Translator Files</a>.
 
 The MI EGLE Input Test File can be used as a guide for your own input
-file [***source TBD***].
+file:
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/MIEGLEtools/Example_Files/" target="_blank">MI
+EGLE Test Files</a>.
 
 ## Input file requirements for bugs
 
@@ -35,6 +39,8 @@ file [***source TBD***].
 # Packages
 library(readxl)
 library(knitr)
+library(dplyr)
+library(kableExtra)
 
 # Data
 fn_data <- "OutputFileSubtabs.xlsx"
@@ -43,5 +49,12 @@ df_data <- read_excel(path_data, sheet = "FileBuild_Outside")
 
 # Display
 cap_data <- "Input file requirements for ELGE IBI models."
-knitr::kable(df_data, "html", caption = cap_data)
+
+options(knitr.kable.NA = '')
+df_data %>%
+  kable(caption = cap_data) %>%
+  kable_styling(full_width = F, position = "left") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
 ```

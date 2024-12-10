@@ -147,7 +147,7 @@ shinyServer(function(input, output, session) {
       tic <- Sys.time()
 
       ### Calc, 00, Initialize ----
-      prog_detail <- "Calculation, Taxa Translator..."
+      prog_detail <- "Taxa Translator..."
       message(paste0("\n", prog_detail))
 
       # Number of increments
@@ -394,6 +394,7 @@ shinyServer(function(input, output, session) {
 
 
       ## Calc, 04, Run Function ----
+
       prog_detail <- "Calculate, Taxa Trans"
       message(paste0("\n", prog_detail))
 
@@ -503,7 +504,7 @@ shinyServer(function(input, output, session) {
                                        %in% sel_user_ntaxa] <- "N_Taxa"
       }## IF ~ boo_req_names
 
-      ### Calc, 05, Site Classification ----
+      ## Calc, 05, Site Classification ----
       prog_detail <- "Site Classification"
       message(paste0("\n", prog_detail))
 
@@ -733,7 +734,7 @@ shinyServer(function(input, output, session) {
       names(df_SiteClass)[names(df_SiteClass) == "Width"] <- sel_user_width
 
       # Save Results
-      fn_siteclass <- "IBI_SiteClassification.csv"
+      fn_siteclass <- "IBI_IndexClassification.csv"
       dn_siteclass <- path_results_sub
       pn_siteclass <- file.path(dn_siteclass, fn_siteclass)
       write.csv(df_SiteClass, pn_siteclass, row.names = FALSE)
@@ -810,7 +811,7 @@ shinyServer(function(input, output, session) {
                 , row.names = FALSE)
       rm(df_save, fn_part)
 
-      ### Calc, 07, Create Zip ----
+      ## Calc, 07, Create Zip ----
       prog_detail <- "Create Zip File For Download"
       message(paste0("\n", prog_detail))
 
@@ -823,8 +824,8 @@ shinyServer(function(input, output, session) {
                             , full.names = TRUE)
       zip::zip(file.path(path_results, "results.zip"), fn_4zip)
 
-      ### Calc, 08, Clean Up ----
-      prog_detail <- "Calculate, Clean Up"
+      ## Calc, 08, Clean Up ----
+      prog_detail <- "Clean Up"
       message(paste0("\n", prog_detail))
 
       # Increment the progress bar, and update the detail text.
@@ -851,7 +852,7 @@ shinyServer(function(input, output, session) {
                              , closeOnEsc = TRUE
                              , closeOnClickOutside = TRUE)
       }## expr ~ withProgress ~ END
-      , message = "Calculating IBI"
+      , message = "Progress:"
       )## withProgress
     }##expr ~ ObserveEvent
     )##observeEvent ~ b_taxatrans_calc
@@ -1178,7 +1179,7 @@ shinyServer(function(input, output, session) {
                              , closeOnEsc = TRUE
                              , closeOnClickOutside = TRUE)
       }## expr ~ withProgress ~ END
-      , message = "Calculating IBI"
+      , message = "Progress:"
       )## withProgress ~ END
     }##expr ~ ObserveEvent ~ END
     )##observeEvent ~ b_calc_ibi ~ END

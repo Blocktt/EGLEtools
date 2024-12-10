@@ -8,88 +8,89 @@ result data files will be CSV format.</p>
 with the date and time.</p>
 <p>The individual files and their contents are output in three
 subfolders. Each output file is described in the table below.</p>
-<table>
+<table class="table" style="color: black; width: auto !important; ">
 <caption>
-File Builder, Taxa Translator, zip file contents. ‘yyyymmdd’ represents
-the date when the associated file has last been updated.
+File Builder, Taxa Translator, Index Class assignments, zip file
+contents. ‘yyyymmdd’ represents the date when the associated file has
+last been updated.
 </caption>
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
 Output file
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
 Subfolder
 </th>
-<th style="text-align:left;">
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
 Description
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Original file name
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 _user_input
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Original input file
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-MI_EGLE_IBI_Attributes_yyyymmdd
+<td style="text-align:left;border-bottom: 1px solid black;">
+MIEGLEtools_IBI_Attributes_yyyymmdd
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 reference
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Regional attribute table.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-MI_EGLE_IBI_Attributes_Metadata_yyyymmdd
+<td style="text-align:left;border-bottom: 1px solid black;">
+MIEGLEtools_IBI_Attributes_Metadata_yyyymmdd
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 reference
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Metadata for the regional attribute table
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-MI_EGLE_IBI_Taxa_Translator_yyyymmdd
+<td style="text-align:left;border-bottom: 1px solid black;">
+MIEGLEtools_IBI_Taxa_Translator_yyyymmdd
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 reference
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Regional taxa translator table
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-MI_EGLE_IBI_Taxa_Translator_Metadata_yyyymmdd
+<td style="text-align:left;border-bottom: 1px solid black;">
+MIEGLEtools_IBI_Taxa_Translator_Metadata_yyyymmdd
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 reference
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Metadata for the regional taxa translator table
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 IBI_TaxaTranslator_modify
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 results_MI_EGLE_IBI
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Lists the taxa that occur in the input file, plus: 1) original TaxonID;
 2) ‘translated’ TaxonID (OTU that will be used for the calculation); 3)
 whether the original TaxonID occurs in the regional taxa translator
@@ -99,37 +100,49 @@ individuals summed across samples)
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 IBI_TaxaTranslator_nonmatch
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 results_MI_EGLE_IBI
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Lists taxa in the input file that don’t occur in the regional taxa
 translator table (if the file is blank, all are ‘matches’)
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 IBI_TaxaTranslator_source
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 results_MI_EGLE_IBI
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 Provides documentation of the Operational Taxonomic Unit (OTU) and
 source files that were used
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-IBI_TaxaTranslator_TAXAATTR
+<td style="text-align:left;border-bottom: 1px solid black;">
+IBI_IndexClassification
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
 results_MI_EGLE_IBI
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;border-bottom: 1px solid black;">
+List of sites assigned to IBI Index Classes. Contains interim fields
+necessary for index classification.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+IBI_TaxaTranslator_TAXAATTR
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+results_MI_EGLE_IBI
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
 Final output, with ‘translated’ TaxonID, NonTarget designations,
 attributes and phylogeny; the file is ready to be run through the IBI
 calculator

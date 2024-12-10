@@ -1,6 +1,6 @@
 ---
 title: "Calculation, Output"
-date: "2024-11-22"
+date: "2024-12-10"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -28,6 +28,8 @@ Each output file is described in the table below.
 # Packages
 library(readxl)
 library(knitr)
+library(dplyr)
+library(kableExtra)
 
 # Data
 fn_data <- "OutputFileSubtabs.xlsx"
@@ -36,5 +38,12 @@ df_data <- read_excel(path_data, sheet = "Calc_IBI")
 
 # Display
 cap_data <- "Calculation, zip file contents."
-knitr::kable(df_data, "html", caption = cap_data)
+options(knitr.kable.NA = '')
+df_data %>%
+  kable(caption = cap_data) %>%
+  kable_styling(full_width = F, position = "left") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
+
 ```

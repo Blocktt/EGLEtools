@@ -16,7 +16,7 @@ function(id) {
       , menuItem(text = "About"
                , tabName = "tab_about"
                , icon = icon("house"))# END ~ menuItem
-      , menuItem(text = "Import Files"
+      , menuItem(text = "Import File"
                  , tabName = "tab_import"
                  , icon = icon("file-arrow-up")
                  , startExpanded = TRUE)# END ~ menuItem

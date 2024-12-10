@@ -1,6 +1,6 @@
 ---
 title: "Taxa Translator, About"
-date: "2024-11-22"
+date: "2024-12-09"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -16,15 +16,17 @@ knitr::opts_chunk$set(echo = FALSE
 
 # Purpose
 
-Create an input file with the proper Operational Taxonomic Units (OTUs)
-and attributes for each calculation. This function performs two steps to
-the input file:
+Create an input file with the proper Operational Taxonomic Units (OTUs),
+attributes, and index class for each calculation. This function performs
+three steps to the input file:
 
 1.  "Translates" the original TaxonID to the proper OTU based on the
     selected calculation.
 
 2.  Appends the Michigan taxa attributes, which include phylogenetic
     data and traits.
+
+3.  Appends the correct Index Class based on site coordinates.
 
 The 'taxa translator' and attribute tables are based on biomonitoring
 data from Michigan streams and will be updated regularly.
@@ -42,21 +44,31 @@ steps.](images/FileBuilder_TaxaTrans_About_Fig1.jpg){width="80%"}
 There are multiple fields that the user is required to provide:
 
 SampleID and TaxaID will be used to match the input file with the taxa
-translator table and attributes table. It is acceptable for your input
-file to have these two fields named differently. Click on the drop-down
-menus. The list of fields in your input file will appear. Select the
-correct column headings.
+translator table and attributes table. N_Taxa will be summarized in
+cases when more than one original TaxaID are translated to a single
+TaxonID.
+
+SiteID, Latitude, Longitude, and Stream Width are all necessary for
+Index Class assignment. Note, that these fields must be complete for all
+rows of the input file, otherwise, accidental duplication may occur
+which will likely result in a malfunction or cause the app to crash.
+
+It is acceptable for your input file to have the fields described above
+named differently. Click on the drop-down menus. The list of fields in
+your input file will appear. Select the correct column headings.
 
 Other required fields and any option fields that should be carried
-through into the output file (e.g., stationID, collection date, etc.)
-should be specified by clicking on the 'Columns to keep in output' box.
-The list of fields in your input file will appear. Click on the fields
-that you want to include. If you change your mind and want to remove a
-field, click on it and hit 'delete.' [IMPORTANT]{.underline}: Do not add
-SampleID or TaxaID to this box as they are already included from the
-drop-downs above.
+through into the output file (e.g., waterbody name, collection date,
+etc.) should be specified by clicking on the 'Columns to keep in output'
+box. The list of fields in your input file will appear. Click on the
+fields that you want to include. If you change your mind and want to
+remove a field, click on it and hit 'delete.' [IMPORTANT]{.underline}:
+Do not add any of the required fields to this box as they are already
+included from the drop-downs above.
 
 # Test File
 
 The MI EGLE Input Test File can be used as a guide for your own input
-file [***source TBD***].
+file:
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/refs/heads/main/MIEGLEtools/Example_Files/MI_EGLE_FileBuilder_Input_20241203.csv" target="_blank">File
+Builder Test File</a>.
