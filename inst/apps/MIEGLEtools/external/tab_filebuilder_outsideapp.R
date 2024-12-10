@@ -3,5 +3,6 @@
 function() {
   tabPanel("tab_filebuilder_outsideapp"
            , includeHTML(file.path("www", "rmd_html", "ShinyHTML_FB_outsideapp.html"))
+           , class = "center-content"
   )##tabPanel ~ END
 }##FUNCTION ~ END

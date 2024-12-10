@@ -84,7 +84,7 @@ The south region includes:
 
 -   Southern Michigan/Northern Indiana Drift Plains
 
-![](images/About_SiteClasses_Fig1.png){width="65%"}
+<center>![](images/About_SiteClasses_Fig1.png){width="65%"}</center>
 
 # Macroinvertebrate Models
 
@@ -117,7 +117,7 @@ df_data_trim <- df_data %>%
 options(knitr.kable.NA = '')
 df_data_trim %>%
   kable() %>%
-  kable_styling(full_width = F, position = "left") %>%
+  kable_styling(full_width = F, position = "center") %>%
   row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
   row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
@@ -143,7 +143,7 @@ df_data_trim <- df_data %>%
 options(knitr.kable.NA = '')
 df_data_trim %>%
   kable() %>%
-  kable_styling(full_width = F, position = "left") %>%
+  kable_styling(full_width = F, position = "center") %>%
   row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
   row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
@@ -169,7 +169,7 @@ df_data_trim <- df_data %>%
 options(knitr.kable.NA = '')
 df_data_trim %>%
   kable() %>%
-  kable_styling(full_width = F, position = "left") %>%
+  kable_styling(full_width = F, position = "center") %>%
   row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
   row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
@@ -195,7 +195,7 @@ df_data_trim <- df_data %>%
 options(knitr.kable.NA = '')
 df_data_trim %>%
   kable() %>%
-  kable_styling(full_width = F, position = "left") %>%
+  kable_styling(full_width = F, position = "center") %>%
   row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
   row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
@@ -221,7 +221,7 @@ df_data_trim <- df_data %>%
 options(knitr.kable.NA = '')
 df_data_trim %>%
   kable() %>%
-  kable_styling(full_width = F, position = "left") %>%
+  kable_styling(full_width = F, position = "center") %>%
   row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
   row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
@@ -247,7 +247,7 @@ df_data_trim <- df_data %>%
 options(knitr.kable.NA = '')
 df_data_trim %>%
   kable() %>%
-  kable_styling(full_width = F, position = "left") %>%
+  kable_styling(full_width = F, position = "center") %>%
   row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
   row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
@@ -273,7 +273,7 @@ df_data_trim <- df_data %>%
 options(knitr.kable.NA = '')
 df_data_trim %>%
   kable() %>%
-  kable_styling(full_width = F, position = "left") %>%
+  kable_styling(full_width = F, position = "center") %>%
   row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
   row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
@@ -343,7 +343,7 @@ df_data <- read_excel(path_data, sheet = "FileBuild_About2")
 options(knitr.kable.NA = '')
 df_data %>%
   kable() %>%
-  kable_styling(full_width = F, position = "left") %>%
+  kable_styling(full_width = F, position = "center") %>%
   row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
   row_spec(1:(nrow(df_data) - 1), extra_css = "border-bottom: 1px solid black;") %>%
   row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
