@@ -20,4 +20,5 @@ dashboardPage(
     , db_main_body("dbBody"))
   , footer = dashboardFooter(left = pkg_version
                              , right = "https://github.com/Blocktt/MIEGLEtools")
+  , skin = NULL  # Disable the default skin
 ) # dashboardPage ~ END
