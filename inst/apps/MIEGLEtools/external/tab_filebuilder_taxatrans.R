@@ -12,12 +12,12 @@ function() {
             , p("If no file name showing below, then repeat 'Import File' in the left sidebar.")
             , p(textOutput("fn_input_display_taxatrans"))
 
-            , h4("B. Select Calculation.")
-            , selectInput(inputId = "taxatrans_pick_official"
-                          , label = "Calculation"
-                          , choices = NULL)
+            # , h4("B. Select Calculation.")
+            # , selectInput(inputId = "taxatrans_pick_official"
+            #               , label = "Calculation"
+            #               , choices = NULL)
 
-            , h4("C. User File Column Names")
+            , h4("B. User File Column Names")
 
             , h5("Required Matching Fields")
             , p("If the default values are present they will be auto-populated.")
@@ -53,12 +53,12 @@ function() {
                           , choices = "Imported file necessary for selection..."
                           , multiple = TRUE)
 
-            , h4("D. Run Operation")
+            , h4("C. Run Operation")
             , p("This button will merge the user file with the official taxa file.")
             , shinyjs::disabled(shinyBS::bsButton("b_calc_taxatrans"
                                                   , label = "Run Operation"))
 
-            , h4("E. Download Output")
+            , h4("D. Download Output")
             , p("All input and output files will be available in a single zip file.")
             , shinyjs::disabled(downloadButton("b_download_taxatrans"
                                                , "Download Results"))

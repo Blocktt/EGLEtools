@@ -105,11 +105,11 @@ shinyServer(function(input, output, session) {
   # ~~~~FILE BUILDER~~~~ ----
   # TaxaTrans/SiteClass, UI ----
 
-  observe({
-    req(df_pick_taxoff)
-    updateSelectInput(session, "taxatrans_pick_official"
-                      , choices = c("", df_pick_taxoff[, "project"]))
-  })# END ~ observe
+  # observe({
+  #   req(df_pick_taxoff)
+  #   updateSelectInput(session, "taxatrans_pick_official"
+  #                     , choices = c("", df_pick_taxoff[, "project"]))
+  # })# END ~ observe
 
   observe({
     req(df_import())
@@ -206,7 +206,8 @@ shinyServer(function(input, output, session) {
       Sys.sleep(prog_sleep)
 
       # Fun Param, Define
-      sel_proj <- input$taxatrans_pick_official
+      # sel_proj <- input$taxatrans_pick_official
+      sel_proj <- "MI EGLE"
       sel_user_sampid <- input$taxatrans_user_col_sampid
       sel_user_taxaid <- input$taxatrans_user_col_taxaid
       sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
@@ -215,6 +216,35 @@ shinyServer(function(input, output, session) {
       sel_user_long <- input$siteclass_user_col_long
       sel_user_width <- input$siteclass_user_col_width
       sel_user_groupby <- unlist(input$taxatrans_user_col_groupby)
+
+      # convert to NULL if no input given
+      if (sel_user_sampid == "Imported file necessary for selection...") {
+        sel_user_sampid <- "User_Missing"
+      }# if statement ~ END
+
+      if (sel_user_taxaid == "Imported file necessary for selection...") {
+        sel_user_taxaid <- "User_Missing"
+      }# if statement ~ END
+
+      if (sel_user_ntaxa == "Imported file necessary for selection...") {
+        sel_user_ntaxa <- "User_Missing"
+      }# if statement ~ END
+
+      if (sel_user_siteid == "Imported file necessary for selection...") {
+        sel_user_siteid <- "User_Missing"
+      }# if statement ~ END
+
+      if (sel_user_lat == "Imported file necessary for selection...") {
+        sel_user_lat <- "User_Missing"
+      }# if statement ~ END
+
+      if (sel_user_long == "Imported file necessary for selection...") {
+        sel_user_long <- "User_Missing"
+      }# if statement ~ END
+
+      if (sel_user_width == "Imported file necessary for selection...") {
+        sel_user_width <- "User_Missing"
+      }# if statement ~ END
 
       # Pull data
       fn_taxoff <- df_pick_taxoff[df_pick_taxoff$project == sel_proj
@@ -249,7 +279,7 @@ shinyServer(function(input, output, session) {
 
       # Fun Param, Test
 
-      if (sel_proj == "") {
+      if (sel_proj == "User_Missing") {
         # end process with pop up
         msg <- "'Calculation' is missing!"
         shinyalert::shinyalert(title = "Taxa Translate"
@@ -260,7 +290,7 @@ shinyServer(function(input, output, session) {
 
       }## IF ~ sel_proj
 
-      if (sel_user_sampid == "") {
+      if (sel_user_sampid == "User_Missing") {
         # end process with pop up
         msg <- "'SampleID' column name is missing!"
         shinyalert::shinyalert(title = "Taxa Translator/Site Classification"
@@ -271,7 +301,7 @@ shinyServer(function(input, output, session) {
 
       }## IF ~ sel_user_sampid
 
-      if (sel_user_taxaid == "") {
+      if (sel_user_taxaid == "User_Missing") {
         # end process with pop up
         msg <- "'TaxaID' column name is missing!"
         shinyalert::shinyalert(title = "Taxa Translator"
@@ -282,7 +312,7 @@ shinyServer(function(input, output, session) {
 
       }## IF ~ sel_user_taxaid
 
-      if (sel_user_ntaxa == "") {
+      if (sel_user_ntaxa == "User_Missing") {
         # end process with pop up
         msg <- "'N_Taxa' column name is missing!"
         shinyalert::shinyalert(title = "Taxa Translator"
@@ -293,7 +323,7 @@ shinyServer(function(input, output, session) {
 
       }## IF ~ sel_user_ntaxa
 
-      if (sel_user_siteid == "") {
+      if (sel_user_siteid == "User_Missing") {
         # end process with pop up
         msg <- "'SiteID' column name is missing!"
         shinyalert::shinyalert(title = "Site Classification"
@@ -304,7 +334,7 @@ shinyServer(function(input, output, session) {
 
       }## IF ~ sel_user_siteid
 
-      if (sel_user_lat == "") {
+      if (sel_user_lat == "User_Missing") {
         # end process with pop up
         msg <- "'Latitude' column name is missing!"
         shinyalert::shinyalert(title = "Site Classification"
@@ -315,7 +345,7 @@ shinyServer(function(input, output, session) {
 
       }## IF ~ sel_col_lat
 
-      if (sel_user_long == "") {
+      if (sel_user_long == "User_Missing") {
         # end process with pop up
         msg <- "'Longitude' column name is missing!"
         shinyalert::shinyalert(title = "Site Classification"
@@ -326,7 +356,7 @@ shinyServer(function(input, output, session) {
 
       }## IF ~ sel_col_lon
 
-      if (sel_user_width == "") {
+      if (sel_user_width == "User_Missing") {
         # end process with pop up
         msg <- "'Width' column name is missing!"
         shinyalert::shinyalert(title = "Site Classification"
@@ -525,6 +555,37 @@ shinyServer(function(input, output, session) {
                , Width = all_of(sel_user_width))
 
       #### QC ----
+      # Test assumed values and field types
+      # Test Latitude bounds
+      if (df_sites$Latitude < 41.0000 | df_sites$Latitude > 49.0000) {
+        msg <- "Latitude is out of bounds!"
+        shinyalert::shinyalert(title = "Coordinate Check"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+      }# shinyalert ~ END
+
+      # Test Longitude bounds
+      if (df_sites$Longitude < -87.0000 | df_sites$Longitude > -83.0000) {
+        msg <- "Longitude is out of bounds!"
+        shinyalert::shinyalert(title = "Coordinate Check"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+      }# shinyalert ~ END
+
+      # Test if Width field is numeric
+      if (!is.numeric(df_sites$Width)) {
+        msg <- "'Width' field must be numeric!"
+        shinyalert::shinyalert(title = "Field Check"
+                               , text = msg
+                               , type = "error"
+                               , closeOnEsc = TRUE
+                               , closeOnClickOutside = TRUE)
+      }# shinyalert ~ END
+
       # App will crash if there are duplicate named fields
       ## Remove StreamCat variable fields if included in input file
       flds_new <- c("COMID"
