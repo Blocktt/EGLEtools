@@ -1,6 +1,23 @@
 library(shiny)
 
 shinyServer(function(input, output, session) {
+  # Modal ####
+  showModal(modalDialog(
+    title = h3("Michigan EGLE IBI Calculator (MIEGLEtools)")
+    , h4("Welcome to the MIEGLEtools R Shiny app!")
+    , br()
+    , br()
+    , HTML('<center><img src="EGLE_Logo_Primary_Green.png" height="100"></center>')
+    , br()
+    , paste("This app is used to calculate macroinvertebrate IBI scores from"
+            , "samples taken in wadeable streams throughout Michigan."
+            , "Please refer to the 'About' tab for details and the 'Resources'"
+            , "tab for additional documentation."
+            , "This app was funded by MI EGLE and developed by Tetra Tech.")
+    , easyClose = TRUE
+    , footer = NULL
+    , size = "m"
+  ))
 
   # INPUT Display Names ####
 
