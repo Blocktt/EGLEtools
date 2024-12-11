@@ -122,12 +122,6 @@ shinyServer(function(input, output, session) {
   # ~~~~FILE BUILDER~~~~ ----
   # TaxaTrans/SiteClass, UI ----
 
-  # observe({
-  #   req(df_pick_taxoff)
-  #   updateSelectInput(session, "taxatrans_pick_official"
-  #                     , choices = c("", df_pick_taxoff[, "project"]))
-  # })# END ~ observe
-
   observe({
     req(df_import())
     updateSelectInput(session, "taxatrans_user_col_sampid"
@@ -618,24 +612,6 @@ shinyServer(function(input, output, session) {
         names(df_sites)[boo_dup] <- names_old[boo_dup]
       }## IF ~ boo_dup
 
-      # File Size
-      # nrow_sites <- nrow(df_sites)
-      # if (nrow_sites > 500) {
-      #   # end process with pop up
-      #   msg <- paste0("More than 500 sites will cause a timeout on downloading
-      #                 NHD+ and StreamCat data."
-      #                 , "Your file has "
-      #                 , nrow_sites
-      #                 , " records.")
-      #
-      #   shinyalert::shinyalert(title = "Site Classification"
-      #                          , text = msg
-      #                          , type = "error"
-      #                          , closeOnEsc = TRUE
-      #                          , closeOnClickOutside = TRUE)
-      #   # validate(msg)
-      # }## IF ~ nrow_sites
-
       #### Join P51 Classes ----
       polygon_crs <- st_crs(GIS_layer_P51)
       df_sites_sf <- st_as_sf(df_sites, coords = c("Longitude", "Latitude")
@@ -643,103 +619,6 @@ shinyServer(function(input, output, session) {
 
       df_results <- st_join(df_sites_sf, GIS_layer_P51) %>%
         st_drop_geometry()
-
-      #### Get COMIDs ----
-      # COMID
-      # comid <- StreamCatTools::sc_get_comid(df_sites
-      #                                       , xcoord = "Longitude"
-      #                                       , ycoord = "Latitude"
-      #                                       , crsys = 4269)
-      #
-      # # Add COMID to data
-      # df_sites[, "COMID"] <- strsplit(comid, ",")
-      #
-      # # END if COMID all NA
-      # comid_unique <- unique(df_sites[, "COMID"])
-      # if (length(comid_unique) == 1 & any(comid_unique == "NA")) {
-      #   # end process with pop up
-      #   m1 <- "'COMID' all NA!"
-      #   m2 <- "Coordinates likely not valid."
-      #   msg <- paste(m1, m2, sep = "\n")
-      #   shinyalert::shinyalert(title = "Site Classification"
-      #                          , text = msg
-      #                          , type = "error"
-      #                          , closeOnEsc = TRUE
-      #                          , closeOnClickOutside = TRUE)
-      #
-      # }## IF ~ comid_unique
-
-      #### StreamCat ----
-      ## format COMIDs into single string
-      # myCOMIDs <- df_sites %>%
-      #   mutate(COMID = as.character(COMID)) %>%
-      #   filter(!is.na(COMID)) %>%
-      #   pull(COMID)
-      #
-      # myCOMIDs_string <- paste(myCOMIDs, collapse = ",")
-      #
-      # ## get StreamCat data
-      # df_sc <- StreamCatTools::sc_get_data(aoi = 'catchment'
-      #   , comid = myCOMIDs_string
-      #   , metric = "pctwdwet2011,pctow2011,pcthbwet2011")
-      #
-      # # cols to keep
-      # sc_names_drop <- c("CATAREASQKM", "WSAREASQKM")
-      # sc_names_keep <- names(df_sc)[!names(df_sc) %in% sc_names_drop]
-      #
-      # # add StreamCat data to sites
-      # df_sites_sc <- merge(df_sites
-      #                     , df_sc[, sc_names_keep]
-      #                     , by.x = "COMID"
-      #                     , by.y = "COMID"
-      #                     , all.x = TRUE)
-      #
-      # df_sites_sc <- df_sites_sc %>%
-      #   mutate(PctWetOw2011Cat = PCTOW2011CAT + PCTHBWET2011CAT
-      #          + PCTWDWET2011CAT) %>%
-      #   select(-c(PCTOW2011CAT, PCTHBWET2011CAT, PCTWDWET2011CAT))
-
-
-      #### NHD+ ----
-      # NHDplus
-      ## download VAA
-      # nhdplusTools::nhdplusTools_data_dir(file.path("data")) # set dir
-      # nhdplusTools::download_vaa(path = nhdplusTools::get_vaa_path()
-      #                            , force = FALSE
-      #                            , updated_network = FALSE)
-      # # get_vaa_names() # VAA table names
-      # vaa_names2get <- c("slope")
-      # nhdplus_vaa <- nhdplusTools::get_vaa(vaa_names2get)
-      # ## merge with sites_sc
-      # df_sites_sc_nhd <- merge(df_sites_sc
-      #                     , nhdplus_vaa
-      #                     , by.x = "COMID"
-      #                     , by.y = "comid"
-      #                     , all.x = TRUE)
-      #
-      # df_sites_sc_nhd <- df_sites_sc_nhd %>%
-      #   mutate(pct_slope_nhd = 100*slope) %>%
-      #   select(-c(slope))
-
-      #### L3 Ecoregions ----
-      # Calc Ecoregions
-      # df_sites_sf <- sf::st_as_sf(df_sites
-      #                             , coords = c("Longitude", "Latitude")
-      #                             , crs = 4326)
-      #
-      # df_sites_sf <- sf::st_transform(df_sites_sf, st_crs(GIS_layer_L3Eco))
-      #
-      # df_eco3 <- sf::st_join(df_sites_sf, GIS_layer_L3Eco
-      #                        , join = st_intersects)
-      #
-      # df_eco3 <- sf::st_drop_geometry(df_eco3[, c("SiteID", "US_L3CODE")])
-
-
-      # Merge with results
-      # df_results <- merge(df_sites_sc_nhd
-      #                     , df_eco3
-      #                     , by = "SiteID"
-      #                     , all.x = TRUE)
 
       #### Site Classes ----
       df_SiteClass <- df_results %>%
@@ -770,40 +649,6 @@ shinyServer(function(input, output, session) {
                                             ~ "WestSteep"
                                          , TRUE ~ "FLAG")#END ~ INDEX_CLASS
                )#END ~ mutate
-
-      # df_SiteClass <- df_results %>%
-      #   mutate(Region = case_when(US_L3CODE %in% c(50, 51) ~ "North"
-      #                        , US_L3CODE %in% c(55, 56, 57) ~ "South"
-      #                        , TRUE ~ "FLAG")#END ~ Region
-      #          , East_West = if_else(Region == "South"
-      #                                , if_else(Longitude < -83.7200001
-      #                                          , "West"
-      #                                          , "East")
-      #                                , NA_character_)#END ~ East_West
-      #          , Width_CAT = case_when(Width < 13 ~ "Very Narrow"
-      #                                  , Width < 21.270001 ~ "Narrow"
-      #                                  , Width < 68.3670001 ~ "Mid"
-      #                                  , TRUE ~ "Wide")#END ~ Width_CAT
-      #          , Slope_CAT = if_else(pct_slope_nhd > 0.2976, "Steep", "Flat")#END ~ Slope_CAT
-      #          , PctWetOw2011Cat_CAT = if_else(PctWetOw2011Cat < 40.0670001, "Dry", "Wet")
-      #          , INDEX_CLASS = case_when(Region == "South" & East_West == "East"
-      #                                     ~ "East"
-      #                                  , Region == "South" & East_West == "West"
-      #                                     ~ paste0("West", Slope_CAT)
-      #                                  , Region == "North"
-      #                                     & Width_CAT == "Very Narrow"
-      #                                     ~ "VeryNarrow"
-      #                                  , Region == "North"
-      #                                     & Width_CAT == "Narrow" ~ "Narrow"
-      #                                  , Region == "North" & Width_CAT == "Mid"
-      #                                     & PctWetOw2011Cat_CAT == "Dry"
-      #                                     ~ "MidSizeDry"
-      #                                  , Region == "North"
-      #                                     & Width_CAT %in% c("Mid", "Wide")
-      #                                     & PctWetOw2011Cat_CAT == "Wet"
-      #                                     ~ "WetWide"
-      #                                  , TRUE ~ "FLAG")#END ~ INDEX_CLASS
-      #          )#END ~ mutate
 
       # Fix names to match user input
       names(df_SiteClass)[names(df_SiteClass) == "SiteID"] <- sel_user_siteid
@@ -953,7 +798,6 @@ shinyServer(function(input, output, session) {
       file.copy(file.path(path_results, "results.zip"), fname)
 
     }##content~END
-    #, contentType = "application/zip"
   )##download ~ TaxaTrans
 
   #~~~~CALC~~~~----

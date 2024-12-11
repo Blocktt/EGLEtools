@@ -12,13 +12,7 @@ function() {
             , p("If no file name showing below, then repeat 'Import File' in the left sidebar.")
             , p(textOutput("fn_input_display_taxatrans"))
 
-            # , h4("B. Select Calculation.")
-            # , selectInput(inputId = "taxatrans_pick_official"
-            #               , label = "Calculation"
-            #               , choices = NULL)
-
             , h4("B. User File Column Names")
-
             , h5("Required Matching Fields")
             , p("If the default values are present they will be auto-populated.")
 

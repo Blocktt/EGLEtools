@@ -22,8 +22,6 @@ library(readr)
 library(rmarkdown)
 library(tools)
 library(openxlsx)
-# library(StreamCatTools)
-# library(nhdplusTools)
 library(sf)
 
 # Metrics ----
