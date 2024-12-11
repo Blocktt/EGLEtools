@@ -1,11 +1,18 @@
 MIEGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2024-12-10 15:45:06.177099
+2024-12-11 11:03:21.535091
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-12-10 15:45:06.202774
+    #> Last Update: 2024-12-11 11:03:21.563557
+
+# MIEGLEtools 1.1.0.9000 (2024-12-11)
+
+- Added custom CSS to to match aesthetic of EGLE website
+- Added QC elements to taxa translator function
+- Added modal on launch
+- Published to shinyapps.io as beta
 
 # MIEGLEtools 1.0.0.9027 (2024-12-09)
 

@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_version <- "v1.0.0.9027"
+pkg_version <- "v1.1.0.9000"
 
 # Packages----
 library(BioMonTools)
@@ -23,6 +23,7 @@ library(rmarkdown)
 library(tools)
 library(openxlsx)
 library(sf)
+library(kableExtra)
 
 # Metrics ----
 MichMetrics <- c("nt_CruMol","pi_ffg_pred","pi_ffg_shred","pi_habit_cling"
@@ -114,5 +115,5 @@ httr::GET(url_metricscoring, httr::write_disk(temp_metricscoring))
 # Site Classification ----
 # Geospatial data for site classification
 # load(file.path(".","Data", "GIS_layer_L3Eco.rda"))
-load(file.path(".","Data", "GIS_layer_P51.rda"))
+load(file.path(".","data", "GIS_layer_P51.rda"))
 

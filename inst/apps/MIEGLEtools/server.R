@@ -568,7 +568,7 @@ shinyServer(function(input, output, session) {
       #### QC ----
       # Test assumed values and field types
       # Test Latitude bounds
-      if (df_sites$Latitude < 41.0000 | df_sites$Latitude > 49.0000) {
+      if (any(df_sites$Latitude < 41.0000 | df_sites$Latitude > 49.0000)) {
         msg <- "Latitude is out of bounds!"
         shinyalert::shinyalert(title = "Coordinate Check"
                                , text = msg
@@ -578,7 +578,7 @@ shinyServer(function(input, output, session) {
       }# shinyalert ~ END
 
       # Test Longitude bounds
-      if (df_sites$Longitude < -87.0000 | df_sites$Longitude > -83.0000) {
+      if (any(df_sites$Longitude < -91.0000 | df_sites$Longitude > -82.0000)) {
         msg <- "Longitude is out of bounds!"
         shinyalert::shinyalert(title = "Coordinate Check"
                                , text = msg
