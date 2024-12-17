@@ -19,30 +19,6 @@ shinyServer(function(input, output, session) {
     , size = "m"
   ))
 
-  # INPUT Display Names ####
-
-  output$fn_input_display_ibi <- renderText({
-    inFile <- input$fn_input_calc
-
-    if (is.null(inFile)) {
-      return("..No file uploaded yet...")
-    }##IF~is.null~END
-
-    return(paste0("'", inFile$name, "'"))
-
-  })## fn_input_display_ibi
-
-  output$fn_input_display_taxatrans <- renderText({
-    inFile <- input$fn_input_taxatrans
-
-    if (is.null(inFile)) {
-      return("..No file uploaded yet...")
-    }##IF~is.null~END
-
-    return(paste0("'", inFile$name, "'"))
-
-  })## fn_input_display_taxatrans
-
   # ~~~~IMPORT~~~~----
   # IMPORT ----
   file_watch_calc <- reactive({

@@ -33,7 +33,7 @@ file:
 <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/MIEGLEtools/Example_Files/" target="_blank">MI
 EGLE Test Files</a>.
 
-## Input file requirements for bugs
+## Input file requirements for ELGE IBI models
 
 ```{r}
 # Packages
@@ -48,11 +48,9 @@ path_data <- file.path("files", fn_data)
 df_data <- read_excel(path_data, sheet = "FileBuild_Outside")
 
 # Display
-cap_data <- "Input file requirements for ELGE IBI models."
-
 options(knitr.kable.NA = '')
 df_data %>%
-  kable(caption = cap_data) %>%
+  kable() %>%
   kable_styling(full_width = F, position = "left") %>%
   row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
   row_spec(1:(nrow(df_data) - 1), extra_css = "border-bottom: 1px solid black;") %>%

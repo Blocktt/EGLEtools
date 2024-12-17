@@ -4,13 +4,15 @@ function() {
   sidebarLayout(
     sidebarPanel(
        h2("Calculate IBI Models")
-       , p("This function will render all steps and make available files for download.")
-       , br()
+       , p("This function will calculate metric values, metric scores, index scores,
+           and apply attainment status for all samples in the input file.")
 
        , h4("A. Upload a file")
-       # , p("If no file name showing below, then repeat 'Import File' in the left sidebar.")
-       , p("Only comma-separated or tab-separated files.")
-       , h5("Select file parameters")
+       , p("The 'separator' allows the user to upload different file formats
+                         (e.g., csv, tsv, or txt).")
+       , p(paste0("File uploads are limited to a maximum of "
+                  , mb_limit
+                  , " MB in size."))
        , radioButtons("sep_calc", "Separator"
                       , c(Comma = ",", Tab = "\t"),',')
        , fileInput("fn_input_calc", label = "Choose file to upload"
@@ -22,23 +24,13 @@ function() {
                                 , ".csv"
                                 , ".tsv"
                                 , ".txt"))##fileInput~END
-       , p("The 'separator' allows the user to upload different file formats
-                         (e.g., csv, tsv, or txt).")
-       , p("Files for all operations will be uploaded through this interface.")
-       , p(paste0("File uploads are limited to a maximum of "
-                  , mb_limit
-                  , " MB in size."))
-       , p(textOutput("fn_input_display_ibi"))
 
        , h4("B. Mark Redundant (Non-Distinct) Taxa")
        , checkboxInput("ExclTaxa"
-                       , "Generate Redundant Taxa Column"
+                       , "Generate EXCLUDE Column"
                        , TRUE)
 
        , h4("C. Run Calculations")
-       , p("This button will calculate metrics values, metric scores
-           , index scores, and attainment status for every sample.")
-
        , useShinyjs()
        , shinyjs::disabled(shinyBS::bsButton("b_calc_ibi"
                                              , label = "Run Calculations"))
@@ -51,9 +43,9 @@ function() {
     , mainPanel(
         tabsetPanel(type = "tabs"
                     , tabPanel(title = "Data, Import"
-                               , p("A table is shown below after data is loaded.")
+                               , p("A table is shown below after data are loaded.")
                                , DT::dataTableOutput("df_import_DT_calc"))
-                    , tabPanel(title = "Calc_IBI_Output"
+                    , tabPanel(title = "Output Description"
                                ,includeHTML(file.path("www"
                                                       , "rmd_html"
                                           , "ShinyHTML_Calc_Output.html"))))## tabsetPanel ~ END

@@ -32,3 +32,11 @@
   color: #33A39E; /* Change this to your desired color */
   cursor: pointer; /* Optional: changes the cursor to a pointer when hovering */
 }
+
+.nav-tabs > li > a {
+  color: #33A39E; /* Change this to your desired color */
+}
+
+.nav-tabs > li.active > a {
+  color: #33A39E; /* Change this to your desired color for the active tab */
+}

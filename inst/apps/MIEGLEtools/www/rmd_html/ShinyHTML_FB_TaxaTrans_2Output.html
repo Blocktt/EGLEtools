@@ -9,11 +9,6 @@ with the date and time.</p>
 <p>The individual files and their contents are output in three
 subfolders. Each output file is described in the table below.</p>
 <table class="table" style="color: black; width: auto !important; ">
-<caption>
-File Builder, Taxa Translator, Index Class assignments, zip file
-contents. ‘yyyymmdd’ represents the date when the associated file has
-last been updated.
-</caption>
 <thead>
 <tr>
 <th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
@@ -36,7 +31,7 @@ Original file name
 _user_input
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Original input file
+Original input file.
 </td>
 </tr>
 <tr>
@@ -58,7 +53,7 @@ MIEGLEtools_IBI_Attributes_Metadata_yyyymmdd
 reference
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Metadata for the regional attribute table
+Metadata for the regional attribute table.
 </td>
 </tr>
 <tr>
@@ -69,7 +64,7 @@ MIEGLEtools_IBI_Taxa_Translator_yyyymmdd
 reference
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Regional taxa translator table
+Regional taxa translator table.
 </td>
 </tr>
 <tr>
@@ -80,7 +75,7 @@ MIEGLEtools_IBI_Taxa_Translator_Metadata_yyyymmdd
 reference
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Metadata for the regional taxa translator table
+Metadata for the regional taxa translator table.
 </td>
 </tr>
 <tr>
@@ -88,7 +83,7 @@ Metadata for the regional taxa translator table
 IBI_TaxaTranslator_modify
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-results_MI_EGLE_IBI
+quality_control
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Lists the taxa that occur in the input file, plus: 1) original TaxonID;
@@ -96,7 +91,7 @@ Lists the taxa that occur in the input file, plus: 1) original TaxonID;
 whether the original TaxonID occurs in the regional taxa translator
 table (TRUE/FALSE); 4) whether the original TaxonID was changed during
 the ‘translation’ process (YES/NO); 5) total count in the input file (#
-individuals summed across samples)
+individuals summed across samples).
 </td>
 </tr>
 <tr>
@@ -104,11 +99,11 @@ individuals summed across samples)
 IBI_TaxaTranslator_nonmatch
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-results_MI_EGLE_IBI
+quality_control
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Lists taxa in the input file that don’t occur in the regional taxa
-translator table (if the file is blank, all are ‘matches’)
+translator table (if the file is blank, all are ‘matches’).
 </td>
 </tr>
 <tr>
@@ -116,11 +111,11 @@ translator table (if the file is blank, all are ‘matches’)
 IBI_TaxaTranslator_source
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-results_MI_EGLE_IBI
+quality_control
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Provides documentation of the Operational Taxonomic Unit (OTU) and
-source files that were used
+source files that were used.
 </td>
 </tr>
 <tr>
@@ -128,7 +123,7 @@ source files that were used
 IBI_IndexClassification
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-results_MI_EGLE_IBI
+quality_control
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 List of sites assigned to IBI Index Classes. Contains interim fields
@@ -136,16 +131,16 @@ necessary for index classification.
 </td>
 </tr>
 <tr>
-<td style="text-align:left;border-bottom: 2px solid black;">
-IBI_TaxaTranslator_TAXAATTR
+<td style="text-align:left;font-weight: bold;color: rgba(51, 163, 158, 255) !important;border-bottom: 2px solid black;">
+IBI_FileBuilder_CompleteInput
 </td>
-<td style="text-align:left;border-bottom: 2px solid black;">
+<td style="text-align:left;font-weight: bold;color: rgba(51, 163, 158, 255) !important;border-bottom: 2px solid black;">
 results_MI_EGLE_IBI
 </td>
-<td style="text-align:left;border-bottom: 2px solid black;">
+<td style="text-align:left;font-weight: bold;color: rgba(51, 163, 158, 255) !important;border-bottom: 2px solid black;">
 Final output, with ‘translated’ TaxonID, NonTarget designations,
-attributes and phylogeny; the file is ready to be run through the IBI
-calculator
+attributes and phylogeny, and assigned Index Classes. The file is ready
+to be run through the IBI calculator.
 </td>
 </tr>
 </tbody>
