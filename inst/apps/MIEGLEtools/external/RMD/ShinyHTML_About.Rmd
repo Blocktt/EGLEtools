@@ -29,23 +29,18 @@ EGLE Test Files</a>.
 
 # Funding and acknowledgments
 
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
-
 Section 106 funding allocated to MI EGLE by the USEPA funded the
 development of this app.
 
-<!-- </details> -->
-
 # Intended application
-
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
 
 The MI EGLE Macroinvertebrate IBIs improve the diagnostic ability of MI
 EGLE scientists to identify degradation in biological integrity and
 water quality. The IBIs are intended to be applied to samples that meet
 the following criteria:
+
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
 
 -   **Geographic area**: Wadeable streams in Michigan.
 
@@ -68,12 +63,9 @@ the following criteria:
 -   **Subsampling**: A composite sample is subsampled in the field to
     obtain 300 +/- 60 organisms for identification and enumeration.
     
-<!-- </details> -->
+</details>
 
 # Index Classes
-
-<!-- <details> -->
-<!-- <summary>Click to expand</summary> -->
 
 Appropriate stream classification ensures that the index calibrated for
 a stream type gives the most reliable community assessment information.
@@ -82,6 +74,9 @@ specifications in the table below. Once a site is sampled using
 Procedure 51, the stream class is determined and then generally retained
 for future monitoring events. This prevents a site from switching class
 based on a small difference in stream width.
+
+<details>
+<summary class="custom-summary">Expand for more details</summary>
 
 The north region includes:
 
@@ -99,25 +94,25 @@ The south region includes:
 
 <center>![](images/About_SiteClasses_Fig1.png){width="65%"}</center>
 
-<!-- </details> -->
+</details>
 
 # Macroinvertebrate Models
-
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
 
 Metric calculation depends on the list of taxa collected, taxa traits,
 and calculation descriptions. Each stream class has a specific index
 that includes a unique set of metrics and scoring formulae (see tables
 below). Metric scores are first calculated from metric values. Any
-scores calculated as \>100 are reset to 100 and scores calculated to \<0
+scores calculated as 100 are reset to 100 and scores calculated to 0
 are reset to 0. The calculated and reset scores are averaged across all
 metrics to arrive at an index score for each site.
 
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
+
 ## Very Narrow Index Class
 
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
 
 ```{r Very Narrow}
 # Packages
@@ -144,12 +139,12 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
-<!-- </details> -->
+</details>
 
 ## Narrow Index Class
 
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
 
 ```{r Narrow}
 # Packages
@@ -176,12 +171,12 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
-<!-- </details> -->
+</details>
 
 ## Mid-Size Dry Index Class
 
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
 
 ```{r MSD}
 # Packages
@@ -208,12 +203,12 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
-<!-- </details> -->
+</details>
 
 ## Wet/Wide Index Class
 
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
 
 ```{r wetWide}
 # Packages
@@ -240,11 +235,11 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
-<!-- </details> -->
+</details>
 
 ## West Flat Index Class
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
 
 ```{r WestFlat}
 # Packages
@@ -271,12 +266,12 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
-<!-- </details> -->
+</details>
 
 ## West Steep Index Class
 
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
 
 ```{r WestSteep}
 # Packages
@@ -303,12 +298,12 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
-<!-- </details> -->
+</details>
 
 ## East Index Class
 
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
   
 ```{r East}
 # Packages
@@ -335,13 +330,10 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
-<!-- </details> -->
+</details>
 
 
 # Interpretation
-
-<!-- <details> -->
-<!--   <summary>Click to expand</summary> -->
 
 Previous versions of Procedure 51 scoring and thresholds were developed
 to classify macroinvertebrate communities into either “excellent,”
@@ -354,6 +346,9 @@ determines if a macroinvertebrate community “meets expectations” or does
 “not meet expectations.” “Not meeting expectations” is an indicator that
 water quality, stream habitat, or other conditions are impacting the
 biological community.
+
+<details>
+  <summary class="custom-summary">Expand for more details</summary>
 
 With the goal of using macroinvertebrate communities as an indication of
 stream function and the influence of human impacts, the Procedure 51 MMI
@@ -413,4 +408,4 @@ df_data %>%
 ```
 
 
-<!-- </details> -->
+</details>

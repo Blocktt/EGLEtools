@@ -27,3 +27,8 @@
 .content-wrapper, .right-side {
     background-color: #f2f2f2 !important;
 }
+
+.custom-summary {
+  color: #33A39E; /* Change this to your desired color */
+  cursor: pointer; /* Optional: changes the cursor to a pointer when hovering */
+}
