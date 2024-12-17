@@ -266,6 +266,13 @@ shinyServer(function(input, output, session) {
       }
       # Add "Results" folder based on user selection later in this step
 
+      # Add "QC" folder if missing
+      path_results_qc <- file.path(path_results, dn_files_qc)
+      boo_Results <- dir.exists(file.path(path_results_qc))
+      if (boo_Results == FALSE) {
+        dir.create(file.path(path_results_qc))
+      }
+
       # button, disable, download
       shinyjs::disable("b_download_taxatrans")
 
@@ -731,12 +738,6 @@ shinyServer(function(input, output, session) {
       names(df_SiteClass)[names(df_SiteClass) == "Longitude"] <- sel_user_long
       names(df_SiteClass)[names(df_SiteClass) == "Width"] <- sel_user_width
 
-      # Save Results
-      fn_siteclass <- "IBI_IndexClassification.csv"
-      dn_siteclass <- path_results_sub
-      pn_siteclass <- file.path(dn_siteclass, fn_siteclass)
-      write.csv(df_SiteClass, pn_siteclass, row.names = FALSE)
-
       #### Join to taxa data ----
 
       # trim site class data
@@ -765,7 +766,7 @@ shinyServer(function(input, output, session) {
 
       fn_part <- "IBI_TaxaTranslator_source.csv"
       write.csv(df_save
-                , file.path(path_results_sub, fn_part)
+                , file.path(path_results_qc, fn_part)
                 , row.names = FALSE)
       rm(df_save, fn_part)
 
@@ -789,7 +790,7 @@ shinyServer(function(input, output, session) {
       df_save <- taxatrans_results$taxatrans_unique
       fn_part <- "IBI_TaxaTranslator_modify.csv"
       write.csv(df_save
-                , file.path(path_results_sub, fn_part)
+                , file.path(path_results_qc, fn_part)
                 , row.names = FALSE)
       rm(df_save, fn_part)
 
@@ -797,13 +798,20 @@ shinyServer(function(input, output, session) {
       df_save <- data.frame(taxatrans_results$nonmatch)
       fn_part <- "IBI_TaxaTranslator_nonmatch.csv"
       write.csv(df_save
-                , file.path(path_results_sub, fn_part)
+                , file.path(path_results_qc, fn_part)
                 , row.names = FALSE)
       rm(df_save, fn_part)
 
+      ## Site classification
+      # Save Results
+      fn_siteclass <- "IBI_IndexClassification.csv"
+      dn_siteclass <- path_results_qc
+      pn_siteclass <- file.path(dn_siteclass, fn_siteclass)
+      write.csv(df_SiteClass, pn_siteclass, row.names = FALSE)
+
       ## Taxa Trans
       df_save <- taxatrans_results$merge
-      fn_part <- "IBI_TaxaTranslator_TAXAATTR.csv"
+      fn_part <- "IBI_FileBuilder_CompleteInput.csv"
       write.csv(df_save
                 , file.path(path_results_sub, fn_part)
                 , row.names = FALSE)
@@ -927,6 +935,13 @@ shinyServer(function(input, output, session) {
         dir.create(file.path(path_results_ref))
       }
 
+      # Add "QC" folder if missing
+      path_results_qc <- file.path(path_results, dn_files_qc)
+      boo_Results <- dir.exists(file.path(path_results_qc))
+      if (boo_Results == FALSE) {
+        dir.create(file.path(path_results_qc))
+      }
+
       # button, disable, download
       shinyjs::disable("b_download_ibi")
 
@@ -1023,7 +1038,7 @@ shinyServer(function(input, output, session) {
 
         # Save Results
         fn_excl <- "IBI_1markexcl.csv"
-        dn_excl <- path_results_sub
+        dn_excl <- path_results_qc
         pn_excl <- file.path(dn_excl, fn_excl)
         write.csv(df_input, pn_excl, row.names = FALSE)
 
@@ -1046,7 +1061,7 @@ shinyServer(function(input, output, session) {
       ### Save Results ----
 
       fn_metval <- "IBI_2metvall_all.csv"
-      dn_metval <- path_results_sub
+      dn_metval <- path_results_qc
       pn_metval <- file.path(dn_metval, fn_metval)
       write.csv(df_metval, pn_metval, row.names = FALSE)
 
@@ -1060,7 +1075,7 @@ shinyServer(function(input, output, session) {
 
       # Save
       fn_metval_slim <- "IBI_2metval_IBI.csv"
-      dn_metval_slim <- path_results_sub
+      dn_metval_slim <- path_results_qc
       pn_metval_slim <- file.path(dn_metval_slim, fn_metval_slim)
       write.csv(df_metval_slim, pn_metval_slim, row.names = FALSE)
 
@@ -1094,7 +1109,7 @@ shinyServer(function(input, output, session) {
 
       # Save Results
       fn_metsc <- "IBI_3metsc.csv"
-      dn_metsc <- path_results_sub
+      dn_metsc <- path_results_qc
       pn_metsc <- file.path(dn_metsc, fn_metsc)
       write.csv(df_metsc, pn_metsc, row.names = FALSE)
 
@@ -1119,7 +1134,7 @@ shinyServer(function(input, output, session) {
           TRUE ~ "Meets expectations"))
 
       # Save Results
-      fn_index_attn <- "IBI_4Index_Attain.csv"
+      fn_index_attn <- "IBI_IndexCalc_Final.csv"
       dn_index_attn <- path_results_sub
       pn_index_attn <- file.path(dn_index_attn, fn_index_attn)
       write.csv(df_index_attn, pn_index_attn, row.names = FALSE)

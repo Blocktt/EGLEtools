@@ -86,6 +86,7 @@ abr_results     <- "results"
 
 dn_files_input  <- "_user_input"
 dn_files_ref    <- "reference"
+dn_files_qc     <- "quality_control"
 dn_files_fb     <- paste(abr_results, abr_filebuilder, sep = "_")
 
 # Taxa translator file ----
