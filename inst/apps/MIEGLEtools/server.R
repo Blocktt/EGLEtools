@@ -22,7 +22,7 @@ shinyServer(function(input, output, session) {
   # INPUT Display Names ####
 
   output$fn_input_display_ibi <- renderText({
-    inFile <- input$fn_input
+    inFile <- input$fn_input_calc
 
     if (is.null(inFile)) {
       return("..No file uploaded yet...")
@@ -33,7 +33,7 @@ shinyServer(function(input, output, session) {
   })## fn_input_display_ibi
 
   output$fn_input_display_taxatrans <- renderText({
-    inFile <- input$fn_input
+    inFile <- input$fn_input_taxatrans
 
     if (is.null(inFile)) {
       return("..No file uploaded yet...")
@@ -45,27 +45,31 @@ shinyServer(function(input, output, session) {
 
   # ~~~~IMPORT~~~~----
   # IMPORT ----
-  file_watch <- reactive({
-    input$fn_input
+  file_watch_calc <- reactive({
+    input$fn_input_calc
   })## file_watch
 
-  ## IMPORT, df_import ####
-  df_import <- eventReactive(file_watch(), {
+  file_watch_taxatrans <- reactive({
+    input$fn_input_taxatrans
+  })## file_watch
 
-    inFile <- input$fn_input
+  ## IMPORT, df_import, calc ####
+  df_import_calc <- eventReactive(file_watch_calc(), {
+
+    inFile <- input$fn_input_calc
 
     if (is.null(inFile)) {
       return(NULL)
     }##IF~is.null~END
 
-    sep_user <- input$sep
+    sep_user <- input$sep_calc
 
     # Define file
     fn_inFile <- inFile$datapath
 
     #message(getwd())
-    message(paste0("Import, separator: '", input$sep,"'"))
-    message(paste0("Import, file name: ", input$fn_input$name))
+    message(paste0("Import, separator: '", input$sep_calc,"'"))
+    message(paste0("Import, file name: ", input$fn_input_calc$name))
 
     # Remove existing files in "results"
     clean_results()
@@ -79,19 +83,59 @@ shinyServer(function(input, output, session) {
 
 
     # Copy user files to results sub-folder
-    copy_import_file(import_file = input$fn_input)
+    copy_import_file(import_file = input$fn_input_calc)
 
     ## button, enable, calc ----
-    shinyjs::enable("b_calc_taxatrans")
     shinyjs::enable("b_calc_ibi")
 
     return(df_input)
 
   })##output$df_import ~ END
 
+  ## IMPORT, df_import, taxatrans ####
+
+  df_import_taxatrans <- eventReactive(file_watch_taxatrans(), {
+
+    inFile <- input$fn_input_taxatrans
+
+    if (is.null(inFile)) {
+      return(NULL)
+    }##IF~is.null~END
+
+    sep_user <- input$sep_taxatrans
+
+    # Define file
+    fn_inFile <- inFile$datapath
+
+    #message(getwd())
+    message(paste0("Import, separator: '", input$sep_taxatrans,"'"))
+    message(paste0("Import, file name: ", input$fn_input_taxatrans$name))
+
+    # Remove existing files in "results"
+    clean_results()
+
+    # Read input file
+    df_input <- read.delim(fn_inFile
+                           , header = TRUE
+                           , sep = sep_user
+                           , stringsAsFactors = FALSE
+                           , na.strings = c("", "NA"))
+
+
+    # Copy user files to results sub-folder
+    copy_import_file(import_file = input$fn_input_taxatrans)
+
+    ## button, enable, calc ----
+    shinyjs::enable("b_calc_taxatrans")
+
+    return(df_input)
+
+  })##output$df_import ~ END
+
   ## IMPORT, df_import_DT ----
-  output$df_import_DT <- DT::renderDT({
-    df_data <- df_import()
+  ### taxa trans ----
+  output$df_import_DT_taxatrans <- DT::renderDT({
+    df_data <- df_import_taxatrans()
     }##expression~END
     , filter = "top"
     , caption = "Table. Imported data."
@@ -101,10 +145,41 @@ shinyServer(function(input, output, session) {
                      , autoWidth = TRUE)
     )##df_import_DT~END
 
-  ## IMPORT, col names ----
-  col_import <- eventReactive(file_watch(), {
+  ### calc ----
+  output$df_import_DT_calc <- DT::renderDT({
+    df_data <- df_import_calc()
+  }##expression~END
+  , filter = "top"
+  , caption = "Table. Imported data."
+  , options = list(scrollX = TRUE
+                   , pageLength = 5
+                   , lengthMenu = c(5, 10, 25, 50, 100, 1000)
+                   , autoWidth = TRUE)
+  )##df_import_DT~END
 
-    inFile <- input$fn_input
+  ## IMPORT, col names ----
+  ### taxa trans ----
+  col_import <- eventReactive(file_watch_taxatrans(), {
+
+    inFile <- input$fn_input_taxatrans
+
+    if (is.null(inFile)) {
+      return(NULL)
+    }##IF~is.null~END
+
+    # temp df
+    df_temp <- df_import()
+    # Column Names
+    input_colnames <- names(df_temp)
+    #
+    return(input_colnames)
+
+  })## col_import
+
+  ### calc ----
+  col_import <- eventReactive(file_watch_calc(), {
+
+    inFile <- input$fn_input_calc
 
     if (is.null(inFile)) {
       return(NULL)
@@ -123,30 +198,30 @@ shinyServer(function(input, output, session) {
   # TaxaTrans/SiteClass, UI ----
 
   observe({
-    req(df_import())
+    req(df_import_taxatrans())
     updateSelectInput(session, "taxatrans_user_col_sampid"
-                      , choices = c("", names(df_import())))
+                      , choices = c("", names(df_import_taxatrans())))
 
     updateSelectInput(session, "taxatrans_user_col_taxaid"
-                      , choices = c("", names(df_import())))
+                      , choices = c("", names(df_import_taxatrans())))
 
     updateSelectInput(session, "taxatrans_user_col_n_taxa"
-                      , choices = c("", names(df_import())))
+                      , choices = c("", names(df_import_taxatrans())))
 
     updateSelectInput(session, "taxatrans_user_col_groupby"
-                      , choices = c("", names(df_import())))
+                      , choices = c("", names(df_import_taxatrans())))
 
     updateSelectInput(session, "siteclass_user_col_siteid"
-                      , choices = c("", names(df_import())))
+                      , choices = c("", names(df_import_taxatrans())))
 
     updateSelectInput(session, "siteclass_user_col_lat"
-                      , choices = c("", names(df_import())))
+                      , choices = c("", names(df_import_taxatrans())))
 
     updateSelectInput(session, "siteclass_user_col_long"
-                      , choices = c("", names(df_import())))
+                      , choices = c("", names(df_import_taxatrans())))
 
     updateSelectInput(session, "siteclass_user_col_width"
-                      , choices = c("", names(df_import())))
+                      , choices = c("", names(df_import_taxatrans())))
   })# END ~ observe
 
   # TaxaTrans/SiteClass, combine ----
@@ -177,7 +252,7 @@ shinyServer(function(input, output, session) {
       clean_results()
 
       # Copy user files to results sub-folder
-      copy_import_file(import_file = input$fn_input)
+      copy_import_file(import_file = input$fn_input_taxatrans)
 
       # result folder and files
       fn_abr <- abr_taxatrans
@@ -196,12 +271,12 @@ shinyServer(function(input, output, session) {
 
       # Import data
       # data
-      inFile <- input$fn_input
+      inFile <- input$fn_input_taxatrans
       fn_input_base <- tools::file_path_sans_ext(inFile$name)
       message(paste0("Import, file name, base: ", fn_input_base))
       df_input <- read.delim(inFile$datapath
                              , header = TRUE
-                             , sep = input$sep
+                             , sep = input$sep_taxatrans
                              , stringsAsFactors = FALSE)
       # QC, FAIL if TRUE
       if (is.null(df_input)) {
@@ -784,7 +859,7 @@ shinyServer(function(input, output, session) {
   output$b_download_taxatrans <- downloadHandler(
 
     filename = function() {
-      inFile <- input$fn_input
+      inFile <- input$fn_input_taxatrans
       fn_input_base <- tools::file_path_sans_ext(inFile$name)
       fn_abr <- abr_taxatrans
       fn_abr_save <- paste0("_", fn_abr, "_")
@@ -830,7 +905,7 @@ shinyServer(function(input, output, session) {
       clean_results()
 
       # Copy user files to results sub-folder
-      copy_import_file(import_file = input$fn_input)
+      copy_import_file(import_file = input$fn_input_calc)
 
       # result folder and files
       fn_abr <- abr_calc
@@ -856,12 +931,12 @@ shinyServer(function(input, output, session) {
       shinyjs::disable("b_download_ibi")
 
       # data
-      inFile <- input$fn_input
+      inFile <- input$fn_input_calc
       fn_input_base <- tools::file_path_sans_ext(inFile$name)
       message(paste0("Import, file name, base: ", fn_input_base))
       df_input <- read.delim(inFile$datapath
                              , header = TRUE
-                             , sep = input$sep
+                             , sep = input$sep_calc
                              , stringsAsFactors = FALSE)
       # QC, FAIL if TRUE
       if (is.null(df_input)) {
@@ -1110,7 +1185,7 @@ shinyServer(function(input, output, session) {
   output$b_download_ibi <- downloadHandler(
 
     filename = function() {
-      inFile <- input$fn_input
+      inFile <- input$fn_input_calc
       fn_input_base <- tools::file_path_sans_ext(inFile$name)
       fn_abr <- abr_calc
       fn_abr_save <- paste0("_", fn_abr, "_")

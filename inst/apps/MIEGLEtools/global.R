@@ -1,7 +1,7 @@
 # Shiny Global File
 
 # Version ----
-pkg_version <- "v1.1.0.9000"
+pkg_version <- "v1.1.0.9001"
 
 # Packages----
 library(BioMonTools)
@@ -47,8 +47,6 @@ db_main_sb                     <- source("external/db_main_sb.R"
 db_main_body                   <- source("external/db_main_body.R"
                                         , local = TRUE)$value
 tab_code_about                 <- source("external/tab_about.R"
-                                         , local = TRUE)$value
-tab_code_import                <- source("external/tab_import.R"
                                          , local = TRUE)$value
 tab_code_filebuilder_intro    <- source("external/tab_filebuilder_intro.R"
                                          , local = TRUE)$value

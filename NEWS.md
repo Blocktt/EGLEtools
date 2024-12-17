@@ -1,11 +1,15 @@
 MIEGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2024-12-11 11:03:21.535091
+2024-12-17 09:02:53.970736
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-12-11 11:03:21.563557
+    #> Last Update: 2024-12-17 09:02:53.99511
+
+# MIEGLEtools 1.1.0.9001 (2024-12-17)
+
+- Removed tab_import in favor of two import functions. One in each step.
 
 # MIEGLEtools 1.1.0.9000 (2024-12-11)
 

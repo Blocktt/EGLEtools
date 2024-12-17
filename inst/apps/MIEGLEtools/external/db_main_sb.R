@@ -16,10 +16,6 @@ function(id) {
       , menuItem(text = "About"
                , tabName = "tab_about"
                , icon = icon("house"))# END ~ menuItem
-      , menuItem(text = "Import File"
-                 , tabName = "tab_import"
-                 , icon = icon("file-arrow-up")
-                 , startExpanded = TRUE)# END ~ menuItem
       , menuItem(text = "Step 1: Prepare Data"
                  , icon = icon("toolbox")
                  , menuSubItem("Introduction"

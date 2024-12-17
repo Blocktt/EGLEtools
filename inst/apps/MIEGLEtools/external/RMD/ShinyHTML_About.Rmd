@@ -29,10 +29,18 @@ EGLE Test Files</a>.
 
 # Funding and acknowledgments
 
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
+
 Section 106 funding allocated to MI EGLE by the USEPA funded the
 development of this app.
 
+<!-- </details> -->
+
 # Intended application
+
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
 
 The MI EGLE Macroinvertebrate IBIs improve the diagnostic ability of MI
 EGLE scientists to identify degradation in biological integrity and
@@ -59,8 +67,13 @@ the following criteria:
 
 -   **Subsampling**: A composite sample is subsampled in the field to
     obtain 300 +/- 60 organisms for identification and enumeration.
+    
+<!-- </details> -->
 
 # Index Classes
+
+<!-- <details> -->
+<!-- <summary>Click to expand</summary> -->
 
 Appropriate stream classification ensures that the index calibrated for
 a stream type gives the most reliable community assessment information.
@@ -86,7 +99,12 @@ The south region includes:
 
 <center>![](images/About_SiteClasses_Fig1.png){width="65%"}</center>
 
+<!-- </details> -->
+
 # Macroinvertebrate Models
+
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
 
 Metric calculation depends on the list of taxa collected, taxa traits,
 and calculation descriptions. Each stream class has a specific index
@@ -97,6 +115,9 @@ are reset to 0. The calculated and reset scores are averaged across all
 metrics to arrive at an index score for each site.
 
 ## Very Narrow Index Class
+
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
 
 ```{r Very Narrow}
 # Packages
@@ -123,13 +144,19 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
+<!-- </details> -->
+
 ## Narrow Index Class
+
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
 
 ```{r Narrow}
 # Packages
 library(readxl)
 library(knitr)
 library(dplyr)
+library(kableExtra)
 
 # Data
 fn_data <- "OutputFileSubtabs.xlsx"
@@ -149,13 +176,19 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
+<!-- </details> -->
+
 ## Mid-Size Dry Index Class
+
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
 
 ```{r MSD}
 # Packages
 library(readxl)
 library(knitr)
 library(dplyr)
+library(kableExtra)
 
 # Data
 fn_data <- "OutputFileSubtabs.xlsx"
@@ -175,13 +208,19 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
+<!-- </details> -->
+
 ## Wet/Wide Index Class
+
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
 
 ```{r wetWide}
 # Packages
 library(readxl)
 library(knitr)
 library(dplyr)
+library(kableExtra)
 
 # Data
 fn_data <- "OutputFileSubtabs.xlsx"
@@ -201,13 +240,18 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
+<!-- </details> -->
+
 ## West Flat Index Class
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
 
 ```{r WestFlat}
 # Packages
 library(readxl)
 library(knitr)
 library(dplyr)
+library(kableExtra)
 
 # Data
 fn_data <- "OutputFileSubtabs.xlsx"
@@ -227,13 +271,19 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
+<!-- </details> -->
+
 ## West Steep Index Class
+
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
 
 ```{r WestSteep}
 # Packages
 library(readxl)
 library(knitr)
 library(dplyr)
+library(kableExtra)
 
 # Data
 fn_data <- "OutputFileSubtabs.xlsx"
@@ -253,13 +303,19 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
+<!-- </details> -->
+
 ## East Index Class
 
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
+  
 ```{r East}
 # Packages
 library(readxl)
 library(knitr)
 library(dplyr)
+library(kableExtra)
 
 # Data
 fn_data <- "OutputFileSubtabs.xlsx"
@@ -279,7 +335,13 @@ df_data_trim %>%
   row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
 ```
 
+<!-- </details> -->
+
+
 # Interpretation
+
+<!-- <details> -->
+<!--   <summary>Click to expand</summary> -->
 
 Previous versions of Procedure 51 scoring and thresholds were developed
 to classify macroinvertebrate communities into either “excellent,”
@@ -333,6 +395,7 @@ reference site percentile for each stream class.
 # Packages
 library(readxl)
 library(knitr)
+library(kableExtra)
 
 # Data
 fn_data <- "OutputFileSubtabs.xlsx"
@@ -348,3 +411,6 @@ df_data %>%
   row_spec(1:(nrow(df_data) - 1), extra_css = "border-bottom: 1px solid black;") %>%
   row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
 ```
+
+
+<!-- </details> -->

@@ -10,8 +10,6 @@ function(id) {
     tabItems(
       tabItem(tabName = "tab_about"
               , tab_code_about())
-      , tabItem(tabName = "tab_import"
-                , tab_code_import())
       , tabItem(tabName = "tab_filebuilder_intro"
                 , tab_code_filebuilder_intro())
       , tabItem(tabName = "tab_filebuilder_taxatrans"
