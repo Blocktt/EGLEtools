@@ -610,10 +610,22 @@ shinyServer(function(input, output, session) {
         rename(SiteID = all_of(sel_user_siteid)
                , Latitude = all_of(sel_user_lat)
                , Longitude = all_of(sel_user_long)
-               , Width = all_of(sel_user_width))
+               , Width = all_of(sel_user_width)) %>%
+        group_by(SiteID, Latitude, Longitude) %>%
+        summarize(Width = mean(Width))
 
       #### QC ----
       # Test assumed values and field types
+      # Test duplicates SiteID
+      if (length(unique(df_sites$SiteID)) < nrow(df_sites)) {
+        msg <- "There are duplicate SiteID values! Check for non-unique coordinates."
+        shinyalert::shinyalert(title = "Coordinate Check",
+                               text = msg,
+                               type = "error",
+                               closeOnEsc = TRUE,
+                               closeOnClickOutside = TRUE)
+      }# shinyalert ~ END
+
       # Test Latitude bounds
       if (any(df_sites$Latitude < 41.0000 | df_sites$Latitude > 49.0000)) {
         msg <- "Latitude is out of bounds!"
