@@ -1,11 +1,16 @@
 MIEGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2024-12-17 09:02:53.970736
+2024-12-23 14:34:09.504687
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-12-17 09:02:53.99511
+    #> Last Update: 2024-12-23 14:34:09.526226
+
+# MIEGLEtools 1.1.0.9007 (2024-12-23)
+
+- Updated file builder to accommodate wide-format input files.
+- Fixed site classification to use mean of reported widths in dup sites.
 
 # MIEGLEtools 1.1.0.9001 (2024-12-17)
 
