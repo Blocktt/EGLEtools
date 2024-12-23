@@ -24,6 +24,7 @@ library(tools)
 library(openxlsx)
 library(sf)
 library(kableExtra)
+library(tidyr)
 
 # Metrics ----
 MichMetrics <- c("nt_CruMol","pi_ffg_pred","pi_ffg_shred","pi_habit_cling"

@@ -55,7 +55,8 @@ shinyServer(function(input, output, session) {
                            , header = TRUE
                            , sep = sep_user
                            , stringsAsFactors = FALSE
-                           , na.strings = c("", "NA"))
+                           , na.strings = c("", "NA")
+                           , check.names = FALSE)
 
 
     # Copy user files to results sub-folder
@@ -95,7 +96,8 @@ shinyServer(function(input, output, session) {
                            , header = TRUE
                            , sep = sep_user
                            , stringsAsFactors = FALSE
-                           , na.strings = c("", "NA"))
+                           , na.strings = c("", "NA")
+                           , check.names = FALSE)
 
 
     # Copy user files to results sub-folder
@@ -178,12 +180,6 @@ shinyServer(function(input, output, session) {
     updateSelectInput(session, "taxatrans_user_col_sampid"
                       , choices = c("", names(df_import_taxatrans())))
 
-    updateSelectInput(session, "taxatrans_user_col_taxaid"
-                      , choices = c("", names(df_import_taxatrans())))
-
-    updateSelectInput(session, "taxatrans_user_col_n_taxa"
-                      , choices = c("", names(df_import_taxatrans())))
-
     updateSelectInput(session, "taxatrans_user_col_groupby"
                       , choices = c("", names(df_import_taxatrans())))
 
@@ -257,12 +253,13 @@ shinyServer(function(input, output, session) {
       inFile <- input$fn_input_taxatrans
       fn_input_base <- tools::file_path_sans_ext(inFile$name)
       message(paste0("Import, file name, base: ", fn_input_base))
-      df_input <- read.delim(inFile$datapath
+      df_input_wide <- read.delim(inFile$datapath
                              , header = TRUE
                              , sep = input$sep_taxatrans
-                             , stringsAsFactors = FALSE)
+                             , stringsAsFactors = FALSE
+                             , check.names = FALSE)
       # QC, FAIL if TRUE
-      if (is.null(df_input)) {
+      if (is.null(df_input_wide)) {
         return(NULL)
       }
 
@@ -278,8 +275,10 @@ shinyServer(function(input, output, session) {
       # sel_proj <- input$taxatrans_pick_official
       sel_proj <- "MI EGLE"
       sel_user_sampid <- input$taxatrans_user_col_sampid
-      sel_user_taxaid <- input$taxatrans_user_col_taxaid
-      sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
+      sel_user_taxaid <- "TAXAID" # defined in pivot_longer below
+      sel_user_ntaxa <- "N_TAXA" # defined in pivot_longer below
+      # sel_user_taxaid <- input$taxatrans_user_col_taxaid
+      # sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
       sel_user_siteid <- input$siteclass_user_col_siteid
       sel_user_lat <- input$siteclass_user_col_lat
       sel_user_long <- input$siteclass_user_col_long
@@ -289,14 +288,6 @@ shinyServer(function(input, output, session) {
       # convert to NULL if no input given
       if (sel_user_sampid == "Imported file necessary for selection...") {
         sel_user_sampid <- "User_Missing"
-      }# if statement ~ END
-
-      if (sel_user_taxaid == "Imported file necessary for selection...") {
-        sel_user_taxaid <- "User_Missing"
-      }# if statement ~ END
-
-      if (sel_user_ntaxa == "Imported file necessary for selection...") {
-        sel_user_ntaxa <- "User_Missing"
       }# if statement ~ END
 
       if (sel_user_siteid == "Imported file necessary for selection...") {
@@ -314,6 +305,26 @@ shinyServer(function(input, output, session) {
       if (sel_user_width == "Imported file necessary for selection...") {
         sel_user_width <- "User_Missing"
       }# if statement ~ END
+
+      # Pivot Longer
+      myChoices <- c(sel_user_sampid, sel_user_siteid, sel_user_lat
+                     , sel_user_long, sel_user_width, sel_user_groupby)
+
+      df_input <- df_input_wide %>%
+        pivot_longer(!c(myChoices), names_to = sel_user_taxaid
+                     , values_to = sel_user_ntaxa
+                     , values_drop_na = TRUE) %>%
+        rename_with(~ gsub(" ", "_", .))
+
+      # Remove spaces in field names
+      sel_user_sampid <- gsub(" ", "_", sel_user_sampid)
+      sel_user_taxaid <- gsub(" ", "_", sel_user_taxaid)
+      sel_user_ntaxa <- gsub(" ", "_", sel_user_ntaxa)
+      sel_user_siteid <- gsub(" ", "_", sel_user_siteid)
+      sel_user_lat <- gsub(" ", "_", sel_user_lat)
+      sel_user_long <- gsub(" ", "_", sel_user_long)
+      sel_user_width <- gsub(" ", "_", sel_user_width)
+      sel_user_groupby <- gsub(" ", "_", sel_user_groupby)
 
       # Pull data
       fn_taxoff <- df_pick_taxoff[df_pick_taxoff$project == sel_proj
@@ -369,28 +380,6 @@ shinyServer(function(input, output, session) {
                                , closeOnClickOutside = TRUE)
 
       }## IF ~ sel_user_sampid
-
-      if (sel_user_taxaid == "User_Missing") {
-        # end process with pop up
-        msg <- "'TaxaID' column name is missing!"
-        shinyalert::shinyalert(title = "Taxa Translator"
-                               , text = msg
-                               , type = "error"
-                               , closeOnEsc = TRUE
-                               , closeOnClickOutside = TRUE)
-
-      }## IF ~ sel_user_taxaid
-
-      if (sel_user_ntaxa == "User_Missing") {
-        # end process with pop up
-        msg <- "'N_Taxa' column name is missing!"
-        shinyalert::shinyalert(title = "Taxa Translator"
-                               , text = msg
-                               , type = "error"
-                               , closeOnEsc = TRUE
-                               , closeOnClickOutside = TRUE)
-
-      }## IF ~ sel_user_ntaxa
 
       if (sel_user_siteid == "User_Missing") {
         # end process with pop up
