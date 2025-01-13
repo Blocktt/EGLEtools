@@ -177,18 +177,6 @@ shinyServer(function(input, output, session) {
   # ~~~~FILE BUILDER~~~~ ----
   # TaxaTrans/SiteClass, UI ----
 
-  # Reactive expression to get selected columns
-  # selected_columns <- reactive({
-  #   req(df_import_taxatrans())
-  #   selected <- c(input$taxatrans_user_col_sampid,
-  #                 input$siteclass_user_col_siteid,
-  #                 input$siteclass_user_col_lat,
-  #                 input$siteclass_user_col_long,
-  #                 input$siteclass_user_col_width)
-  #   selected <- selected[selected != ""]
-  #   return(selected)
-  # }) #END ~ reactive
-
   observe({
     req(df_import_taxatrans())
     updateSelectInput(session, "taxatrans_user_col_sampid"
@@ -206,11 +194,21 @@ shinyServer(function(input, output, session) {
     updateSelectInput(session, "siteclass_user_col_width"
                       , choices = c("", names(df_import_taxatrans())))
 
-    # available_columns <- setdiff(names(df_import_taxatrans())
-    #                              , selected_columns())
-    #
-    # updateSelectInput(session, "taxatrans_user_col_groupby",
-    #                   choices = c("", available_columns))
+    if (input$fn_input_format == "Wide") {
+      updateSelectInput(session, "taxatrans_user_col_taxaid"
+                        , choices = "TAXA_ID")
+    } else {
+      updateSelectInput(session, "taxatrans_user_col_taxaid"
+                        , choices = c("", names(df_import_taxatrans())))
+    }# IF/ELSE ~ END
+
+    if (input$fn_input_format == "Wide") {
+      updateSelectInput(session, "taxatrans_user_col_n_taxa"
+                        , choices = "N_TAXA")
+    } else {
+      updateSelectInput(session, "taxatrans_user_col_n_taxa"
+                        , choices = c("", names(df_import_taxatrans())))
+    }# IF/ELSE ~ END
 
     updateSelectInput(session, "taxatrans_user_col_groupby"
                       , choices = c("", names(df_import_taxatrans())))
@@ -269,16 +267,30 @@ shinyServer(function(input, output, session) {
       # data
       inFile <- input$fn_input_taxatrans
       fn_input_base <- tools::file_path_sans_ext(inFile$name)
+      FB_input_format <- input$fn_input_format
       message(paste0("Import, file name, base: ", fn_input_base))
-      df_input_wide <- read.delim(inFile$datapath
-                             , header = TRUE
-                             , sep = input$sep_taxatrans
-                             , stringsAsFactors = FALSE
-                             , check.names = FALSE)
+
+      if(FB_input_format == "Wide") {
+        # wide format temporary file
+        df_input_wide <- read.delim(inFile$datapath
+                                    , header = TRUE
+                                    , sep = input$sep_taxatrans
+                                    , stringsAsFactors = FALSE
+                                    , check.names = FALSE)
+      } else {
+        # long format straight to df_input
+        df_input <- read.delim(inFile$datapath
+                               , header = TRUE
+                               , sep = input$sep_taxatrans
+                               , stringsAsFactors = FALSE
+                               , check.names = FALSE)
+
+      } # IF/ELSE ~ END
+
       # QC, FAIL if TRUE
-      if (is.null(df_input_wide)) {
-        return(NULL)
-      }
+      # if (is.null(df_input_wide)) {
+      #   return(NULL)
+      # }
 
       ## Calc, 02, Gather and Test Inputs  ----
       prog_detail <- "QC Inputs"
@@ -292,10 +304,10 @@ shinyServer(function(input, output, session) {
       # sel_proj <- input$taxatrans_pick_official
       sel_proj <- "EGLE"
       sel_user_sampid <- input$taxatrans_user_col_sampid
-      sel_user_taxaid <- "TAXAID" # defined in pivot_longer below
-      sel_user_ntaxa <- "N_TAXA" # defined in pivot_longer below
-      # sel_user_taxaid <- input$taxatrans_user_col_taxaid
-      # sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
+      # sel_user_taxaid <- "TAXAID" # defined in pivot_longer below
+      # sel_user_ntaxa <- "N_TAXA" # defined in pivot_longer below
+      sel_user_taxaid <- input$taxatrans_user_col_taxaid
+      sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
       sel_user_siteid <- input$siteclass_user_col_siteid
       sel_user_lat <- input$siteclass_user_col_lat
       sel_user_long <- input$siteclass_user_col_long
@@ -323,15 +335,17 @@ shinyServer(function(input, output, session) {
         sel_user_width <- "User_Missing"
       }# if statement ~ END
 
-      # Pivot Longer
-      myChoices <- c(sel_user_sampid, sel_user_siteid, sel_user_lat
-                     , sel_user_long, sel_user_width, sel_user_groupby)
+      # Pivot Longer (wide-format only)
+      if(FB_input_format == "Wide"){
+        myChoices <- c(sel_user_sampid, sel_user_siteid, sel_user_lat
+                       , sel_user_long, sel_user_width, sel_user_groupby)
 
-      df_input <- df_input_wide %>%
-        pivot_longer(!c(all_of(myChoices)), names_to = sel_user_taxaid
-                     , values_to = sel_user_ntaxa
-                     , values_drop_na = TRUE) %>%
-        rename_with(~ gsub(" ", "_", .))
+        df_input <- df_input_wide %>%
+          pivot_longer(!c(all_of(myChoices)), names_to = sel_user_taxaid
+                       , values_to = sel_user_ntaxa
+                       , values_drop_na = TRUE) %>%
+          rename_with(~ gsub(" ", "_", .))
+      }
 
       # Remove spaces in field names
       sel_user_sampid <- gsub(" ", "_", sel_user_sampid)

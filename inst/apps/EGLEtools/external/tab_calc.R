@@ -42,7 +42,7 @@ function() {
        )## sidebarPanel ~ END
     , mainPanel(
         tabsetPanel(type = "tabs"
-                    , tabPanel(title = "Data, Import"
+                    , tabPanel(title = "Uploaded Data"
                                , p("A table is shown below after data are loaded.")
                                , DT::dataTableOutput("df_import_DT_calc"))
                     , tabPanel(title = "Output Description"

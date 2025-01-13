@@ -8,13 +8,18 @@ function() {
 
             , p("The process below will combine user data with an official taxa list,
                 assign taxa attributes, and assign sites to index classes.")
+            , p("See 'About File Builder' tab for more details.")
 
             , h4("A. Upload a File")
+            , p("Choose whether your input file is wide-format (default) or long-format.")
             , p("The 'separator' allows the user to upload different file formats
-                         (e.g., csv, tsv, or txt).")
+                         (e.g., csv or tsv).")
             , p(paste0("File uploads are limited to a maximum of "
                        , mb_limit
                        , " MB in size."))
+            , radioButtons("fn_input_format", "Input file format"
+                           , choices = list("Wide", "Long")
+                           , selected = "Wide")
             , radioButtons("sep_taxatrans", "Separator"
                            , c(Comma = ",", Tab = "\t"),',')
             , fileInput("fn_input_taxatrans", label = "Choose file to upload"
@@ -47,8 +52,17 @@ function() {
             , selectInput(inputId = "siteclass_user_col_width"
                           , label = "Column, Stream Width (ft)"
                           , choices = "Imported file necessary for selection...")
+            , selectInput(inputId = "taxatrans_user_col_taxaid"
+                          , label = "Taxa identifier (e.g., TaxaID)"
+                          , choices = "Imported file necessary for selection...")
+            , selectInput(inputId = "taxatrans_user_col_n_taxa"
+                          , label = "Number of taxa (e.g., N_TAXA)"
+                          , choices = "Imported file necessary for selection...")
 
-            , p(strong("Other Required Fields"))
+            , p(strong("Other Fields"))
+            , p(em("Wide-format:"), " REQUIRED to add all non-taxa fields here."
+                , br(), em("Long-format:")
+                , " OPTIONAL to add other fields to carry through analyses.")
 
             , selectInput(inputId = "taxatrans_user_col_groupby"
                           , label = "Columns to Keep in Output"
