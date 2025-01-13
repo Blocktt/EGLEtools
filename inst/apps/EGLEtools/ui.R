@@ -8,6 +8,6 @@ dashboardPage(
       body {font-size: 16px;}"))
     , db_main_body("dbBody"))
   , footer = dashboardFooter(left = pkg_version
-                             , right = "https://github.com/Blocktt/MIEGLEtools")
+                             , right = "https://github.com/Blocktt/EGLEtools")
   , skin = NULL  # Disable the default skin
 ) # dashboardPage ~ END

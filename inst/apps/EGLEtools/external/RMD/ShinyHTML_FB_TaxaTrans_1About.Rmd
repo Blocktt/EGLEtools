@@ -32,8 +32,7 @@ The 'taxa translator' and attribute tables are based on biomonitoring
 data from Michigan streams and will be updated regularly.
 
 The Taxa Translator and Attribute tables (and associated metadata) that
-were used for IBI development can be downloaded from the [***source
-TBD***]. Note, that traits are not required for each record (i.e., trait
+were used for IBI development can be downloaded from the <a href="https://github.com/Blocktt/EGLEtools/tree/dev2024/inst/apps/EGLEtools/data" target="_blank">EGLEtools GitHub</a>. Note, that traits are not required for each record (i.e., trait
 fields allow null values).
 
 ![Filebuilder Taxa Translate
@@ -78,5 +77,5 @@ to specify all non-taxa columns will likely cause the app to crash.
 # Test File
 
 The EGLE Input Test File can be used as a guide for your own input file:
-<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/refs/heads/main/MIEGLEtools/Example_Files/MI_EGLE_FileBuilder_Input_20241203.csv" target="_blank">File
+<a href="https://raw.githubusercontent.com/Blocktt/ShinyAppDocuments/refs/heads/main/EGLEtools/Example_Files/EGLE_FileBuilder_Input_20241203.csv" target="_blank">File
 Builder Test File</a>.
