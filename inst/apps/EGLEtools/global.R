@@ -90,7 +90,7 @@ dn_files_ref    <- "reference"
 dn_files_qc     <- "quality_control"
 
 # Taxa translator file ----
-fn_pick_taxoff <- "MIEGLEtools_Pick_Files.csv"
+fn_pick_taxoff <- "EGLEtools_Pick_Files.csv"
 df_pick_taxoff <- read.csv(file = file.path("data", fn_pick_taxoff))
 
 # BMT, Metric Names ----

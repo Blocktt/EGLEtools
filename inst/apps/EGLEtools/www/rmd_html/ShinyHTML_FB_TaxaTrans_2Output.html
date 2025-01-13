@@ -3,11 +3,12 @@
 
 <p>A single zip file will be available for download. It will include all
 result files, reference files, and the original input data file. All
-result data files will be CSV format, unless otherwise noted.</p>
+result data files will be CSV format.</p>
 <p>The zip file will included the base name of the original file along
 with the date and time.</p>
-<p>The individual files and their contents are output in three
-subfolders. Each output file is described in the table below.</p>
+<p>The individual files and their contents are output in four
+sub-folders. Each output file is described in the table below.‘yyyymmdd’
+represents the date when the associated file has last been updated.</p>
 <table class="table" style="color: black; width: auto !important; ">
 <thead>
 <tr>
@@ -36,86 +37,111 @@ Original input file.
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-MetricNames.xlsx
+EGLEtools_IBI_Attributes_yyyymmdd
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 reference
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Metrics calculated by the BioMonTools R package, their description, and
-input fields.
+Regional attribute table.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-MetricScoring.xlsx
+EGLEtools_IBI_Attributes_Metadata_yyyymmdd
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 reference
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Metric scoring table used by the BioMonTools R package.
+Metadata for the regional attribute table.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-IBI_1markexcl
+EGLEtools_IBI_Taxa_Translator_yyyymmdd
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+reference
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Regional taxa translator table.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+EGLEtools_IBI_Taxa_Translator_Metadata_yyyymmdd
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+reference
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Metadata for the regional taxa translator table.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+IBI_TaxaTranslator_modify
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 quality_control
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Excluded (non-count) taxa. Excluded from taxa richness metrics.
-Calculated using BioMonTools R package (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>).
+Lists the taxa that occur in the input file, plus: 1) original TaxonID;
+2) ‘translated’ TaxonID (OTU that will be used for the calculation); 3)
+whether the original TaxonID occurs in the regional taxa translator
+table (TRUE/FALSE); 4) whether the original TaxonID was changed during
+the ‘translation’ process (YES/NO); 5) total count in the input file (#
+individuals summed across samples).
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-IBI_2metval_all
+IBI_TaxaTranslator_nonmatch
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 quality_control
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Values for all bug metrics in the BioMonTools R package (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>).
+Lists taxa in the input file that don’t occur in the regional taxa
+translator table (if the file is blank, all are ‘matches’).
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-IBI_2metval_IBI
+IBI_TaxaTranslator_source
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 quality_control
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Values for bug metrics used in the MI EGLE IBI models; the calculations
-are done with the BioMonTools R package (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>).
+Provides documentation of the Operational Taxonomic Unit (OTU) and
+source files that were used.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-IBI_3metscores
+IBI_StreamClassification
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 quality_control
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Scores (0-100) for bug metrics used in the MI EGLE IBI models. For each
-sample, IBI model output (metric values, metric scores, and index
-scores).
+List of sites assigned to IBI Stream Classes. Contains interim fields
+necessary for index classification.
 </td>
 </tr>
 <tr>
 <td style="text-align:left;font-weight: bold;color: rgba(51, 163, 158, 255) !important;border-bottom: 2px solid black;">
-IBI_IndexCalc_Final
+IBI_FileBuilder_CompleteInput
 </td>
 <td style="text-align:left;font-weight: bold;color: rgba(51, 163, 158, 255) !important;border-bottom: 2px solid black;">
-results_MI_EGLE_IBI
+results_EGLE_FileBuilder_Output
 </td>
 <td style="text-align:left;font-weight: bold;color: rgba(51, 163, 158, 255) !important;border-bottom: 2px solid black;">
-Macroinvertebrate rating of each sample based on MI EGLE thresholds. For
-each sample, IBI model output (metric values, metric scores, index
-scores, and macroinvertebrate ratings).
+Final output, with ‘translated’ TaxonID, NonTarget designations,
+attributes and phylogeny, and assigned Index Classes. The file is ready
+to be run through the IBI calculator.
 </td>
 </tr>
 </tbody>

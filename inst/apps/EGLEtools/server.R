@@ -290,7 +290,7 @@ shinyServer(function(input, output, session) {
 
       # Fun Param, Define
       # sel_proj <- input$taxatrans_pick_official
-      sel_proj <- "MI EGLE"
+      sel_proj <- "EGLE"
       sel_user_sampid <- input$taxatrans_user_col_sampid
       sel_user_taxaid <- "TAXAID" # defined in pivot_longer below
       sel_user_ntaxa <- "N_TAXA" # defined in pivot_longer below

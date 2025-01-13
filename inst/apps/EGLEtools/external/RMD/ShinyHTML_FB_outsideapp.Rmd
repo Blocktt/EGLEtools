@@ -29,8 +29,7 @@ for P51 development can be downloaded:
 
 The EGLE Input Test File can be used as a guide for your own input
 file:
-<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/MIEGLEtools/Example_Files/" target="_blank">MI
-EGLE Test Files</a>.
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/MIEGLEtools/Example_Files/" target="_blank">EGLE Test Files</a>.
 
 ## Input file requirements for ELGE P51 models
 

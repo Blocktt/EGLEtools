@@ -1,5 +1,5 @@
 ---
-title: "MIEGLEtools-NEWS"
+title: "EGLEtools-NEWS"
 author: "Ben.Block@tetratech.com"
 date: "`r Sys.time()`"
 output: github_document
@@ -20,6 +20,10 @@ knitr::opts_chunk$set(
 ```{r, echo = FALSE}
 cat(paste0("Last Update: ",Sys.time()))
 ```
+
+# EGLEtools 1.1.0.9009 (2025-01-13)
+-   Updated UI with new language to match EGLE reviewer comments.
+-   Changed all documentation from "MI EGLE" to just "EGLE" per request.
 
 # MIEGLEtools 1.1.0.9007 (2024-12-23)
 -   Updated file builder to accommodate wide-format input files.

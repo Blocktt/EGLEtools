@@ -1,11 +1,16 @@
-MIEGLEtools-NEWS
+EGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2024-12-23 14:34:09.504687
+2025-01-13 13:30:09.325416
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2024-12-23 14:34:09.526226
+    #> Last Update: 2025-01-13 13:30:09.3434
+
+# EGLEtools 1.1.0.9009 (2025-01-13)
+
+- Updated UI with new language to match EGLE reviewer comments.
+- Changed all documentation from “MI EGLE” to just “EGLE” per request.
 
 # MIEGLEtools 1.1.0.9007 (2024-12-23)
 
