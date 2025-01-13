@@ -1,6 +1,6 @@
 ---
 title: "Calculation, Output"
-date: "2024-12-17"
+date: "2025-01-13"
 output: html_fragment
 editor_options: 
   markdown: 

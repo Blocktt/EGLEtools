@@ -3,17 +3,19 @@ library(shiny)
 shinyServer(function(input, output, session) {
   # Modal ####
   showModal(modalDialog(
-    title = h3("Michigan EGLE IBI Calculator (MIEGLEtools)")
-    , h4("Welcome to the MIEGLEtools R Shiny app!")
+    title = h3("Michigan EGLE P51 Score Calculator (EGLEtools)")
+    , h4("Welcome to the EGLEtools R Shiny app!")
     , br()
     , br()
     , HTML('<center><img src="EGLE_Logo_Primary_Green.png" height="100"></center>')
     , br()
-    , paste("This app is used to calculate macroinvertebrate IBI scores from"
-            , "samples taken in wadeable streams throughout Michigan."
-            , "Please refer to the 'About' tab for details and the 'Resources'"
-            , "tab for additional documentation."
-            , "This app was funded by MI EGLE and developed by Tetra Tech.")
+    , paste("This app is used to calculate macroinvertebrate IBI scores using"
+            , "EGLE Water Resources Division, Great Lakes Watersheds Assessment,"
+            , "Restoration, and Management Section Procedure 51- Qualitative"
+            , "Biological and Habitat Survey Protocols for Wadeable Streams and"
+            , "Rivers (P51). Please refer to the 'About' tab for details and"
+            , "the 'Resources' tab for additional documentation. This app was"
+            , "funded by EGLE and developed by Tetra Tech.")
     , easyClose = TRUE
     , footer = NULL
     , size = "m"
@@ -175,12 +177,21 @@ shinyServer(function(input, output, session) {
   # ~~~~FILE BUILDER~~~~ ----
   # TaxaTrans/SiteClass, UI ----
 
+  # Reactive expression to get selected columns
+  # selected_columns <- reactive({
+  #   req(df_import_taxatrans())
+  #   selected <- c(input$taxatrans_user_col_sampid,
+  #                 input$siteclass_user_col_siteid,
+  #                 input$siteclass_user_col_lat,
+  #                 input$siteclass_user_col_long,
+  #                 input$siteclass_user_col_width)
+  #   selected <- selected[selected != ""]
+  #   return(selected)
+  # }) #END ~ reactive
+
   observe({
     req(df_import_taxatrans())
     updateSelectInput(session, "taxatrans_user_col_sampid"
-                      , choices = c("", names(df_import_taxatrans())))
-
-    updateSelectInput(session, "taxatrans_user_col_groupby"
                       , choices = c("", names(df_import_taxatrans())))
 
     updateSelectInput(session, "siteclass_user_col_siteid"
@@ -194,6 +205,16 @@ shinyServer(function(input, output, session) {
 
     updateSelectInput(session, "siteclass_user_col_width"
                       , choices = c("", names(df_import_taxatrans())))
+
+    # available_columns <- setdiff(names(df_import_taxatrans())
+    #                              , selected_columns())
+    #
+    # updateSelectInput(session, "taxatrans_user_col_groupby",
+    #                   choices = c("", available_columns))
+
+    updateSelectInput(session, "taxatrans_user_col_groupby"
+                      , choices = c("", names(df_import_taxatrans())))
+
   })# END ~ observe
 
   # TaxaTrans/SiteClass, combine ----
@@ -225,10 +246,6 @@ shinyServer(function(input, output, session) {
 
       # Copy user files to results sub-folder
       copy_import_file(import_file = input$fn_input_taxatrans)
-
-      # result folder and files
-      fn_abr <- abr_taxatrans
-      fn_abr_save <- paste0("_", fn_abr, "_")
 
       # Add "reference" folder if missing
       path_results_ref <- file.path(path_results, dn_files_ref)
@@ -311,7 +328,7 @@ shinyServer(function(input, output, session) {
                      , sel_user_long, sel_user_width, sel_user_groupby)
 
       df_input <- df_input_wide %>%
-        pivot_longer(!c(myChoices), names_to = sel_user_taxaid
+        pivot_longer(!c(all_of(myChoices)), names_to = sel_user_taxaid
                      , values_to = sel_user_ntaxa
                      , values_drop_na = TRUE) %>%
         rename_with(~ gsub(" ", "_", .))
@@ -438,12 +455,15 @@ shinyServer(function(input, output, session) {
         sel_taxaid_drop <- NULL
       }## IF ~ sel_taxaid_drop
 
-      dir_proj_results <- paste("MI_EGLE", dir_proj_results, sep = "_")
-
-      dn_files <- paste(abr_results, dir_proj_results, sep = "_")
+      # dir_proj_results <- paste("EGLE", dir_proj_results, sep = "_")
+      #
+      # dn_files <- paste(abr_results, dir_proj_results, , sep = "_")
 
       # Add "Results" folder if missing
-      path_results_sub <- file.path(path_results, dn_files)
+      dn_file_builder <- paste(abr_results, abr_agency, abr_filebuilder
+                               , "Output", sep = "_")
+
+      path_results_sub <- file.path(path_results, dn_file_builder)
 
       boo_Results <- dir.exists(file.path(path_results_sub))
       if (boo_Results == FALSE) {
@@ -781,7 +801,7 @@ shinyServer(function(input, output, session) {
 
       ## Site classification
       # Save Results
-      fn_siteclass <- "IBI_IndexClassification.csv"
+      fn_siteclass <- "IBI_StreamClassification.csv"
       dn_siteclass <- path_results_qc
       pn_siteclass <- file.path(dn_siteclass, fn_siteclass)
       write.csv(df_SiteClass, pn_siteclass, row.names = FALSE)
@@ -846,7 +866,7 @@ shinyServer(function(input, output, session) {
     filename = function() {
       inFile <- input$fn_input_taxatrans
       fn_input_base <- tools::file_path_sans_ext(inFile$name)
-      fn_abr <- abr_taxatrans
+      fn_abr <- abr_filebuilder
       fn_abr_save <- paste0("_", fn_abr, "_")
       paste0(fn_input_base
              , fn_abr_save
@@ -893,7 +913,7 @@ shinyServer(function(input, output, session) {
       copy_import_file(import_file = input$fn_input_calc)
 
       # result folder and files
-      fn_abr <- abr_calc
+      fn_abr <- paste(abr_agency, abr_calc, sep = "_")
       fn_abr_save <- paste0("_", fn_abr, "_")
       path_results_sub <- file.path(path_results
                                     , paste(abr_results, fn_abr, sep = "_"))

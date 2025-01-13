@@ -1,6 +1,6 @@
 ---
 title: "Prepare Data, Outside app"
-date: "2024-12-10"
+date: "2025-01-13"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -24,16 +24,15 @@ symbology, and capitalization scheme exactly as shown.
 IMPORTANT: Make sure you are using the proper Operational Taxonomic Unit
 (OTU) and taxa traits/attributes for your metric calculations. The Taxa
 Translator and Attribute tables (and associated metadata) that were used
-for IBI development can be downloaded:
-<a href="https://github.com/Blocktt/MIEGLEtools/tree/dev2024/inst/apps/MIEGLEtools/data" target="_blank">MI
-EGLE Taxa Translator Files</a>.
+for P51 development can be downloaded:
+<a href="https://github.com/Blocktt/MIEGLEtools/tree/dev2024/inst/apps/MIEGLEtools/data" target="_blank">EGLE Taxa Translator Files</a>.
 
-The MI EGLE Input Test File can be used as a guide for your own input
+The EGLE Input Test File can be used as a guide for your own input
 file:
 <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/MIEGLEtools/Example_Files/" target="_blank">MI
 EGLE Test Files</a>.
 
-## Input file requirements for ELGE IBI models
+## Input file requirements for ELGE P51 models
 
 ```{r}
 # Packages

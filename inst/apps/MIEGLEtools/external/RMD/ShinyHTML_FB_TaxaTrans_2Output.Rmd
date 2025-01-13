@@ -1,6 +1,6 @@
 ---
 title: "File Builder, Output"
-date: "2024-12-17"
+date: "2025-01-13"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -21,8 +21,8 @@ result data files will be CSV format.
 The zip file will included the base name of the original file along with
 the date and time.
 
-The individual files and their contents are output in three subfolders.
-Each output file is described in the table below.
+The individual files and their contents are output in four sub-folders.
+Each output file is described in the table below.‘yyyymmdd’ represents the date when the associated file has last been updated.
 
 ```{r}
 # Packages

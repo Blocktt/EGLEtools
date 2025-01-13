@@ -1,6 +1,6 @@
 ---
 title: "Prepare Data, Intro"
-date: "2024-12-09"
+date: "2025-01-10"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -20,12 +20,12 @@ Input files must be either comma-separated values (CSV) or tab-separated
 values (TSV). There are two options for preparing input files:
 
 **Option 1**: Use the File Builder function to ensure that you are using
-the proper taxa attributes and index classes for the IBI calculation.
+the proper taxa attributes and stream classes for the P51 calculation.
 See the **Within the App: File Builder** sub-tab for details.
 
 **Option 2**: Generate a file outside of the Shiny app that is ready to
 go (i.e., has all the required fields, with exact column heading names).
 See the **Outside the app** sub-tab for details.
 
-After you prepare the input file, go to the **Import Files** tab, upload
-your input file, and calculate the IBI in the **Calculation** tab.
+After you prepare the input file, go to the **Step 2: Calculation** tab,
+upload your input file, and calculate the scores.

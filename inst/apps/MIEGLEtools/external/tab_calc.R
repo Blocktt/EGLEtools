@@ -3,9 +3,9 @@
 function() {
   sidebarLayout(
     sidebarPanel(
-       h2("Calculate IBI Models")
+       h2("Calculate P51 Scores")
        , p("This function will calculate metric values, metric scores, index scores,
-           and apply attainment status for all samples in the input file.")
+           and apply macroinvertebrate ratings for all samples in the input file.")
 
        , h4("A. Upload a file")
        , p("The 'separator' allows the user to upload different file formats

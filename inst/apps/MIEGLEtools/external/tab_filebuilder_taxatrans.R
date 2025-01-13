@@ -3,7 +3,7 @@
 function() {
   sidebarLayout(
     sidebarPanel(h2("File Builder")
-            , h3("Taxa Translator, Attribute Assignment, and Index Class Assignment")
+            , h3("Taxa Translator, Attribute Assignment, and Stream Class Assignment")
             , useShinyjs()
 
             , p("The process below will combine user data with an official taxa list,
@@ -48,9 +48,7 @@ function() {
                           , label = "Column, Stream Width (ft)"
                           , choices = "Imported file necessary for selection...")
 
-            , p(strong("Other Required Fields and Optional Fields"))
-            , p("Specify all optional fields here. Do not repeat any of the required fields from above.")
-            , p("All fields not specified below will be dropped from the output.")
+            , p(strong("Other Required Fields"))
 
             , selectInput(inputId = "taxatrans_user_col_groupby"
                           , label = "Columns to Keep in Output"
@@ -67,7 +65,7 @@ function() {
                                                , "Download Results"))
             )## sidebarPanel ~ END
        , mainPanel(tabsetPanel(type = "tabs"
-                               , tabPanel(title = "Data, Import"
+                               , tabPanel(title = "Uploaded Data"
                                           , p("A table is shown below after data are loaded.")
                                           , DT::dataTableOutput("df_import_DT_taxatrans"))
                                , tabPanel(title = "About File Builder"

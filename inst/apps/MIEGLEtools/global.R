@@ -80,15 +80,14 @@ if (dir.exists(path_results) == FALSE) {
 }## IF ~ dir.exists
 
 # File and Folder Names ----
-abr_filebuilder <- "FB"
-abr_taxatrans   <- "TaxaTranslator"
-abr_calc        <- "MI_EGLE_IBI"
+abr_filebuilder <- "FileBuilder"
+abr_agency      <- "EGLE"
+abr_calc        <- "P51_Scores"
 abr_results     <- "results"
 
 dn_files_input  <- "_user_input"
 dn_files_ref    <- "reference"
 dn_files_qc     <- "quality_control"
-dn_files_fb     <- paste(abr_results, abr_filebuilder, sep = "_")
 
 # Taxa translator file ----
 fn_pick_taxoff <- "MIEGLEtools_Pick_Files.csv"
