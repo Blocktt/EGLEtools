@@ -19,9 +19,9 @@ Test Files</a>.</p>
 <p>Procedure 51 improves the diagnostic ability of EGLE scientists to
 identify degradation in water quality. The procedure is intended to be
 applied to samples that meet the following criteria:</p>
-<details>
+<details class="details-section">
 <summary class="custom-summary">
-<p>Expand for more details</p>
+Expand for more details
 </summary>
 <ul>
 <li><p><strong>Geographic area</strong>: Wadeable streams in
@@ -181,15 +181,15 @@ tables below). Metric scores are first calculated from metric values.
 Any scores calculated as 100 are reset to 100 and scores calculated to 0
 are reset to 0. The calculated and reset scores are averaged across all
 metrics to arrive at an index score for each site.</p>
-<details>
+<details class="details-section">
 <summary class="custom-summary">
-<p>Expand for more details</p>
+Expand for more details
 </summary>
 <div id="very-narrow-stream-class" class="section level2">
 <h2>Very Narrow Stream Class</h2>
-<details>
+<details class="details-section">
 <summary class="custom-summary">
-<p>Expand for more details</p>
+Expand for more details
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -299,9 +299,9 @@ Tolerance
 </div>
 <div id="narrow-stream-class" class="section level2">
 <h2>Narrow Stream Class</h2>
-<details>
+<details class="details-section">
 <summary class="custom-summary">
-<p>Expand for more details</p>
+Expand for more details
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -397,9 +397,9 @@ Richness
 </div>
 <div id="mid-size-dry-stream-class" class="section level2">
 <h2>Mid-Size Dry Stream Class</h2>
-<details>
+<details class="details-section">
 <summary class="custom-summary">
-<p>Expand for more details</p>
+Expand for more details
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -523,9 +523,9 @@ Richness
 </div>
 <div id="wide-or-mid-size-wet-stream-class" class="section level2">
 <h2>Wide or Mid-Size Wet Stream Class</h2>
-<details>
+<details class="details-section">
 <summary class="custom-summary">
-<p>Expand for more details</p>
+Expand for more details
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -636,9 +636,9 @@ Tolerance
 </div>
 <div id="west-flat-stream-class" class="section level2">
 <h2>West Flat Stream Class</h2>
-<details>
+<details class="details-section">
 <summary class="custom-summary">
-<p>Expand for more details</p>
+Expand for more details
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -748,9 +748,9 @@ Tolerance
 </div>
 <div id="west-steep-stream-class" class="section level2">
 <h2>West Steep Stream Class</h2>
-<details>
+<details class="details-section">
 <summary class="custom-summary">
-<p>Expand for more details</p>
+Expand for more details
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -847,9 +847,9 @@ Tolerance
 </div>
 <div id="east-stream-class" class="section level2">
 <h2>East Stream Class</h2>
-<details>
+<details class="details-section">
 <summary class="custom-summary">
-<p>Expand for more details</p>
+Expand for more details
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -1050,4 +1050,16 @@ East
 <h1>Funding and acknowledgments</h1>
 <p>Section 106 funding allocated to EGLE by the USEPA funded the
 development of this app.</p>
+<script>
+  document.querySelectorAll(".details-section").forEach(function(details) {
+    details.addEventListener("toggle", function() {
+      var summaryText = this.querySelector("summary");
+      if (this.open) {
+        summaryText.textContent = "Minimize";
+      } else {
+        summaryText.textContent = "Expand for more details";
+      }
+    });
+  });
+</script>
 </div>

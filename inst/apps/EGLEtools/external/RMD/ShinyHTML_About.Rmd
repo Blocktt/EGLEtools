@@ -29,18 +29,12 @@ the
 Test Files</a>.
 
 # Intended application
-
 Procedure 51 improves the diagnostic ability of EGLE scientists to
 identify degradation in water quality. The procedure is intended to be
 applied to samples that meet the following criteria:
 
-<details>
-
-<summary class="custom-summary">
-
-Expand for more details
-
-</summary>
+<details class="details-section">
+  <summary class="custom-summary">Expand for more details</summary>
 
 -   **Geographic area**: Wadeable streams in Michigan.
 
@@ -146,23 +140,15 @@ scores calculated as 100 are reset to 100 and scores calculated to 0 are
 reset to 0. The calculated and reset scores are averaged across all
 metrics to arrive at an index score for each site.
 
-<details>
+<details class="details-section">
 
-<summary class="custom-summary">
-
-Expand for more details
-
-</summary>
+<summary class="custom-summary"> Expand for more details </summary>
 
 ## Very Narrow Stream Class
 
-<details>
+<details class="details-section">
 
-<summary class="custom-summary">
-
-Expand for more details
-
-</summary>
+<summary class="custom-summary"> Expand for more details </summary>
 
 ```{r Very Narrow}
 # Packages
@@ -193,13 +179,9 @@ df_data_trim %>%
 
 ## Narrow Stream Class
 
-<details>
+<details class="details-section">
 
-<summary class="custom-summary">
-
-Expand for more details
-
-</summary>
+<summary class="custom-summary"> Expand for more details </summary>
 
 ```{r Narrow}
 # Packages
@@ -230,13 +212,9 @@ df_data_trim %>%
 
 ## Mid-Size Dry Stream Class
 
-<details>
+<details class="details-section">
 
-<summary class="custom-summary">
-
-Expand for more details
-
-</summary>
+<summary class="custom-summary"> Expand for more details </summary>
 
 ```{r MSD}
 # Packages
@@ -267,13 +245,9 @@ df_data_trim %>%
 
 ## Wide or Mid-Size Wet Stream Class
 
-<details>
+<details class="details-section">
 
-<summary class="custom-summary">
-
-Expand for more details
-
-</summary>
+<summary class="custom-summary"> Expand for more details </summary>
 
 ```{r WideOrMidSizeWet}
 # Packages
@@ -304,13 +278,9 @@ df_data_trim %>%
 
 ## West Flat Stream Class
 
-<details>
+<details class="details-section">
 
-<summary class="custom-summary">
-
-Expand for more details
-
-</summary>
+<summary class="custom-summary"> Expand for more details </summary>
 
 ```{r WestFlat}
 # Packages
@@ -341,13 +311,9 @@ df_data_trim %>%
 
 ## West Steep Stream Class
 
-<details>
+<details class="details-section">
 
-<summary class="custom-summary">
-
-Expand for more details
-
-</summary>
+<summary class="custom-summary"> Expand for more details </summary>
 
 ```{r WestSteep}
 # Packages
@@ -378,13 +344,9 @@ df_data_trim %>%
 
 ## East Stream Class
 
-<details>
+<details class="details-section">
 
-<summary class="custom-summary">
-
-Expand for more details
-
-</summary>
+<summary class="custom-summary"> Expand for more details </summary>
 
 ```{r East}
 # Packages
@@ -455,3 +417,17 @@ df_data %>%
 
 Section 106 funding allocated to EGLE by the USEPA funded the
 development of this app.
+
+
+<script>
+  document.querySelectorAll(".details-section").forEach(function(details) {
+    details.addEventListener("toggle", function() {
+      var summaryText = this.querySelector("summary");
+      if (this.open) {
+        summaryText.textContent = "Minimize";
+      } else {
+        summaryText.textContent = "Expand for more details";
+      }
+    });
+  });
+</script>

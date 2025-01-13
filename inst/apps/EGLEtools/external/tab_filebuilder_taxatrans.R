@@ -62,7 +62,8 @@ function() {
             , p(strong("Other Fields"))
             , p(em("Wide-format:"), " REQUIRED to add all non-taxa fields here."
                 , br(), em("Long-format:")
-                , " OPTIONAL to add other fields to carry through analyses.")
+                , " OPTIONAL to add other fields to carry through analyses.
+                DO NOT REPEAT COLUMNS FROM ABOVE.")
 
             , selectInput(inputId = "taxatrans_user_col_groupby"
                           , label = "Columns to Keep in Output"
