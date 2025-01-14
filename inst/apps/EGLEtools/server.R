@@ -182,9 +182,6 @@ shinyServer(function(input, output, session) {
     updateSelectInput(session, "taxatrans_user_col_sampid"
                       , choices = c("", names(df_import_taxatrans())))
 
-    updateSelectInput(session, "siteclass_user_col_siteid"
-                      , choices = c("", names(df_import_taxatrans())))
-
     updateSelectInput(session, "siteclass_user_col_lat"
                       , choices = c("", names(df_import_taxatrans())))
 
@@ -287,11 +284,6 @@ shinyServer(function(input, output, session) {
 
       } # IF/ELSE ~ END
 
-      # QC, FAIL if TRUE
-      # if (is.null(df_input_wide)) {
-      #   return(NULL)
-      # }
-
       ## Calc, 02, Gather and Test Inputs  ----
       prog_detail <- "QC Inputs"
       message(paste0("\n", prog_detail))
@@ -301,14 +293,10 @@ shinyServer(function(input, output, session) {
       Sys.sleep(prog_sleep)
 
       # Fun Param, Define
-      # sel_proj <- input$taxatrans_pick_official
       sel_proj <- "EGLE"
       sel_user_sampid <- input$taxatrans_user_col_sampid
-      # sel_user_taxaid <- "TAXAID" # defined in pivot_longer below
-      # sel_user_ntaxa <- "N_TAXA" # defined in pivot_longer below
       sel_user_taxaid <- input$taxatrans_user_col_taxaid
       sel_user_ntaxa <- input$taxatrans_user_col_n_taxa
-      sel_user_siteid <- input$siteclass_user_col_siteid
       sel_user_lat <- input$siteclass_user_col_lat
       sel_user_long <- input$siteclass_user_col_long
       sel_user_width <- input$siteclass_user_col_width
@@ -317,10 +305,6 @@ shinyServer(function(input, output, session) {
       # convert to NULL if no input given
       if (sel_user_sampid == "Imported file necessary for selection...") {
         sel_user_sampid <- "User_Missing"
-      }# if statement ~ END
-
-      if (sel_user_siteid == "Imported file necessary for selection...") {
-        sel_user_siteid <- "User_Missing"
       }# if statement ~ END
 
       if (sel_user_lat == "Imported file necessary for selection...") {
@@ -337,8 +321,8 @@ shinyServer(function(input, output, session) {
 
       # Pivot Longer (wide-format only)
       if(FB_input_format == "Wide"){
-        myChoices <- c(sel_user_sampid, sel_user_siteid, sel_user_lat
-                       , sel_user_long, sel_user_width, sel_user_groupby)
+        myChoices <- c(sel_user_sampid, sel_user_lat, sel_user_long
+                       , sel_user_width, sel_user_groupby)
 
         df_input <- df_input_wide %>%
           pivot_longer(!c(all_of(myChoices)), names_to = sel_user_taxaid
@@ -351,7 +335,6 @@ shinyServer(function(input, output, session) {
       sel_user_sampid <- gsub(" ", "_", sel_user_sampid)
       sel_user_taxaid <- gsub(" ", "_", sel_user_taxaid)
       sel_user_ntaxa <- gsub(" ", "_", sel_user_ntaxa)
-      sel_user_siteid <- gsub(" ", "_", sel_user_siteid)
       sel_user_lat <- gsub(" ", "_", sel_user_lat)
       sel_user_long <- gsub(" ", "_", sel_user_long)
       sel_user_width <- gsub(" ", "_", sel_user_width)
@@ -383,7 +366,6 @@ shinyServer(function(input, output, session) {
                                                               , sel_user_sampid
                                                               , sel_user_taxaid
                                                               , sel_user_ntaxa
-                                                              , sel_user_siteid
                                                               )]
       # flip to col_drop
       user_col_drop <- names(df_input)[!names(df_input) %in% user_col_keep]
@@ -411,17 +393,6 @@ shinyServer(function(input, output, session) {
                                , closeOnClickOutside = TRUE)
 
       }## IF ~ sel_user_sampid
-
-      if (sel_user_siteid == "User_Missing") {
-        # end process with pop up
-        msg <- "'SiteID' column name is missing!"
-        shinyalert::shinyalert(title = "Site Classification"
-                               , text = msg
-                               , type = "error"
-                               , closeOnEsc = TRUE
-                               , closeOnClickOutside = TRUE)
-
-      }## IF ~ sel_user_siteid
 
       if (sel_user_lat == "User_Missing") {
         # end process with pop up
@@ -469,10 +440,6 @@ shinyServer(function(input, output, session) {
         sel_taxaid_drop <- NULL
       }## IF ~ sel_taxaid_drop
 
-      # dir_proj_results <- paste("EGLE", dir_proj_results, sep = "_")
-      #
-      # dn_files <- paste(abr_results, dir_proj_results, , sep = "_")
-
       # Add "Results" folder if missing
       dn_file_builder <- paste(abr_results, abr_agency, abr_filebuilder
                                , "Output", sep = "_")
@@ -514,7 +481,6 @@ shinyServer(function(input, output, session) {
         df_taxoff_attr_meta <- read.csv(file.path("data", fn_taxoff_attr_meta))
       }## IF ~ fn_taxaoff_meta
 
-
       ## Calc, 04, Run Function ----
 
       prog_detail <- "Calculate, Taxa Trans"
@@ -537,7 +503,6 @@ shinyServer(function(input, output, session) {
       sum_n_taxa_col          <- sel_user_ntaxa
       sum_n_taxa_group_by     <- c(sel_user_sampid
                                    , sel_user_taxaid
-                                   , sel_user_siteid
                                    , sel_user_groupby)
 
       ### run the function ----
@@ -567,7 +532,6 @@ shinyServer(function(input, output, session) {
         # drop translation file columns
         col_keep_ttrm <- names(df_ttrm)[names(df_ttrm) %in% c(sel_user_sampid
                                                             , sel_user_taxaid
-                                                            , sel_user_siteid
                                                             , sel_user_ntaxa
                                                             , "Match_Official"
                                                             , sel_user_groupby)]
@@ -635,24 +599,22 @@ shinyServer(function(input, output, session) {
       Sys.sleep(prog_sleep)
 
       #### Pull sites ----
-      df_sites <- df_input[, names(df_input) %in% c(sel_user_siteid
+      df_sites <- df_input[, names(df_input) %in% c(sel_user_sampid
                                                   , sel_user_lat
                                                   , sel_user_long
                                                   , sel_user_width)]
 
       df_sites <- unique(df_sites) %>%
-        rename(SiteID = all_of(sel_user_siteid)
+        rename(SampleID = all_of(sel_user_sampid)
                , Latitude = all_of(sel_user_lat)
                , Longitude = all_of(sel_user_long)
-               , Width = all_of(sel_user_width)) %>%
-        group_by(SiteID, Latitude, Longitude) %>%
-        summarize(Width = mean(Width))
+               , Width = all_of(sel_user_width))
 
       #### QC ----
       # Test assumed values and field types
-      # Test duplicates SiteID
-      if (length(unique(df_sites$SiteID)) < nrow(df_sites)) {
-        msg <- "There are duplicate SiteID values! Check for non-unique coordinates."
+      # Test duplicates SampleID
+      if (length(unique(df_sites$SampleID)) < nrow(df_sites)) {
+        msg <- "There are duplicate SampleID values! Check for non-unique coordinates."
         shinyalert::shinyalert(title = "Coordinate Check",
                                text = msg,
                                type = "error",
@@ -743,21 +705,18 @@ shinyServer(function(input, output, session) {
                                          , TRUE ~ "FLAG")#END ~ INDEX_CLASS
                )#END ~ mutate
 
-      # Fix names to match user input
-      names(df_SiteClass)[names(df_SiteClass) == "SiteID"] <- sel_user_siteid
-      names(df_SiteClass)[names(df_SiteClass) == "Latitude"] <- sel_user_lat
-      names(df_SiteClass)[names(df_SiteClass) == "Longitude"] <- sel_user_long
-      names(df_SiteClass)[names(df_SiteClass) == "Width"] <- sel_user_width
-
       #### Join to taxa data ----
 
       # trim site class data
-      df_SiteClass_trim <- df_SiteClass[, c(sel_user_siteid, "INDEX_CLASS")]
+      df_SiteClass_trim <- df_SiteClass[, c("SampleID", "INDEX_CLASS")]
 
       # join to taxa data
       taxatrans_results$merge <- taxatrans_results$merge %>%
-        left_join(df_SiteClass_trim, by = sel_user_siteid)
+        left_join(df_SiteClass_trim, by = "SampleID")
 
+      # Fix names to match user input
+      names(df_SiteClass)[names(df_SiteClass) == "SampleID"] <- sel_user_sampid
+      names(df_SiteClass)[names(df_SiteClass) == "Width"] <- sel_user_width
 
       ### Calc, 06, Save Results ----
       prog_detail <- "Save Results"

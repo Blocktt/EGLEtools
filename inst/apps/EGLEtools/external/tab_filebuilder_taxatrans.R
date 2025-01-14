@@ -40,9 +40,6 @@ function() {
             , selectInput(inputId = "taxatrans_user_col_sampid"
                           , label = "Column, Unique Sample Identifier (e.g., SampleID)"
                           , choices = "Imported file necessary for selection...")
-            , selectInput(inputId = "siteclass_user_col_siteid"
-                          , label = "Column, Site Identifier (e.g., SiteID)"
-                          , choices = "Imported file necessary for selection...")
             , selectInput(inputId = "siteclass_user_col_lat"
                           , label = "Column, Latitude (decimal degrees)"
                           , choices = "Imported file necessary for selection...")
