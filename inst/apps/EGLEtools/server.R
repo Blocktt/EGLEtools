@@ -1084,7 +1084,7 @@ shinyServer(function(input, output, session) {
       write.csv(df_metsc, pn_metsc, row.names = FALSE)
 
       ## Calc, 5, Attainment----
-      prog_detail <- "Calculate, Index, Attainment"
+      prog_detail <- "Calculate, Index, Ratings"
       message(paste0("\n", prog_detail))
 
       # Increment the progress bar, and update the detail text.
