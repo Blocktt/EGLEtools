@@ -3,12 +3,10 @@
 
 <div id="background" class="section level1">
 <h1>Background</h1>
-<p>This web app calculates P51 scores for benthic macroinvertebrate
-assemblages in wadeable streams throughout Michigan. The Michigan
-Department of Environment, Great Lakes, and Energy (EGLE) has developed
-this web application to efficiently calculate P51 scores based off of
-benthic macroinvertebrate samples collected from wadeable streams
-throughout Michigan.</p>
+<p>The Michigan Department of Environment, Great Lakes, and Energy
+(EGLE) has developed this web application to efficiently calculate P51
+scores based off of benthic macroinvertebrate samples collected from
+wadeable streams throughout Michigan.</p>
 <p>Want to try running the calculator but don’t have input files?
 Download the
 <a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/EGLEtools/Example_Files/" target="_blank">EGLE
@@ -47,10 +45,7 @@ enumeration.</p></li>
 <p>Appropriate stream classification ensures that the index calibrated
 for a stream type gives the most reliable community assessment
 information. For each site, the stream class will be identified
-according to specifications in the table below. Once a site is sampled
-using Procedure 51, the stream class is determined and then generally
-retained for future monitoring events. This prevents a site from
-switching class based on a small difference in stream width.</p>
+according to specifications in the table below.</p>
 <p><strong>North</strong></p>
 <p>[<em>Ecoregions: 50 - Northern Lakes and Forests, 51 - North Central
 Hardwood Forests (Omernik and Bryce, 2010)</em>]</p>
@@ -58,64 +53,53 @@ Hardwood Forests (Omernik and Bryce, 2010)</em>]</p>
 <thead>
 <tr>
 <th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Stream Width (feet)
+Stream Class
 </th>
 <th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-&lt;=40.067% Catchment Water or Wetland Land Cover*
-</th>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-&gt;40.067% Catchment Water or Wetland Land Cover*
+Description
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-&lt;13
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
 VeryNarrow
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-VeryNarrow
+&lt; 13 ft wide*
 </td>
 </tr>
 <tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-13-21.27
-</td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Narrow
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Narrow
+13 - 21.27 ft wide*
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-&gt;21.27-68.367
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
 MidSizeDry
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-MidSizeDry
+21.27 - 68.367 ft wide* AND &lt;=40.067% Catchment Water or Wetland Land
+Cover**
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 2px solid black;">
-&gt;68.367
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
 WideorMidSizeWet
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
-WideorMidSizeWet
+[&gt; 21.27 ft wide* AND &gt;40.067% Catchment Water or Wetland Land
+Cover**] OR [&gt; 68.367 ft wide*]
 </td>
 </tr>
 </tbody>
 </table>
-<p>*% of catchment area classified as wetland or water land cover
+<p>*Width based on average measured stream width during sampling
+event.</p>
+<p>**% of catchment area classified as wetland or water land cover
 (National Land Cover Database, 2011, (United States Geological Survey
 [USGS], 2014))</p>
 <p><strong>South</strong></p>
@@ -126,45 +110,36 @@ Michigan/Northern Indiana Drift Plains, 57 - Huron/Erie Lake Plains
 <thead>
 <tr>
 <th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Longitude
+Stream Class
 </th>
 <th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-At or East of -83.72
-</th>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-West of -83.72
-</th>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-west of -83.72
+Description
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-% streamline slope in catchment*
+WestFlat
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
+West of longitude -83.72 AND % slope &lt; 0.2976*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+WestSteep
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-&lt; % 0.2976
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-&gt; % 0.2976
+West of longitude -83.72 AND % slope &gt; 0.2976*
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 2px solid black;">
-Stream Class
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
 East
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
-WestFlat
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-WestSteep
+East of longitude -83.72
 </td>
 </tr>
 </tbody>
@@ -979,7 +954,7 @@ Macroinvertebrate Scoring and Interpretation</a>. </p>
 <thead>
 <tr>
 <th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Index Class
+Stream Class
 </th>
 <th style="text-align:right;border-top: 2px solid black; border-bottom: 1px solid black;">
 P51 IBI Score Threshold

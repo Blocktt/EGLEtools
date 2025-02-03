@@ -1,6 +1,6 @@
 ---
 title: "Resources"
-date: "2025-01-13"
+date: "2025-01-31"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -19,8 +19,8 @@ implementation of Procedure 51- Qualitative Biological and Habitat
 Survey Protocols for Wadeable Streams and Rivers (P51) can be found at
 the following links:
 
--   <a href="https://storymaps.arcgis.com/stories/32872a04c68d43c9acfc12948d2a3748" target="_blank">Biological
-    Monitoring of Michigan’s Rivers and Streams</a>. (Links to Procedure
-    51 and scoring documents available on this website).
+-   <a href="https://www.michigan.gov/egle/about/organization/water-resources/glwarm/biological-assessments" target="_blank">Biological
+    Assessments</a>. (Links to Procedure 51 and scoring documents
+    available on this website).
 -   <a href="https://experience.arcgis.com/experience/2679ab95af4a4c1e823fbef7018aeb59/" target="_blank">P51
     Site Classification Map</a>

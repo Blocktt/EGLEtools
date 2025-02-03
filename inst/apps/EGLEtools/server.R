@@ -1093,7 +1093,7 @@ shinyServer(function(input, output, session) {
 
       # Attainment
       df_index_attn <- df_metsc %>%
-        mutate(AttainmentCategory = case_when(
+        mutate(MacroinvertebrateRating = case_when(
           INDEX_CLASS == "WESTSTEEP" & Index < 42 ~ "Does not meet expectations",
           INDEX_CLASS == "WESTFLAT" & Index < 46 ~ "Does not meet expectations",
           INDEX_CLASS == "EAST" & Index < 46 ~ "Does not meet expectations",

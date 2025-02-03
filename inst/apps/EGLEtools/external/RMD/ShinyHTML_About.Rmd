@@ -1,6 +1,6 @@
 ---
 title: "About"
-date: "2025-01-10"
+date: "2025-02-03"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -16,12 +16,7 @@ knitr::opts_chunk$set(echo = FALSE
 
 # Background
 
-This web app calculates P51 scores for benthic macroinvertebrate
-assemblages in wadeable streams throughout Michigan. The Michigan
-Department of Environment, Great Lakes, and Energy (EGLE) has developed
-this web application to efficiently calculate P51 scores based off of
-benthic macroinvertebrate samples collected from wadeable streams
-throughout Michigan.
+The Michigan Department of Environment, Great Lakes, and Energy (EGLE) has developed this web application to efficiently calculate P51 scores based off of benthic macroinvertebrate samples collected from wadeable streams throughout Michigan.
 
 Want to try running the calculator but don't have input files? Download
 the
@@ -63,10 +58,7 @@ applied to samples that meet the following criteria:
 Appropriate stream classification ensures that the index calibrated for
 a stream type gives the most reliable community assessment information.
 For each site, the stream class will be identified according to
-specifications in the table below. Once a site is sampled using
-Procedure 51, the stream class is determined and then generally retained
-for future monitoring events. This prevents a site from switching class
-based on a small difference in stream width.
+specifications in the table below.
 
 **North**
 
@@ -95,7 +87,9 @@ df_data %>%
   row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
 ```
 
-\*% of catchment area classified as wetland or water land cover
+*Width based on average measured stream width during sampling event.
+
+**% of catchment area classified as wetland or water land cover
 (National Land Cover Database, 2011, (United States Geological Survey
 [USGS], 2014))
 

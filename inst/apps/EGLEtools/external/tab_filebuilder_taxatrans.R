@@ -57,8 +57,9 @@ function() {
                           , choices = "Imported file necessary for selection...")
 
             , p(strong("Other Fields"))
-            , p(em("Wide-format:"), " REQUIRED to add all non-taxa fields here."
-                , br(), em("Long-format:")
+            , p(strong(em("Wide-format:")), " REQUIRED to add all non-taxa fields here.
+                DO NOT REPEAT COLUMNS FROM ABOVE."
+                , br(), strong(em("Long-format:"))
                 , " OPTIONAL to add other fields to carry through analyses.
                 DO NOT REPEAT COLUMNS FROM ABOVE.")
 

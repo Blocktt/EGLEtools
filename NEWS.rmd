@@ -21,6 +21,9 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# EGLEtools 1.1.1 (2025-02-03)
+-   Addressed minor text editing changes as requested by EGLE staff.
+
 # EGLEtools 1.1.0.9013 (2025-01-14)
 -   Updated site classification to function by sampleid to avoid duplicates.
 
