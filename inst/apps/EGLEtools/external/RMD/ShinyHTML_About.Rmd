@@ -1,0 +1,427 @@
+---
+title: "About"
+date: "2025-02-03"
+output: html_fragment
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE
+                      , results = 'asis'
+                      , warning = FALSE
+                      , message = FALSE)
+```
+
+# Background
+
+The Michigan Department of Environment, Great Lakes, and Energy (EGLE) has developed this web application to efficiently calculate P51 scores based off of benthic macroinvertebrate samples collected from wadeable streams throughout Michigan.
+
+Want to try running the calculator but don't have input files? Download
+the
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/EGLEtools/Example_Files/" target="_blank">EGLE
+Test Files</a>.
+
+# Intended application
+Procedure 51 improves the diagnostic ability of EGLE scientists to
+identify degradation in water quality. The procedure is intended to be
+applied to samples that meet the following criteria:
+
+<details class="details-section">
+  <summary class="custom-summary">Expand for more details</summary>
+
+-   **Geographic area**: Wadeable streams in Michigan.
+
+-   **Collection gear and method**: Triangular dip net with 1mm mesh or
+    hand pick.
+
+-   **Collection habitat**: All available habitats (both high and
+    low-velocity areas) with consideration given to proportional
+    occurrence.
+
+-   **Index period**: June - September.
+
+-   **Sampling effort**: Approximately 15-30 minutes of sampling time by
+    two trained biologists.
+
+-   **Taxonomic resolution**: Macroinvertebrates identified to family or
+    higher.
+
+-   **Subsampling**: A composite sample is subsampled in the field to
+    obtain 300 +/- 60 organisms for identification and enumeration.
+
+</details>
+
+# Stream Classes
+
+Appropriate stream classification ensures that the index calibrated for
+a stream type gives the most reliable community assessment information.
+For each site, the stream class will be identified according to
+specifications in the table below.
+
+**North**
+
+[*Ecoregions: 50 - Northern Lakes and Forests, 51 - North Central
+Hardwood Forests (Omernik and Bryce, 2010)*]
+
+```{r North}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "North_Classes")
+
+# Display
+options(knitr.kable.NA = '')
+df_data %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
+```
+
+*Width based on average measured stream width during sampling event.
+
+**% of catchment area classified as wetland or water land cover
+(National Land Cover Database, 2011, (United States Geological Survey
+[USGS], 2014))
+
+**South**
+
+[*Ecoregions: 55 - Eastern Corn Belt Plains, 56 - Southern
+Michigan/Northern Indiana Drift Plains, 57 - Huron/Erie Lake Plains
+(Omernik and Bryce, 2010)*]
+
+```{r South}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "South_Classes")
+
+# Display
+options(knitr.kable.NA = '')
+df_data %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
+```
+
+\*% stream slope measured as the slope of flowline based on smoothed
+elevations (Source: National Hydrography Dataset Plus)
+
+# Macroinvertebrate Models
+
+Metric calculation depends on the list of taxa collected, taxa traits,
+and calculation descriptions. Each stream class has a specific index
+that includes a unique set of metrics and scoring formulae (see tables
+below). Metric scores are first calculated from metric values. Any
+scores calculated as 100 are reset to 100 and scores calculated to 0 are
+reset to 0. The calculated and reset scores are averaged across all
+metrics to arrive at an index score for each site.
+
+<details class="details-section">
+
+<summary class="custom-summary"> Expand for more details </summary>
+
+## Very Narrow Stream Class
+
+<details class="details-section">
+
+<summary class="custom-summary"> Expand for more details </summary>
+
+```{r Very Narrow}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "FileBuild_About")
+df_data_trim <- df_data %>% 
+  filter(`Stream Class` == "VeryNarrow") %>% 
+  select(-c(`Stream Class`))
+
+# Display
+options(knitr.kable.NA = '')
+df_data_trim %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
+```
+
+</details>
+
+## Narrow Stream Class
+
+<details class="details-section">
+
+<summary class="custom-summary"> Expand for more details </summary>
+
+```{r Narrow}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "FileBuild_About")
+df_data_trim <- df_data %>% 
+  filter(`Stream Class` == "Narrow") %>% 
+  select(-c(`Stream Class`))
+
+# Display
+options(knitr.kable.NA = '')
+df_data_trim %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
+```
+
+</details>
+
+## Mid-Size Dry Stream Class
+
+<details class="details-section">
+
+<summary class="custom-summary"> Expand for more details </summary>
+
+```{r MSD}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "FileBuild_About")
+df_data_trim <- df_data %>% 
+  filter(`Stream Class` == "MidSizeDry") %>% 
+  select(-c(`Stream Class`))
+
+# Display
+options(knitr.kable.NA = '')
+df_data_trim %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
+```
+
+</details>
+
+## Wide or Mid-Size Wet Stream Class
+
+<details class="details-section">
+
+<summary class="custom-summary"> Expand for more details </summary>
+
+```{r WideOrMidSizeWet}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "FileBuild_About")
+df_data_trim <- df_data %>% 
+  filter(`Stream Class` == "WideOrMidSizeWet") %>% 
+  select(-c(`Stream Class`))
+
+# Display
+options(knitr.kable.NA = '')
+df_data_trim %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
+```
+
+</details>
+
+## West Flat Stream Class
+
+<details class="details-section">
+
+<summary class="custom-summary"> Expand for more details </summary>
+
+```{r WestFlat}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "FileBuild_About")
+df_data_trim <- df_data %>% 
+  filter(`Stream Class` == "WestFlat") %>% 
+  select(-c(`Stream Class`))
+
+# Display
+options(knitr.kable.NA = '')
+df_data_trim %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
+```
+
+</details>
+
+## West Steep Stream Class
+
+<details class="details-section">
+
+<summary class="custom-summary"> Expand for more details </summary>
+
+```{r WestSteep}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "FileBuild_About")
+df_data_trim <- df_data %>% 
+  filter(`Stream Class` == "WestSteep") %>% 
+  select(-c(`Stream Class`))
+
+# Display
+options(knitr.kable.NA = '')
+df_data_trim %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
+```
+
+</details>
+
+## East Stream Class
+
+<details class="details-section">
+
+<summary class="custom-summary"> Expand for more details </summary>
+
+```{r East}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "FileBuild_About")
+df_data_trim <- df_data %>% 
+  filter(`Stream Class` == "East") %>% 
+  select(-c(`Stream Class`))
+
+# Display
+options(knitr.kable.NA = '')
+df_data_trim %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data_trim) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data_trim), extra_css = "border-bottom: 2px solid black;")
+```
+
+</details>
+
+# Interpretation
+
+Procedure 51 uses a least-impacted reference site approach to set
+macroinvertebrate community expectations for each stream class. If a P51
+score for a community deviates from what is expected based on the
+distribution of scores at least-impacted reference sites, that community
+is considered to be “Not Meeting Expectations”. “Not Meeting
+Expectations” is an indicator that water quality, stream habitat, or
+other conditions are impacting the community. If a P51 score for a
+community is within the distribution of scores that are expected based
+on least-impacted reference sites, that community is considered to be
+“Meeting Expectations”. For more details on how thresholds between
+“Meeting Expectations” and “Not Meeting Expectations” were chosen, as
+well as assumptions that went into the process see
+<a href="https://www.michigan.gov/egle/-/media/Project/Websites/egle/Documents/Programs/WRD/GLWARM/Procedure-51-Scoring.pdf?" target="_blank">P51
+Macroinvertebrate Scoring and Interpretation</a>. 
+
+```{r Thresholds}
+# Packages
+library(readxl)
+library(knitr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "FileBuild_About2")
+
+# Display
+options(knitr.kable.NA = '')
+df_data %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "center") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
+```
+
+# Funding and acknowledgments
+
+Section 106 funding allocated to EGLE by the USEPA funded the
+development of this app.
+
+
+<script>
+  document.querySelectorAll(".details-section").forEach(function(details) {
+    details.addEventListener("toggle", function() {
+      var summaryText = this.querySelector("summary");
+      if (this.open) {
+        summaryText.textContent = "Minimize";
+      } else {
+        summaryText.textContent = "Expand for more details";
+      }
+    });
+  });
+</script>

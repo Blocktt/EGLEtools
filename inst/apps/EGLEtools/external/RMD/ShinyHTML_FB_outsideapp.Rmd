@@ -1,0 +1,56 @@
+---
+title: "Prepare Data, Outside app"
+date: "2025-01-13"
+output: html_fragment
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE
+                      , results = 'asis'
+                      , warning = FALSE
+                      , message = FALSE)
+```
+
+# Prepare an input file outside of the app
+
+If you choose to create the input file outside of the app (versus using
+the 'File Builder'), the file needs to have all the required fields
+listed in the tables below. Column names must match the spelling,
+symbology, and capitalization scheme exactly as shown.
+
+IMPORTANT: Make sure you are using the proper Operational Taxonomic Unit
+(OTU) and taxa traits/attributes for your metric calculations. The Taxa
+Translator and Attribute tables (and associated metadata) that were used
+for P51 development can be downloaded:
+<a href="https://github.com/Blocktt/EGLEtools/tree/dev2024/inst/apps/EGLEtools/data" target="_blank">EGLE Taxa Translator Files</a>.
+
+The EGLE Input Test File can be used as a guide for your own input
+file:
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/EGLEtools/Example_Files/" target="_blank">EGLE Test Files</a>.
+
+## Input file requirements for ELGE P51 models
+
+```{r}
+# Packages
+library(readxl)
+library(knitr)
+library(dplyr)
+library(kableExtra)
+
+# Data
+fn_data <- "OutputFileSubtabs.xlsx"
+path_data <- file.path("files", fn_data)
+df_data <- read_excel(path_data, sheet = "FileBuild_Outside")
+
+# Display
+options(knitr.kable.NA = '')
+df_data %>%
+  kable() %>%
+  kable_styling(full_width = F, position = "left") %>%
+  row_spec(0, extra_css = "border-top: 2px solid black; border-bottom: 1px solid black;") %>%
+  row_spec(1:(nrow(df_data) - 1), extra_css = "border-bottom: 1px solid black;") %>%
+  row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
+```

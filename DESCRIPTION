@@ -1,29 +1,17 @@
-Package: MIEGLEtools
+Package: EGLEtools
 Type: Package
-Title: Used to calculate Michigan EGLE IBI Metrics and scores, and produce output files 
-Version: 0.1.2.905
-Authors@R: c(
-  person("Ben", "Block", email="Ben.Block@tetratech.com", role=c("cre", "aut")),
-  person("Erik W.","Leppo", role="aut"))
+Title: Michigan EGLE IBI Calculator
+Version: 1.1.1
+Authors@R: person("Benjamin D.", "Block", , "Ben.Block@tetratech.com", role = c("aut", "cre"))
+           person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com", role=c("aut","cre"))
 Maintainer: Ben Block <Ben.Block@tetratech.com>
-Description: Tools to calculate multi-metric index in R and Shiny.
-License: MIT + file LICENSE
+Description: Shiny app developed for the calculation of the Michigan EGLE 
+             Macroinvertebrate Index of Biotic Integrity (IBI) models.
+             Developed by Tetra Tech. 
+             Includes taxa translation and attributes tables.
+License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
-Imports:
-  BioMonTools,
-  shiny,
-  DT,
-  ggplot2,
-  readxl,
-  reshape2,
-  dplyr,
-  maps,
-  tidyr,
-  shinyjs,
-  knitr,
-  rmarkdown,
-  leaflet
-VignetteBuilder: knitr
-URL: https://github.com/Blocktt/MIEGLEtools
+RoxygenNote: 7.3.2
+Depends: 
+    R (>= 2.10)

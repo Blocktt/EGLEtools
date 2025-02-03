@@ -1,87 +1,68 @@
-NEWS-MIEGLEtools
+EGLEtools-NEWS
 ================
+<Ben.Block@tetratech.com>
+2025-02-03 12:34:52.319471
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2020-08-12 12:48:36
+    #> Last Update: 2025-02-03 12:34:52.342498
 
-# MIEGLEtools v0.1.2.905 (2020-08-12)
+# EGLEtools 1.1.1 (2025-02-03)
 
-  - Created tests folder to test functionality of metric caculations and
-    scoring.
+- Addressed minor text editing changes as requested by EGLE staff.
 
-# MIEGLEtools v0.1.2.902 (2020-08-10)
+# EGLEtools 1.1.0.9013 (2025-01-14)
 
-  - Minor updates to make input columns correct format. Removed extra
-    internal examples.
+- Updated site classification to function by sampleid to avoid
+  duplicates.
 
-# MIEGLEtools v0.1.2.900 (2020-08-07)
+# EGLEtools 1.1.0.9009 (2025-01-13)
 
-  - Added R leaflet map to Shiny app - local testing complete. The map
-    requires metric scores to be calculated from input file prior to
-    mapping.
+- Updated UI with new language to match EGLE reviewer comments.
+- Changed all documentation from “MI EGLE” to just “EGLE” per request.
 
-# MIEGLEtools v0.1.1.956 (2020-08-06)
+# MIEGLEtools 1.1.0.9007 (2024-12-23)
 
-  - Added R leaflet map to Shiny app. Still in testing. The map requires
-    metric scores to be calculated from input file prior to mapping.
-    Attempting to make reactive.
+- Updated file builder to accommodate wide-format input files.
+- Fixed site classification to use mean of reported widths in dup sites.
 
-# MIEGLEtools v0.1.1.946 (2020-07-30)
+# MIEGLEtools 1.1.0.9001 (2024-12-17)
 
-  - Fixed Issues \#1 and \#2 (see GitHub repo). The Shiny app crashed
-    because metric.values.MI.R required certain columns that were not in
-    the input data set. To combat this, we included a section in
-    server.R that tacks on any missing columns onto the input data set
-    prior to metric calculation using metric.values().
-  - Next steps are product testing and accuracy testing.
+- Removed tab_import in favor of two import functions. One in each step.
 
-# MIEGLEtools v0.1.1.939 (2020-07-30)
+# MIEGLEtools 1.1.0.9000 (2024-12-11)
 
-  - Took metric.values() function from `BioMonTools` and created a
-    version that is saved within the Shiny app
-  - Updated server.R to reflect new metric values function: df\_metval
-    \<- suppressWarnings(metric.values.MI(fun.DF = df\_data,
-    fun.Community = “bugs”, fun.MetricNames = MichMetrics, boo.Shiny =
-    TRUE))
+- Added custom CSS to to match aesthetic of EGLE website
+- Added QC elements to taxa translator function
+- Added modal on launch
+- Published to shinyapps.io as beta
 
-# MIEGLEtools v0.1.1.934 (2020-07-28)
+# MIEGLEtools 1.0.0.9027 (2024-12-09)
 
-  - Updated thresholds for metric scoring to be obtained from within the
-    `BioMonTools` package
-      - The `BioMonTools` package has a thresholds excel file within the
-        package that is referenced.
-      - This Excel file would need to be edited to changed metric
-        threshold values when scoring metrics.
-  - Version changed to previous naming convention v0.1.1.934 rather than
-    v0.1.0.9001.
+- Added content to UI that represents MI EGLE’s P51 documentation
+- Added guidance information to UI tabs
 
-# MIEGLEtools v0.1.0.9001 (2020-07-28)
+# MIEGLEtools 1.0.0.9025 (2024-12-09)
 
-  - Start adding elements to allow for package creation.
-      - DESCRIPTION
-          - Title, Description, authors, maintainer, IMPORTS, License,
-            and URL
-      - NEWS
-          - Add file and update.
-      - MIEGLEtools
-          - Remove from base directory
-      - .\_MIEGLEtools.Rmd
-          - Add notebook for code to aid in creation of package
-      - Vignette
-          - Ensure each chunk had a unique name (single word only).
-      - runShiny.R
-          - Update URL in details.
-      - README
-          - Need to add RMD file for editing only have MD.
-  - Shiny app updates
-      - Add packages to DESCRIPTION.  
-      - Comment out library() calls in ui.R and server.R.  
-  - License
-      - Recreated with usethis::use\_mit\_license(“Ben Block”)
-  - Ran Check and addressed issues.
-  - UI.r, update version number to the same as the package version.
+- Added site classification functionality
+- Uses MI EGLE Site Class geospatial layer to join sites
 
-# MIEGLEtools v0.1.0.9000 (2020-07-28)
+# MIEGLEtools 1.0.0.9024 (2024-12-03)
 
-  - Forked code from <https://github.com/Blocktt/MIEGLEtools>
+- Added and tested metric calc, metric scoring, and index scoring
+  functionality
+
+# MIEGLEtools 1.0.0.9017 (2024-11-27)
+
+- Got rid of most Florida content and left structure in place
+- Created taxa translator and attribute tables from MI EGLE data
+- Tested and confirmed functionality of taxa translator
+- To do:
+  - Add site classification function
+  - Test metric calc, metric scoring, and index scoring functionality
+  - Add UI content related to MI EGLE IBI models
+
+# MIEGLEtools 1.0.0.9010 (2024-11-25)
+
+- Copied original files from FLCoralBCGCalc app for remake of
+  MIEGLEtools

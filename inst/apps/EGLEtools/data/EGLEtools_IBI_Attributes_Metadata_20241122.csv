@@ -1,0 +1,12 @@
+ColName,Description
+TAXAID,Taxon name that matches the OTU_IBI field in the taxa translator table. These are the official taxa names for IBI calculation
+PHYLUM,Taxonomic information related to TAXAID field.
+SUBPHYLUM,Taxonomic information related to TAXAID field.
+CLASS,Taxonomic information related to TAXAID field.
+SUBCLASS,Taxonomic information related to TAXAID field.
+ORDER,Taxonomic information related to TAXAID field.
+FAMILY,Taxonomic information related to TAXAID field.
+FFG,Functional feeding group
+TOLVAL,Tolerance value
+HABIT,Taxon habit
+NONTARGET,Whether the taxon is a non-target which means it is excluded from IBI calculations

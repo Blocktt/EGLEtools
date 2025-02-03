@@ -1,0 +1,1040 @@
+
+
+
+<div id="background" class="section level1">
+<h1>Background</h1>
+<p>The Michigan Department of Environment, Great Lakes, and Energy
+(EGLE) has developed this web application to efficiently calculate P51
+scores based off of benthic macroinvertebrate samples collected from
+wadeable streams throughout Michigan.</p>
+<p>Want to try running the calculator but don’t have input files?
+Download the
+<a href="https://github.com/Blocktt/ShinyAppDocuments/tree/main/EGLEtools/Example_Files/" target="_blank">EGLE
+Test Files</a>.</p>
+</div>
+<div id="intended-application" class="section level1">
+<h1>Intended application</h1>
+<p>Procedure 51 improves the diagnostic ability of EGLE scientists to
+identify degradation in water quality. The procedure is intended to be
+applied to samples that meet the following criteria:</p>
+<details class="details-section">
+<summary class="custom-summary">
+Expand for more details
+</summary>
+<ul>
+<li><p><strong>Geographic area</strong>: Wadeable streams in
+Michigan.</p></li>
+<li><p><strong>Collection gear and method</strong>: Triangular dip net
+with 1mm mesh or hand pick.</p></li>
+<li><p><strong>Collection habitat</strong>: All available habitats (both
+high and low-velocity areas) with consideration given to proportional
+occurrence.</p></li>
+<li><p><strong>Index period</strong>: June - September.</p></li>
+<li><p><strong>Sampling effort</strong>: Approximately 15-30 minutes of
+sampling time by two trained biologists.</p></li>
+<li><p><strong>Taxonomic resolution</strong>: Macroinvertebrates
+identified to family or higher.</p></li>
+<li><p><strong>Subsampling</strong>: A composite sample is subsampled in
+the field to obtain 300 +/- 60 organisms for identification and
+enumeration.</p></li>
+</ul>
+</details>
+</div>
+<div id="stream-classes" class="section level1">
+<h1>Stream Classes</h1>
+<p>Appropriate stream classification ensures that the index calibrated
+for a stream type gives the most reliable community assessment
+information. For each site, the stream class will be identified
+according to specifications in the table below.</p>
+<p><strong>North</strong></p>
+<p>[<em>Ecoregions: 50 - Northern Lakes and Forests, 51 - North Central
+Hardwood Forests (Omernik and Bryce, 2010)</em>]</p>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Stream Class
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+VeryNarrow
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+&lt; 13 ft wide*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Narrow
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+13 - 21.27 ft wide*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+MidSizeDry
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+21.27 - 68.367 ft wide* AND &lt;=40.067% Catchment Water or Wetland Land
+Cover**
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+WideorMidSizeWet
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+[&gt; 21.27 ft wide* AND &gt;40.067% Catchment Water or Wetland Land
+Cover**] OR [&gt; 68.367 ft wide*]
+</td>
+</tr>
+</tbody>
+</table>
+<p>*Width based on average measured stream width during sampling
+event.</p>
+<p>**% of catchment area classified as wetland or water land cover
+(National Land Cover Database, 2011, (United States Geological Survey
+[USGS], 2014))</p>
+<p><strong>South</strong></p>
+<p>[<em>Ecoregions: 55 - Eastern Corn Belt Plains, 56 - Southern
+Michigan/Northern Indiana Drift Plains, 57 - Huron/Erie Lake Plains
+(Omernik and Bryce, 2010)</em>]</p>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Stream Class
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+WestFlat
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+West of longitude -83.72 AND % slope &lt; 0.2976*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+WestSteep
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+West of longitude -83.72 AND % slope &gt; 0.2976*
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+East
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+East of longitude -83.72
+</td>
+</tr>
+</tbody>
+</table>
+<p>*% stream slope measured as the slope of flowline based on smoothed
+elevations (Source: National Hydrography Dataset Plus)</p>
+</div>
+<div id="macroinvertebrate-models" class="section level1">
+<h1>Macroinvertebrate Models</h1>
+<p>Metric calculation depends on the list of taxa collected, taxa
+traits, and calculation descriptions. Each stream class has a specific
+index that includes a unique set of metrics and scoring formulae (see
+tables below). Metric scores are first calculated from metric values.
+Any scores calculated as 100 are reset to 100 and scores calculated to 0
+are reset to 0. The calculated and reset scores are averaged across all
+metrics to arrive at an index score for each site.</p>
+<details class="details-section">
+<summary class="custom-summary">
+Expand for more details
+</summary>
+<div id="very-narrow-stream-class" class="section level2">
+<h2>Very Narrow Stream Class</h2>
+<details class="details-section">
+<summary class="custom-summary">
+Expand for more details
+</summary>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Metric
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Category
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Scoring Formula
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+nt_EPT
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of taxa in Orders Ephemeroptera, Plecoptera, and Trichoptera
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X - 2.35)/(12.65)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_Cru
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Subphylum Crustacea
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Composition
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(63.71 - X)/(63.71)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_shred
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - shredder
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(71.15 - X)/(69.82)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_habit_cling
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Habit - clingers
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Habit
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X - 4.27)/(67.89)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pt_NonIns
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent of taxa not of Class Insecta
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(38.89 - X)/(28.18)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_tv_intol
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent taxa with tolerance value ≤3 - intolerant
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+100*(X - 7.51)/(37.73)
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="narrow-stream-class" class="section level2">
+<h2>Narrow Stream Class</h2>
+<details class="details-section">
+<summary class="custom-summary">
+Expand for more details
+</summary>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Metric
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Category
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Scoring Formula
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_EPT
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Orders Ephemeroptera, Plecoptera, and Trichoptera
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Composition
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X - 14.93)/(57.97)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_shred
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - shredder
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(51.34 - X)/(49.46)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_habit_climb
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Habit - climbers
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Habit
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(18.45 - X)/(18.07)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_tv_toler
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals with tolerance value ≥7 - tolerant
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(18.26 - X)/(18.26)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_NonIns
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent of taxa not of Class Insecta
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+100*(34.39 - X)/(26.25)
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="mid-size-dry-stream-class" class="section level2">
+<h2>Mid-Size Dry Stream Class</h2>
+<details class="details-section">
+<summary class="custom-summary">
+Expand for more details
+</summary>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Metric
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Category
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Scoring Formula
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+nt_CruMol
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of taxa of Phylum Mollusca and Subphylum Crustacea
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(8 - X)/(7)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+nt_tv_toler
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of taxa with tolerance value ≥7 - tolerant
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(5 - X)/(5)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_CruMol
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Subphylum Crustacea and Phylum Mollusca
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Composition
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(51.48 - X)/(50.91)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_pred
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - predator
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X - 3.21)/(22.51)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_shred
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - shredder
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(42.23 - X)/(40.87)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_habit_cling
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Habit - clingers
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Habit
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X - 18.39)/(61.18)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_NonIns
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent of taxa not of Class Insecta
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+100*(33.33 - X)/(22.62)
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="wide-or-mid-size-wet-stream-class" class="section level2">
+<h2>Wide or Mid-Size Wet Stream Class</h2>
+<details class="details-section">
+<summary class="custom-summary">
+Expand for more details
+</summary>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Metric
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Category
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Scoring Formula
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+nt_NonIns
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of taxa not of Class Insecta
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(13 - X)/(9)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_scrap
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - scraper
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(50.14 - X)/(48.06)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_IsopGastHiru
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Order Isopoda, Class Gastropoda, Subclass
+Hirudinea
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Composition
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(38.46 - X)/(38.07)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_NonIns
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals not of Class Insecta
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Composition
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(67.29 - X)/(64)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_Pleco
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Order Plecoptera
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Composition
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X)/(6.62)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_tv_toler
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent taxa with tolerance value ≥7 - tolerant
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+100*(17.39 - X)/(17.39)
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="west-flat-stream-class" class="section level2">
+<h2>West Flat Stream Class</h2>
+<details class="details-section">
+<summary class="custom-summary">
+Expand for more details
+</summary>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Metric
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Category
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Scoring Formula
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_EPT
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Orders Ephemeroptera, Plecoptera, and Trichoptera
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Composition
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X - 0.59)/(60.17)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_col
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - collector-gatherer
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(72.31 - X)/(62.64)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_habit_sprawl
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Habit - sprawlers
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Habit
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(27.03 - X)/(26.45)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pt_NonIns
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent of taxa not of Class Insecta
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(43.51 - X)/(25.33)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pt_tv_intol
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent taxa with tolerance value ≤3 - intolerant
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X)/(31.06)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_tv_toler
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent taxa with tolerance value ≥7 - tolerant
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+100*(30.04 - X)/(25.71)
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="west-steep-stream-class" class="section level2">
+<h2>West Steep Stream Class</h2>
+<details class="details-section">
+<summary class="custom-summary">
+Expand for more details
+</summary>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Metric
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Category
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Scoring Formula
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+nt_Trich
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of taxa of Order Tricoptera
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X)/(7)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_EPTNoBaeHydro
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Orders Ephemeroptera, Plecoptera and Trichoptera
+(EPT) and not Families Baetidae or Hydropsychidae
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Composition
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X)/(32.58)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_col
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - collector-gatherer
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(77.52 - X)/(72.21)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_habit_cling
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Habit - clingers
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Habit
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X - 1.29)/(69.73)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_tv_toler
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent taxa with tolerance value ≥7 - tolerant
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+100*(30.9 - X)/(30.9)
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="east-stream-class" class="section level2">
+<h2>East Stream Class</h2>
+<details class="details-section">
+<summary class="custom-summary">
+Expand for more details
+</summary>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Metric
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Category
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Scoring Formula
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+nt_habit_cling
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of taxa of Habit - clingers
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Habit
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X - 2)/(10.6)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+nt_Trich
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of taxa of Order Tricoptera
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X)/(7)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_IsopGastHiru
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Order Isopoda, Class Gastropoda, Subclass
+Hirudinea
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Composition
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(48.6 - X)/(47.86)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_tv_intol
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals with tolerance value ≤3 - intolerant
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(X)/(42.08)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pt_NonIns
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent of taxa not of Class Insecta
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100*(50 - X)/(30)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_tv_toler
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent taxa with tolerance value ≥7 - tolerant
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+100*(31.93 - X)/(26.61)
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+</div>
+<div id="interpretation" class="section level1">
+<h1>Interpretation</h1>
+<p>Procedure 51 uses a least-impacted reference site approach to set
+macroinvertebrate community expectations for each stream class. If a P51
+score for a community deviates from what is expected based on the
+distribution of scores at least-impacted reference sites, that community
+is considered to be “Not Meeting Expectations”. “Not Meeting
+Expectations” is an indicator that water quality, stream habitat, or
+other conditions are impacting the community. If a P51 score for a
+community is within the distribution of scores that are expected based
+on least-impacted reference sites, that community is considered to be
+“Meeting Expectations”. For more details on how thresholds between
+“Meeting Expectations” and “Not Meeting Expectations” were chosen, as
+well as assumptions that went into the process see
+<a href="https://www.michigan.gov/egle/-/media/Project/Websites/egle/Documents/Programs/WRD/GLWARM/Procedure-51-Scoring.pdf?" target="_blank">P51
+Macroinvertebrate Scoring and Interpretation</a>. </p>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Stream Class
+</th>
+<th style="text-align:right;border-top: 2px solid black; border-bottom: 1px solid black;">
+P51 IBI Score Threshold
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+VeryNarrow
+</td>
+<td style="text-align:right;border-bottom: 1px solid black;">
+59
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Narrow
+</td>
+<td style="text-align:right;border-bottom: 1px solid black;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+MidSizeDry
+</td>
+<td style="text-align:right;border-bottom: 1px solid black;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+WideorMidSizeWet
+</td>
+<td style="text-align:right;border-bottom: 1px solid black;">
+45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+WestFlat
+</td>
+<td style="text-align:right;border-bottom: 1px solid black;">
+46
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+WestSteep
+</td>
+<td style="text-align:right;border-bottom: 1px solid black;">
+42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+East
+</td>
+<td style="text-align:right;border-bottom: 2px solid black;">
+46
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="funding-and-acknowledgments" class="section level1">
+<h1>Funding and acknowledgments</h1>
+<p>Section 106 funding allocated to EGLE by the USEPA funded the
+development of this app.</p>
+<script>
+  document.querySelectorAll(".details-section").forEach(function(details) {
+    details.addEventListener("toggle", function() {
+      var summaryText = this.querySelector("summary");
+      if (this.open) {
+        summaryText.textContent = "Minimize";
+      } else {
+        summaryText.textContent = "Expand for more details";
+      }
+    });
+  });
+</script>
+</div>

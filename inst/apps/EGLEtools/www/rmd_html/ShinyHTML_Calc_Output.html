@@ -1,0 +1,122 @@
+
+
+
+<p>A single zip file will be available for download. It will include all
+result files, reference files, and the original input data file. All
+result data files will be CSV format, unless otherwise noted.</p>
+<p>The zip file will included the base name of the original file along
+with the date and time.</p>
+<p>The individual files and their contents are output in three
+subfolders. Each output file is described in the table below.</p>
+<table class="table" style="color: black; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Output file
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Subfolder
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Original file name
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+_user_input
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Original input file.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+MetricNames.xlsx
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+reference
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Metrics calculated by the BioMonTools R package, their description, and
+input fields.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+MetricScoring.xlsx
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+reference
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Metric scoring table used by the BioMonTools R package.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+IBI_1markexcl
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+quality_control
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Excluded (non-count) taxa. Excluded from taxa richness metrics.
+Calculated using BioMonTools R package (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+IBI_2metval_all
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+quality_control
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Values for all bug metrics in the BioMonTools R package (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+IBI_2metval_IBI
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+quality_control
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Values for bug metrics used in the EGLE IBI models; the calculations are
+done with the BioMonTools R package (<a href="https://github.com/leppott/BioMonTools" class="uri">https://github.com/leppott/BioMonTools</a>).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+IBI_3metscores
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+quality_control
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Scores (0-100) for bug metrics used in the EGLE IBI models. For each
+sample, IBI model output (metric values, metric scores, and index
+scores).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: rgba(51, 163, 158, 255) !important;border-bottom: 2px solid black;">
+IBI_IndexCalc_Final
+</td>
+<td style="text-align:left;font-weight: bold;color: rgba(51, 163, 158, 255) !important;border-bottom: 2px solid black;">
+results_EGLE_P51_Scores
+</td>
+<td style="text-align:left;font-weight: bold;color: rgba(51, 163, 158, 255) !important;border-bottom: 2px solid black;">
+Macroinvertebrate rating of each sample based on EGLE thresholds. For
+each sample, IBI model output (metric values, metric scores, index
+scores, and macroinvertebrate ratings).
+</td>
+</tr>
+</tbody>
+</table>
