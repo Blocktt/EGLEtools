@@ -1,5 +1,5 @@
 dashboardPage(
-  header = dashboardHeader(title = "EGLE P51 Score Calculator", titleWidth = 275),
+  header = dashboardHeader(title = "EGLE P51 Score Calculator", titleWidth = 300),
   sidebar = dashboardSidebar(db_main_sb("leftsidebarmenu")),
   body = dashboardBody(
     tags$head(

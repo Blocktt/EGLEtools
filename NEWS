@@ -1,11 +1,15 @@
 EGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2025-02-03 12:34:52.319471
+2025-02-05 10:05:12.14786
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-02-03 12:34:52.342498
+    #> Last Update: 2025-02-05 10:05:12.169924
+
+# EGLEtools 1.1.1.9001 (2025-02-05)
+
+- Addressed minor edits as requested by EGLE staff.
 
 # EGLEtools 1.1.1 (2025-02-03)
 

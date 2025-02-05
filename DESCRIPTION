@@ -1,7 +1,7 @@
 Package: EGLEtools
 Type: Package
 Title: Michigan EGLE IBI Calculator
-Version: 1.1.1
+Version: 1.1.1.9001
 Authors@R: person("Benjamin D.", "Block", , "Ben.Block@tetratech.com", role = c("aut", "cre"))
            person("Erik W.", "Leppo", email="Erik.Leppo@tetratech.com", role=c("aut","cre"))
 Maintainer: Ben Block <Ben.Block@tetratech.com>
