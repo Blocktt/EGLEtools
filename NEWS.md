@@ -1,11 +1,16 @@
 EGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2025-02-05 10:05:12.14786
+2025-06-05 16:47:19.072437
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-02-05 10:05:12.169924
+    #> Last Update: 2025-06-05 16:47:19.087991
+
+# EGLEtools 1.1.1.9002 (2025-06-05)
+
+- Updated to incorporate BioMonTools fix for incorrect metric scoring
+  calc.
 
 # EGLEtools 1.1.1.9001 (2025-02-05)
 
