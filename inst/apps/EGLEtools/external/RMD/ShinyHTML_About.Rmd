@@ -1,6 +1,6 @@
 ---
 title: "About"
-date: "2025-02-03"
+date: "2025-12-15"
 output: html_fragment
 editor_options: 
   markdown: 
@@ -16,7 +16,10 @@ knitr::opts_chunk$set(echo = FALSE
 
 # Background
 
-The Michigan Department of Environment, Great Lakes, and Energy (EGLE) has developed this web application to efficiently calculate P51 scores based off of benthic macroinvertebrate samples collected from wadeable streams throughout Michigan.
+The Michigan Department of Environment, Great Lakes, and Energy (EGLE)
+has developed this web application to efficiently calculate P51 scores
+based off of benthic macroinvertebrate samples collected from wadeable
+streams throughout Michigan.
 
 Want to try running the calculator but don't have input files? Download
 the
@@ -24,12 +27,18 @@ the
 Test Files</a>.
 
 # Intended application
+
 Procedure 51 improves the diagnostic ability of EGLE scientists to
 identify degradation in water quality. The procedure is intended to be
 applied to samples that meet the following criteria:
 
 <details class="details-section">
-  <summary class="custom-summary">Expand for more details</summary>
+
+<summary class="custom-summary">
+
+Expand for more details
+
+</summary>
 
 -   **Geographic area**: Wadeable streams in Michigan.
 
@@ -87,9 +96,9 @@ df_data %>%
   row_spec(nrow(df_data), extra_css = "border-bottom: 2px solid black;")
 ```
 
-*Width based on average measured stream width during sampling event.
+\*Width based on average measured stream width during sampling event.
 
-**% of catchment area classified as wetland or water land cover
+\*\*% of catchment area classified as wetland or water land cover
 (National Land Cover Database, 2011, (United States Geological Survey
 [USGS], 2014))
 
@@ -136,13 +145,21 @@ metrics to arrive at an index score for each site.
 
 <details class="details-section">
 
-<summary class="custom-summary"> Expand for more details </summary>
+<summary class="custom-summary">
+
+Expand for more details
+
+</summary>
 
 ## Very Narrow Stream Class
 
 <details class="details-section">
 
-<summary class="custom-summary"> Expand for more details </summary>
+<summary class="custom-summary">
+
+Expand for more details
+
+</summary>
 
 ```{r Very Narrow}
 # Packages
@@ -175,7 +192,11 @@ df_data_trim %>%
 
 <details class="details-section">
 
-<summary class="custom-summary"> Expand for more details </summary>
+<summary class="custom-summary">
+
+Expand for more details
+
+</summary>
 
 ```{r Narrow}
 # Packages
@@ -208,7 +229,11 @@ df_data_trim %>%
 
 <details class="details-section">
 
-<summary class="custom-summary"> Expand for more details </summary>
+<summary class="custom-summary">
+
+Expand for more details
+
+</summary>
 
 ```{r MSD}
 # Packages
@@ -241,7 +266,11 @@ df_data_trim %>%
 
 <details class="details-section">
 
-<summary class="custom-summary"> Expand for more details </summary>
+<summary class="custom-summary">
+
+Expand for more details
+
+</summary>
 
 ```{r WideOrMidSizeWet}
 # Packages
@@ -274,7 +303,11 @@ df_data_trim %>%
 
 <details class="details-section">
 
-<summary class="custom-summary"> Expand for more details </summary>
+<summary class="custom-summary">
+
+Expand for more details
+
+</summary>
 
 ```{r WestFlat}
 # Packages
@@ -307,7 +340,11 @@ df_data_trim %>%
 
 <details class="details-section">
 
-<summary class="custom-summary"> Expand for more details </summary>
+<summary class="custom-summary">
+
+Expand for more details
+
+</summary>
 
 ```{r WestSteep}
 # Packages
@@ -340,7 +377,11 @@ df_data_trim %>%
 
 <details class="details-section">
 
-<summary class="custom-summary"> Expand for more details </summary>
+<summary class="custom-summary">
+
+Expand for more details
+
+</summary>
 
 ```{r East}
 # Packages
@@ -412,7 +453,7 @@ df_data %>%
 Section 106 funding allocated to EGLE by the USEPA funded the
 development of this app.
 
-
+```{=html}
 <script>
   document.querySelectorAll(".details-section").forEach(function(details) {
     details.addEventListener("toggle", function() {
@@ -425,3 +466,4 @@ development of this app.
     });
   });
 </script>
+```

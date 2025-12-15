@@ -27,6 +27,7 @@ cat(paste0("Last Update: ",Sys.time()))
 -   Initial cleanup including:
     -   Changing Hydropsychidae family TOLVAL value to 5 (from 2.7).
     -   Making new taxa attributes table with today's date.
+    -   Minor updates to global.R and server.R.
 
 # EGLEtools 1.1.1.9002 (2025-06-05)
 

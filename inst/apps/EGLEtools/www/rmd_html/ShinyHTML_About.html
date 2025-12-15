@@ -19,7 +19,7 @@ identify degradation in water quality. The procedure is intended to be
 applied to samples that meet the following criteria:</p>
 <details class="details-section">
 <summary class="custom-summary">
-Expand for more details
+<p>Expand for more details</p>
 </summary>
 <ul>
 <li><p><strong>Geographic area</strong>: Wadeable streams in
@@ -158,13 +158,13 @@ are reset to 0. The calculated and reset scores are averaged across all
 metrics to arrive at an index score for each site.</p>
 <details class="details-section">
 <summary class="custom-summary">
-Expand for more details
+<p>Expand for more details</p>
 </summary>
 <div id="very-narrow-stream-class" class="section level2">
 <h2>Very Narrow Stream Class</h2>
 <details class="details-section">
 <summary class="custom-summary">
-Expand for more details
+<p>Expand for more details</p>
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -186,30 +186,17 @@ Scoring Formula
 <tbody>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-nt_EPT
+nt_POET
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Number of taxa in Orders Ephemeroptera, Plecoptera, and Trichoptera
+Number of taxa in Orders Plecoptera, Odonanta, Ephemeroptera, and
+Trichoptera
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Richness
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(X - 2.35)/(12.65)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_Cru
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Subphylum Crustacea
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Composition
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(63.71 - X)/(63.71)
+100 * (metric - 5.2) / (18 - 5.2)
 </td>
 </tr>
 <tr>
@@ -223,49 +210,63 @@ Percent individuals of Functional Feeding Group - shredder
 FFG
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(71.15 - X)/(69.82)
+100 * (56.3 - metric) / (56.3 - 1.23)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pi_habit_cling
+pi_tv_toler6
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Habit - clingers
+Percent of individuals with tolerance value &gt; 6 - tolerant
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Tolerance
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (66.54 - metric) / (66.54 - 1.93)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pt_ffg_scrap
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent of taxa of Functional Feeding Group - scraper
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (metric - 4.2) / (24 - 4.2)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pt_habit_sprawl
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent of taxa of Habit - sprawlers
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Habit
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(X - 4.27)/(67.89)
+100 * (metric - 8.77) / (25.88 - 8.77)
 </td>
 </tr>
 <tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
+<td style="text-align:left;border-bottom: 2px solid black;">
 pt_NonIns
 </td>
-<td style="text-align:left;border-bottom: 1px solid black;">
+<td style="text-align:left;border-bottom: 2px solid black;">
 Percent of taxa not of Class Insecta
 </td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Richness
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(38.89 - X)/(28.18)
-</td>
-</tr>
-<tr>
 <td style="text-align:left;border-bottom: 2px solid black;">
-pt_tv_intol
+Relative Richness
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
-Percent taxa with tolerance value ≤3 - intolerant
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-Tolerance
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-100*(X - 7.51)/(37.73)
+100 * (32.98 - metric) / (32.98 - 9.18)
 </td>
 </tr>
 </tbody>
@@ -276,231 +277,7 @@ Tolerance
 <h2>Narrow Stream Class</h2>
 <details class="details-section">
 <summary class="custom-summary">
-Expand for more details
-</summary>
-<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Metric
-</th>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Description
-</th>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Category
-</th>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Scoring Formula
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_EPT
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Orders Ephemeroptera, Plecoptera, and Trichoptera
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Composition
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(X - 14.93)/(57.97)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_ffg_shred
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Functional Feeding Group - shredder
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-FFG
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(51.34 - X)/(49.46)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_habit_climb
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Habit - climbers
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Habit
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(18.45 - X)/(18.07)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_tv_toler
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals with tolerance value ≥7 - tolerant
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Tolerance
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(18.26 - X)/(18.26)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 2px solid black;">
-pt_NonIns
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-Percent of taxa not of Class Insecta
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-Richness
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-100*(34.39 - X)/(26.25)
-</td>
-</tr>
-</tbody>
-</table>
-</details>
-</div>
-<div id="mid-size-dry-stream-class" class="section level2">
-<h2>Mid-Size Dry Stream Class</h2>
-<details class="details-section">
-<summary class="custom-summary">
-Expand for more details
-</summary>
-<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Metric
-</th>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Description
-</th>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Category
-</th>
-<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
-Scoring Formula
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-nt_CruMol
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Number of taxa of Phylum Mollusca and Subphylum Crustacea
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Richness
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(8 - X)/(7)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-nt_tv_toler
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Number of taxa with tolerance value ≥7 - tolerant
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Tolerance
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(5 - X)/(5)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_CruMol
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Subphylum Crustacea and Phylum Mollusca
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Composition
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(51.48 - X)/(50.91)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_ffg_pred
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Functional Feeding Group - predator
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-FFG
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(X - 3.21)/(22.51)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_ffg_shred
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Functional Feeding Group - shredder
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-FFG
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(42.23 - X)/(40.87)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_habit_cling
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Habit - clingers
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Habit
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(X - 18.39)/(61.18)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 2px solid black;">
-pt_NonIns
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-Percent of taxa not of Class Insecta
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-Richness
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-100*(33.33 - X)/(22.62)
-</td>
-</tr>
-</tbody>
-</table>
-</details>
-</div>
-<div id="wide-or-mid-size-wet-stream-class" class="section level2">
-<h2>Wide or Mid-Size Wet Stream Class</h2>
-<details class="details-section">
-<summary class="custom-summary">
-Expand for more details
+<p>Expand for more details</p>
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -531,7 +308,106 @@ Number of taxa not of Class Insecta
 Richness
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(13 - X)/(9)
+100 * (10.35 - metric) / (10.35 - 2)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_shred
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - shredder
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (52.68 - metric) / (52.68 - 0.86)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pt_habit_burrow
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent of taxa of Habit - burrowers
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Habit
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (metric - 12.5) / (27.16 - 12.5)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_POET
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent of taxa in Orders Plecoptera, Odonanta, Ephemeroptera, and
+Trichoptera
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Relative Richness
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+100 * (metric - 28.12) / (61.5 - 28.12)
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="mid-size-dry-stream-class" class="section level2">
+<h2>Mid-Size Dry Stream Class</h2>
+<details class="details-section">
+<summary class="custom-summary">
+<p>Expand for more details</p>
+</summary>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Metric
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Category
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Scoring Formula
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+nt_CruMol
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of taxa of Phylum Mollusca and Subphylum Crustacea
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (8 - metric) / (8 - 1)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+nt_EPT
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Number of taxa in Orders Ephemeroptera, Plecoptera, and Trichoptera
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (metric - 7) / (16.2 - 7)
 </td>
 </tr>
 <tr>
@@ -545,50 +421,35 @@ Percent individuals of Functional Feeding Group - scraper
 FFG
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(50.14 - X)/(48.06)
+100 * (39.39 - metric) / (39.39 - 3.44)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pi_IsopGastHiru
+pt_ffg_pred
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Order Isopoda, Class Gastropoda, Subclass
-Hirudinea
+Percent of taxa of Functional Feeding Group - predator
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Composition
+FFG
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(38.46 - X)/(38.07)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_NonIns
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals not of Class Insecta
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Composition
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(67.29 - X)/(64)
+100 * (metric - 19.29) / (42.3 - 19.29)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pi_Pleco
+pt_habit_swim
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Order Plecoptera
+Percent of taxa of Habit - swimmers
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Composition
+Habit
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(X)/(6.62)
+100 * (21.62 - metric) / (21.62 - 6.62)
 </td>
 </tr>
 <tr>
@@ -602,7 +463,106 @@ Percent taxa with tolerance value ≥7 - tolerant
 Tolerance
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
-100*(17.39 - X)/(17.39)
+100 * (19.48 - metric) / (19.48 - 0)
+</td>
+</tr>
+</tbody>
+</table>
+</details>
+</div>
+<div id="wide-or-mid-size-wet-stream-class" class="section level2">
+<h2>Wide or Mid-Size Wet Stream Class</h2>
+<details class="details-section">
+<summary class="custom-summary">
+<p>Expand for more details</p>
+</summary>
+<table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Metric
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Description
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Category
+</th>
+<th style="text-align:left;border-top: 2px solid black; border-bottom: 1px solid black;">
+Scoring Formula
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_pred
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - predator
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (metric - 3.56) / (31.95 - 3.56)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_ffg_scrap
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Functional Feeding Group - scraper
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (38.41 - metric) / (38.41 - 3.89)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_habit_climb
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Habit - climbers
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Habit
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (30.01 - metric) / (30.01 - 0.91)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pi_habit_swim
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent individuals of Habit - swimmers
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Habit
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (metric - 3.02) / (35.81 - 3.02)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_POET
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent of taxa in Orders Plecoptera, Odonanta, Ephemeroptera, and
+Trichoptera
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Relative Richness
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+100 * (metric - 31.97) / (58.18 - 31.97)
 </td>
 </tr>
 </tbody>
@@ -613,7 +573,7 @@ Tolerance
 <h2>West Flat Stream Class</h2>
 <details class="details-section">
 <summary class="custom-summary">
-Expand for more details
+<p>Expand for more details</p>
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -635,86 +595,58 @@ Scoring Formula
 <tbody>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pi_EPT
+nt_ffg_pred
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Orders Ephemeroptera, Plecoptera, and Trichoptera
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Composition
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(X - 0.59)/(60.17)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_ffg_col
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Functional Feeding Group - collector-gatherer
+Number of taxa of Functional Feeding Group - predator
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 FFG
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(72.31 - X)/(62.64)
+100 * (metric - 4) / (12 - 4)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pi_habit_sprawl
+nt_total
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Habit - sprawlers
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Habit
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(27.03 - X)/(26.45)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pt_NonIns
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent of taxa not of Class Insecta
+Number of total taxa
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Richness
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(43.51 - X)/(25.33)
+100 * (metric - 17) / (35 - 17)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pt_tv_intol
+pt_Insect
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent taxa with tolerance value ≤3 - intolerant
+Percent of taxa of Class Insecta
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Tolerance
+Relative Richness
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(X)/(31.06)
+100 * (metric - 52.22) / (84.77 - 52.22)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 2px solid black;">
-pt_tv_toler
+pt_tv_toler6
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
-Percent taxa with tolerance value ≥7 - tolerant
+Percent of taxa with tolerance value &gt; 6 - tolerant
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
 Tolerance
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
-100*(30.04 - X)/(25.71)
+100 * (58.65 - metric) / (58.65 - 21)
 </td>
 </tr>
 </tbody>
@@ -725,7 +657,7 @@ Tolerance
 <h2>West Steep Stream Class</h2>
 <details class="details-section">
 <summary class="custom-summary">
-Expand for more details
+<p>Expand for more details</p>
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -747,73 +679,72 @@ Scoring Formula
 <tbody>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-nt_Trich
+nt_EPT
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Number of taxa of Order Tricoptera
+Number of taxa in Orders Ephemeroptera, Plecoptera, and Trichoptera
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Richness
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(X)/(7)
+100 * (metric - 1.55) / (10 - 1.55)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pi_EPTNoBaeHydro
+pt_ffg_col
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Orders Ephemeroptera, Plecoptera and Trichoptera
-(EPT) and not Families Baetidae or Hydropsychidae
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Composition
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(X)/(32.58)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pi_ffg_col
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Functional Feeding Group - collector-gatherer
+Percent of taxa of Functional Feeding Group - collector-gatherer
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 FFG
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(77.52 - X)/(72.21)
+100 * (44.9 - metric) / (44.9 - 17.81)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pi_habit_cling
+pt_habit_swim
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Habit - clingers
+Percent of taxa of Habit - swimmers
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Habit
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(X - 1.29)/(69.73)
+100 * (27.78 - metric) / (27.78 - 5.8)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pt_Insect
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent of taxa of Class Insecta
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Relative Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (metric - 55.56) / (82.61 - 55.56)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 2px solid black;">
-pt_tv_toler
+pt_tv_ntol
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
-Percent taxa with tolerance value ≥7 - tolerant
+Percent of taxa with tolerance value &lt; 6 - intolerant
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
 Tolerance
 </td>
 <td style="text-align:left;border-bottom: 2px solid black;">
-100*(30.9 - X)/(30.9)
+100 * (metric - 36.99) / (76.47 - 36.99)
 </td>
 </tr>
 </tbody>
@@ -824,7 +755,7 @@ Tolerance
 <h2>East Stream Class</h2>
 <details class="details-section">
 <summary class="custom-summary">
-Expand for more details
+<p>Expand for more details</p>
 </summary>
 <table class="table" style="color: black; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -846,87 +777,73 @@ Scoring Formula
 <tbody>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-nt_habit_cling
+nt_ffg_pred
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Number of taxa of Habit - clingers
+Number of taxa of Functional Feeding Group - predator
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Habit
+FFG
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(X - 2)/(10.6)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-nt_Trich
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Number of taxa of Order Tricoptera
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Richness
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(X)/(7)
+100 * (metric - 2) / (12 - 2)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pi_IsopGastHiru
+pi_OligoHiru
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals of Order Isopoda, Class Gastropoda, Subclass
+Percent of individuals in Class/SubClass Oligochaeta or SubClass
 Hirudinea
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
 Composition
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-100*(48.6 - X)/(47.86)
+100 * (35.38 - metric) / (35.38 - 0.31)
 </td>
 </tr>
 <tr>
 <td style="text-align:left;border-bottom: 1px solid black;">
-pi_tv_intol
+pt_ffg_col
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
-Percent individuals with tolerance value ≤3 - intolerant
+Percent of taxa of Functional Feeding Group - collector-gatherer
 </td>
 <td style="text-align:left;border-bottom: 1px solid black;">
+FFG
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (42.86 - metric) / (42.86 - 18.18)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 1px solid black;">
+pt_Insect
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Percent of taxa of Class Insecta
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+Relative Richness
+</td>
+<td style="text-align:left;border-bottom: 1px solid black;">
+100 * (metric - 50) / (82.19 - 50)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-bottom: 2px solid black;">
+pt_tv_toler6
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
+Percent of taxa with tolerance value &gt; 6 - tolerant
+</td>
+<td style="text-align:left;border-bottom: 2px solid black;">
 Tolerance
 </td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(X)/(42.08)
-</td>
-</tr>
-<tr>
-<td style="text-align:left;border-bottom: 1px solid black;">
-pt_NonIns
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Percent of taxa not of Class Insecta
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-Richness
-</td>
-<td style="text-align:left;border-bottom: 1px solid black;">
-100*(50 - X)/(30)
-</td>
-</tr>
-<tr>
 <td style="text-align:left;border-bottom: 2px solid black;">
-pt_tv_toler
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-Percent taxa with tolerance value ≥7 - tolerant
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-Tolerance
-</td>
-<td style="text-align:left;border-bottom: 2px solid black;">
-100*(31.93 - X)/(26.61)
+100 * (60 - metric) / (60 - 27.18)
 </td>
 </tr>
 </tbody>
