@@ -21,6 +21,10 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# EGLEtools 2.0.0 (2025-12-15)
+-   Update to version 2.0.0 by finishing changes representing EGLE 2025 models.
+    -   Added UI information related to models.
+    
 # EGLEtools 1.1.1.9003 (2025-12-15)
 
 -   Prep for new models developed in December 2025.

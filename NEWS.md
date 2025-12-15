@@ -1,11 +1,25 @@
 EGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2025-06-05 16:47:19.072437
+2025-12-15 15:27:29.312797
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-06-05 16:47:19.087991
+    #> Last Update: 2025-12-15 15:27:29.341594
+
+# EGLEtools 2.0.0 (2025-12-15)
+
+- Update to version 2.0.0 by finishing changes representing EGLE 2025
+  models.
+  - Added UI information related to models.
+
+# EGLEtools 1.1.1.9003 (2025-12-15)
+
+- Prep for new models developed in December 2025.
+- Initial cleanup including:
+  - Changing Hydropsychidae family TOLVAL value to 5 (from 2.7).
+  - Making new taxa attributes table with today’s date.
+  - Minor updates to global.R and server.R.
 
 # EGLEtools 1.1.1.9002 (2025-06-05)
 
