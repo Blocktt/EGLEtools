@@ -27,13 +27,13 @@ library(kableExtra)
 library(tidyr)
 
 # Metrics ----
-MichMetrics <- c("nt_CruMol","pi_ffg_pred","pi_ffg_shred","pi_habit_cling"
-                 ,"pi_CruMol","nt_tv_toler","pt_NonIns","pi_habit_climb"
-                 ,"pi_EPT","pi_EPTNoBaeHydro","pi_tv_toler","nt_EPT"
-                 ,"pi_Cru","pt_tv_intol","nt_NonIns","pi_ffg_scrap"
-                 ,"pi_IsopGastHiru","pi_NonIns","pi_Pleco","pt_tv_toler"
-                 ,"pi_ffg_col","pi_habit_sprawl","nt_Trich","nt_habit_cling"
-                 ,"pi_tv_intol")# END MichMetrics
+MichMetrics <- c("nt_CruMol", "nt_EPT", "nt_ffg_pred", "nt_NonIns", "nt_POET"
+                 , "nt_total", "pi_ffg_pred", "pi_ffg_scrap", "pi_ffg_shred"
+                 , "pi_habit_climb", "pi_habit_swim", "pi_OligoHiru"
+                 , "pi_tv_toler6", "pt_ffg_col", "pt_ffg_pred", "pt_ffg_scrap"
+                 , "pt_habit_burrow", "pt_habit_sprawl", "pt_habit_swim"
+                 , "pt_Insect", "pt_NonIns", "pt_POET", "pt_tv_ntol"
+                 , "pt_tv_toler", "pt_tv_toler6")# END MichMetrics
 
 # Source ----
 # Helper Functions ----

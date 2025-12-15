@@ -21,44 +21,62 @@ knitr::opts_chunk$set(
 cat(paste0("Last Update: ",Sys.time()))
 ```
 
+# EGLEtools 1.1.1.9003 (2025-12-15)
+
+-   Prep for new models developed in December 2025.
+-   Initial cleanup including:
+    -   Changing Hydropsychidae family TOLVAL value to 5 (from 2.7).
+    -   Making new taxa attributes table with today's date.
+
 # EGLEtools 1.1.1.9002 (2025-06-05)
+
 -   Updated to incorporate BioMonTools fix for incorrect metric scoring calc.
 
 # EGLEtools 1.1.1.9001 (2025-02-05)
+
 -   Addressed minor edits as requested by EGLE staff.
 
 # EGLEtools 1.1.1 (2025-02-03)
+
 -   Addressed minor text editing changes as requested by EGLE staff.
 
 # EGLEtools 1.1.0.9013 (2025-01-14)
+
 -   Updated site classification to function by sampleid to avoid duplicates.
 
 # EGLEtools 1.1.0.9009 (2025-01-13)
+
 -   Updated UI with new language to match EGLE reviewer comments.
 -   Changed all documentation from "MI EGLE" to just "EGLE" per request.
 
 # MIEGLEtools 1.1.0.9007 (2024-12-23)
+
 -   Updated file builder to accommodate wide-format input files.
 -   Fixed site classification to use mean of reported widths in dup sites.
 
 # MIEGLEtools 1.1.0.9001 (2024-12-17)
+
 -   Removed tab_import in favor of two import functions. One in each step.
 
 # MIEGLEtools 1.1.0.9000 (2024-12-11)
+
 -   Added custom CSS to to match aesthetic of EGLE website
 -   Added QC elements to taxa translator function
 -   Added modal on launch
 -   Published to shinyapps.io as beta
 
 # MIEGLEtools 1.0.0.9027 (2024-12-09)
+
 -   Added content to UI that represents MI EGLE's P51 documentation
 -   Added guidance information to UI tabs
 
 # MIEGLEtools 1.0.0.9025 (2024-12-09)
+
 -   Added site classification functionality
 -   Uses MI EGLE Site Class geospatial layer to join sites
 
 # MIEGLEtools 1.0.0.9024 (2024-12-03)
+
 -   Added and tested metric calc, metric scoring, and index scoring functionality
 
 # MIEGLEtools 1.0.0.9017 (2024-11-27)

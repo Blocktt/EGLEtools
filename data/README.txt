@@ -1,1 +1,1 @@
-All files initially generated here have been moved to another folder (MassNBCtools\inst\shiny-examples\MassNBCtools\GIS_Data) to be accessible to the Shiny app.
+All files initially generated here have been moved to another folder (EGLEtools\inst\apps\shiny-examples\EGLEtools\data) to be accessible to the Shiny app.

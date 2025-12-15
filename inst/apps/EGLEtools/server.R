@@ -932,7 +932,7 @@ shinyServer(function(input, output, session) {
       names(df_input) <- toupper(names(df_input))
 
       # QC, specify "INDEX_NAME"
-      df_input$INDEX_NAME <- "MIEGLE_2020"
+      df_input$INDEX_NAME <- "EGLE_2025"
 
       # QC, required input fields
       required_columns <- c("INDEX_NAME", "INDEX_CLASS", "SAMPLEID"
