@@ -1094,13 +1094,13 @@ shinyServer(function(input, output, session) {
       # Attainment
       df_index_attn <- df_metsc %>%
         mutate(MacroinvertebrateRating = case_when(
-          INDEX_CLASS == "WESTSTEEP" & Index < 42 ~ "Does not meet expectations",
-          INDEX_CLASS == "WESTFLAT" & Index < 46 ~ "Does not meet expectations",
-          INDEX_CLASS == "EAST" & Index < 46 ~ "Does not meet expectations",
-          INDEX_CLASS == "VERYNARROW" & Index < 59 ~ "Does not meet expectations",
-          INDEX_CLASS == "NARROW" & Index < 48 ~ "Does not meet expectations",
-          INDEX_CLASS == "MIDSIZEDRY" & Index < 45 ~ "Does not meet expectations",
-          INDEX_CLASS == "WETWIDE" & Index < 45 ~ "Does not meet expectations",
+          INDEX_CLASS == "WESTSTEEP" & Index < 50 ~ "Does not meet expectations",
+          INDEX_CLASS == "WESTFLAT" & Index < 44 ~ "Does not meet expectations",
+          INDEX_CLASS == "EAST" & Index < 68 ~ "Does not meet expectations",
+          INDEX_CLASS == "VERYNARROW" & Index < 40 ~ "Does not meet expectations",
+          INDEX_CLASS == "NARROW" & Index < 44 ~ "Does not meet expectations",
+          INDEX_CLASS == "MIDSIZEDRY" & Index < 48 ~ "Does not meet expectations",
+          INDEX_CLASS == "WETWIDE" & Index < 43 ~ "Does not meet expectations",
           TRUE ~ "Meets expectations"))
 
       # Save Results

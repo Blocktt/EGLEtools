@@ -1,11 +1,17 @@
 EGLEtools-NEWS
 ================
 <Ben.Block@tetratech.com>
-2025-12-15 15:27:29.312797
+2025-12-23 12:36:52.073448
 
 <!-- NEWS.md is generated from NEWS.Rmd. Please edit that file -->
 
-    #> Last Update: 2025-12-15 15:27:29.341594
+    #> Last Update: 2025-12-23 12:36:52.093053
+
+# EGLEtools 2.0.0.9002 (2025-12-23)
+
+- Update MacroinvertebrateRating field that comes out with scores to
+  EGLE thresholds. Based on 5th percentile of reference for each site
+  class.
 
 # EGLEtools 2.0.0 (2025-12-15)
 
